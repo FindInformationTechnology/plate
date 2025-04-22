@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function store(Request $request, UserService $userService) {
 
-        dd($request->all());
+        // dd($request->all());
         
         $user = $userService->createUser($request->all());
 

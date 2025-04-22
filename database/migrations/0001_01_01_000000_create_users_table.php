@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('provider_id')->nullable(); // for social login
             $table->rememberToken();
             $table->timestamps();
+            
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

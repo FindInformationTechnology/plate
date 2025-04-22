@@ -38,7 +38,6 @@ class UserService
      */
     public function createUser(array $userData, $verify = true): User
     {
-        dd("createUser");
         $cleanUserData = $this->prepareUserData($userData);
         
         $user = User::create($cleanUserData);

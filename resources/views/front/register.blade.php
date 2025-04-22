@@ -27,7 +27,9 @@
 		<div class="main-wrapper login-body">
 			<!-- Header -->
 			<header class="log-header">
-				<a href=""><img class="img-fluid logo-dark" src="{{ asset ('assets/img/logo.svg') }}" alt="Logo"></a>
+				<a href="">
+				<a href=""><h1 >999 | Plate</h1></a>
+ 				</a> 
 			</header>
 			<!-- /Header -->
 
@@ -43,32 +45,43 @@
 							<form method="post" action="{{ route('register.store') }}">
 								@csrf
 								<div class="input-block">
-									<label class="form-label">Username <span class="text-danger">*</span></label>
-									<input type="text" class="form-control"  placeholder="">
+									<label class="form-label">Name <span class="text-danger">*</span></label>
+									<input type="text" name="name" class="form-control" placeholder="Enter your full name" required>
 								</div>
 								<div class="input-block">
 									<label class="form-label">Email <span class="text-danger">*</span></label>
-									<input type="email" class="form-control"  placeholder="">
+									<input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+								</div>
+								<div class="input-block">
+									<label class="form-label">Phone Number <span class="text-danger">*</span></label>
+									<input type="tel" name="phone" class="form-control" placeholder="Enter your phone number" required>
 								</div>
 								<div class="input-block">
 									<label class="form-label">Password <span class="text-danger">*</span></label>
 									<div class="pass-group">
-										<input type="password" class="form-control pass-input" placeholder="">
+										<input type="password" name="password" class="form-control pass-input" placeholder="Create password" required>
 										<span class="fas fa-eye-slash toggle-password"></span>
 									</div>
-								</div>	
+								</div>
+								<div class="input-block">
+									<label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+									<div class="pass-group">
+										<input type="password" name="password_confirmation" class="form-control pass-input" placeholder="Confirm password" required>
+										<span class="fas fa-eye-slash toggle-password"></span>
+									</div>
+								</div>
 								<button type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Sign Up</button>
-								<!-- <a type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Sign Up</a> -->
+								
 								<div class="login-or">
 									<span class="or-line"></span>
 									<span class="span-or">Or, Create an account with your email</span>
 								</div>
 								<!-- Social Login -->
 								<div class="social-login">
-									<a href="#" class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img src="assets/img/icons/google.svg" class="img-fluid" alt="Google"></span>Log in with Google</a>
+									<a href="#" class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img src="{{ asset('assets/img/icons/google.svg') }}" class="img-fluid" alt="Google"></span>Log in with Google</a>
 								</div>
 								<div class="social-login">
-									<a href="#" class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img src="assets/img/icons/facebook.svg" class="img-fluid" alt="Facebook"></span>Log in with Facebook</a>
+									<a href="#" class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img src="{{ asset('assets/img/icons/facebook.svg') }}" class="img-fluid" alt="Facebook"></span>Log in with Facebook</a>
 								</div>
 								<!-- /Social Login -->
 								<div class="text-center dont-have">Already have an Account? <a href="{{ route('login') }}">Sign In</a></div>
