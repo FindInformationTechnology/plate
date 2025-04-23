@@ -3,23 +3,23 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-		<title>Dreams Rent | Template</title>
+		<title>999 | Plate</title>
 		
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="assets/img/favicon.png">
+		<link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
 		
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
 		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
 		
 		<!-- Fearther CSS -->
-		<link rel="stylesheet" href="assets/css/feather.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
 		
 		<!-- Main CSS -->
-		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 	</head>
 	<body>
 	
@@ -27,7 +27,7 @@
 		<div class="main-wrapper login-body">
 			<!-- Header -->
 			<header class="log-header">
-				<a href=""><h1 >999 | Plate</h1></a>
+				<a href=""><img class="img-fluid logo-dark" src="{{ asset ('assets/img/logo.svg') }}" alt="Logo"></a>
 			</header>
 			<!-- /Header -->
 
@@ -36,11 +36,16 @@
 					<div class="login-auth">
 						<div class="login-auth-wrap">
 							<div class="sign-group">
-								<a href="index.html" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> Back To Home</a>
+								<a href="#" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> Back To Home</a>
 							</div>
-							<h1>Sign In</h1>
+							<h1>Sign Up</h1>
 							<p class="account-subtitle">We'll send a confirmation code to your email.</p>								
-							<form action="index.html">
+							<form method="post" action="{{ route('register.store') }}">
+								@csrf
+								<div class="input-block">
+									<label class="form-label">Username <span class="text-danger">*</span></label>
+									<input type="text" class="form-control"  placeholder="">
+								</div>
 								<div class="input-block">
 									<label class="form-label">Email <span class="text-danger">*</span></label>
 									<input type="email" class="form-control"  placeholder="">
@@ -51,21 +56,12 @@
 										<input type="password" class="form-control pass-input" placeholder="">
 										<span class="fas fa-eye-slash toggle-password"></span>
 									</div>
-								</div>								
-								<div class="input-block">
-									<a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
-								</div>
-								<div class="input-block m-0">
-									<label class="custom_check d-inline-flex"><span>Remember me</span>
-										<input type="checkbox" name="remeber">
-										<span class="checkmark"></span>
-									</label>
-								</div>
-								
-								<button type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Sign In</button>
+								</div>	
+								<button type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Sign Up</button>
+								<!-- <a type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Sign Up</a> -->
 								<div class="login-or">
 									<span class="or-line"></span>
-									<span class="span-or-log">Or, log in with your email</span>
+									<span class="span-or">Or, Create an account with your email</span>
 								</div>
 								<!-- Social Login -->
 								<div class="social-login">
@@ -75,7 +71,7 @@
 									<a href="#" class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img src="assets/img/icons/facebook.svg" class="img-fluid" alt="Facebook"></span>Log in with Facebook</a>
 								</div>
 								<!-- /Social Login -->
-								<div class="text-center dont-have">Don't have an account yet? <a href="{{  route ('register') }}">Register</a></div>
+								<div class="text-center dont-have">Already have an Account? <a href="{{ route('login') }}">Sign In</a></div>
 							</form>							
 						</div>
 					</div>
@@ -88,7 +84,7 @@
 					<!-- Copyright -->
 					<div class="copyright">
 						<div class="copyright-text">
-							<p>© 2024 Dreams Rent. All Rights Reserved.</p>
+							<p>© 2024 999 Plate. All Rights Reserved.</p>
 						</div>
 					</div>
 					<!-- /Copyright -->						
@@ -99,13 +95,13 @@
 		<!-- /Main Wrapper -->
 		
 		<!-- jQuery -->
-		<script src="assets/js/jquery-3.7.1.min.js"></script>
+		<script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 		
 		<!-- Bootstrap Core JS -->
-		<script src="assets/js/bootstrap.bundle.min.js"></script>
+		<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 		
 		<!-- Custom JS -->
-		<script src="assets/js/script.js"></script>
+		<script src="{{ asset('assets/js/script.js') }}"></script>
 
 	</body>
 </html>

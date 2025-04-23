@@ -32,4 +32,25 @@ class AuthController extends Controller
         }
         
     }
+
+    public function destroy( $id, UserService $userService) {
+        $user = $userService->deleteUser( $id); 
+        if ($user) {
+            return redirect()->route('login');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    public function login(Request $request, UserService $userService) {
+        $user = $userService->login($request->all());
+        if ($user) {
+            return redirect()->route('user.dashboard');
+        } else {
+            return redirect()->back();
+        }
+    }
+
+
+
 }

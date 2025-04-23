@@ -14,6 +14,19 @@ class UserService
      *
      * @return Collection
      */
+
+    public function login($userData): User|null{
+        $user = User::where('email', $userData['email'])->first();
+
+        if (!$user || !Hash::check($userData['password'], $user->password)) {
+            return null;
+        } else {  
+            return $user;
+         }
+
+    }
+    
+
     public function getAllUsers(): Collection
     {
         return User::all();
