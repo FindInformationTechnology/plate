@@ -8,23 +8,35 @@
         <div class="login-auth">
             <div class="login-auth-wrap">
                 <div class="sign-group">
-                    <a href="index.html" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> Back To Home</a>
+                    <a href="{{ route('home') }}" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> Back To Home</a>
                 </div>
                 <h1>Forgot Password</h1>
                 <p class="account-subtitle">Enter your email and we will send you a link to reset your password.</p>
-                <form action="index.html">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                <form method="POST" action="{{ route('password.email') }}">
+                    @csrf
                     <div class="input-block">
                         <label class="form-label">Email Address <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control" placeholder="">
+                        <input type="email" name="email" class="form-control" placeholder="">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <a href="{{ route('password.email') }}" class="btn btn-outline-light w-100 btn-size">Save Changes</a>
+                    <!-- <a href="{{ route('password.email') }}" class="btn btn-outline-light w-100 btn-size">Save Changes</a> -->
+            
+                    <button type="submit" class="btn btn-outline-light w-100 btn-size mt-1">Send</button>
+
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<
+
 
 {{--<x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">

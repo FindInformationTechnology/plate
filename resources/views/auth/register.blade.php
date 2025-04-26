@@ -13,6 +13,17 @@
 				</div>
 				<h1>Sign Up</h1>
 				<p class="account-subtitle">We'll send a confirmation code to your email.</p>
+
+				@if ($errors->any())
+				<div class="alert alert-danger">
+					<ul>
+						@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
+				@endif
+
 				<form method="post" action="{{ route('register') }}">
 					@csrf
 					<div class="input-block">
