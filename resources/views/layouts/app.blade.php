@@ -40,6 +40,14 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}">
 
+    <style>
+        .dashboard-section {
+            background: none;
+          
+            box-shadow: none;   
+        }
+    </style>
+
 </head>
 
 <body class="home-two">
@@ -48,59 +56,65 @@
 
         @if(Route::currentRouteName() == 'home')
         <!-- Hero Sec Main -->
-            <div class="hero-sec-main">
-        @endif
-        <!-- Header -->
+        <div class="hero-sec-main">
+            @endif
+            <!-- Header -->
 
-        @include('layouts.header')
+            @include('layouts.header')
 
-        @yield('content')
+            @auth
+            <!-- Dashboard Menu -->
+            @include('partials._dashboard_menu')
+            <!-- /Dashboard Menu -->
+            @endauth
 
-        @include('layouts.footer')
-    
+            @yield('content')
 
-    </div>
-
-    <!-- scrollToTop start -->
-    <div class="progress-wrap active-progress">
-        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
-        </svg>
-    </div>
-    <!-- scrollToTop end -->
+            @include('layouts.footer')
 
 
-    <!-- jQuery -->
-    <script src="{{ asset ('assets/js/jquery-3.7.1.min.js') }}"></script>
+        </div>
 
-    <!-- Bootstrap Core JS -->
-    <script src="{{ asset ('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <!-- scrollToTop start -->
+        <div class="progress-wrap active-progress">
+            <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
+            </svg>
+        </div>
+        <!-- scrollToTop end -->
 
-    <!-- counterup JS -->
-    <script src="{{ asset ('assets/js/jquery.waypoints.js') }}"></script>
-    <script src="{{ asset ('assets/js/jquery.counterup.min.js') }}"></script>
 
-    <!-- Select2 JS -->
-    <script src="{{ asset ('assets/plugins/select2/js/select2.min.js') }}"></script>
+        <!-- jQuery -->
+        <script src="{{ asset ('assets/js/jquery-3.7.1.min.js') }}"></script>
 
-    <!-- Aos -->
-    <script src="{{ asset ('assets/plugins/aos/aos.js') }}"></script>
+        <!-- Bootstrap Core JS -->
+        <script src="{{ asset ('assets/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- Top JS -->
-    <script src="{{ asset ('assets/js/backToTop.js') }}"></script>
+        <!-- counterup JS -->
+        <script src="{{ asset ('assets/js/jquery.waypoints.js') }}"></script>
+        <script src="{{ asset ('assets/js/jquery.counterup.min.js') }}"></script>
 
-    <!-- Fancybox JS -->
-    <script src="{{ asset ('assets/plugins/fancybox/fancybox.umd.js') }}"></script>
+        <!-- Select2 JS -->
+        <script src="{{ asset ('assets/plugins/select2/js/select2.min.js') }}"></script>
 
-    <!-- Datepicker Core JS -->
-    <script src="{{ asset ('assets/plugins/moment/moment.min.js') }}"></script>
-    <script src="{{ asset ('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+        <!-- Aos -->
+        <script src="{{ asset ('assets/plugins/aos/aos.js') }}"></script>
 
-    <!-- Owl Carousel JS -->
-    <script src="{{ asset ('assets/js/owl.carousel.min.js') }}"></script>
+        <!-- Top JS -->
+        <script src="{{ asset ('assets/js/backToTop.js') }}"></script>
 
-    <!-- Custom JS -->
-    <script src="{{ asset ('assets/js/script.js') }}"></script>
+        <!-- Fancybox JS -->
+        <script src="{{ asset ('assets/plugins/fancybox/fancybox.umd.js') }}"></script>
+
+        <!-- Datepicker Core JS -->
+        <script src="{{ asset ('assets/plugins/moment/moment.min.js') }}"></script>
+        <script src="{{ asset ('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+
+        <!-- Owl Carousel JS -->
+        <script src="{{ asset ('assets/js/owl.carousel.min.js') }}"></script>
+
+        <!-- Custom JS -->
+        <script src="{{ asset ('assets/js/script.js') }}"></script>
 
 </body>
 

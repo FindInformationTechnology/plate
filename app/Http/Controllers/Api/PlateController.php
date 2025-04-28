@@ -3,35 +3,50 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Plate;
+use App\Http\Requests\StorePlateRequest;
 use Illuminate\Http\Request;
+use App\Services\PlateService;
+use Illuminate\Support\Facades\Log;
+
+use function Illuminate\Log\log;
 
 class PlateController extends Controller
 {
-    public function index()
+    public function index(PlateService $plate)
     {
-        $plates = Plate::all();
+        $plates = $plate->getAllPlates();
         return response()->json($plates);
     }
     public function show($id)
     {
-        $plate = Plate::find($id);
-        if (!$plate) {
-            return response()->json(['message' => 'Plate not found'], 404);
-        }
+       
     }
 
-    public function store(Request $request)
+    public function store(StorePlateRequest $request, PlateService $plate)
     {
 
-        return response()->json("this from controller", 200);
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'description' => 'required|string',
-        //     'price' => 'required|numeric',
-        //     'image' => 'required|string',
-        // ]);
-        // $plate = Plate::create($request->all());
-        // return response()->json($plate, 201);
+        try {
+        
+            $validatedData = $request->validated(); 
+
+            if($request->has('image')){
+                $path = $request->file('image')->store('plates', 'public');
+                $validatedData['image'] = $path;
+            }
+            
+            $plate = $plate->createPlate($validatedData);
+            
+            return response()->json(['message'=> 'record has been add'],200);
+
+        } catch (\Exception $e) {
+
+            Log::error($e->getMessage());
+
+            // return response()->json(['message' => $e->getMessage()], 400);
+            
+            
+        }
+
+
     }
 }

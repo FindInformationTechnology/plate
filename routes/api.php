@@ -1,39 +1,16 @@
 <?php
 
-use App\Http\Controllers\Api\PlateController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\Plate;
-use App\Models\Page;
+use App\Http\Controllers\Api\PlateController;
 
 
-// Public Routes
-// Route::get('/plates', [PlateController::class, 'index']);
-// Route::get('/plates/{id}', [PlateController::class, 'show']);
-// Route::get('/pages/{slug}', [PageController::class, 'show']);
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 
-// Auth Routes
-// Route::post('/register', [AuthController::class, 'register']);
-// Route::post('/login', [AuthController::class, 'login']);
+// Route::apiResource('/api/plates', PlateController::class);
+Route::get('/plates', [PlateController::class, 'index']);
+Route::post('/plates', [PlateController::class, 'store']);
 
-// Protected Routes
-Route::post('/api/plates', [PlateController::class, 'store']);
-Route::middleware('auth:sanctum')->group(function () {
-    // Route::post('/logout', [AuthController::class, 'logout']);
-    
-    // Route::get('/profile', [UserController::class, 'profile']);
-    // Route::put('/profile', [UserController::class, 'update']);
 
-    // Route::put('/plates/{id}', [PlateController::class, 'update']);
-    // Route::delete('/plates/{id}', [PlateController::class, 'destroy']);
-
-    // Route::post('/favorites', [FavoriteController::class, 'store']);
-    // Route::delete('/favorites/{id}', [FavoriteController::class, 'destroy']);
-    
-    // Route::post('/reports', [ReportController::class, 'store']);
-});

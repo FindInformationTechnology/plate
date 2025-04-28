@@ -5,50 +5,50 @@
 						<div class="dashboard-menu">
 							<ul>
 								<li>
-									<a href="user-dashboard.html">
-										<img src="assets/img/icons/dashboard-icon.svg" alt="Icon">
+									<a href="{{ route('user.dashboard') }}" class=" @if (Route::currentRouteName() == 'user.dashboard' ) active  @endif ">
+										<img src="{{ asset ('assets/img/icons/dashboard-icon.svg') }}" alt="Icon">
 										<span>Dashboard</span>
 									</a>
 								</li>
 								<li>
-									<a href="user-bookings.html">
-										<img src="assets/img/icons/booking-icon.svg" alt="Icon">
-										<span>My Bookings</span>
+									<a href="{{ route('user.plates') }}" class=" @if (Route::currentRouteName() == 'user.plates' ) active  @endif ">
+										<img src="{{ asset ('assets/img/icons/booking-icon.svg') }}" alt="Icon">
+										<span>My Plate List</span>
 									</a>
 								</li>
 								<li>
-									<a href="user-reviews.html">
-										<img src="assets/img/icons/review-icon.svg" alt="Icon">
+									<a href="#">
+										<img src="{{ asset ('assets/img/icons/review-icon.svg') }}" alt="Icon">
 										<span>Reviews</span>
 									</a>
 								</li>
 								<li>
-									<a href="user-wishlist.html">
-										<img src="assets/img/icons/wishlist-icon.svg" alt="Icon">
+									<a href="#">
+										<img src="{{ asset ('assets/img/icons/wishlist-icon.svg') }}" alt="Icon">
 										<span>Wishlist</span>
 									</a>
 								</li>
 								<li>
-									<a href="user-messages.html">
-										<img src="assets/img/icons/message-icon.svg" alt="Icon">
+									<a href="#">
+										<img src="{{ asset ('assets/img/icons/message-icon.svg') }}" alt="Icon">
 										<span>Messages</span>
 									</a>
 								</li>
 								<li>
-									<a href="user-wallet.html">
-										<img src="assets/img/icons/wallet-icon.svg" alt="Icon">
+									<a href="#">
+										<img src="{{ asset ('assets/img/icons/wallet-icon.svg') }}" alt="Icon">
 										<span>My Wallet</span>
 									</a>
 								</li>
 								<li>
-									<a href="user-payment.html">
-										<img src="assets/img/icons/payment-icon.svg" alt="Icon">
+									<a href="#">
+										<img src="{{ asset ('assets/img/icons/payment-icon.svg') }}" alt="Icon">
 										<span>Payments</span>
 									</a>
 								</li>
 								<li>
-									<a href="user-settings.html" class="active">
-										<img src="assets/img/icons/settings-icon.svg" alt="Icon">
+									<a href="#" class=" @if (Route::currentRouteName() == 'setting.profile' ) active  @endif ">
+										<img src="{{ asset ('assets/img/icons/settings-icon.svg') }}" alt="Icon">
 										<span>Settings</span>
 									</a>
 								</li>

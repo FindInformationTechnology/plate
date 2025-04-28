@@ -107,8 +107,8 @@
 					<p>Copyright &copy; 2025 <span> 999 | Plate </span> . All Rights Reserved.</p>
 				</div>
 				<div class="app-store-links d-flex align-items-center">
-					<span class="me-2"><a href="javascript:void(0);"><img src="{{ asset ('assets/img/icons/google-play.svg" alt="Img"></a></span>
-					<span><a href="javascript:void(0);"><img src="{{ asset ('assets/img/icons/app-store.svg" alt="Img"></a></span>
+					<span class="me-2"><a href="javascript:void(0);"><img src="{{ asset ('assets/img/icons/google-play.svg')}}" alt="Img"></a></span>
+					<span><a href="javascript:void(0);"><img src="{{ asset ('assets/img/icons/app-store.svg') }}" alt="Img"></a></span>
 				</div>
 			</div>
 		</div>

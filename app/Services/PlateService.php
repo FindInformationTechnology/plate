@@ -31,10 +31,22 @@ class PlateService
          return Plate::all();
      }
 
-   //   public function createPlate(array $data): Plate
-   //   {
-          
-   //   }
+     public function createPlate(array $data): Plate
+     {
+         
+
+         $plate = Plate::create([
+             'code' => $data['code'],
+             'length' => $data['length'],
+             'number' => $data['number'],
+             'image' => $data['image'],
+             'pirce' => $data['pirce'],
+         ]);
+
+         $plate->save();
+         
+         return $plate;
+     }
 
    //   public function updatePlate(array $data): Plate
    //   {    

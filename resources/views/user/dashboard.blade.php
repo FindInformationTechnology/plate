@@ -3,34 +3,16 @@
 @section('content')
 
 
-		<!-- Breadscrumb Section -->
-		<div class="breadcrumb-bar">
-			<div class="container">
-				<div class="row align-items-center text-center">
-		    		<div class="col-md-12 col-12">
-			    	    <h2 class="breadcrumb-title">User Dashboard</h2>
-				    	<nav aria-label="breadcrumb" class="page-breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">User Dashboard</li>
-							</ol>
-						</nav>							
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /Breadscrumb Section -->		     	
+		     	
 		
-		<!-- Dashboard Menu -->
-		@include('partials._dashboard_menu')
-		<!-- /Dashboard Menu -->
+	
 
 		<!-- Page Content -->
 		<div class="content dashboard-content">
 			<div class="container">
 
 				<!-- Status List -->
-				<ul class="status-lists">
+				<!-- <ul class="status-lists">
 					<li class="approve-item">
 						<div class="status-info">
 							<span><i class="fa-solid fa-calendar-days"></i></span>
@@ -52,95 +34,10 @@
 						</div>
 						<a href="javascript:void(0);" class="close-link"><i class="feather-x"></i></a>
 					</li>
-				</ul>
+				</ul> -->
 				<!-- /Status List -->
 
-				<!-- Content Header -->
-				<div class="content-header">
-					<h4>Dashboard</h4>
-				</div>
-				<!-- /Content Header -->
-
-				<!-- Dashboard -->
-				<div class="row">
-
-					<!-- Widget Item -->
-					<div class="col-lg-3 col-md-6 d-flex">
-						<div class="widget-box flex-fill">
-							<div class="widget-header">
-								<div class="widget-content">
-									<h6>My Bookings</h6>
-									<h3>450</h3>
-								</div>
-								<div class="widget-icon">
-									<span>
-										<img src="assets/img/icons/book-icon.svg" alt="icon">
-									</span>
-								</div>
-							</div>
-							<a href="user-bookings.html" class="view-link">View all Bookings <i class="feather-arrow-right"></i></a>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-
-					<!-- Widget Item -->
-					<div class="col-lg-3 col-md-6 d-flex">
-						<div class="widget-box flex-fill">
-							<div class="widget-header">
-								<div class="widget-content">
-									<h6>Wallet Balance</h6>
-									<h3>$24,665</h3>
-								</div>
-								<div class="widget-icon">
-									<span class="bg-warning">
-										<img src="assets/img/icons/balance-icon.svg" alt="icon">
-									</span>
-								</div>
-							</div>
-							<a href="user-wallet.html" class="view-link">View Balance <i class="feather-arrow-right"></i></a>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-
-					<!-- Widget Item -->
-					<div class="col-lg-3 col-md-6 d-flex">
-						<div class="widget-box flex-fill">
-							<div class="widget-header">
-								<div class="widget-content">
-									<h6>Total Transactions</h6>
-									<h3>$15,210</h3>
-								</div>
-								<div class="widget-icon">
-									<span class="bg-success">
-										<img src="assets/img/icons/transaction-icon.svg" alt="icon">
-									</span>
-								</div>
-							</div>
-							<a href="user-payment.html" class="view-link">View all Transactions <i class="feather-arrow-right"></i></a>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-
-					<!-- Widget Item -->
-					<div class="col-lg-3 col-md-6 d-flex">
-						<div class="widget-box flex-fill">
-							<div class="widget-header">
-								<div class="widget-content">
-									<h6>Wishlist Cars</h6>
-									<h3>24</h3>
-								</div>
-								<div class="widget-icon">
-									<span class="bg-danger">
-										<img src="assets/img/icons/cars-icon.svg" alt="icon">
-									</span>
-								</div>
-							</div>
-							<a href="user-wishlist.html" class="view-link">Go to Wishlist <i class="feather-arrow-right"></i></a>
-						</div>
-					</div>
-					<!-- /Widget Item -->
-
-				</div>				
+					
 
 				<div class="row">
 

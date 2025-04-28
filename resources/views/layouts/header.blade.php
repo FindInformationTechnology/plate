@@ -100,7 +100,7 @@
                     <li><a href="{{ route('home')}}">Plates</a></li>
 
 
-                    <li><a href="contact-us.html">Contact</a></li>
+                    <li><a href="#">Contact</a></li>
 
                     @guest
                     <li class="login-link">
@@ -111,6 +111,13 @@
                     </li>
 
                     @endguest
+
+                    @auth
+                    <li class="nav-item">
+                        <a class="nav-link header-reg" href="{{ route('user.plates.create') }}">
+                            <span><i class="bx bx-plus-circle"></i></span>Add Plate</a>
+                    </li>
+                    @endauth
                 </ul>
             </div>
 
@@ -123,9 +130,7 @@
                     @if(Route::has('register') )
                     <a class="nav-link login-link ms-1" href="{{ route('register') }}">Register </a>
                     @endif
-                    <!-- <li class="nav-item">
-                        <a class="nav-link header-reg" href="listing-list.html"><span><i class="bx bx-plus-circle"></i></span>Add Listing</a>
-                    </li> -->
+
                 </li>
                 @endguest
 
@@ -227,7 +232,7 @@
                         <span class="user-text">{{ auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ route('dashboard') }}">
+                        <a class="dropdown-item" href="{{ route('user.dashboard') }}">
                             <i class="feather-user-check"></i> Dashboard
                         </a>
                         <a class="dropdown-item" href="{{ route('settings.profile') }}">
