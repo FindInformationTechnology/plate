@@ -11,7 +11,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="{{ route('user.plates') }}" class=" @if (Route::currentRouteName() == 'user.plates' ) active  @endif ">
+									<a href="{{ route('user.plates') }}" class=" @if (Route::currentRouteName() == 'user.plates' || 'user.plates.create' ) active  @endif ">
 										<img src="{{ asset ('assets/img/icons/booking-icon.svg') }}" alt="Icon">
 										<span>My Plate List</span>
 									</a>

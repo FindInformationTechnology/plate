@@ -25,7 +25,7 @@ class PlateController extends Controller
     }
 
     public function store(StorePlateRequest $request, PlateService $plate){
-        dd($request->all());
+
         try {
             //code..  
             
