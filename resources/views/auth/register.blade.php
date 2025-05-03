@@ -9,7 +9,7 @@
 		<div class="login-auth">
 			<div class="login-auth-wrap">
 				<div class="sign-group">
-					<a href="#" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> Back To Home</a>
+					<a href="{{ route('home') }}" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> Back To Home</a>
 				</div>
 				<h1>Sign Up</h1>
 				<p class="account-subtitle">We'll send a confirmation code to your email.</p>

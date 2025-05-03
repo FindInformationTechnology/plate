@@ -1,7 +1,7 @@
 <!-- Header -->
 <header class="header header-two">
     @if(Route::currentRouteName() == 'home')
-    <div class="header-two-top">
+    <!-- <div class="header-two-top">
         <div class="container">
             <div class="header-top-items">
                 <ul class="header-address">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     @endif
     <div class="container">
         <nav class="navbar navbar-expand-lg header-nav">
@@ -82,7 +82,7 @@
                     </span>
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo">
-                    <img src="{{  asset ('assets/img/logo-2.svg')}}" class="img-fluid" alt="Logo">
+                    <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo-small">
                     <img src="{{  asset ('assets/img/logo-small.png')}}" class="img-fluid" alt="Logo">
@@ -91,7 +91,7 @@
             <div class="main-menu-wrapper">
                 <div class="menu-header">
                     <a href="{{ route ('home') }}" class="menu-logo">
-                        <img src="{{  asset ('assets/img/logo.svg')}}" class="img-fluid" alt="Logo">
+                        <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
                     </a>
                     <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                 </div>
@@ -232,10 +232,10 @@
                         <span class="user-text">{{ auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ route('user.dashboard') }}">
-                            <i class="feather-user-check"></i> Dashboard
+                        <a class="dropdown-item" href="{{ route('user.profile.edit') }}">
+                            <i class="feather-user-check"></i> Profile
                         </a>
-                        <a class="dropdown-item" href="{{ route('settings.profile') }}">
+                        <a class="dropdown-item" href="#">
                             <i class="feather-settings"></i> Settings
                         </a>
                         <a class="dropdown-item" href="#" onclick="event.preventDefault();

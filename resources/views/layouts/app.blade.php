@@ -43,8 +43,11 @@
     <style>
         .dashboard-section {
             background: none;
-          
-            box-shadow: none;   
+            box-shadow: none;
+        }
+
+        .header .header-navbar-rht .has-arrow .dropdown-toggle .user-text {
+            color: #FFF;
         }
     </style>
 
@@ -57,8 +60,8 @@
         @if(Route::currentRouteName() == 'home')
         <!-- Hero Sec Main -->
         <div class="hero-sec-main">
-            @endif
-            <!-- Header -->
+        @endif
+
 
             @include('layouts.header')
 

@@ -11,7 +11,7 @@ class StorePlateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,13 +23,13 @@ class StorePlateRequest extends FormRequest
     {
         return [
         
-                // 'emirate_id' => 'required|integer|min:1',
-                // 'code' => 'required|string|max:255',
-                // 'number' => 'required|string|max:255',
-                // 'image' => 'required|string', 
+                'emirate_id' => 'required|integer|min:1',
+                'code' => 'required|string|max:255',
+                'number' => 'required|string|max:255',
+                'image' => 'required', 
                 // Consider using file validation if uploading images
-                // 'length' => 'required|integer|min:1',
-                // 'price' => 'required|integer|min:0',
+                
+                'price' => 'required|integer|min:1',
         ];
     }
         

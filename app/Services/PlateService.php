@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Str;
 
 class PlateService
 {
@@ -49,68 +50,61 @@ class PlateService
     {
         $user = Auth::user();
 
-        $plate = Plate::create([
-            'user_id' => $user->id,
-            'code' => $data['code'],
-            'length' => $data['length'],
-            'number' => $data['number'],
-            'image' => $data['image'],
-            'pirce' => $data['pirce'],
-        ]);
+        $data['user_id'] = $user->id;
+        $data['length'] = 4;
 
-        $plate->save();
+        $plate = Plate::create($data);
 
         return $plate;
     }
 
-    public function updatePlate(array $data, $plateId): Plate
+    public function updatePlate( $plateId,array $data): Plate
     {
         $user = Auth::user();
 
         $plate = Plate::findOrFail($plateId);
 
         // Check permissions based on user role
-        if ($user->hasRole('admin')) {
+        if (($user->hasRole('user') && $plate->user_id == $user->id) || $user->hasRole('admin')) {
             // Admin can edit any plate
-        } elseif ($user->hasRole('user') && $plate->user_id !== $user->id) {
-            // Regular users can only edit their own plates
+            $data['length'] = 4;
 
-            throw new \Illuminate\Auth\Access\AuthorizationException('You do not have permission to edit this plate');
+            $plate->update($data);
+
+            return $plate;
         }
-
-        // Update plate with validated data
-        $plate->update([
-            'code' => $data['code'],
-            'length' => $data['length'],
-            'number' => $data['number'],
-            'image' => $data['image'] ?? $plate->image,
-            'price' => $data['price'] ?? $data['pirce'], // Handle both spellings
-        ]);
-
-        return $plate;
-
+        
+        throw new \Exception('You do not have permission to edit this plate');
     }
 
-      public function deletePlate(array $data) {
+    public function deletePlate($id)
+    {
 
         $user = Auth::user();
 
-        $plate = Plate::findOrFail($data['id']);
+        $plate = Plate::findOrFail($id);
 
         if ($user->hasRole('admin') || ($user->hasRole('user') && $plate->user_id === $user->id)) {
             $plate->delete();
             return true;
-              
-        }else {
+        } else {
             throw new \Illuminate\Auth\Access\AuthorizationException('You do not have permission to delete this plate');
         }
+    }
 
-        
+    public function generateCode($length) {}
 
-      }
+    public function getPlateById($plateId)
+    {
 
+        $user = Auth::user();
 
+        $plate = Plate::findOrFail($plateId);
 
+        if ($user->hasRole('admin') || ($user->hasRole('user') && $plate->user_id === $user->id)) {
+            return $plate;
+        }
 
-
+        throw new \Illuminate\Auth\Access\AuthorizationException('You do not have permission to view this plate');
+    }
 }

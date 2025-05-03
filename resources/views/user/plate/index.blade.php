@@ -82,7 +82,12 @@
 <section class="section car-listing pt-0">
     <div class="container">
         <div class="row">
-           
+
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
 
             <div class="col-xl-9 col-lg-8 col-sm-12 col-12 m-auto">
                 <div class="row">
@@ -91,34 +96,10 @@
                         <div class="card">
                             <div class="blog-widget d-flex">
                                 <div class="blog-img">
-                                    <div class="img-slider owl-carousel">
-                                        <div class="slide-images">
-                                            <a href="listing-details.html">
-                                                <img src="assets/img/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                                            </a>
-                                        </div>
-                                        <div class="slide-images">
-                                            <a href="listing-details.html">
-                                                <img src="assets/img/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                                            </a>
-                                        </div>
-                                        <div class="slide-images">
-                                            <a href="listing-details.html">
-                                                <img src="assets/img/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                                            </a>
-                                        </div>
-                                        <div class="slide-images">
-                                            <a href="listing-details.html">
-                                                <img src="assets/img/car-list-1.jpg" class="img-fluid" alt="Toyota">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="fav-item justify-content-end">
-                                        <span class="img-count"><i class="feather-image"></i>04</span>
-                                        <a href="javascript:void(0)" class="fav-icon">
-                                            <i class="feather-heart"></i>
-                                        </a>
-                                    </div>
+                                    <img src="{{ asset ('assets/img/car-list-1.jpg') }}" class="img-fluid"
+                                        alt="Toyota" width="400">
+
+
                                 </div>
                                 <div class="bloglist-content w-100">
                                     <div class="card-body">
@@ -126,27 +107,30 @@
                                             <div class="blog-list-title">
                                                 <!-- <h3><a href=""> {{ $plate->number }}</a></h3> -->
                                                 <h3>Code : <span>{{ $plate->code }}</span></h3>
-                                                <h3>Number : <span>{{ $plate->code }}</span></h3>
-                                                <h3>Code : <span>{{ $plate->length }}</span></h3>
+                                                <h3>Number : <span>{{ $plate->number }}</span></h3>
+                                                <h3>Length : <span>{{ $plate->length }}</span></h3>
                                             </div>
                                             <div class="blog-list-rate">
-                                                <div class="list-rating">
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <!-- <span>180 Reviews</span> -->
-                                                </div>
+
                                                 <h6>{{ $plate->price }} AED<span></span></h6>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="blog-list-head list-head-bottom d-flex">
-                                        
+
                                             <div class="listing-button">
-                                                <a href="#" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Edit</a>
-                                                <a href="#" class="btn btn-order"><span><i class="feather-calendar me-2"></i></span>Delete</a>
+
+                                                <a href="{{ route('user.plates.edit', $plate->id) }}" class="btn btn-order">
+                                                    <span><i class="feather-calendar me-2"></i></span>Edit
+                                                </a>
+
+                                                <form action="{{ route('user.plates.destroy', $plate->id) }}" method="POST" style="display:inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-order" onclick="return confirm('Are you sure you want to delete this plate?')">
+                                                        <span><i class="feather-trash me-2"></i></span>Delete
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +144,7 @@
                     @empty
                     <div class="listview-car">
                         <div class="card">
-                           <h5>Plates list empty</h5>
+                            <h5>Plates list empty</h5>
                         </div>
                     </div>
                     @endforelse
@@ -333,7 +317,7 @@
                             </div>
                         </div>
                     </div> -->
-                   
+
                 </div>
                 <!--Pagination-->
                 <div class="blog-pagination">

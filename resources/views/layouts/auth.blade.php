@@ -28,11 +28,11 @@
     <!-- Main Wrapper -->
     <div class="main-wrapper login-body">
         <!-- Header -->
-        <header class="log-header">
+        <!-- <header class="log-header">
             <a href="">
                 <h1>999 | Plate</h1>
             </a>
-        </header>
+        </header> -->
         <!-- /Header -->
 
         @yield('content')

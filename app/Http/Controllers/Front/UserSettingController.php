@@ -11,7 +11,7 @@ class UserSettingController extends Controller
     public function profile(Request $request)
     {
         
-        return view('user.settings');
+        return view('user.profile');
     }
     
     public function update_profile(Request $request)

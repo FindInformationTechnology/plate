@@ -3,13 +3,13 @@
 		<div class="settings-menu">
 			<ul>
 				<li>
-					<a href="{{ route('settings.profile') }}" 
-					@if(request()->routeIs('settings.profile')) class="active" @endif>
+					<a href="{{ route('user.profile.edit') }}" 
+					@if(request()->routeIs('user.profile')) class="active" @endif>
 						<i class="feather-user"></i> Profile
 					</a>
 				</li>
 				<li>
-					<a href="{{ route('settings.security') }}" @if(request()->routeIs('settings.security')) class="active" @endif>
+					<a href="{{ route('user.security') }}" @if(request()->routeIs('user.security')) class="active" @endif>
 						<i class="feather-shield"></i> Security
 					</a>
 				</li>

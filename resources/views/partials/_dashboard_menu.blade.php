@@ -5,13 +5,13 @@
 						<div class="dashboard-menu">
 							<ul>
 								<li>
-									<a href="{{ route('user.dashboard') }}" class=" @if (Route::currentRouteName() == 'user.dashboard' ) active  @endif ">
+									<a href="{{ route('user.profile.edit') }}" class=" @if (Route::currentRouteName() == 'user.profile.edit' ) active  @endif ">
 										<img src="{{ asset ('assets/img/icons/dashboard-icon.svg') }}" alt="Icon">
-										<span>Dashboard</span>
+										<span>Profile</span>
 									</a>
 								</li>
 								<li>
-									<a href="{{ route('user.plates') }}" class=" @if (Route::currentRouteName() == 'user.plates' || 'user.plates.create' ) active  @endif ">
+									<a href="{{ route('user.plates') }}" class=" @if (Route::currentRouteName() == 'user.plates' ) active  @endif ">
 										<img src="{{ asset ('assets/img/icons/booking-icon.svg') }}" alt="Icon">
 										<span>My Plate List</span>
 									</a>
