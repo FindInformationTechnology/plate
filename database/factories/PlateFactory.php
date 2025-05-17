@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Code;
 use App\Models\Emirate;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -18,12 +19,11 @@ class PlateFactory extends Factory
      */
     public function definition(): array
     {
-        $code = $this->faker->randomElement(['A', 'B', 'H', 'K']);
         $number = $this->faker->numerify('#####');
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'emirate_id' => Emirate::inRandomOrder()->first()->id,
-            'code' => $code,
+            'code_id' => Code::inRandomOrder()->first()->id,
             'number' => $number,
             'length' => strlen($number),
             'image' => null,

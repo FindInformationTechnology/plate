@@ -4,7 +4,7 @@
 <section class="section product-details add-listing">
     <div class="container">
 
-        @if ($errors->any())
+      {{--  @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -12,7 +12,7 @@
                 @endforeach
             </ul>
         </div>
-        @endif
+        @endif --}}
         <form action="{{ route('user.plates.update', $plate->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')

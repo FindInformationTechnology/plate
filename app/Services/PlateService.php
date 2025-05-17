@@ -29,18 +29,22 @@ class PlateService
         //  $this->model = $plate;  
     }
 
+   
+
     public function getAllPlates(): Collection
     {
         $user = Auth::user();
 
+        // Check permissions based on user role
+        
+        if ($user->hasRole('user')) {
+            
+            return Plate::where('user_id', $user->id)->get();
+        }
+        
         if ($user->hasRole('admin')) {
 
             return Plate::all();
-        }
-
-        if ($user->hasRole('user')) {
-
-            return Plate::where('user_id', $user->id)->get();
         }
 
         return collect();

@@ -97,7 +97,7 @@
                 </div>
                 <ul class="main-nav">
                     <li><a href="{{ route('home')}}">Home</a></li>
-                    <li><a href="{{ route('home')}}">Plates</a></li>
+                    <li><a href="{{ route('plates')}}">Plates</a></li>
 
 
                     <li><a href="#">Contact</a></li>
@@ -113,10 +113,29 @@
                     @endguest
 
                     @auth
+                    @if(auth()->user()->hasRole('user'))
                     <li class="nav-item">
-                        <a class="nav-link header-reg" href="{{ route('user.plates.create') }}">
-                            <span><i class="bx bx-plus-circle"></i></span>Add Plate</a>
+                        <a class="nav-link header-reg" href="{{ route('user.plates') }}">
+                            </span>My Plates</a>
                     </li>
+                   
+                    @endif
+                    @if(auth()->user()->hasRole('admin'))
+                    <li class="nav-item">
+                        <a class="nav-link header-reg" href="{{ route('admin.dashboard') }}">
+                            <span><i class="bx bx-plus-circle"></i></span>Dashboard Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
+                        document.getElementById('logout-form-admin').submit()">
+                            <i class="feather-power"></i> Logout
+
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
+                            @csrf
+                        </form>
+                    </li>
+                    @endif
                     @endauth
                 </ul>
             </div>
@@ -132,10 +151,13 @@
                     @endif
 
                 </li>
+
+
                 @endguest
 
 
                 @auth
+                @if(auth()->user()->hasRole('user'))
                 <!-- Notifications -->
                 <li class="nav-item dropdown logged-item noti-nav noti-wrapper">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
@@ -153,7 +175,8 @@
                                     <a href="#">
                                         <div class="media d-flex">
                                             <span class="avatar avatar-lg flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-01.jpg">
+                                                <img class="avatar-img rounded-circle" alt="User Image"
+                                                    src="{{ asset('assets/img/profiles/avatar-01.jpg')}}">
                                             </span>
                                             <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">Jonathan Doe </span> has booked <span class="noti-title">your service</span></p>
@@ -162,58 +185,7 @@
                                         </div>
                                     </a>
                                 </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media d-flex">
-                                            <span class="avatar avatar-lg flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-03.jpg">
-                                            </span>
-                                            <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Julie Pennington</span> has booked <span class="noti-title">your service</span></p>
-                                                <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media d-flex">
-                                            <span class="avatar avatar-lg flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-02.jpg">
-                                            </span>
-                                            <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Tyrone Roberts</span> has booked <span class="noti-title">your service</span></p>
-                                                <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media d-flex">
-                                            <span class="avatar avatar-lg flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-04.jpg">
-                                            </span>
-                                            <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Patricia Manzi</span> has booked <span class="noti-title">your service</span></p>
-                                                <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media d-flex">
-                                            <span class="avatar avatar-lg flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image" src="assets/img/profiles/avatar-01.jpg">
-                                            </span>
-                                            <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Jonathan Doe</span> has booked <span class="noti-title">your service</span></p>
-                                                <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
@@ -249,6 +221,7 @@
                     </div>
                 </li>
                 <!-- /User Menu -->
+                @endif
 
                 @endauth
 

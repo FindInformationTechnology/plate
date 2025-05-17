@@ -56,131 +56,45 @@
 		</div>
 		<div class="row yacht-category-lists">
 
+
+
+			@foreach ($plates as $plate)
+
+
 			<div class="col-lg-4 col-md-6 col-12">
 				<div class="listing-item plate-card position-relative">
-					<div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div>
+					<!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
 					<div class="d-flex justify-content-end align-items-center">
 						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
 					</div>
-					<div class="w-100 my-4">
-						<img src="assets/img/car-plates/1-X3210.png" alt="car-plate" class="w-100" loading="lazy">
+					<div class="position-relative plate">
+						<div class="w-100 my-4">
+							<img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
+								loading="lazy">
+						</div>
+						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fs-1 fw-semibold">{{ $plate->code->name }}</h1>
+						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
 					</div>
 					<div>
-						<p class="text-success fs-4 text-center fw-semibold pb-4">5,000 AED</p>
+						<p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price }}</p>
 					</div>
 					<div class="border-top">
-						<a href="#" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i class="bx bx-phone"></i>
+						<a href="#"
+							class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i
+								class="bx bx-phone"></i>
 							<p>Contact</p>
 						</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="listing-item plate-card position-relative">
-					<div class="py-1 px-3 bg-alt rounded-2 position-absolute status">sold</div>
-					<div class="d-flex justify-content-end align-items-center">
-						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-					</div>
-					<div class="w-100 my-4">
-						<img src="assets/img/car-plates/1-X3214410.png" alt="car-plate" class="w-100" loading="lazy">
-					</div>
-					<div>
-						<p class="text-success fs-4 text-center fw-semibold pb-4">XXX</p>
-					</div>
-					<div class="border-top">
-						<a href="#" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i class="bx bx-phone"></i>
-							<p>Contact</p>
-						</a>
-					</div>
-				</div>
-			</div>
 
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="listing-item plate-card position-relative">
-					<div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div>
-					<div class="d-flex justify-content-end align-items-center">
-						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-					</div>
-					<div class="w-100 my-4">
-						<img src="assets/img/car-plates/25.png" alt="car-plate" class="w-100" loading="lazy">
-					</div>
-					<div>
-						<p class="text-success fs-4 text-center fw-semibold pb-4">5,000</p>
-					</div>
-					<div class="border-top">
-						<a href="#" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i class="bx bx-phone"></i>
-							<p>Contact</p>
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="listing-item plate-card position-relative">
-					<div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div>
-					<div class="d-flex justify-content-end align-items-center">
-						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-					</div>
-					<div class="w-100 my-4">
-						<img src="assets/img/car-plates/20.png" alt="car-plate" class="w-100" loading="lazy">
-					</div>
-					<div>
-						<p class="text-success fs-4 text-center fw-semibold pb-4">XXXXX</p>
-					</div>
-					<div class="border-top">
-						<a href="#" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i class="bx bx-phone"></i>
-							<p>Contact</p>
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="listing-item plate-card position-relative">
-					<div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div>
-					<div class="d-flex justify-content-end align-items-center">
-						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-					</div>
-
-					<div class="w-100 my-4">
-						<img src="assets/img/car-plates/25.png" alt="car-plate" class="w-100" loading="lazy">
-					</div>
-					<div>
-						<p class="text-success fs-4 text-center fw-semibold pb-4">3,500 AED</p>
-					</div>
-					<div class="border-top">
-						<a href="#" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i class="bx bx-phone"></i>
-							<p>Contact</p>
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="listing-item plate-card position-relative">
-					<div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div>
-					<div class="d-flex justify-content-end align-items-center">
-						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-					</div>
-					<div class="w-100 my-4">
-						<img src="assets/img/car-plates/250.png" alt="car-plate" class="w-100" loading="lazy">
-					</div>
-					<div>
-						<p class="text-success fs-4 text-center fw-semibold pb-4">2,000 AED</p>
-					</div>
-					<div class="border-top">
-						<a href="#" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i class="bx bx-phone"></i>
-							<p>Contact</p>
-						</a>
-					</div>
-				</div>
-			</div>
+			@endforeach
 
 
 			<div class="col-md-12">
 				<div class="view-more-btn text-center">
-					<a href="listing-grid.html" class="btn btn-secondary">View More Categories</a>
+					<a href="{{ route('plates') }}" class="btn btn-secondary">View More Plates</a>
 				</div>
 			</div>
 		</div>

@@ -14,17 +14,45 @@ class EmirateSeeder extends Seeder
     public function run(): void
     {
         $emirates = [
-            ['en' => 'Abu Dhabi', 'ar' => 'أبو ظبي'],
-            ['en' => 'Dubai', 'ar' => 'دبي'],
-            ['en' => 'Sharjah', 'ar' => 'الشارقة'],
-            ['en' => 'Ajman', 'ar' => 'عجمان'],
-            ['en' => 'Fujairah', 'ar' => 'الفجيرة'],
-            ['en' => 'Ras Al Khaimah', 'ar' => 'رأس الخيمة'],
-            ['en' => 'Umm Al Quwain', 'ar' => 'أم القيوين'],
+            [
+                'name' => ['en' => 'Abu Dhabi', 'ar' => 'أبو ظبي'],
+                'slug' => 'abu-dhabi',
+                'image' => 'assets/media/emirates/abudhabi.png'
+            ],
+            [
+                'name' => ['en' => 'Dubai', 'ar' => 'دبي'],
+                'slug' => 'dubai',
+                'image' => 'assets/media/emirates/dubai.png'
+            ],
+            [
+                'name' => ['en' => 'Sharjah', 'ar' => 'الشارقة'],
+                'slug' => 'sharjah',
+                'image' => 'assets/media/emirates/sharjah.png'
+            ],
+            [
+                'name' => ['en' => 'Ajman', 'ar' => 'عجمان'],
+                'slug' => 'ajman',
+                'image' => 'assets/media/emirates/ajman.png'
+            ],
+            [
+                'name' => ['en' => 'Fujairah', 'ar' => 'الفجيرة'],
+                'slug' => 'fujairah',
+                'image' => 'assets/media/emirates/fujairah.png'
+            ],
+            [
+                'name' => ['en' => 'Ras Al Khaimah', 'ar' => 'رأس الخيمة'],
+                'slug' => 'rak',
+                'image' => 'assets/media/emirates/rak.png'
+            ],
+            [
+                'name' => ['en' => 'Umm Al Quwain', 'ar' => 'أم القيوين'],
+                'slug' => 'uaq',
+                'image' => 'assets/media/emirates/uaq.png'
+            ],
         ];
 
-        foreach ($emirates as $name) {
-            Emirate::create(['name' => $name]);
+        foreach ($emirates as $emirate) {
+            Emirate::create($emirate);
         }
     }
 }

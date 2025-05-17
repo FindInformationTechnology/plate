@@ -16,6 +16,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
+        // Check if the request is for the admin login page
+        if (request()->is('admin/login') || request()->is('admin/*')) {
+            return view('admin.pages.auth.login');
+        }
+        
         return view('auth.login');
     }
 
@@ -28,7 +33,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('user.dashboard', absolute: false));
+        $user = auth()->user();
+
+        if($user->hasRole('admin')){
+            return redirect()->intended(route('admin.dashboard'))
+            ->with('success', 'Welcome to the admin dashboard');
+        }elseif ($user->hasRole('user')) {
+            return redirect()->intended(route('user.dashboard'))
+            ->with('success', 'Welcome back, ' . $user->name . '! You are logged in successfully.');
+        }
+
+        return redirect()->intended(route('home'))
+        ->with('success', 'You have been logged in successfully.');
     }
 
     /**
@@ -42,6 +58,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('success', 'You have been logged out successfully.');
     }
 }

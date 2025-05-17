@@ -44,6 +44,10 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
+        // if (request()->routeIs('admin.*')) {
+        //     Fortify::loginView(fn () => view('admin.pages.auth.login'));
+        // }
+
         Fortify::loginView(fn () => view('auth.login'));
         Fortify::registerView(fn () => view('auth.register'));
         Fortify::requestPasswordResetLinkView(fn () => view('auth.forgot-password'));

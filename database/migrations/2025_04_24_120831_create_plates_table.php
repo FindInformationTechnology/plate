@@ -20,8 +20,8 @@ return new class extends Migration
             // Related to emirate
             $table->foreignId('emirate_id')->constrained()->onDelete('cascade');
 
+            $table->foreignId('code_id')->constrained()->onDelete('cascade');
             // Plate details
-            $table->string('code'); // e.g. A, B, H
             $table->string('number', 5); // max 5 digits/letters
             $table->unsignedTinyInteger('length'); // auto-filled
 
@@ -32,6 +32,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->nullable();
             $table->boolean('is_approved')->default(false);
             $table->boolean('is_sold')->default(false);
+            $table->boolean('is_visible')->default(true);
             $table->timestamp('approved_at')->nullable();
 
             $table->timestamps();

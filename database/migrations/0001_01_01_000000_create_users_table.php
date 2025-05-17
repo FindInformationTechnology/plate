@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique()->nullable();
+            $table->string('whatsapp')->unique()->nullable();
             $table->string('password');
             $table->string('emirate')->nullable();
             $table->string('nationality')->nullable();

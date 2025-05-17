@@ -19,6 +19,9 @@
     <!-- Fancybox CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/plugins/fancybox/fancybox.css')}}">
 
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <!-- Select2 CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/plugins/select2/css/select2.min.css')}}">
 
@@ -40,6 +43,8 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}">
 
+    <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
+
     <style>
         .dashboard-section {
             background: none;
@@ -60,14 +65,16 @@
         @if(Route::currentRouteName() == 'home')
         <!-- Hero Sec Main -->
         <div class="hero-sec-main">
-        @endif
+            @endif
 
 
             @include('layouts.header')
 
             @auth
             <!-- Dashboard Menu -->
+            @if(!Route::currentRouteName() == 'home')
             @include('partials._dashboard_menu')
+            @endif
             <!-- /Dashboard Menu -->
             @endauth
 
@@ -118,6 +125,48 @@
 
         <!-- Custom JS -->
         <script src="{{ asset ('assets/js/script.js') }}"></script>
+
+
+        <!-- Toastr JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+       
+
+        <script>
+            // Configure toastr options
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+
+            // Display flash messages from session
+            @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+            @endif
+
+            @if(Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+            @endif
+
+            @if(Session::has('info'))
+            toastr.info("{{ Session::get('info') }}");
+            @endif
+
+            @if(Session::has('warning'))
+            toastr.warning("{{ Session::get('warning') }}");
+            @endif
+        </script>
+
+        @stack('scripts')
 
 </body>
 
