@@ -18,6 +18,8 @@ Route::get('/plate/details', function () {
     return view('front.plate-details');
 })->name('plate.details');
 
+Route::get('/plates/{id}', [PlateController::class, 'show'])->name('plate.show');
+
 Route::middleware(['auth', 'verified', 'role:user'])
     ->prefix('user')->name('user.')
     ->group(function () {
@@ -33,7 +35,6 @@ Route::middleware(['auth', 'verified', 'role:user'])
         Route::get('/plates', [PlateController::class, 'index'])->name('plates');
         Route::get('/plates/create', [PlateController::class, 'create'])->name('plates.create');
         Route::post('/plates', [PlateController::class, 'store'])->name('plates.store');
-        Route::get('/plates/{id}', [PlateController::class, 'show'])->name('plates.show');
         Route::get('/plates/{id}/edit', [PlateController::class, 'edit'])->name('plates.edit');
         Route::put('/plates/{id}', [PlateController::class, 'update'])->name('plates.update');
         Route::delete('/plates/{id}', [PlateController::class, 'destroy'])->name('plates.destroy');

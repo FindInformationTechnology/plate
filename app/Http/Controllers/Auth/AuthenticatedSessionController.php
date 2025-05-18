@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('admin.dashboard'))
             ->with('success', 'Welcome to the admin dashboard');
         }elseif ($user->hasRole('user')) {
-            return redirect()->intended(route('user.dashboard'))
+            return redirect()->intended(route('home'))
             ->with('success', 'Welcome back, ' . $user->name . '! You are logged in successfully.');
         }
 

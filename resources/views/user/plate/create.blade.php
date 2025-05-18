@@ -35,22 +35,24 @@
                                 <div class="col-lg-6 col-12">
                                     <div class="mb-3">
                                         <label class="form-label">City <span class="text-danger">*</span></label>
-                                        <select class="select" name="emirate_id" required>
+                                        <select class="select" name="emirate_id" id="emirate_id" required>
+                                            <option value="">Select Emirate</option>
                                             @foreach(\App\Models\Emirate::all() as $emirate)
                                             <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                
                                 <div class="col-lg-6 col-12">
                                     <div class="mb-3">
                                         <label class="form-label">Code <span class="text-danger">*</span></label>
-                                        <select class="select" name="code" required>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                            <option value="D">D</option>
+                                        <select class="select" name="code_id" id="code_id" required>
+                                            <option value="">Select Emirate First</option>
                                         </select>
+                                        <div class="spinner-border text-primary d-none" id="code-loading" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
                                     </div>
                                 </div>
 

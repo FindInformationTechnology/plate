@@ -55,7 +55,11 @@ class PlateController extends Controller
         }
     }
 
-    public function show(Plate $plate) {}
+    public function show($id) {
+        $plates = Plate::where('is_visible', true)->get();
+        $plate = Plate::findOrFail($id);
+        return view("front.plate-details", ["plate" => $plate, 'plates' => $plates]);
+    }
 
     public function edit($id, PlateService $plate)
     {

@@ -21,7 +21,7 @@ class Plate extends Model
         'is_visible',
         'image'
     ];
-    protected $appends = ['image_url'];
+    protected $appends = ['image_url', 'price_digits'];
 
     public function user()
     {
@@ -37,14 +37,24 @@ class Plate extends Model
         return $this->belongsTo(Code::class);
     }
 
-    // public function getImageUrlAttribute()
-    // {
-    //     if ($this->image == null) {
-    //         return asset('assets/media/plates/default.png');
-    //     } else {
-    //         return asset('storage/' . $this->image);
-    //     }
-    // }
+    public function getPriceDigitsAttribute()
+    {
+        if ($this->price <= 0) {
+            return 'Call for Price';
+        }
+        
+        // Format price as integer (no decimal places)
+        return number_format((int)$this->price, 0) . ' AED';
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->image == null) {
+            return asset('assets/media/plates/default.png');
+        } else {
+            return asset('storage/' . $this->image);
+        }
+    }
 
     
 

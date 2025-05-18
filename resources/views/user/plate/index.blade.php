@@ -39,7 +39,7 @@
         transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        /* object-fit: cover; */
     }
 
     .listview-plate:hover .blog-img img {
@@ -280,25 +280,23 @@
                 <div class="card-body">
                     @forelse ($plates as $plate)
                     <div class="blog-widget d-flex mt-3 listview-plate">
-                        <div class="blog-img">
-                            <img src="{{ asset ('assets/img/car-list-1.jpg') }}" class="img-fluid" alt="Plate Image">
-                        </div>
+                        
                         <div class="bloglist-content">
                             <div class="blog-list-head d-flex">
                                 <div class="blog-list-title">
-                                    <h3>Code : <span>{{ $plate->code }}</span></h3>
+                                    <h3>Code : <span>{{ $plate->code->name}}</span></h3>
                                     <h3>Number : <span>{{ $plate->number }}</span></h3>
                                     @if($plate->emirate)
                                     <h3>Emirate : <span>{{ $plate->emirate->name }}</span></h3>
                                     @endif
                                 </div>
                                 <div class="blog-list-rate">
-                                    <h6>{{ $plate->price }} AED</h6>
+                                    <h6>{{ $plate->price_digits }} </h6>
                                 </div>
                             </div>
 
                             <div class="blog-list-head list-head-bottom d-flex">
-                                <div class="plate-status-toggles mt-2 mb-2">
+                                <div class=" mt-2 mb-2">
                                     <div class="form-check form-switch d-inline-block me-3">
                                         <input class="form-check-input toggle-sold" type="checkbox" role="switch"
                                             id="soldToggle{{ $plate->id }}" data-id="{{ $plate->id }}"

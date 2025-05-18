@@ -20,7 +20,7 @@ body {
   src: url("../fonts/SansibarCX-Condensed.ttf");
 }
 @font-face {
-  font-family: "Fujairah";
+  font-family: "fj";
   src: url("../fonts/LicensePlate.ttf");
 }
 @font-face {
@@ -77,7 +77,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .abu-icon {
+.plate .abu-dhabi-icon {
   color: #111112;
   top: 10px;
   left: 30px;
@@ -87,7 +87,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .abu-number {
+.plate .abu-dhabi-number {
   top: 50%;
   transform: translateY(-50%);
   left: 45%;
@@ -99,7 +99,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .Fujairah-icon {
+.plate .fujairah-icon {
   color: #111112;
   top: 50%;
   transform: translateY(-50%);
@@ -109,7 +109,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .Fujairah-number {
+.plate .fujairah-number {
   color: #111112;
   top: 50%;
   transform: translateY(-50%);
@@ -120,7 +120,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .Sharjah-icon {
+.plate .sharjah-icon {
   top: 50%;
   left: 60px;
   transform: translateY(-50%);
@@ -129,7 +129,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .Sharjah-number {
+.plate .sharjah-number {
   color: #111112;
   top: 50%;
   transform: translateY(-50%);
@@ -140,7 +140,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .umq-icon {
+.plate .uaq-icon {
   top: 50%;
   transform: translateY(-50%);
   left: 30px;
@@ -148,7 +148,7 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .umq-number {
+.plate .uaq-number {
   color: #111112;
   top: 50%;
   transform: translateY(-50%);
@@ -159,28 +159,28 @@ body {
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .aj-plate {
+.plate .ajman-plate {
   width: 60%;
   top: 50%;
   transform: translateY(-50%);
   left: 20px;
 }
-.plate .aj-plate h1,
-.plate .aj-plate h2 {
+.plate .ajman-plate h1,
+.plate .ajman-plate h2 {
   font-size: 50px;
   font-family: "ajman";
   color: #111112;
   text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
                  -2px 2px 0 #dedddd, 2px 2px 0 #555;
 }
-.plate .ras-plate {
-  width: 75%;
+.plate .rak-plate {
+  width: 60%;
   top: 50%;
   transform: translateY(-50%);
-  left: 25%;
+  left: 33%;
 }
-.plate .ras-plate h1,
-.plate .ras-plate h2 {
+.plate .rak-plate h1,
+.plate .rak-plate h2 {
   font-family: "dubai";
   font-weight: lighter !important;
   font-size: 70px;
@@ -200,51 +200,51 @@ body {
     left: 40%;
     font-size: 45px;
   }
-  .plate .abu-icon {
+  .plate .abu-dhabi-icon {
     top: 15%;
     left: 9%;
     font-size: 20px;
   }
-  .plate .abu-number {
+  .plate .abu-dhabi-number {
     left: 50%;
     font-size: 30px;
   }
-  .plate .Fujairah-icon {
+  .plate .fujairah-icon {
     left: 10%;
     font-size: 40px;
   }
-  .plate .Fujairah-number {
+  .plate .fujairah-number {
     left: 55%;
     font-size: 40px;
   }
-  .plate .sh-icon {
+  .plate .sharjah-icon {
     left: 15%;
     font-size: 25px !important;
   }
-  .plate .sh-number {
+  .plate .sharjah-number {
     left: 65%;
     font-size: 30px;
   }
-  .plate .umq-icon {
+  .plate .uaq-icon {
     left: 8%;
     font-size: 30px;
   }
-  .plate .umq-number {
+  .plate .uaq-number {
     left: 55%;
     font-size: 35px;
   }
-  .plate .aj-plate {
+  .plate .ajman-plate {
     left: 5%;
   }
-  .plate .aj-plate h1,
-  .plate .aj-plate h2 {
+  .plate .ajman-plate h1,
+  .plate .ajman-plate h2 {
     font-size: 35px !important;
   }
-  .plate .ras-plate {
+  .plate .rak-plate {
     left: 25%;
   }
-  .plate .ras-plate h1,
-  .plate .ras-plate h2 {
+  .plate .rak-plate h1,
+  .plate .rak-plate h2 {
     font-size: 40px !important;
   }
 }
