@@ -14,23 +14,19 @@ Route::get('/', [FrontController::class, 'index'])->name('home');
 
 Route::get('/plates', [FrontController::class, 'plates'])->name('plates');
 
-Route::get('/plate/details', function () {
-    return view('front.plate-details');
-})->name('plate.details');
+Route::get('/plate/details/{id}', [FrontController::class, 'show'])->name('plate.show');
 
-Route::get('/plates/{id}', [PlateController::class, 'show'])->name('plate.show');
 
 Route::middleware(['auth', 'verified', 'role:user'])
-    ->prefix('user')->name('user.')
-    ->group(function () {
+->prefix('user')->name('user.')
+->group(function () {
+    
+    
+       
 
-        Route::get('/dashboard', function () {
-            return view('user.dashboard');
-        })->name('dashboard');
-
-        Route::get(' /security', [UserSettingController::class, 'security'])->name('security');
-        Route::get('/settings/notification', [UserSettingController::class, 'notification'])->name('settings.notification');
-        Route::get('/settings/payment', [UserSettingController::class, 'payment'])->name('settings.payment');
+        // Route::get(' /security', [UserSettingController::class, 'security'])->name('security');
+        // Route::get('/settings/notification', [UserSettingController::class, 'notification'])->name('settings.notification');
+        // Route::get('/settings/payment', [UserSettingController::class, 'payment'])->name('settings.payment');
 
         Route::get('/plates', [PlateController::class, 'index'])->name('plates');
         Route::get('/plates/create', [PlateController::class, 'create'])->name('plates.create');
@@ -45,9 +41,24 @@ Route::middleware(['auth', 'verified', 'role:user'])
 
         Route::post('/plates/ajax-destroy', [PlateController::class, 'ajaxDestroy'])->name('plates.ajax-destroy');
 
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // Add this route to your web.php file
+        Route::get('/api/codes-by-emirate', [PlateController::class, 'getCodesByEmirate'])->name('api.codes.by.emirate');
+
+
+        // User profile routes
+
+       
+
+        
+
+        
+        Route::get('/dashboard', 
+        [ProfileController::class, 'dashboard'])->name('dashboard');
+        Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+        Route::put('/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+        Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
     });
 
 // Include admin routes

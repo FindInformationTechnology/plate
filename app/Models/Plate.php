@@ -28,12 +28,18 @@ class Plate extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function views()
+    {
+        return $this->hasMany(PlateView::class);
+    }
+
     public function emirate()
     {
         return $this->belongsTo(Emirate::class);
     }
 
-    public function code () {
+    public function code()
+    {
         return $this->belongsTo(Code::class);
     }
 
@@ -42,7 +48,7 @@ class Plate extends Model
         if ($this->price <= 0) {
             return 'Call for Price';
         }
-        
+
         // Format price as integer (no decimal places)
         return number_format((int)$this->price, 0) . ' AED';
     }
@@ -55,8 +61,4 @@ class Plate extends Model
             return asset('storage/' . $this->image);
         }
     }
-
-    
-
-
 }

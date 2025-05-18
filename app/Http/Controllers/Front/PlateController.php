@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePlateRequest;
+use App\Models\Code;
 use App\Models\Plate;
 use App\Services\PlateService;
 use Illuminate\Http\Request;
@@ -34,9 +35,9 @@ class PlateController extends Controller
             $validated = $request->validate([
                 'emirate_id' => 'required|integer',
                 'number' => 'required|string',
-                'code' => 'required|string',
-                'price' => 'required',
-                'image' => 'nullable|image|max:8192',
+                'code_id' => 'required|string',
+                // 'price' => 'required',
+                // 'image' => 'nullable|image|max:8192',
 
             ]);
 
@@ -73,10 +74,11 @@ class PlateController extends Controller
             $validated = $request->validate([
                 'emirate_id' => 'required|integer',
                 'number' => 'required|string',
-                'code' => 'required|string',
-                'price' => 'required',
-                'image' => 'nullable|image|max:8192',
+                'code_id' => 'required|string',
+                // 'price' => 'required',
+                // 'image' => 'nullable|image|max:8192',
             ]);
+            
             if ($request->has('image')) {
                 $path = $request->file('image')->store('plates', 'public');
                 $validated['image'] = $path;
@@ -176,6 +178,23 @@ class PlateController extends Controller
         return response()->json([
             'success' => true,
             'message' => $request->is_visible == 1 ? 'Plate is now visible to buyers' : 'Plate is now hidden from buyers'
+        ]);
+    }
+
+
+    public function getCodesByEmirate(Request $request)
+    {
+        $request->validate([
+            'emirate_id' => 'required|exists:emirates,id'
+        ]);
+
+        $codes = Code::where('emirate_id', $request->emirate_id)
+                    ->orderBy('name')
+                    ->get(['id', 'name']);
+
+        return response()->json([
+            'success' => true,
+            'codes' => $codes
         ]);
     }
 }

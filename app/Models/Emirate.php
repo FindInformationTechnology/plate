@@ -17,6 +17,10 @@ class Emirate extends Model
         return $this->hasMany(Code::class);
     }
 
+    public function plates () {
+        return $this->hasMany(Plate::class);
+    }
+
     public function getImageUrlAttribute()
     {
         if ($this->image == null) {

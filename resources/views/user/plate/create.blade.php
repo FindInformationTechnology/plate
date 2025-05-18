@@ -43,7 +43,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                
                                 <div class="col-lg-6 col-12">
                                     <div class="mb-3">
                                         <label class="form-label">Code <span class="text-danger">*</span></label>
@@ -102,4 +101,54 @@
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function() {
+        // When emirate selection changes
+        $('#emirate_id').on('change', function() {
+            const emirateId = $(this).val();
+            const codeSelect = $('#code_id');
+            const loadingSpinner = $('#code-loading');
+            
+            // Clear current options
+            codeSelect.empty().append('<option value="">Loading codes...</option>');
+            
+            if (emirateId) {
+                // Show loading spinner
+                loadingSpinner.removeClass('d-none');
+                
+                // Fetch codes for the selected emirate
+                $.ajax({
+                    url: "{{ route('user.api.codes.by.emirate') }}",
+                    type: "GET",
+                    data: {
+                        emirate_id: emirateId
+                    },
+                    success: function(response) {
+                        // Clear the loading option
+                        codeSelect.empty();
+                        
+                        // Add a default option
+                        codeSelect.append('<option value="">Select Code</option>');
+                        
+                        // Add options for each code
+                        $.each(response.codes, function(key, code) {
+                            codeSelect.append('<option value="' + code.id + '">' + code.name + '</option>');
+                        });
+                        
+                        // Hide loading spinner
+                        loadingSpinner.addClass('d-none');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error loading codes:", error);
+                        codeSelect.empty().append('<option value="">Error loading codes</option>');
+                        loadingSpinner.addClass('d-none');
+                    }
+                });
+            } else {
+                // If no emirate is selected, show default message
+                codeSelect.empty().append('<option value="">Select Emirate First</option>');
+            }
+        });
+    });
+</script>
 @endpush

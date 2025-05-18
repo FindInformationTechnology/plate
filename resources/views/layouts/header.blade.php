@@ -204,11 +204,11 @@
                         <span class="user-text">{{ auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ route('user.profile.edit') }}">
-                            <i class="feather-user-check"></i> Profile
+                        <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                            <i class="feather-settings"></i> Dashboard
                         </a>
-                        <a class="dropdown-item" href="#">
-                            <i class="feather-settings"></i> Settings
+                        <a class="dropdown-item" href="{{ route('user.profile') }}">
+                            <i class="feather-user-check"></i> Profile
                         </a>
                         <a class="dropdown-item" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit()">

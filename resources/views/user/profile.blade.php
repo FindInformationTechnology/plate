@@ -27,7 +27,7 @@
 
 			<!-- Settings Details -->
 			<div class="col-lg-9 mx-auto">
-				@if(request()->routeIs('user.profile.edit'))
+				@if(request()->routeIs('user.profile'))
 					@include('partials.settings._profile')
 				@elseif(request()->routeIs('user.security'))
 					@include('partials.settings._security')

@@ -280,7 +280,7 @@
                 <div class="card-body">
                     @forelse ($plates as $plate)
                     <div class="blog-widget d-flex mt-3 listview-plate">
-                        
+
                         <div class="bloglist-content">
                             <div class="blog-list-head d-flex">
                                 <div class="blog-list-title">

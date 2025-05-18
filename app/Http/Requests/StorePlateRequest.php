@@ -24,12 +24,12 @@ class StorePlateRequest extends FormRequest
         return [
         
                 'emirate_id' => 'required|integer|min:1',
-                'code' => 'required|string|max:255',
+                'code_id' => 'required|string|max:255',
                 'number' => 'required|string|max:255',
-                'image' => 'required', 
+                // 'image' => 'required', 
                 // Consider using file validation if uploading images
                 
-                'price' => 'required|integer|min:1',
+                // 'price' => 'required|integer|min:1',
         ];
     }
         
