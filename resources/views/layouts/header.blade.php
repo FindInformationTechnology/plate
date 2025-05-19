@@ -201,7 +201,11 @@
                         <span class="user-img">
                             <img class="rounded-circle" src="{{  asset ('assets/img/profiles/avatar-14.jpg') }}" alt="Profile">
                         </span>
-                        <span class="user-text">{{ auth()->user()->name }}</span>
+                        @if (Route::currentRouteName() == 'home')
+                        <span class="user-text" style="color: #fff;">{{ auth()->user()->name }}</span>
+                        @else
+                        <span class="user-text" style="color: black;">{{ auth()->user()->name }}</span>
+                        @endif
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="{{ route('user.dashboard') }}">

@@ -8,7 +8,7 @@ use App\Models\Code;
 use App\Models\Plate;
 use App\Services\PlateService;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 use function Illuminate\Log\log;
 
 
@@ -56,7 +56,8 @@ class PlateController extends Controller
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $plates = Plate::where('is_visible', true)->get();
         $plate = Plate::findOrFail($id);
         return view("front.plate-details", ["plate" => $plate, 'plates' => $plates]);
@@ -65,28 +66,71 @@ class PlateController extends Controller
     public function edit($id, PlateService $plate)
     {
 
-        return view("user.plate.edit", ["plate" => $plate->getPlateById($id)]);
+        $plate = Plate::findOrFail($id);
+
+        // Check if the authenticated user owns this plate
+        if (auth()->id() !== $plate->user_id) {
+            return redirect()->route('user.plates')->with('error', 'You are not authorized to edit this plate.');
+        }
+
+        return view('user.plate.edit', compact('plate'));
     }
     public function update(Request $request, $id, PlateService $plate)
     {
         try {
             // Validate the request data
-            $validated = $request->validate([
-                'emirate_id' => 'required|integer',
-                'number' => 'required|string',
-                'code_id' => 'required|string',
-                // 'price' => 'required',
-                // 'image' => 'nullable|image|max:8192',
-            ]);
-            
-            if ($request->has('image')) {
-                $path = $request->file('image')->store('plates', 'public');
-                $validated['image'] = $path;
+            $plate = Plate::findOrFail($id);
+
+            // Check if the authenticated user owns this plate
+            if (auth()->id() !== $plate->user_id) {
+                return redirect()->route('user.plates')->with('error', 'You are not authorized to update this plate.');
             }
 
-            $plate = $plate->updatePlate($id, $validated);
+            // Validate the request
+            $validated = $request->validate([
+                'number' => 'required|string|max:255',
+                'emirate_id' => 'required|exists:emirates,id',
+                'code_id' => 'required|exists:codes,id',
+                'price' => 'nullable|numeric',
+                // 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:8192',
 
-            return redirect()->route("user.plates")->with("success", "The record has been updated");
+                'remove_image' => 'nullable|boolean',
+            ]);
+
+            // Convert price string to numeric value (remove commas)
+            $validated['price'] = str_replace(',', '', $validated['price']);
+
+            // Set boolean fields
+            $validated['is_sold'] = $request->has('is_sold');
+            $validated['is_visible'] = $request->has('is_visible');
+
+            // Handle image upload
+            if ($request->hasFile('image')) {
+                // Delete old image if exists
+                if ($plate->image && Storage::disk('public')->exists($plate->image)) {
+                    Storage::disk('public')->delete($plate->image);
+                }
+
+                // Store new image
+                $validated['image'] = $request->file('image')->store('plates', 'public');
+            } elseif ($request->boolean('remove_image')) {
+                // Remove image if requested
+                if ($plate->image && Storage::disk('public')->exists($plate->image)) {
+                    Storage::disk('public')->delete($plate->image);
+                }
+                $validated['image'] = null;
+            } else {
+                // Keep existing image
+                unset($validated['image']);
+            }
+
+            // Remove fields that are not in the plates table
+            unset($validated['remove_image']);
+
+            // Update the plate
+            $plate->update($validated);
+
+            return redirect()->route('user.plates')->with('success', 'Plate updated successfully!');
         } catch (\Exception $e) {
             log()->error($e->getMessage());
             return redirect()->back()->with("error", $e->getMessage());
@@ -189,8 +233,8 @@ class PlateController extends Controller
         ]);
 
         $codes = Code::where('emirate_id', $request->emirate_id)
-                    ->orderBy('name')
-                    ->get(['id', 'name']);
+            ->orderBy('name')
+            ->get(['id', 'name']);
 
         return response()->json([
             'success' => true,

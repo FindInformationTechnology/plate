@@ -29,7 +29,6 @@ class ProfileController extends Controller
 
         // This would require a view count implementation - using a placeholder for now
         // You might need to create a PlateView model to track views
-        $viewsCount = 0; // Placeholder
 
         // Get user's recent plates (last 5)
         $recentPlates = Plate::with(['emirate', 'code'])
