@@ -45,6 +45,8 @@
 
     <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
 
+    <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
+
     <style>
         .dashboard-section {
             background: none;
@@ -130,7 +132,7 @@
         <!-- Toastr JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-       
+
 
         <script>
             // Configure toastr options

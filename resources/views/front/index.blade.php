@@ -33,6 +33,38 @@
 					</div>
 
 				</div>
+                <div class="mt-5 col-md-12 rounded-md search">
+  <form class="d-flex flex-wrap gap-2 search-bar">
+    <!-- All Options -->
+    <div class="options d-flex flex-wrap gap-2 w-100">
+      <!-- Main Options -->
+      <select class="form-control search-option">
+        <option value="">dubai</option>
+      </select>
+      <select class="form-control search-option">
+        <option value="">1 digit</option>
+      </select>
+      <select class="form-control search-option">
+        <option value="">1500 AED</option>
+      </select>
+
+      <!-- More Options -->
+      <input type="number" class="form-control search-option extra d-none" placeholder="Maximum Price">
+      <input type="number" class="form-control search-option extra d-none" placeholder="Minimum Price">
+      <input type="number" class="form-control search-option extra d-none" placeholder="Start With: ex:123">
+      <input type="number" class="form-control search-option extra d-none" placeholder="End With: ex:000">
+      <input type="text" class="form-control search-option extra d-none" placeholder="Option 8">
+
+    <!-- Search Button -->
+    <button class="search-btn" type="submit">Search</button>
+    </div>
+
+  </form>
+
+  <p class="toggle-options">+ more options</p>
+</div>
+
+
 			</div>
 		</div>
 
@@ -73,7 +105,7 @@
 								loading="lazy">
 						</div>
 						@if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fs-1 fw-semibold">{{ $plate->code->name }}</h1>
+						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold">{{ $plate->code->name }}</h1>
 						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
 						@else
 						<div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
@@ -107,6 +139,21 @@
 		</div>
 	</div>
 </section>
+
+<script>
+  document.querySelector(".toggle-options").addEventListener("click", function () {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
+
+    extraOptions.forEach(opt => {
+      opt.classList.toggle("d-none");
+    });
+
+    this.textContent = isHidden ? "- less options" : "+ more options";
+  });
+</script>
+
+
 <!-- /Yacht Categories -->
 
 

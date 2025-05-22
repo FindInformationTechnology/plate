@@ -7,12 +7,11 @@
 	<div class="container">
 		<div class="row align-items-center text-center">
 			<div class="col-md-12 col-12">
-				<h2 class="breadcrumb-title">Plate Listings</h2>
+				<h2 class="breadcrumb-title">Plates</h2>
 				<nav aria-label="breadcrumb" class="page-breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0);">Listings</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Plate Listings</li>
+						<li class="breadcrumb-item active" aria-current="page">Plates</li>
 					</ol>
 				</nav>
 			</div>
@@ -43,11 +42,11 @@
 								loading="lazy">
 						</div>
 						@if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fs-1 fw-semibold">{{ $plate->code->name }}</h1>
+						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold">{{ $plate->code->name }}</h1>
 						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
 						@else
 						<div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
-							<h1 class=" fw-medium">{{ $plate->code->name }}</h1>
+							<h1 class="fw-medium">{{ $plate->code->name }}</h1>
 							<h2 class="fw-medium">{{ $plate->number }}</h2>
 						</div>
 						@endif
