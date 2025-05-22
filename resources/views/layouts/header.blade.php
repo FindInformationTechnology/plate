@@ -146,13 +146,13 @@
                         <ul class="dropdown-menu"  >
                             <li>
                                 <a class="dropdown-item" style="color: #2F2F2F;"
-                                 href="{{ url('/?language=en') }}">
+                                 href="{{ route('change.language', 'en') }}">
                                     English
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" style="color: #2F2F2F;"
-                                 href="{{ url('/?language=ar') }}">
+                                 href="{{ route('change.language', 'ar') }}">
                                     العربية
                                 </a>
                             </li>
@@ -173,10 +173,10 @@
                         <i class="fa fa-globe"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ url('/?language=en') }}">
+                        <a class="dropdown-item" href="{{ route('change.language', 'en') }}">
                             English
                         </a>
-                        <a class="dropdown-item" href="{{ url('/?language=ar') }}">
+                        <a class="dropdown-item" href="{{ route('change.language', 'ar') }}">
                             العربية
                         </a>
                     </div>

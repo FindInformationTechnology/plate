@@ -30,8 +30,7 @@ Route::get('auth/apple', [App\Http\Controllers\Auth\SocialAuthController::class,
 Route::get('auth/apple/callback', [App\Http\Controllers\Auth\SocialAuthController::class, 'handleAppleCallback']);
 
 // Change Language
-Route::get('lang/{locale}', [LanguageController::class, 'changeLanguage'])->name('change.language')
-    ->middleware('language');
+Route::get('lang/{locale}', [LanguageController::class, 'changeLanguage'])->name('change.language');
 
 Route::middleware(['auth', 'verified', 'role:user'])
     ->prefix('user')->name('user.')
