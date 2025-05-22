@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -42,11 +42,18 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}">
-
+    
     <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
 
+<<<<<<< HEAD
     <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
 
+=======
+    @if(app()->getLocale() === 'ar')
+    <link rel="stylesheet" href="{{ asset('assets/css/rtl.css') }}">
+    @endif
+    
+>>>>>>> a21fd7be782a97e649c81f3c1b6a6abef75a5096
     <style>
         .dashboard-section {
             background: none;

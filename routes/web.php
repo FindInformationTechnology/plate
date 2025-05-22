@@ -4,7 +4,9 @@ use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\PlateController;
 use App\Http\Controllers\Front\UserSettingController;
 use App\Http\Controllers\Front\ProfileController;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
 
 
 
@@ -16,14 +18,24 @@ Route::get('/plates', [FrontController::class, 'plates'])->name('plates');
 
 Route::get('/plate/details/{id}', [FrontController::class, 'show'])->name('plate.show');
 
+// Social Authentication Routes
+Route::get('auth/google', [App\Http\Controllers\Auth\SocialAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [App\Http\Controllers\Auth\SocialAuthController::class, 'handleGoogleCallback']);
+
+Route::get('auth/facebook', [App\Http\Controllers\Auth\SocialAuthController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('auth/facebook/callback', [App\Http\Controllers\Auth\SocialAuthController::class, 'handleFacebookCallback']);
+
+// Add this with your other social auth routes
+Route::get('auth/apple', [App\Http\Controllers\Auth\SocialAuthController::class, 'redirectToApple'])->name('auth.apple');
+Route::get('auth/apple/callback', [App\Http\Controllers\Auth\SocialAuthController::class, 'handleAppleCallback']);
+
+// Change Language
+Route::get('lang/{locale}', [LanguageController::class, 'changeLanguage'])->name('change.language');
 
 Route::middleware(['auth', 'verified', 'role:user'])
-->prefix('user')->name('user.')
-->group(function () {
-    
-    
-       
-
+    ->prefix('user')->name('user.')
+    ->group(function () {
+        // USE THIS CONTROLLER FOR USER SETTING
         // Route::get(' /security', [UserSettingController::class, 'security'])->name('security');
         // Route::get('/settings/notification', [UserSettingController::class, 'notification'])->name('settings.notification');
         // Route::get('/settings/payment', [UserSettingController::class, 'payment'])->name('settings.payment');
@@ -44,21 +56,15 @@ Route::middleware(['auth', 'verified', 'role:user'])
         // Add this route to your web.php file
         Route::get('/api/codes-by-emirate', [PlateController::class, 'getCodesByEmirate'])->name('api.codes.by.emirate');
 
-
         // User profile routes
-
-       
-
-        
-
-        
-        Route::get('/dashboard', 
-        [ProfileController::class, 'dashboard'])->name('dashboard');
+        Route::get(
+            '/dashboard',
+            [ProfileController::class, 'dashboard']
+        )->name('dashboard');
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         Route::put('/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
         Route::put('/password', [ProfileController::class, 'updatePassword'])->name('password.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
     });
 
 // Include admin routes

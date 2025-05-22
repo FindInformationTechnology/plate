@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
+use App\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
+use App\Providers\RouteServiceProvider;
 
 class RegisteredUserController extends Controller
 {
@@ -49,10 +52,16 @@ class RegisteredUserController extends Controller
         // Assign the 'user' role to the newly registered user
         $user->assignRole('user');
 
+        // Send welcome email
+        Mail::to($user->email)->send(new WelcomeEmail($user));
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('home', absolute: false))
+        ->with('success', 'Welcome to Plate! A confirmation email has been sent to your email address.');
+
+        // return redirect(route('dashboard', absolute: false));
     }
 }

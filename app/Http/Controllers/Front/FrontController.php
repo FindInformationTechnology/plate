@@ -8,14 +8,17 @@ use Illuminate\Http\Request;
 use App\Services\PlateService;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PlateView;
+use Illuminate\Support\Facades\App;
 
 
 class FrontController extends Controller
 {
     public function index(PlateService $plateService)
     {
-
+     
+       
         return view("front.index", ["plates" => Plate::all()]);
+        
     }
 
     public function plates()

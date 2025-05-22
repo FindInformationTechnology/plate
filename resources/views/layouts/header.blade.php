@@ -102,6 +102,8 @@
 
                     <li><a href="#">Contact</a></li>
 
+                   
+
                     @guest
                     <li class="login-link">
                         <a href="{{ route('register') }}">Sign Up</a>
@@ -118,7 +120,7 @@
                         <a class="nav-link header-reg" href="{{ route('user.plates') }}">
                             </span>My Plates</a>
                     </li>
-                   
+
                     @endif
                     @if(auth()->user()->hasRole('admin'))
                     <li class="nav-item">
@@ -137,11 +139,48 @@
                     </li>
                     @endif
                     @endauth
+
+                     <!-- Language Switcher -->
+                     <li class="nav-item dropdown d-md-none"">
+                        <a class="nav-link dropdown-toggle" href="#"> <i class="fa fa-globe"></i></a>
+                        <ul class="dropdown-menu"  >
+                            <li>
+                                <a class="dropdown-item" style="color: #2F2F2F;"
+                                 href="{{ route('change.language', 'en') }}">
+                                    English
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" style="color: #2F2F2F;"
+                                 href="{{ route('change.language', 'ar') }}">
+                                    العربية
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- /Language Switcher -->
                 </ul>
             </div>
 
 
             <ul class="nav header-navbar-rht">
+
+               
+               
+                <!-- Add language switcher for right side as well -->
+                <li class="nav-item dropdown d-none d-md-block">
+                    <a class="nav-link" href="javascript:void(0);" id="language-dropdown" data-bs-toggle="dropdown">
+                        <i class="fa fa-globe"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="{{ route('change.language', 'en') }}">
+                            English
+                        </a>
+                        <a class="dropdown-item" href="{{ route('change.language', 'ar') }}">
+                            العربية
+                        </a>
+                    </div>
+                </li>
 
                 @guest
                 <li class="nav-item">
