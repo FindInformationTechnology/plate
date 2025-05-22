@@ -23,6 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'is_admin' => \App\Http\Middleware\IsAdmin::class,
+            'language'=> \App\Http\Middleware\SetLanguage::class,
         ]);
         
         $middleware->validateCsrfTokens(except: [

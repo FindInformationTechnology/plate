@@ -15,6 +15,7 @@ class FrontController extends Controller
     public function index(PlateService $plateService)
     {
 
+       
         return view("front.index", ["plates" => Plate::all()]);
     }
 

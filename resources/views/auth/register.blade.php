@@ -60,11 +60,20 @@
 					</div>
 					<!-- Social Login -->
 					<div class="social-login">
-						<a href="#" class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img src="{{ asset('assets/img/icons/google.svg') }}" class="img-fluid" alt="Google"></span>Log in with Google</a>
+						<a href="{{ route('auth.google') }}" class="d-flex align-items-center justify-content-center input-block btn google-login w-100">
+							<span><img src="{{ asset('assets/img/icons/google.svg') }}" class="img-fluid" alt="Google"></span>Sign up with Google
+						</a>
 					</div>
-					<div class="social-login">
-						<a href="#" class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img src="{{ asset('assets/img/icons/facebook.svg') }}" class="img-fluid" alt="Facebook"></span>Log in with Facebook</a>
-					</div>
+					<!-- <div class="social-login">
+						<a href="{{ route('auth.apple') }}" class="d-flex align-items-center justify-content-center input-block btn apple-login w-100">
+							<span><img src="{{ asset('assets/img/icons/apple.svg') }}" class="img-fluid" alt="Apple"></span>Sign up with Apple
+						</a>
+					</div> -->
+					<!-- <div class="social-login">
+						<a href="{{ route('auth.facebook') }}" class="d-flex align-items-center justify-content-center input-block btn google-login w-100">
+							<span><img src="{{ asset('assets/img/icons/facebook.svg') }}" class="img-fluid" alt="Facebook"></span>Sign up with Facebook
+						</a>
+					</div> -->
 					<!-- /Social Login -->
 					<div class="text-center dont-have">Already have an Account? <a href="{{ route('login') }}">Sign In</a></div>
 				</form>

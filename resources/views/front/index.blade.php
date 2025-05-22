@@ -22,7 +22,7 @@
 				<div class="col-md-12">
 					<div class="hero-sec-contents">
 						<div class="banner-title">
-							<h1>Car Plate Reservation
+							<h1>{{ __('message.Popular Plates Categorie')}}
 								<span>Made Simple.</span>
 							</h1>
 							<p>Modern design sports cruisers for those who crave adventure & grandeur yachts for relaxing with your loved ones.

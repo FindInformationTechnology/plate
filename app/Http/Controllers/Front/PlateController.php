@@ -36,7 +36,7 @@ class PlateController extends Controller
                 'emirate_id' => 'required|integer',
                 'number' => 'required|string',
                 'code_id' => 'required|string',
-                // 'price' => 'required',
+                'price' => 'nullable',
                 // 'image' => 'nullable|image|max:8192',
 
             ]);
@@ -91,14 +91,13 @@ class PlateController extends Controller
                 'number' => 'required|string|max:255',
                 'emirate_id' => 'required|exists:emirates,id',
                 'code_id' => 'required|exists:codes,id',
-                'price' => 'nullable|numeric',
+                'price' => 'nullable',
                 // 'image' => 'nullable|image|mimes:jpeg,png,jpg|max:8192',
 
                 'remove_image' => 'nullable|boolean',
             ]);
 
-            // Convert price string to numeric value (remove commas)
-            $validated['price'] = str_replace(',', '', $validated['price']);
+            
 
             // Set boolean fields
             $validated['is_sold'] = $request->has('is_sold');
