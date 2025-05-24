@@ -42,12 +42,15 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}">
-    
+
     <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
 
     <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
 
-     
+    @if(app()->getLocale() === 'ar')
+    <link rel="stylesheet" href="{{ asset('assets/css/rtl.css') }}">
+    @endif
+    
     <style>
         .dashboard-section {
             background: none;
