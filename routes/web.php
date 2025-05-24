@@ -18,6 +18,10 @@ Route::get('/plates', [FrontController::class, 'plates'])->name('plates');
 
 Route::get('/plate/details/{id}', [FrontController::class, 'show'])->name('plate.show');
 
+// Search Route
+Route::get('/search', [FrontController::class, 'search'])->name('search');
+Route::get('/plates/search', [FrontController::class, 'search'])->name('plates.search');
+Route::get('/getCodes/{emirate_id}', [FrontController::class, 'getCodes']);
 // Social Authentication Routes
 Route::get('auth/google', [App\Http\Controllers\Auth\SocialAuthController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [App\Http\Controllers\Auth\SocialAuthController::class, 'handleGoogleCallback']);

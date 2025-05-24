@@ -23,7 +23,56 @@
 <!-- Plate Details -->
 
 <section class="plate-details">
+		<div class="container my-4 ">
+		<!-- Search Form -->
+                <div class="mt-5 col-md-12 rounded-md search">
+                    <form class="d-flex flex-wrap gap-2 search-bar" action="{{ route('plates.search') }}" method="GET">
+                        <!-- All Options -->
+                        <div class="options d-flex flex-wrap gap-2 w-100">
+                            <!-- Main Options -->
+                            <select class="form-control search-option" id="emirate_id" name="emirate_id">
+                                <option value="">Select Emirate</option>
+                                @foreach(\App\Models\Emirate::all() as $emirate)
+                                    <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
+                                @endforeach
+                            </select>
+
+                           <select class="form-control search-option" id="code_id" name="code_id">
+                                <option value="">Select Code</option>
+                                <!-- Codes will be populated here dynamically -->
+                            </select>
+
+                            <select class="form-control search-option" name="length">
+                                <option value="">All Digit</option>
+                                
+                                    <option value="1">1 Digit</option>
+									<option value="2">2 Digit</option>
+									<option value="3">3 Digit</option>
+									<option value="4">4 Digit</option>
+									<option value="5">5 Digit</option>
+                              
+                            </select>
+
+                            <!-- <input type="length" class="form-control search-option" name="number" placeholder="Plate Number"> -->
+
+                            <!-- More Options -->
+                            <input type="number" class="form-control search-option extra d-none" name="max_price" placeholder="Maximum Price">
+                            <input type="number" class="form-control search-option extra d-none" name="min_price" placeholder="Minimum Price">
+                            <input type="number" class="form-control search-option extra d-none" name="start_with" placeholder="Start With: ex:123">
+                            <input type="number" class="form-control search-option extra d-none" name="end_with" placeholder="End With: ex:000">
+
+                            <!-- Search Button -->
+                            <button class="search-btn" type="submit">Search</button>
+                        </div>
+                    </form>
+                    <p class="toggle-options">+ more options</p>
+                </div>
+                <!-- End Search Form -->
+			</div>
+
 	<div class="container my-4 border border-dark-subtle rounded-3">
+
+		
 
 		<div class="p-3">
 			<!-- <h1 class="text-secondary fs-3">Similar</h1> -->
@@ -76,3 +125,40 @@
 
 
 @endsection
+
+@push('scripts')
+<script>
+	 document.querySelector(".toggle-options").addEventListener("click", function () {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
+
+    extraOptions.forEach(opt => {
+      opt.classList.toggle("d-none");
+    });
+
+    this.textContent = isHidden ? "- less options" : "+ more options";
+  });
+	 document.getElementById('emirate_id').addEventListener('change', function() {
+        var emirateId = this.value;
+        var codeSelect = document.getElementById('code_id');
+
+        // Clear existing options
+        codeSelect.innerHTML = '<option value="">Select Code</option>';
+
+        if (emirateId) {
+            // Make AJAX request to fetch codes
+            fetch('/getCodes/' + emirateId) // Define this route in your web.php
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(code => {
+                        var option = document.createElement('option');
+                        option.value = code.id;
+                        option.textContent = code.name;
+                        codeSelect.appendChild(option);
+                    });
+                });
+        }
+    });
+</script>
+
+@endpush

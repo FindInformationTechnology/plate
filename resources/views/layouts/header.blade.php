@@ -85,7 +85,7 @@
                     <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo-small">
-                    <img src="{{  asset ('assets/img/logo-small.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
                 </a>
             </div>
             <div class="main-menu-wrapper">
@@ -100,7 +100,7 @@
                     <li><a href="{{ route('plates')}}">Plates</a></li>
 
 
-                    <li><a href="#">Contact</a></li>
+                    <!-- <li><a href="#">Contact</a></li> -->
 
                    
 
@@ -140,9 +140,59 @@
                     @endif
                     @endauth
 
+                    
+
+                    <!-- user menu -->
+                    @auth
+                    @if(auth()->user()->hasRole('user'))
+                     <li class="nav-item d-md-none">
+                        <a class="nav-link header-reg" href="{{ route('user.dashboard') }}">
+                           My Dashboard </a>
+                    </li>
+                    <!-- <li class="nav-item dropdown has-arrow"></li>
+                        <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                            
+                            @if (Route::currentRouteName() == 'home')
+                            <span class="user-text" style="color: #fff;">{{ auth()->user()->name }}</span>
+                            @else
+                            <span class="user-text" style="color: black;">{{ auth()->user()->name }}</span>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                                <i class="feather-settings"></i> Dashboard
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                <i class="feather-user-check"></i> Profile
+                            </a>
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit()">
+                                <i class="feather-power"></i> Logout
+
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
+                                @csrf
+                            </form> 
+                        </div>
+                    </li> -->
+
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
+                        document.getElementById('logout-form-admin').submit()">
+                            <i class="feather-power px-2"></i> Logout
+
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
+                            @csrf
+                        </form>
+                    </li>
+                    @endif
+                    @endauth
+
                      <!-- Language Switcher -->
-                     <li class="nav-item dropdown d-md-none"">
-                        <a class="nav-link dropdown-toggle" href="#"> <i class="fa fa-globe"></i></a>
+                     <li class="nav-item dropdown d-md-none">
+                        <a class="nav-link dropdown-toggle" href="#"> 
+                            <i class="fa fa-globe px-2"></i> Language</a>
                         <ul class="dropdown-menu"  >
                             <li>
                                 <a class="dropdown-item" style="color: #2F2F2F;"
@@ -159,6 +209,7 @@
                         </ul>
                     </li>
                     <!-- /Language Switcher -->
+                    
                 </ul>
             </div>
 
@@ -168,7 +219,7 @@
                
                
                 <!-- Add language switcher for right side as well -->
-                <li class="nav-item dropdown d-none d-md-block">
+                <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0);" id="language-dropdown" data-bs-toggle="dropdown">
                         <i class="fa fa-globe"></i>
                     </a>
@@ -197,6 +248,8 @@
 
                 @auth
                 @if(auth()->user()->hasRole('user'))
+
+
                 <!-- Notifications -->
                 <li class="nav-item dropdown logged-item noti-nav noti-wrapper">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
