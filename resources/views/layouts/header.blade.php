@@ -215,6 +215,7 @@
                     <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a>
                     @endif
 
+                    
                 </li>
 
 
