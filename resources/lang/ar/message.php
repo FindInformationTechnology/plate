@@ -208,6 +208,11 @@ return [
     'Premium_UAE_Plates' => 'لوحات الإمارات المميزة',
 'At_Your_Fingertips' => 'في متناول يديك',
 'Find_Buy_Sell_Exclusive_Number_Plates' => 'ابحث واشتري وبع لوحات الأرقام الحصرية في جميع الإمارات',
+     'Back_To_Home' => 'العودة إلى الرئيسية',
+    'Forgot_Password' => 'نسيت كلمة المرور',
+    'Enter_your_email_and_we_will_send_you_a_link_to_reset_your_password' => 'أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة مرورك.',
+    'Email_Address' => 'عنوان البريد الإلكتروني',
+    'Send' => 'إرسال',
     
     
 ];
