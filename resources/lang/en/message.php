@@ -209,6 +209,9 @@ return [
     'Sign_up_with_Google' => 'Sign up with Google',
     'Already_have_an_Account' => 'Already have an Account?',
     'Sign_In' => 'Sign In',
+    'Premium_UAE_Plates' => 'Premium UAE Plates',
+'At_Your_Fingertips' => 'At Your Fingertips',
+'Find_Buy_Sell_Exclusive_Number_Plates' => 'Find, buy and sell exclusive number plates across all Emirates',
     
    
 ];

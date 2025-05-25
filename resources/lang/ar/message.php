@@ -205,6 +205,9 @@ return [
     'Sign_up_with_Google' => 'سجل مع جوجل',
     'Already_have_an_Account' => 'هل لديك حساب بالفعل؟',
     'Sign_In' => 'تسجيل الدخول',
+    'Premium_UAE_Plates' => 'لوحات الإمارات المميزة',
+'At_Your_Fingertips' => 'في متناول يديك',
+'Find_Buy_Sell_Exclusive_Number_Plates' => 'ابحث واشتري وبع لوحات الأرقام الحصرية في جميع الإمارات',
     
     
 ];

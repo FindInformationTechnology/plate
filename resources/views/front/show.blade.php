@@ -26,12 +26,24 @@
             </div>
         </div>
         <div class=" border-bottom border-dark-subtle">
-            <div class="d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex justify-content-between align-items-center py-2">
                 <div>
                     <h1 class="text-dark fs-1 fw-semibold">
                         {{ $plate->price_digits }}
                     </h1>
-                    <!-- <p class="text-success fs-2 fw-semibold py-1">AED </p> -->
+                    <p class="text-success fs-2 fw-semibold py-1"> </p>
+                    <div class="alert alert-warning mt-2">
+                        <ul class="icons list-unstyled mb-0">
+                            <li class="mb-1"> 
+                                <i class="fa fa-credit-card me-2" aria-hidden="true"></i> 
+                                {{ app()->getLocale() == 'ar' ? 'لا تقم بتحويل المال مباشرة' : 'Do not transfer money directly' }}
+                            </li>
+                            <li> 
+                                <i class="fa fa-handshake me-2" aria-hidden="true"></i> 
+                                {{ app()->getLocale() == 'ar' ? 'قابل البائع شخصيا' : 'Meet the seller in person' }}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div>
                     <i class="bx bx-heart fs-2"></i>

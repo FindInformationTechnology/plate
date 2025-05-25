@@ -15,22 +15,53 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create admin user
+        // Create super admin user
+        $superAdmin = User::create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@mail.com',
+            'password' => Hash::make('password'),
+            'phone' => '+971501234567',
+            'email_verified_at' => now(),
+        ]);
+        
+        // Assign super admin role
+        $superAdmin->assignRole('admin');
+        
+        // Create main admin user
         $admin = User::create([
             'name' => 'Admin User',
             'email' => 'admin@mail.com',
             'password' => Hash::make('password'),
-            // other fields
+            'phone' => '+971501234568',
+            'email_verified_at' => now(),
         ]);
         
         // Assign admin role
         $admin->assignRole('admin');
+        
+        // Create additional admin users
+        $admin1 = User::create([
+            'name' => 'Admin One',
+            'email' => 'admin1@mail.com',
+            'password' => Hash::make('password'),
+            'phone' => '+971501234569',
+            'email_verified_at' => now(),
+        ]);
+        $admin1->assignRole('admin');
+        
+        $admin2 = User::create([
+            'name' => 'Admin Two',
+            'email' => 'admin2@mail.com',
+            'password' => Hash::make('password'),
+            'phone' => '+971501234570',
+            'email_verified_at' => now(),
+        ]);
+        $admin2->assignRole('admin');
 
+        // Create regular users
         User::factory(3)->create()
         ->each(function ($user) {
             $user->assignRole('user');
         });
-        // Create regular users
-        
     }
 }

@@ -47,10 +47,8 @@
 
     <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
 
-    @if(app()->getLocale() === 'ar')
-    <link rel="stylesheet" href="{{ asset('assets/css/rtl.css') }}">
-    @endif
-    
+
+
     <style>
         .dashboard-section {
             background: none;
@@ -60,9 +58,11 @@
         .header .header-navbar-rht .has-arrow .dropdown-toggle .user-text {
             color: #FFF;
         }
-        .header .main-menu-wrapper .main-nav > li a i{
+
+        .header .main-menu-wrapper .main-nav>li a i {
             float: left;
-        } 
+            margin-right: 10px;
+        }
 
         .navbar .fa-globe:before {
             color: #ffa633;
@@ -71,16 +71,21 @@
 
     @if(app()->getLocale() === 'ar')
     <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css') }}">
-    
+
     <style>
-         .fa-eye-slash:before {
- 
-    float: inline-end;
-    padding-left: 20px;
+        .fa-eye-slash:before {
+
+            float: inline-end;
+            padding-left: 20px;
         }
+
+        .header .main-menu-wrapper .main-nav > li a i{
+           
+           margin-left: 10px;
+        } 
     </style>
     @endif
-   
+
 
 </head>
 

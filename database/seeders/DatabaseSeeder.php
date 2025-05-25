@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             EmirateSeeder::class,
-            CodeSeeder::class,
-            PlateSeeder::class,
+            // CodeSeeder::class,
+            // PlateSeeder::class,
         ]);
     }
 }

@@ -5,7 +5,7 @@
 <!-- Banner -->
 <!-- Banner -->
 <section class="banner-section banner-sec-two banner-slider">
-    <div class="banner-img-slider owl-carousel">
+    <div class="banner-img-slider owl-carousel" style="direction: ltr;">
         <div class="slider-img">
             <img src="assets/img/owl-2.jpg" alt="Img">
         </div>
@@ -22,10 +22,10 @@
                 <div class="col-md-12">
                     <div class="hero-sec-contents">
                         <div class="banner-title">
-                            <h1>{{ __('message.Popular_Plates_Categorie')}}
-                                <span>{{ __('message.Made_Simple') }}.</span>
+                            <h1>{{ __('message.Premium_UAE_Plates')}}
+                                <span>{{ __('message.At_Your_Fingertips') }}.</span>
                             </h1>
-                            <p>{{ __('message.Modern_design_sports_cruisers') }}
+                            <p>{{ __('message.Find_Buy_Sell_Exclusive_Number_Plates') }}
                             </p>
                         </div>
 
