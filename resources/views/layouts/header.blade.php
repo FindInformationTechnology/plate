@@ -85,7 +85,7 @@
                     <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo-small">
-                    <img src="{{  asset ('assets/img/logo-small.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
                 </a>
             </div>
             <div class="main-menu-wrapper">
@@ -96,20 +96,20 @@
                     <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                 </div>
                 <ul class="main-nav">
-                    <li><a href="{{ route('home')}}">Home</a></li>
-                    <li><a href="{{ route('plates')}}">Plates</a></li>
+                    <li><a href="{{ route('home')}}">{{ __('message.Home') }}</a></li>
+                    <li><a href="{{ route('plates')}}">{{ __('message.Plates') }}</a></li>
 
 
-                    <li><a href="#">Contact</a></li>
+                    <!-- <li><a href="#">Contact</a></li> -->
 
                    
 
                     @guest
                     <li class="login-link">
-                        <a href="{{ route('register') }}">Sign Up</a>
+                        <a href="{{ route('register') }}">{{ __('message.Sign_Up') }}</a>
                     </li>
                     <li class="login-link">
-                        <a href="{{ route('login') }}">Sign In</a>
+                        <a href="{{ route('login') }}">{{ __('message.Sign_In') }}</a>
                     </li>
 
                     @endguest
@@ -118,19 +118,43 @@
                     @if(auth()->user()->hasRole('user'))
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="{{ route('user.plates') }}">
-                            </span>My Plates</a>
+                            </span>{{ __('message.My_Plates') }}</a>
                     </li>
 
                     @endif
                     @if(auth()->user()->hasRole('admin'))
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="{{ route('admin.dashboard') }}">
-                            <span><i class="bx bx-plus-circle"></i></span>Dashboard Admin</a>
+                            <span><i class="bx bx-plus-circle"></i></span>{{ __('message.Dashboard_Admin') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form-admin').submit()">
-                            <i class="feather-power"></i> Logout
+                            <i class="feather-power"></i> {{ __('message.Logout') }}
+
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
+                            @csrf
+                        </form>
+                    </li>
+                    @endif
+                    @endauth
+
+                    
+
+                    <!-- user menu -->
+                    @auth
+                    @if(auth()->user()->hasRole('user'))
+                     <li class="nav-item d-md-none">
+                        <a class="nav-link header-reg" href="{{ route('user.dashboard') }}">
+                           {{ __('message.My_Dashboard') }} </a>
+                    </li>
+                   
+
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
+                        document.getElementById('logout-form-admin').submit()">
+                            <i class="feather-power px-2"></i> {{ __('message.Logout') }}
 
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
@@ -141,24 +165,26 @@
                     @endauth
 
                      <!-- Language Switcher -->
-                     <li class="nav-item dropdown d-md-none"">
-                        <a class="nav-link dropdown-toggle" href="#"> <i class="fa fa-globe"></i></a>
+                     <li class="nav-item dropdown d-md-none">
+                        <a class="nav-link dropdown-toggle" href="#"> 
+                            <i class="fa fa-globe px-2"></i> {{ __('message.Language') }}</a>
                         <ul class="dropdown-menu"  >
                             <li>
                                 <a class="dropdown-item" style="color: #2F2F2F;"
                                  href="{{ route('change.language', 'en') }}">
-                                    English
+                                    {{ __('message.English') }}
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" style="color: #2F2F2F;"
                                  href="{{ route('change.language', 'ar') }}">
-                                    العربية
+                                    {{ __('message.Arabic') }}
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <!-- /Language Switcher -->
+                    
                 </ul>
             </div>
 
@@ -168,25 +194,25 @@
                
                
                 <!-- Add language switcher for right side as well -->
-                <li class="nav-item dropdown d-none d-md-block">
+                <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0);" id="language-dropdown" data-bs-toggle="dropdown">
                         <i class="fa fa-globe"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="{{ route('change.language', 'en') }}">
-                            English
+                            {{ __('message.English') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('change.language', 'ar') }}">
-                            العربية
+                            {{ __('message.Arabic') }}
                         </a>
                     </div>
                 </li>
 
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link login-link" href="{{ route('login') }}"><span><i class="bx bx-user me-2"></i></span>Sign In / </a>
+                    <a class="nav-link login-link" href="{{ route('login') }}"><span><i class="bx bx-user me-2"></i></span>{{ __('message.Sign_In') }} / </a>
                     @if(Route::has('register') )
-                    <a class="nav-link login-link ms-1" href="{{ route('register') }}">Register </a>
+                    <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a>
                     @endif
 
                     
@@ -198,6 +224,8 @@
 
                 @auth
                 @if(auth()->user()->hasRole('user'))
+
+
                 <!-- Notifications -->
                 <li class="nav-item dropdown logged-item noti-nav noti-wrapper">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
@@ -206,8 +234,8 @@
                     </a>
                     <div class="dropdown-menu notifications">
                         <div class="topnav-dropdown-header">
-                            <span class="notification-title">Notifications</span>
-                            <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                            <span class="notification-title">{{ __('message.Notifications') }}</span>
+                            <a href="javascript:void(0)" class="clear-noti"> {{ __('message.Clear_All') }} </a>
                         </div>
                         <div class="noti-content">
                             <ul class="notification-list">
@@ -219,7 +247,7 @@
                                                     src="{{ asset('assets/img/profiles/avatar-01.jpg')}}">
                                             </span>
                                             <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Jonathan Doe </span> has booked <span class="noti-title">your service</span></p>
+                                                <p class="noti-details"><span class="noti-title">Jonathan Doe </span> {{ __('message.has_booked') }} <span class="noti-title">{{ __('message.your_service') }}</span></p>
                                                 <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
                                             </div>
                                         </div>
@@ -229,7 +257,7 @@
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="#">View all Notifications</a>
+                            <a href="#">{{ __('message.View_all_Notifications') }}</a>
                         </div>
                     </div>
                 </li>
@@ -249,14 +277,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="{{ route('user.dashboard') }}">
-                            <i class="feather-settings"></i> Dashboard
+                            <i class="feather-settings"></i> {{ __('message.Dashboard') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('user.profile') }}">
-                            <i class="feather-user-check"></i> Profile
+                            <i class="feather-user-check"></i> {{ __('message.Profile') }}
                         </a>
                         <a class="dropdown-item" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit()">
-                            <i class="feather-power"></i> Logout
+                            <i class="feather-power"></i> {{ __('message.Logout') }}
 
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">

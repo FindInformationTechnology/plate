@@ -1,349 +1,494 @@
 body {
-  --main-color: #ffa633;
-  --alt-color: #e4e2df;
+    --main-color: #ffa633;
+    --alt-color: #e4e2df;
+    font-family: "Roboto", sans-serif;;
 }
 
 @font-face {
-  font-family: "dubai";
-  src: url("../fonts/rough-motion.regular.otf");
+    font-family: "dubai";
+    src: url("../fonts/rough-motion.regular.otf");
 }
 @font-face {
-  font-family: "abudhabi";
-  src: url("../fonts/FE-FONT.TTF");
+    font-family: "abudhabi";
+    src: url("../fonts/FE-FONT.TTF");
 }
 @font-face {
-  font-family: "Car";
-  src: url("../fonts/CARGTS__.TTF");
+    font-family: "Car";
+    src: url("../fonts/CARGTS__.TTF");
 }
 @font-face {
-  font-family: "sharjah";
-  src: url("../fonts/SansibarCX-Condensed.ttf");
+    font-family: "sharjah";
+    src: url("../fonts/depotnewcondensed-medium.ttf");
 }
 @font-face {
-  font-family: "fj";
-  src: url("../fonts/LicensePlate.ttf");
+    font-family: "fj";
+    src: url("../fonts/LicensePlate.ttf");
 }
 @font-face {
-  font-family: "ajman";
-  src: url("../fonts/CARGTS__.TTF");
+    font-family: "ajman";
+    src: url("../fonts/CARGTS__.TTF");
 }
 .bg-alt {
-  background-color: var(--alt-color);
+    background-color: var(--alt-color);
 }
 
 @media (max-width: 991.98px) {
-  .hero-sec-main {
-    background-image: url(../img/owl-2.jpg) !important;
-  }
+    .hero-sec-main {
+        background-image: url(../img/owl-2.jpg) !important;
+    }
 }
 
 .plate-card {
-  overflow: hidden;
-  transform: scale(0.95, 0.95) !important;
-  transition-duration: 0.5s !important;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
-  z-index: 10;
+    overflow: hidden;
+    transform: scale(0.95, 0.95) !important;
+    transition-duration: 0.5s !important;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+    z-index: 10;
 }
 
 .plate-card .status {
-  transition-duration: 0.5s !important;
-  top: 7px !important;
-  left: -50px;
-  padding-inline: 70px !important;
-  transform: rotate(-30deg);
-  z-index: -1 !important;
+    transition-duration: 0.5s !important;
+    top: 7px !important;
+    left: -50px;
+    padding-inline: 70px !important;
+    transform: rotate(-30deg);
+    z-index: -1 !important;
 }
 
 .plate-card .plate {
-  background-color: #eff3f6;
-  box-shadow: inset 0px 0px 5px 0px rgba(45, 43, 43, 0.685);
+    background-color: #eff3f6;
+    box-shadow: inset 0px 0px 5px 0px rgba(45, 43, 43, 0.685);
+}
+.big-plate .dubai-icon {
+    font-size: 120px !important;
+}
+.big-plate .dubai-number {
+    font-size: 200px !important;
 }
 .plate .dubai-icon {
-  top: 40%;
-  left: 40px;
-  font-family: "dubai";
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    top: 40%;
+    left: 10%;
+    font-size: 40px;
+    font-family: "dubai";
+    /* text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, -2px 2px 0 #dedddd,
+        2px 2px 0 #555; */
+        text-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+        -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+      background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    font-weight: normal !important;
 }
 .plate .dubai-number,
 .plate .dubai-c-number {
-  color: #111112;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 40%;
-  font-size: 60px;
-  font-family: "dubai";
-  letter-spacing: 3px;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    color: #000;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 45%;
+    font-size: 60px;
+    font-family: "dubai";
+    letter-spacing: 3px;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    /* text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd,
+                 -2px 2px 0 #dedddd, 2px 2px 0 #555; */
+    /* text-shadow: -2px -2px 2px #dedddd, 2px -2px 2px #dedddd,
+        -2px 2px 2px #dedddd, 2px 2px 2px #555555,
+        0 0 4px rgba(255, 255, 255, 0.3); */
+    /* text-shadow: 0 0 2px white, 2px 2px 4px #000; */
+}
+.big-plate .abu-dhabi-icon {
+    font-size: 120px !important;
+}
+.big-plate .abu-dhabi-number {
+    font-size: 200px !important;
 }
 .plate .abu-dhabi-icon {
-  color: #111112;
-  top: 10px;
-  left: 30px;
-  font-size: 30px;
-  font-weight: normal !important;
-  font-family: "abudhabi";
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    color: #111112;
+    top: 10%;
+    left: 8%;
+    font-size: 30px;
+    font-weight: normal !important;
+    font-family: "abudhabi";
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .plate .abu-dhabi-number {
-  top: 50%;
-  transform: translateY(-50%);
-  left: 45%;
-  font-size: 50px;
-  font-family: "abudhabi";
-  letter-spacing: 2px;
-  color: #111112;
-  font-weight: 400 !important;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    font-size: 50px;
+    font-family: "abudhabi";
+    letter-spacing: 2px;
+    color: #111112;
+    font-weight: 400 !important;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.big-plate .fujairah-icon,
+.big-plate .fujairah-number {
+    font-size: 200px !important;
 }
 .plate .fujairah-icon {
-  color: #111112;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 35px;
-  font-size: 60px;
-  font-family: "dubai";
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    color: #111112;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10%;
+    font-size: 60px;
+    font-family: "dubai";
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .plate .fujairah-number {
-  color: #111112;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 55%;
-  font-size: 60px;
-  font-family: "dubai";
-  letter-spacing: 2px;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    color: #111112;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 55%;
+    font-size: 60px;
+    font-family: "dubai";
+    letter-spacing: 2px;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.big-plate .sharjah-icon {
+    font-size: 140px !important;
+}
+.big-plate .sharjah-number {
+    font-size: 200px !important;
 }
 .plate .sharjah-icon {
-  top: 50%;
-  left: 60px;
-  transform: translateY(-50%);
-  font-size: 32px !important;
-  font-family: 'sharjah';
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    font-family: "sharjah";
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .plate .sharjah-number {
-  color: #111112;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 60%;
-  font-size: 50px;
-  font-family: 'sharjah';
-  letter-spacing: 4px;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    color: #111112;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 60%;
+    font-weight: 200 !important;
+    font-size: 50px;
+    font-family: "sharjah";
+    letter-spacing: 4px;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+.big-plate .uaq-icon,
+.big-plate .uaq-number {
+    font-size: 200px !important;
 }
 .plate .uaq-icon {
-  top: 50%;
-  transform: translateY(-50%);
-  left: 30px;
-  font-size: 80px;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8%;
+    font-size: 70px;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .plate .uaq-number {
-  color: #111112;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 48%;
-  font-size: 70px;
-  font-family: "dubai";
-  letter-spacing: 4px;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    color: #111112;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 48%;
+    font-size: 65px;
+    font-family: "dubai";
+    letter-spacing: 4px;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .plate .ajman-plate {
-  width: 60%;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 20px;
+    width: 60%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 5%;
+}
+.big-plate .ajman-plate h1,
+.big-plate .ajman-plate h2 {
+    font-size: 180px !important;
 }
 .plate .ajman-plate h1,
 .plate .ajman-plate h2 {
-  font-size: 50px;
-  font-family: "ajman";
-  color: #111112;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    font-weight: normal !important;
+    font-size: 50px;
+    font-family: "ajman";
+    color: #111112;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .plate .rak-plate {
-  width: 60%;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 33%;
+    width: 60%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 33%;
+}
+.big-plate .rak-plate h1,
+.big-plate .rak-plate h2 {
+    font-size: 250px !important;
 }
 .plate .rak-plate h1,
 .plate .rak-plate h2 {
-  font-family: "dubai";
-  font-weight: lighter !important;
-  font-size: 70px;
-  color: #111112;
-  text-shadow: -2px -2px 0 #dedd, 2px -2px 0 #dedddd, 
-                 -2px 2px 0 #dedddd, 2px 2px 0 #555;
+    font-family: "dubai";
+    font-weight: lighter !important;
+    font-size: 70px;
+    color: #111112;
+    text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.4),  /* ظل خفيف */
+    -1px -1px 1px rgba(20, 19, 19, 0.3); /* لمعان عكسي خفيف */
+  background: linear-gradient(180deg, #928f8f 0%, #2a2828 50%, #a7a5a5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
+@media (max-width: 991px) {
+    .big-plate .dubai-icon {
+        font-size: 90px !important;
+    }
+    .big-plate .dubai-number {
+        font-size: 150px !important;
+    }
+    .big-plate .abu-dhabi-icon {
+        font-size: 70px !important;
+    }
+    .big-plate .abu-dhabi-number {
+        font-size: 150px !important;
+    }
+    .big-plate .fujairah-icon,
+    .big-plate .fujairah-number {
+        font-size: 150px !important;
+    }
+    .big-plate .sharjah-icon {
+        font-size: 80px !important;
+    }
+    .big-plate .sharjah-number {
+        font-size: 150px !important;
+    }
+    .big-plate .ajman-plate h1,
+    .big-plate .ajman-plate h2 {
+        font-size: 120px !important;
+    }
+    .big-plate .rak-plate h1,
+    .big-plate .rak-plate h2 {
+        font-size: 150px !important;
+    }
+    .big-plate .uaq-icon,
+    .big-plate .uaq-number {
+        font-size: 150px !important;
+    }
+}
 @media (max-width: 767px) {
-  .plate .dubai-icon {
-    top: 45%;
-    left: 10%;
-    font-size: 25px !important;
-  }
-  .plate .dubai-number,
-  .plate .dubai-c-number {
-    left: 40%;
-    font-size: 45px;
-  }
-  .plate .abu-dhabi-icon {
-    top: 15%;
-    left: 9%;
-    font-size: 20px;
-  }
-  .plate .abu-dhabi-number {
-    left: 50%;
-    font-size: 30px;
-  }
-  .plate .fujairah-icon {
-    left: 10%;
-    font-size: 40px;
-  }
-  .plate .fujairah-number {
-    left: 55%;
-    font-size: 40px;
-  }
-  .plate .sharjah-icon {
-    left: 15%;
-    font-size: 25px !important;
-  }
-  .plate .sharjah-number {
-    left: 65%;
-    font-size: 30px;
-  }
-  .plate .uaq-icon {
-    left: 8%;
-    font-size: 30px;
-  }
-  .plate .uaq-number {
-    left: 55%;
-    font-size: 35px;
-  }
-  .plate .ajman-plate {
-    left: 5%;
-  }
-  .plate .ajman-plate h1,
-  .plate .ajman-plate h2 {
-    font-size: 35px !important;
-  }
-  .plate .rak-plate {
-    left: 25%;
-  }
-  .plate .rak-plate h1,
-  .plate .rak-plate h2 {
-    font-size: 40px !important;
-  }
+    .big-plate .dubai-icon {
+        font-size: 50px !important;
+    }
+    .big-plate .abu-dhabi-icon {
+        font-size: 20px !important;
+    }
+    .big-plate .abu-dhabi-number {
+        font-size: 45px !important;
+    }
+    .big-plate .fujairah-icon,
+    .big-plate .fujairah-number {
+        font-size: 40px !important;
+    }
+    .big-plate .sharjah-icon {
+        font-size: 70px !important;
+    }
+    .big-plate .sharjah-number {
+        font-size: 40px !important;
+    }
+    .big-plate .uaq-icon,
+    .big-plate .uaq-number {
+        font-size: 50px !important;
+    }
+}
+@media (max-width: 767px) {
+    .plate .dubai-icon,
+    .big-plate .dubai-icon {
+        top: 40%;
+        left: 10%;
+        font-size: 20px !important;
+    }
+    .plate .dubai-number,
+    .plate .dubai-c-number,
+    .big-plate .dubai-number {
+        left: 40%;
+        font-size: 40px !important;
+    }
+    .plate .abu-dhabi-icon {
+        top: 15%;
+        left: 9%;
+        font-size: 15px;
+    }
+    .plate .abu-dhabi-number {
+        left: 50%;
+        font-size: 30px;
+    }
+    .plate .fujairah-icon {
+        left: 10%;
+        font-size: 40px;
+    }
+    .plate .fujairah-number {
+        left: 55%;
+        font-size: 40px;
+    }
+    .plate .sharjah-icon {
+        left: 15%;
+        font-size: 25px !important;
+    }
+    .plate .sharjah-number {
+        left: 60%;
+        font-size: 30px;
+    }
+    .plate .uaq-icon {
+        left: 8%;
+        font-size: 30px;
+    }
+    .plate .uaq-number {
+        left: 50%;
+        font-size: 35px;
+    }
+    .plate .ajman-plate {
+        left: 5%;
+    }
+    .plate .ajman-plate h1,
+    .plate .ajman-plate h2 {
+        font-size: 30px !important;
+    }
+    .plate .rak-plate {
+        left: 35%;
+    }
+    .plate .rak-plate h1,
+    .plate .rak-plate h2 {
+        font-size: 40px !important;
+    }
+}
+@media (max-width: 767px) {
+    .contact-button a {
+        font-size: 14px !important;
+        max-width: 50%;
+    }
 }
 .plate-card .plate .plate-city {
-  width: 100px;
-  height: 30px;
+    width: 100px;
+    height: 30px;
 }
 .plate-card .number {
-  font-size: 60px;
+    font-size: 60px;
 }
 .plate-card .plate .plate-city img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
 .plate-card i {
-  cursor: pointer !important;
+    cursor: pointer !important;
 }
 
 .plate-card:hover {
-  transform: scale(1, 1) !important;
+    transform: scale(1, 1) !important;
 }
 
 .plate-card:hover .status {
-  z-index: 1 !important;
-  background-color: var(--main-color) !important;
+    z-index: 1 !important;
+    background-color: var(--main-color) !important;
 }
 
 .plate-card a {
-  margin-top: 3px !important;
-  transition-duration: 0.5s !important;
+    margin-top: 3px !important;
+    transition-duration: 0.5s !important;
 }
 .plate-card a:hover {
-  background-color: var(--main-color) !important;
+    background-color: var(--main-color) !important;
 }
 
+.plate-card a:hover i, .plate-card a:hover p {
+    color: #ffffff !important;
+}
+
+
+
 .hero-sec-main .banner-slider {
-  margin-top: 100px !important;
+    margin-top: 100px !important;
 }
 
 .plate-details .contact,
 .plate-details .whatsapp {
-  box-shadow: inset 0 0 0 #ffffff;
-  color: #ffffff;
-  border-radius: 5px;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 7px 20px;
-  transition-duration: 0.5s;
+    box-shadow: inset 0 0 0 #ffffff;
+    color: #ffffff;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 7px 20px;
+    transition-duration: 0.5s;
 }
 .plate-details .contact {
-  background-color: #ffa633;
-  border: 1px solid #ffa633;
+    background-color: #ffa633;
+    border: 1px solid #ffa633;
 }
 .plate-details .whatsapp {
-  background-color: #28b055;
-  border: 1px solid #28b055;
+    background-color: #28b055;
+    border: 1px solid #28b055;
+}
+
+.plate-details .contact p, .plate-details .whatsapp p {
+    margin: 0;
+    color: #ffffff;
+    text-transform: capitalize;
+    font-weight: 600;
 }
 .plate-details .contact:hover,
 .plate-details .whatsapp:hover {
-  background-color: #ffffff;
-  box-shadow: inset 0 70px 0 0 #ffffff;
+    background-color: #ffffff;
+    box-shadow: inset 0 70px 0 0 #ffffff;
 }
 .plate-details .contact:hover {
-  border: 1px solid #ffa633;
-  color: #ffa633;
+    border: 1px solid #ffa633;
+    color: #ffa633;
 }
 .plate-details .whatsapp:hover {
-  border: 1px solid #28b055;
-  color: #28b055;
+    border: 1px solid #28b055;
+    color: #28b055;
 }
-
-/* .banner-slider {
-  background-color: #fceee3 !important;
-  background-image: none !important;
-} */
-/* .owl-nav {
-  position: absolute;
-  width: 100%;
-  bottom: 20%;
-  transform: translateY(-50%);
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: end !important;
-  align-items: end !important;
-  gap: 10px !important;
-}
-.owl-nav button.owl-prev,
-.owl-nav button.owl-next {
-  width: 40px !important;
-  height: 40px !important;
-  color: var(--main-color) !important;
-  background-color: white !important;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
-  outline: none !important;
-  z-index: 200;
-  transition-duration: .5s;
-}
-.owl-nav button.owl-prev:hover,
-.owl-nav button.owl-next:hover{
-    background-color: var(--main-color) !important;
-    color: white !important;
-} */

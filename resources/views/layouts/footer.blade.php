@@ -10,12 +10,12 @@
 					<div class="col-md-6">
 						<div class="footer-widget">
 							<div class="widget-title">
-								<h4>About Plate</h4>
-								<p class="mt-3 mb-3">Plate is a premier platform for buying and selling vehicle license plates in the UAE. We connect plate owners with potential buyers, making the process simple and secure.</p>
+								<h4>Plate 35</h4>
+								<p class="mt-3 mb-3">{{ __('message.Plate_is_a_premier_platform') }}</p>
 								<ul class="footer-address">
-									<li><i class="fas fa-map-marker-alt me-2"></i>Dubai, United Arab Emirates</li>
+									<li><i class="fas fa-map-marker-alt me-2"></i>{{ __('message.Dubai_United_Arab_Emirates') }}</li>
 									<li><i class="fas fa-phone-alt me-2"></i>+971 50 123 4567</li>
-									<li><i class="fas fa-envelope me-2"></i>info@plate.ae</li>
+									<li><i class="fas fa-envelope me-2"></i>info@plate35.com</li>
 								</ul>
 								<!-- <li class="social-link mt-3">
 									<ul>
@@ -33,11 +33,11 @@
 							<div class="col-md-6">
 								<div class="footer-widget">
 									<div class="widget-title">
-										<h4>Quick Links</h4>
+										<h4>{{ __('message.Quick_Links') }}</h4>
 										<ul class="footer-links">
-											<li><a href="{{ route('home') }}"><i class="fas fa-chevron-right"></i>Home</a></li>
-											<li><a href=""><i class="fas fa-chevron-right"></i>About Us</a></li>
-											<li><a href="{{ route('plates') }}"><i class="fas fa-chevron-right"></i>Browse Plates</a></li>
+											<li><a href="{{ route('home') }}"><i class="fas fa-chevron-right"></i>{{ __('message.Home') }}</a></li>
+											<li><a href=""><i class="fas fa-chevron-right"></i>{{ __('message.About_Us') }}</a></li>
+											<li><a href="{{ route('plates') }}"><i class="fas fa-chevron-right"></i>{{ __('message.Browse_Plates') }}</a></li>
 											
 											
 										</ul>
@@ -47,16 +47,16 @@
 							<div class="col-md-6">
 								<div class="footer-widget">
 									<div class="widget-title">
-										<h4>User Account</h4>
+										<h4>{{ __('message.User_Account') }}</h4>
 										<ul class="footer-links">
 											@guest
-											<li><a href="{{ route('login') }}"><i class="fas fa-chevron-right"></i>Login</a></li>
-											<li><a href="{{ route('register') }}"><i class="fas fa-chevron-right"></i>Register</a></li>
+											<li><a href="{{ route('login') }}"><i class="fas fa-chevron-right"></i>{{ __('message.Login') }}</a></li>
+											<li><a href="{{ route('register') }}"><i class="fas fa-chevron-right"></i>{{ __('message.Register') }}</a></li>
 											@endguest
 											@auth
-											<li><a href="{{ route('user.dashboard') }}"><i class="fas fa-chevron-right"></i>My Dashboard</a></li>
-											<li><a href="{{ route('user.plates') }}"><i class="fas fa-chevron-right"></i>My Plates</a></li>
-											<li><a href="{{ route('user.profile') }}"><i class="fas fa-chevron-right"></i>My Profile</a></li>
+											<li><a href="{{ route('user.dashboard') }}"><i class="fas fa-chevron-right"></i>{{ __('message.My_Dashboard') }}</a></li>
+											<li><a href="{{ route('user.plates') }}"><i class="fas fa-chevron-right"></i>{{ __('message.My_Plates') }}</a></li>
+											<li><a href="{{ route('user.profile') }}"><i class="fas fa-chevron-right"></i>{{ __('message.My_Profile') }}</a></li>
 											@endauth
 										</ul>
 									</div>
@@ -68,7 +68,7 @@
 			</div>
 			<div class="footer-bottom">
 				<div class="copy-right">
-					<p>Copyright &copy; 2025 <span> 999 | Plate </span> . All Rights Reserved.</p>
+					<p>{{ __('message.Copyright') }} &copy; 2025 <span> 999 | Plate </span> . {{ __('message.All_Rights_Reserved') }}.</p>
 				</div>
 				<div class="app-store-links d-flex align-items-center">
 					<span class="me-2"><a href="javascript:void(0);"><img src="{{ asset ('assets/img/icons/google-play.svg')}}" alt="Img"></a></span>

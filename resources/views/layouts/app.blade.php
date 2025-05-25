@@ -42,8 +42,10 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}">
-    
+
     <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
+
+    <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
 
     @if(app()->getLocale() === 'ar')
     <link rel="stylesheet" href="{{ asset('assets/css/rtl.css') }}">
@@ -58,7 +60,27 @@
         .header .header-navbar-rht .has-arrow .dropdown-toggle .user-text {
             color: #FFF;
         }
+        .header .main-menu-wrapper .main-nav > li a i{
+            float: left;
+        } 
+
+        .navbar .fa-globe:before {
+            color: #ffa633;
+        }
     </style>
+
+    @if(app()->getLocale() === 'ar')
+    <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css') }}">
+    
+    <style>
+         .fa-eye-slash:before {
+ 
+    float: inline-end;
+    padding-left: 20px;
+        }
+    </style>
+    @endif
+   
 
 </head>
 
@@ -134,7 +156,7 @@
         <!-- Toastr JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-       
+
 
         <script>
             // Configure toastr options
