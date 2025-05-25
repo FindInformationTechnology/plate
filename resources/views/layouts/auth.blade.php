@@ -21,6 +21,19 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    @if(app()->getLocale() === 'ar')
+    <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css') }}">
+    
+    <style>
+        .fa-eye-slash:before {
+ 
+    float: inline-end;
+    padding-left: 20px;
+        }
+
+    </style>
+    @endif
 </head>
 
 <body>
