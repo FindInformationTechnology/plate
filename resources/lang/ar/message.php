@@ -205,6 +205,11 @@ return [
     'Sign_up_with_Google' => 'سجل مع جوجل',
     'Already_have_an_Account' => 'هل لديك حساب بالفعل؟',
     'Sign_In' => 'تسجيل الدخول',
+     'Back_To_Home' => 'العودة إلى الرئيسية',
+    'Forgot_Password' => 'نسيت كلمة المرور',
+    'Enter_your_email_and_we_will_send_you_a_link_to_reset_your_password' => 'أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة مرورك.',
+    'Email_Address' => 'عنوان البريد الإلكتروني',
+    'Send' => 'إرسال',
     
     
 ];
