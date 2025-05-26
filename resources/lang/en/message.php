@@ -212,6 +212,6 @@ return [
     'Premium_UAE_Plates' => 'Premium UAE Plates',
 'At_Your_Fingertips' => 'At Your Fingertips',
 'Find_Buy_Sell_Exclusive_Number_Plates' => 'Find, buy and sell exclusive number plates across all Emirates',
-    
+    'Email_or_Phone' => 'Email or Phone',
    
 ];

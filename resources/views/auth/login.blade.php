@@ -16,9 +16,9 @@
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                     <div class="input-block">
-                        <label class="form-label">{{ __('message.Email') }} <span class="text-danger">*</span></label>
-                        <input type="email" name="email" class="form-control" placeholder="">
-                        @error('email')
+                        <label class="form-label">{{ __('message.Email_or_Phone') }} <span class="text-danger">*</span></label>
+                        <input type="text" name="login" class="form-control" placeholder="">
+                        @error('login')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
