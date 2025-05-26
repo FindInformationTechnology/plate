@@ -186,7 +186,6 @@ return [
     'Log_in_with_Google' => 'تسجيل الدخول باستخدام جوجل',
     'Log_in_with_Facebook' => 'تسجيل الدخول باستخدام فيسبوك',
     'Dont_have_an_account_yet' => 'ليس لديك حساب بعد؟',
-    'Register' => 'تسجيل',
 
      'Back_To_Home' => 'العودة إلى الرئيسية',
     'Sign_Up' => 'اشتراك',
@@ -212,8 +211,7 @@ return [
     'Forgot_Password' => 'نسيت كلمة المرور',
     'Enter_your_email_and_we_will_send_you_a_link_to_reset_your_password' => 'أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة مرورك.',
     'Email_Address' => 'عنوان البريد الإلكتروني',
-    'Send' => 'إرسال',
-    
+    'Send' => 'إرسال' ,
     'Email_or_Phone' => 'البريد الإلكتروني أو الهاتف',
     
 ];
