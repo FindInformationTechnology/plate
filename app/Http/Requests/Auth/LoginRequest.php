@@ -43,6 +43,12 @@ class LoginRequest extends FormRequest
 
         $login = $this->input('login');
         $loginType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+
+        // If login is a phone number, process it to match the format in the database
+        if ($loginType === 'phone') {
+            $login = $this->processPhoneNumber($login);
+        }
+
         $credentials = [
             $loginType => $login,
             'password' => $this->input('password')
@@ -97,5 +103,30 @@ class LoginRequest extends FormRequest
     {
         // return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
         return Str::transliterate(Str::lower($this->string('login')).'|'.$this->ip());
+    }
+
+    private function processPhoneNumber($phone)
+    {
+        // Remove all non-numeric characters
+        $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+        
+        // Remove leading zeros
+        $cleanPhone = ltrim($cleanPhone, '0');
+        
+        // Remove common UAE country code if present
+        if (substr($cleanPhone, 0, 3) === '971') {
+            $cleanPhone = substr($cleanPhone, 3);
+        }
+        
+        // Remove leading zero again after country code removal
+        $cleanPhone = ltrim($cleanPhone, '0');
+        
+        // Get the last 9 digits
+        if (strlen($cleanPhone) >= 9) {
+            return substr($cleanPhone, -9);
+        }
+        
+        // If less than 9 digits, pad with leading zeros to make it 9 digits
+        return str_pad($cleanPhone, 9, '0', STR_PAD_LEFT);
     }
 }

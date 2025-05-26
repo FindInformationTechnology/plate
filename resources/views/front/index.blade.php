@@ -54,11 +54,11 @@
                             <select class="form-control search-option" name="length">
                                 <option value="">{{ __('message.All_Digit') }}</option>
 
-                                    <option value="1">1 Digit</option>
-                                    <option value="2">2 Digit</option>
-                                    <option value="3">3 Digit</option>
-                                    <option value="4">4 Digit</option>
-                                    <option value="5">5 Digit</option>
+                                    <option value="1">1 {{__('message.Digits') }}</option>
+                                    <option value="2">2 {{__('message.Digits') }}</option>
+                                    <option value="3">3 {{__('message.Digits') }}</option>
+                                    <option value="4">4 {{__('message.Digits') }}</option>
+                                    <option value="5">5 {{__('message.Digits') }}</option>
 
                             </select>
 

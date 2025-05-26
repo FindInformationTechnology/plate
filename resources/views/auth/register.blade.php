@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <div class="login-wrapper">
     <div class="loginbox">
         <div class="login-auth">
@@ -26,7 +24,7 @@
                 </div>
                 @endif
 
-                <form method="post" action="{{ route('register') }}">
+                <form method="post" action="{{ route('register') }}" id="registerForm">
                     @csrf
                     <div class="input-block">
                         <label class="form-label">{{ __('message.Name') }} <span class="text-danger">*</span></label>
@@ -62,6 +60,18 @@
                             <span class="fas fa-eye-slash toggle-password"></span>
                         </div>
                     </div>
+
+                    <div class="input-block">
+                       
+                        <div class="pass-group">
+                            <!-- Add hidden reCAPTCHA input field -->
+                            <input type="hidden" name="g-recaptcha-response" id="recaptchaResponse">
+
+                        </div>
+                    </div>
+
+
+
                     <button type="submit" class="btn btn-outline-light w-100 btn-size mt-1">{{ __('message.Sign_Up')
                         }}</button>
 
@@ -88,6 +98,7 @@
                         </a>
                     </div> -->
                     <!-- /Social Login -->
+
                     <div class="text-center dont-have">{{ __('message.Already_have_an_Account') }}? <a
                             href="{{ route('login') }}">{{ __('message.Sign_In') }}</a></div>
                 </form>
@@ -96,60 +107,19 @@
     </div>
 </div>
 
-
-
-{{--<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-@csrf
-
-<!-- Name -->
-<div>
-    <x-input-label for="name" :value="__('Name')" />
-    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-</div>
-
-<!-- Email Address -->
-<div class="mt-4">
-    <x-input-label for="email" :value="__('Email')" />
-    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-</div>
-
-<!-- Password -->
-<div class="mt-4">
-    <x-input-label for="password" :value="__('Password')" />
-
-    <x-text-input id="password" class="block mt-1 w-full"
-        type="password"
-        name="password"
-        required autocomplete="new-password" />
-
-    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-</div>
-
-<!-- Confirm Password -->
-<div class="mt-4">
-    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-    <x-text-input id="password_confirmation" class="block mt-1 w-full"
-        type="password"
-        name="password_confirmation" required autocomplete="new-password" />
-
-    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-</div>
-
-<div class="flex items-center justify-end mt-4">
-    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-        {{ __('Already registered?') }}
-    </a>
-
-    <x-primary-button class="ms-4">
-        {{ __('Register') }}
-    </x-primary-button>
-</div>
-</form>
-</x-guest-layout>
---}}
+<!-- Add reCAPTCHA v3 script at the end of the body -->
+<script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+<script>
+    grecaptcha.ready(function() {
+        // Execute reCAPTCHA with action 'register'
+        grecaptcha.execute("{{ config('services.recaptcha.site_key') }}", {
+                action: 'register'
+            })
+            .then(function(token) {
+                // Add the token to the hidden field
+                document.getElementById('recaptchaResponse').value = token;
+            });
+    });
+</script>
 
 @endsection
