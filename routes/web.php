@@ -39,10 +39,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'changeLanguage'])->name
 Route::middleware(['auth', 'verified', 'role:user'])
     ->prefix('user')->name('user.')
     ->group(function () {
-        // USE THIS CONTROLLER FOR USER SETTING
-        // Route::get(' /security', [UserSettingController::class, 'security'])->name('security');
-        // Route::get('/settings/notification', [UserSettingController::class, 'notification'])->name('settings.notification');
-        // Route::get('/settings/payment', [UserSettingController::class, 'payment'])->name('settings.payment');
+        
 
         Route::get('/plates', [PlateController::class, 'index'])->name('plates');
         Route::get('/plates/create', [PlateController::class, 'create'])->name('plates.create');
