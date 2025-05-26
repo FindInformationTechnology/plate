@@ -72,15 +72,15 @@
                     <div class="col-md-6">
                         <div class="profile-form-group">
                             <label>{{ __('message.Phone_Number') }} <span class="text-danger">*</span></label>
-                            <input type="text" name="phone" class="form-control"
-                                value="{{ auth()->user()->phone ?? '' }}" required>
+                            <input  type="text" name="phone" class="form-control " style="direction: ltr;"
+                                value="{{ auth()->user()->phone_number ?? '' }}" required>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="profile-form-group">
                             <label>{{ __('message.Whatsapp') }} <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="whatsapp"
-                                value="{{ auth()->user()->whatsapp ?? '' }}"
+                            <input type="text" class="form-control" name="whatsapp" style="direction: ltr;"
+                                value="{{ auth()->user()->whatsapp_number ?? '' }}"
                                 placeholder="{{ __('message.Enter_WhatsApp_Number') }}">
                         </div>
                     </div>

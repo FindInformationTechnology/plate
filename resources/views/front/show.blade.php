@@ -49,12 +49,12 @@
                 </div>
             </div>
             <div class="d-flex align-items-center gap-3 my-2 text-center contact-button">
-                <a href="tel:{{ $plate->user->phone ?? '' }}"
+                <a href="tel:{{ $plate->user->phone_number ?? '' }}"
                     class="contact d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                     target="_blank"><i class="bx bx-phone fs-5"></i>
                     <p>{{ __('message.Contact') }}</p>
                 </a>
-                <a href="https://wa.me/{{ $plate->user->phone ?? '' }}"
+                <a href="https://wa.me/{{ $plate->user->whatsapp_number ?? '' }}"
                     class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                     target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
                     <p>{{ __('message.WhatsApp') }}</p>

@@ -21,7 +21,7 @@ class Plate extends Model
         'is_visible',
         'image'
     ];
-    protected $appends = ['image_url', 'price_digits'];
+    protected $appends = ['image_url', 'price_digits','views_count'];
 
     public function user()
     {
@@ -65,4 +65,6 @@ class Plate extends Model
             return asset('storage/' . $this->image);
         }
     }
+
+    
 }

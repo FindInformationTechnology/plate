@@ -96,6 +96,8 @@ class ProfileController extends Controller
         //     return back()->withErrors(['phone' => 'This phone number is already registered.'])->withInput();
         // }
 
+        
+
         $validated['phone'] = $phoneNumber; // Update with processed phone number
 
         if ($request->whatsapp) {
