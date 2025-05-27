@@ -13,18 +13,18 @@
 						loading="lazy">
 				</div>
 				@if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-				<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold" style=''>{{ $plate->code->name }}</h1>
-				<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
+				<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow" style=''>{{ $plate->code->name }}</h1>
+				<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
 				@else
 				<div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
-					<h1 class="fw-medium">{{ $plate->code->name }}</h1>
-					<h2 class="fw-medium">{{ $plate->number }}</h2>
+					<h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+					<h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
 				</div>
 				@endif
 			</div>
 		</div>
-		<div class="p-4 border-bottom border-dark-subtle">
-			<div class="d-flex justify-content-between align-items-center">
+		<div class="pb-4 border-bottom border-dark-subtle">
+			<div class="d-flex justify-content-between align-items-center gap-5 mb-3">
 				<div>
 					<h1 class="text-dark fs-1 fw-semibold">{{ $plate->emirate->name }}
 					{{ $plate->number }} code {{ $plate->code->name }}</h1>
@@ -43,9 +43,9 @@
 				</a>
 			</div>
 		</div>
-		<div class="p-3">
-			<h1 class="text-secondary fs-3">Similar</h1>
-			<div class="pt-5 d-grid">
+		<div class="py-3">
+			<h1 class="fs-3">Similar</h1>
+			<div class="pt-2 d-grid">
 				<div class="row">
 				@foreach($plates as $plate)
 					<div class="col-lg-4 col-md-6 col-12">
@@ -60,12 +60,12 @@
 								loading="lazy">
 						</div>
 						@if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold">{{ $plate->code->name }}</h1>
-						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
+						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
+						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
 						@else
 						<div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
-							<h1 class=" fw-medium">{{ $plate->code->name }}</h1>
-							<h2 class="fw-medium">{{ $plate->number }}</h2>
+							<h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+							<h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
 						</div>
 						@endif
 					</div>

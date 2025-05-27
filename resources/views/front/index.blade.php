@@ -34,40 +34,36 @@
 
 				</div>
                 <div class="mt-5 col-md-12 rounded-md search">
-  <form class="d-flex flex-wrap gap-2 search-bar">
-    <!-- All Options -->
-    <div class="options d-flex flex-wrap gap-2 w-100">
-      <!-- Main Options -->
-      <select class="form-control search-option">
-        <option value="">dubai</option>
-      </select>
-      <select class="form-control search-option">
-        <option value="">1 digit</option>
-      </select>
-      <select class="form-control search-option">
-        <option value="">1500 AED</option>
-      </select>
+                    <form class="search-bar">
+                        <!-- All Options -->
+                        <div class="options">
+                        <!-- Main Options -->
+                        <select class="form-control search-option">
+                            <option value="">dubai</option>
+                        </select>
+                        <select class="form-control search-option">
+                            <option value="">1 digit</option>
+                        </select>
+                        <select class="form-control search-option">
+                            <option value="">1500 AED</option>
+                        </select>
 
-      <!-- More Options -->
-      <input type="number" class="form-control search-option extra d-none" placeholder="Maximum Price">
-      <input type="number" class="form-control search-option extra d-none" placeholder="Minimum Price">
-      <input type="number" class="form-control search-option extra d-none" placeholder="Start With: ex:123">
-      <input type="number" class="form-control search-option extra d-none" placeholder="End With: ex:000">
-      <input type="text" class="form-control search-option extra d-none" placeholder="Option 8">
+                        <!-- More Options -->
+                        <input type="number" class="form-control search-option extra d-none" placeholder="Maximum Price">
+                        <input type="number" class="form-control search-option extra d-none" placeholder="Minimum Price">
+                        <input type="number" class="form-control search-option extra d-none" placeholder="Start With: ex:123">
+                        <input type="number" class="form-control search-option extra d-none" placeholder="End With: ex:000">
+                        <input type="text" class="form-control search-option extra d-none" placeholder="Option 8">
 
-    <!-- Search Button -->
-    <button class="search-btn" type="submit">Search</button>
-    </div>
+                        <!-- Search Button -->
+                        <button class="search-btn" type="submit">Search</button>
+                        </div>
 
-  </form>
-
-  <p class="toggle-options">+ more options</p>
-</div>
-
-
-			</div>
-		</div>
-
+                    </form>
+                    <p class="toggle-options">+ more options</p>
+                </div>
+		    </div>
+	    </div>
 	</div>
 </section>
 <!-- /Banner -->
@@ -105,12 +101,12 @@
 								loading="lazy">
 						</div>
 						@if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold">{{ $plate->code->name }}</h1>
-						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
+						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
+						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
 						@else
 						<div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
-							<h1 class=" fw-medium">{{ $plate->code->name }}</h1>
-							<h2 class="fw-medium">{{ $plate->number }}</h2>
+							<h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+							<h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
 						</div>
 						@endif
 					</div>

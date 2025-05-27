@@ -6,7 +6,6 @@
 
 .search-bar {
     display: flex;
-    flex-wrap: wrap;
     gap: 10px;
     align-items: center;
 }
@@ -18,10 +17,12 @@
     width: 100%;
 }
 
-.search-option {
-    flex: 1 1 0;
-    min-width: 180px;
-    padding: 10px;
+@media(min-width: 768px){
+    .search-option {
+        flex: 1 1 0;
+        min-width: 180px;
+        padding: 10px;
+    }
 }
 
 .search p {
@@ -44,6 +45,9 @@
 /* موبايل */
 @media (max-width: 768px) {
     .search-option {
-        min-width: 100%;
+        width: 48%;
+    }
+    .search-bar button.search-btn {
+        width: 100%;
     }
 }
