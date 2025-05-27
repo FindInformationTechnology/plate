@@ -26,13 +26,20 @@ return new class extends Migration
             $table->unsignedTinyInteger('length'); // auto-filled
 
             $table->string('image')->nullable();
-            
 
+            $table->boolean('is_visible')->index()->default(true);
+            $table->boolean('is_approved')->index()->default(false);
+            $table->boolean('is_sold')->index()->default(false);
+            $table->boolean('is_featured')->index()->default(false);
+            $table->boolean('is_premium')->index()->default(false);
+            $table->boolean('is_urgent')->index()->default(false);
+
+            
+            
             // Business logic
             $table->decimal('price', 10, 2)->nullable();
-            $table->boolean('is_approved')->default(false);
-            $table->boolean('is_sold')->default(false);
-            $table->boolean('is_visible')->default(true);
+            
+            
             $table->timestamp('approved_at')->nullable();
 
             $table->timestamps();

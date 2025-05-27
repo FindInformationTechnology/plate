@@ -30,7 +30,9 @@
                     <h1 class="text-dark fs-1 fw-semibold">
                         {{ $plate->price_digits }}
                     </h1>
-                    <p class="text-success fs-2 fw-semibold py-1"> </p>
+                    <p class="text-secondary fs-6 mb-2">
+                        <i class="fa fa-eye me-1" aria-hidden="true"></i> {{ $plate->views_count }} {{ __('message.Views') }}
+                    </p>
                     <div class="alert alert-warning mt-2">
                         <ul class="icons list-unstyled mb-0">
                             <li class="mb-1"> 
@@ -44,9 +46,9 @@
                         </ul>
                     </div>
                 </div>
-                <div>
+                <!-- <div>
                     <i class="bx bx-heart fs-2"></i>
-                </div>
+                </div> -->
             </div>
             <div class="d-flex align-items-center gap-3 my-2 text-center contact-button">
                 <a href="tel:{{ $plate->user->phone_number ?? '' }}"
@@ -62,10 +64,10 @@
             </div>
         </div>
         <div class="p-3">
-            <h1 class="text-secondary fs-3">{{ __('message.Similar') }}</h1>
+            <h1 class="text-secondary fs-3">{{ __('message.Related_By_Emirate') }}</h1>
             <div class="pt-5 d-grid">
                 <div class="row">
-                    @foreach($plates as $plate)
+                    @foreach($relatedByEmirate as $plate)
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="listing-item plate-card position-relative">
                             <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->

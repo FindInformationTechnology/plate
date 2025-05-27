@@ -27,7 +27,11 @@ class FrontController extends Controller
         $endWith = $request->input('end_with');
 
         // Start building the query
-        $query = Plate::query();
+        $query = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
+            ->with(['emirate', 'code'])
+            ->where('is_visible', true)
+            ->where('is_approved', true)
+            ->where('is_sold', false);
 
         // Apply filters based on the input values
         if ($emirateId) {
@@ -64,32 +68,93 @@ class FrontController extends Controller
         // Pass the search results to the view
         return view('front.search', compact('plates'));
     }
-    
+
     public function index(PlateService $plateService)
     {
-     
-       
-        return view("front.index", ["plates" => Plate::all()]);
-        
+
+
+        // Get the latest plates with pagination (12 per page)
+        $plates = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
+            ->with(['emirate', 'code'])
+            ->where('is_visible', true)
+            ->where('is_approved', true)
+            ->where('is_sold', false)
+            ->latest()  // Order by created_at DESC
+            ->paginate(12);
+
+
+        // Get featured plates (for example, most viewed or premium)
+        $featuredPlates = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
+            ->with(['emirate', 'code'])
+            ->where('is_visible', true)
+            ->where('is_approved', true)
+            ->where('is_sold', false)
+            ->withCount('views')  // This adds a views_count column to the result
+            ->orderBy('views_count', 'desc')  // Now we can order by it
+            ->take(4)
+            ->get();
+
+        return view("front.index", [
+            "plates" => $plates,
+            "featuredPlates" => $featuredPlates
+        ]);
     }
 
     public function plates()
     {
-        $plates = Plate::all();
-        return view("front.plates", ["plates" => $plates]);
+        $plates = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
+            ->with(['emirate', 'code'])
+            ->where('is_visible', true)
+            ->where('is_approved', true)
+            ->where('is_sold', false)
+            ->latest()  // Order by created_at DESC
+            ->paginate(20);
+        return view("front.plates", compact('plates'));
     }
 
     public function show(Request $request, $id)
     {
-        $plates = Plate::all();
+
         // Record view if not the owner
         $plate = Plate::findOrFail($id);
         if (Auth::id() !== $plate->user_id) {
             $this->recordView($plate);
         }
 
-        return view("front.show",
-        ["plate" => $plate, "plates" => $plates]);
+        // Get related plates
+        // Get related plates by same emirate
+        $relatedByEmirate = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
+            ->with(['emirate', 'code'])
+            ->where('emirate_id', $plate->emirate_id)
+            ->where('id', '!=', $plate->id)
+            ->where('is_visible', true)
+            ->where('is_approved', true)
+            ->where('is_sold', false)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        // Get similar plates by price range
+        $similarByPrice = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
+            ->with(['emirate', 'code'])
+            ->whereBetween('price', [$plate->price * 0.8, $plate->price * 1.2])
+            ->where('id', '!=', $plate->id)
+            ->where('emirate_id', '!=', $plate->emirate_id) // Different emirate for variety
+            ->where('is_visible', true)
+            ->where('is_approved', true)
+            ->where('is_sold', false)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        return view(
+            "front.show",
+            [
+                "plate" => $plate,
+                "relatedByEmirate" => $relatedByEmirate,
+                "similarByPrice" => $similarByPrice
+            ]
+        );
     }
 
     public function dashboard(PlateService $plate)
@@ -130,7 +195,7 @@ class FrontController extends Controller
         }
     }
 
-    
+
 
     public function getCodes($emirate_id)
     {
