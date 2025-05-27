@@ -11,6 +11,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Plate;
 use App\Models\Emirate;
 use App\Models\PlateView;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -82,10 +83,27 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'phone' => ['required', 'string', 'max:20'],
+            'phone' => ['required', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
             'whatsapp' => ['nullable', 'string', 'max:20'],
             'profile_photo' => ['nullable', 'image', 'max:15360'], // 15MB max
         ]);
+
+        // Process phone number to get last 9 digits
+        $phoneNumber = $this->processPhoneNumber($request->phone);
+
+        // Check if processed phone number already exists
+        // if (User::where('phone', $phoneNumber)->exists()) {
+        //     return back()->withErrors(['phone' => 'This phone number is already registered.'])->withInput();
+        // }
+
+        
+
+        $validated['phone'] = $phoneNumber; // Update with processed phone number
+
+        if ($request->whatsapp) {
+
+            $validated['whatsapp'] = $this->processPhoneNumber($request->whatsapp);
+        }
 
         // Handle profile photo upload
         if ($request->hasFile('profile_photo')) {
@@ -132,4 +150,29 @@ class ProfileController extends Controller
     }
 
     public function edit() {}
+
+    private function processPhoneNumber($phone)
+    {
+        // Remove all non-numeric characters
+        $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+
+        // Remove leading zeros
+        $cleanPhone = ltrim($cleanPhone, '0');
+
+        // Remove common UAE country code if present
+        if (substr($cleanPhone, 0, 3) === '971') {
+            $cleanPhone = substr($cleanPhone, 3);
+        }
+
+        // Remove leading zero again after country code removal
+        $cleanPhone = ltrim($cleanPhone, '0');
+
+        // Get the last 9 digits
+        if (strlen($cleanPhone) >= 9) {
+            return substr($cleanPhone, -9);
+        }
+
+        // If less than 9 digits, pad with leading zeros to make it 9 digits
+        return str_pad($cleanPhone, 9, '0', STR_PAD_LEFT);
+    }
 }

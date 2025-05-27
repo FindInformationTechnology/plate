@@ -48,8 +48,7 @@ class PlateController extends Controller
             'emirate_id' => 'required|exists:emirates,id',
             'code_id' => 'required|exists:codes,id',
             'number' => 'required|string|max:255',
-            'length' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0',
+          
            
             // 'is_sold' => 'boolean',
             // 'is_visible' => 'boolean',
@@ -58,6 +57,11 @@ class PlateController extends Controller
         $data = $request->all();
 
         // dd($data);
+        // Set the length based on the number if not provided
+        // If 'length' is not provided, calculate it from 'number'
+      $data['length'] = (int) strlen((string) $data ['number']);
+         
+
         
         // Set default values for checkboxes if not provided
         $data['is_approved'] = $request->has('is_approved') ? 1 : 0;
@@ -110,6 +114,8 @@ class PlateController extends Controller
         $plate = Plate::findOrFail($id);
         
         $data = $request->all();
+
+        $data['length'] = (int) strlen((string) $data ['number']);
         
         // Set default values for checkboxes if not provided
       

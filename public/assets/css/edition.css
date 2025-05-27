@@ -289,7 +289,7 @@ body {
     .plate .abu-dhabi-icon {
         top: 15%;
         left: 9%;
-        font-size: 25px;
+        font-size: 20px;
     }
     .plate .abu-dhabi-number {
         left: 50%;
@@ -373,6 +373,12 @@ body {
     background-color: var(--main-color) !important;
 }
 
+.plate-card a:hover i, .plate-card a:hover p {
+    color: #ffffff !important;
+}
+
+
+
 .hero-sec-main .banner-slider {
     margin-top: 100px !important;
 }
@@ -394,6 +400,13 @@ body {
 .plate-details .whatsapp {
     background-color: #28b055;
     border: 1px solid #28b055;
+}
+
+.plate-details .contact p, .plate-details .whatsapp p {
+    margin: 0;
+    color: #ffffff;
+    text-transform: capitalize;
+    font-weight: 600;
 }
 .plate-details .contact:hover,
 .plate-details .whatsapp:hover {

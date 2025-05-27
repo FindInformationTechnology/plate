@@ -5,66 +5,84 @@
 <!-- Banner -->
 <!-- Banner -->
 <section class="banner-section banner-sec-two banner-slider">
-	<div class="banner-img-slider owl-carousel">
-		<div class="slider-img">
-			<img src="assets/img/owl-2.jpg" alt="Img">
-		</div>
-		<div class="slider-img">
-			<img src="assets/img/owl-1.jpg" alt="Img">
-		</div>
-		<div class="slider-img">
-			<img src="assets/img/owl-3.jpg" alt="Img">
-		</div>
-	</div>
-	<div class="container">
-		<div class="home-banner">
-			<div class="row align-items-center">
-				<div class="col-md-12">
-					<div class="hero-sec-contents">
-						<div class="banner-title">
-							<h1>{{ __('message.Popular Plates Categorie')}}
-								<span>Made Simple.</span>
-							</h1>
-							<p>Modern design sports cruisers for those who crave adventure & grandeur yachts for relaxing with your loved ones.
-								We Offer diverse and fully equipped yachts
-							</p>
-						</div>
-
-					</div>
-
-				</div>
-                <div class="mt-5 col-md-12 rounded-md search">
-                    <form class="search-bar">
-                        <!-- All Options -->
-                        <div class="options">
-                        <!-- Main Options -->
-                        <select class="form-control search-option">
-                            <option value="">dubai</option>
-                        </select>
-                        <select class="form-control search-option">
-                            <option value="">1 digit</option>
-                        </select>
-                        <select class="form-control search-option">
-                            <option value="">1500 AED</option>
-                        </select>
-
-                        <!-- More Options -->
-                        <input type="number" class="form-control search-option extra d-none" placeholder="Maximum Price">
-                        <input type="number" class="form-control search-option extra d-none" placeholder="Minimum Price">
-                        <input type="number" class="form-control search-option extra d-none" placeholder="Start With: ex:123">
-                        <input type="number" class="form-control search-option extra d-none" placeholder="End With: ex:000">
-                        <input type="text" class="form-control search-option extra d-none" placeholder="Option 8">
-
-                        <!-- Search Button -->
-                        <button class="search-btn" type="submit">Search</button>
+    <div class="banner-img-slider owl-carousel" style="direction: ltr;">
+        <div class="slider-img">
+            <img src="assets/img/owl-2.jpg" alt="Img">
+        </div>
+        <div class="slider-img">
+            <img src="assets/img/owl-1.jpg" alt="Img">
+        </div>
+        <div class="slider-img">
+            <img src="assets/img/owl-3.jpg" alt="Img">
+        </div>
+    </div>
+    <div class="container">
+        <div class="home-banner">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="hero-sec-contents">
+                        <div class="banner-title">
+                            <h1>{{ __('message.Premium_UAE_Plates')}}
+                                <span>{{ __('message.At_Your_Fingertips') }}.</span>
+                            </h1>
+                            <p>{{ __('message.Find_Buy_Sell_Exclusive_Number_Plates') }}
+                            </p>
                         </div>
 
-                    </form>
-                    <p class="toggle-options">+ more options</p>
+                    </div>
+
                 </div>
-		    </div>
-	    </div>
-	</div>
+
+                <!-- Search Form -->
+                <div class="mt-5 col-md-12 rounded-md search">
+                    <form class="d-flex flex-wrap gap-2 search-bar" action="{{ route('plates.search') }}" method="GET">
+                        <!-- All Options -->
+                        <div class="options d-flex flex-wrap gap-2 w-100">
+                            <!-- Main Options -->
+                            <select class="form-control search-option" id="emirate_id" name="emirate_id">
+                                <option value="">{{ __('message.Select_Emirate') }}</option>
+                                @foreach(\App\Models\Emirate::all() as $emirate)
+                                    <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
+                                @endforeach
+                            </select>
+
+                           <select class="form-control search-option" id="code_id" name="code_id">
+                                <option value="">{{ __('message.Select_Code') }}</option>
+                                <!-- Codes will be populated here dynamically -->
+                            </select>
+
+                            <select class="form-control search-option" name="length">
+                                <option value="">{{ __('message.All_Digit') }}</option>
+
+                                    <option value="1">1 {{__('message.Digits') }}</option>
+                                    <option value="2">2 {{__('message.Digits') }}</option>
+                                    <option value="3">3 {{__('message.Digits') }}</option>
+                                    <option value="4">4 {{__('message.Digits') }}</option>
+                                    <option value="5">5 {{__('message.Digits') }}</option>
+
+                            </select>
+
+                            <!-- <input type="length" class="form-control search-option" name="number" placeholder="Plate Number"> -->
+
+                            <!-- More Options -->
+                            <input type="number" class="form-control search-option extra d-none" name="max_price" placeholder="{{ __('message.Maximum_Price') }}">
+                            <input type="number" class="form-control search-option extra d-none" name="min_price" placeholder="{{ __('message.Minimum_Price') }}">
+                            <input type="number" class="form-control search-option extra d-none" name="start_with" placeholder="{{ __('message.Start_With') }}: ex:123">
+                            <input type="number" class="form-control search-option extra d-none" name="end_with" placeholder="{{ __('message.End_With') }}: ex:000">
+
+                            <!-- Search Button -->
+                            <button class="search-btn" type="submit">{{ __('message.Search') }}</button>
+                        </div>
+                    </form>
+                    <p class="toggle-options">+ {{ __('message.more_options') }}</p>
+                </div>
+                <!-- End Search Form -->
+
+
+            </div>
+        </div>
+
+    </div>
 </section>
 <!-- /Banner -->
 <!-- /Banner -->
@@ -74,19 +92,19 @@
 <!-- Yacht Categories -->
 <section class="yacht-category-sec">
 
-	<div class="container">
+    <div class="container">
 
-		<div class="section-header-two">
-			<h2>Popular Plates Categories</h2>
-			<p>
-				Already have a plate style in mind? Explore our exclusive collection of premium license plates from across the country.
-			</p>
-		</div>
-		<div class="row yacht-category-lists">
+        <div class="section-header-two">
+            <h2>{{ __('message.Popular_Plates_Categories') }}</h2>
+            <p>
+                {{ __('message.Already_have_a_plate_style') }}
+            </p>
+        </div>
+        < class="row yacht-category-lists">
 
 
 
-			@foreach ($plates as $plate)
+            @foreach ($plates as $plate)
 
 
 			<div class="col-lg-4 col-md-6 col-12">
@@ -122,22 +140,27 @@
 					</div>
 				</div>
 			</div>
+            
 
 
-			@endforeach
+            @endforeach
 
 
-			<div class="col-md-12">
-				<div class="view-more-btn text-center">
-					<a href="{{ route('plates') }}" class="btn btn-secondary">View More Plates</a>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="col-md-12">
+                <div class="view-more-btn text-center">
+                    <a href="{{ route('plates') }}" class="btn btn-secondary">{{ __('message.View_More_Plates') }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 
+
+@endsection
+
+@push('scripts')
 <script>
-  document.querySelector(".toggle-options").addEventListener("click", function () {
+     document.querySelector(".toggle-options").addEventListener("click", function () {
     const extraOptions = document.querySelectorAll(".extra");
     const isHidden = extraOptions[0].classList.contains("d-none");
 
@@ -145,15 +168,29 @@
       opt.classList.toggle("d-none");
     });
 
-    this.textContent = isHidden ? "- less options" : "+ more options";
+    this.textContent = isHidden ? "- {{ __('message.less_options') }}" : "+ {{ __('message.more_options') }}";
   });
+     document.getElementById('emirate_id').addEventListener('change', function() {
+        var emirateId = this.value;
+        var codeSelect = document.getElementById('code_id');
+
+        // Clear existing options
+        codeSelect.innerHTML = '<option value="">{{ __("message.Select_Code") }}</option>';
+
+        if (emirateId) {
+            // Make AJAX request to fetch codes
+            fetch('/getCodes/' + emirateId) // Define this route in your web.php
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(code => {
+                        var option = document.createElement('option');
+                        option.value = code.id;
+                        option.textContent = code.name;
+                        codeSelect.appendChild(option);
+                    });
+                });
+        }
+    });
 </script>
 
-
-<!-- /Yacht Categories -->
-
-
-
-
-
-@endsection
+@endpush

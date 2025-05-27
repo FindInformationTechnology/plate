@@ -10,14 +10,14 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-sm-5">
-                                <h5>My Plates <span class="text-muted">({{ $plates->count() }})</span></h5>
+                                <h5>{{ __('message.My_Plates') }} <span class="text-muted">({{ $plates->count() }})</span></h5>
                             </div>
                             <div class="col-sm-7 text-sm-end">
                                 <div class="booking-select d-flex justify-content-end align-items-center">
                                     <div class="search-group me-3">
-                                        <input type="search" class="form-control" placeholder="Search plates...">
+                                        <input type="search" class="form-control" placeholder="{{ __('message.Search_plates') }}...">
                                     </div>
-                                    <a href="{{ route('user.plates.create') }}" class="btn btn-primary"><i class="feather-plus-circle me-1"></i> Add Plate</a>
+                                    <a href="{{ route('user.plates.create') }}" class="btn btn-primary"><i class="feather-plus-circle me-1"></i> {{ __('message.Add_Plate') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -27,12 +27,12 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Plate Details</th>
-                                        <th>Emirate</th>
-                                        <th>Code</th>
-                                        <th>Price</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
+                                        <th>{{ __('message.Plate_Details') }}</th>
+                                        <th>{{ __('message.Emirate') }}</th>
+                                        <th>{{ __('message.Code') }}</th>
+                                        <th>{{ __('message.Price') }}</th>
+                                        <th>{{ __('message.Status') }}</th>
+                                        <th>{{ __('message.Actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,7 +45,7 @@
                                                 </a> -->
                                                 <div class="table-head-name flex-grow-1">
                                                     <a href="#">{{ $plate->code->name }} {{ $plate->number }}</a>
-                                                    <p>Listed: {{ $plate->created_at->diffForHumans() }}</p>
+                                                    <p>{{ __('message.Listed') }}: {{ $plate->created_at->diffForHumans() }}</p>
                                                 </div>
                                             </div>
                                         </td>
@@ -65,7 +65,7 @@
                                                         id="soldToggle{{ $plate->id }}" data-id="{{ $plate->id }}"
                                                         {{ $plate->is_sold ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="soldToggle{{ $plate->id }}">
-                                                        <span class="status-label">{{ $plate->is_sold ? 'Sold' : 'Not Sold' }}</span>
+                                                        <span class="status-label">{{ $plate->is_sold ? __('message.Sold') : __('message.Not_Sold') }}</span>
                                                     </label>
                                                 </div>
                                                 <div class="form-check form-switch">
@@ -73,7 +73,7 @@
                                                         id="visibilityToggle{{ $plate->id }}" data-id="{{ $plate->id }}"
                                                         {{ $plate->is_visible ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="visibilityToggle{{ $plate->id }}">
-                                                        <span class="visibility-label">{{ $plate->is_visible ? 'Visible' : 'Hidden' }}</span>
+                                                        <span class="visibility-label">{{ $plate->is_visible ? __('message.Visible') : __('message.Hidden') }}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -94,9 +94,9 @@
                                         <td colspan="6" class="text-center py-4">
                                             <div class="empty-state">
                                                 <i class="feather-tag fs-1 text-muted mb-3"></i>
-                                                <h6>No plates listed yet</h6>
-                                                <p class="text-muted">Start listing your plates for sale</p>
-                                                <a href="{{ route('user.plates.create') }}" class="btn btn-primary">Add New Plate</a>
+                                                <h6>{{ __('message.No_plates_listed_yet') }}</h6>
+                                                <p class="text-muted">{{ __('message.Start_listing_your_plates') }}</p>
+                                                <a href="{{ route('user.plates.create') }}" class="btn btn-primary">{{ __('message.Add_New_Plate') }}</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -123,13 +123,13 @@
 
             // Show confirmation dialog
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: "{{ __('message.Are_you_sure') }}?",
+                text: "{{ __('message.You_wont_be_able_to_revert_this') }}!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#127384',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: "{{ __('message.Yes_delete_it') }}!"
             }).then((result) => {
                 if (result.isConfirmed) {
                     // AJAX call to delete plate
@@ -152,9 +152,9 @@
                                             <td colspan="6" class="text-center py-4">
                                                 <div class="empty-state">
                                                     <i class="feather-tag fs-1 text-muted mb-3"></i>
-                                                    <h6>No plates listed yet</h6>
-                                                    <p class="text-muted">Start listing your plates for sale</p>
-                                                    <a href="{{ route('user.plates.create') }}" class="btn btn-primary">Add New Plate</a>
+                                                    <h6>{{ __('message.No_plates_listed_yet') }}</h6>
+                                                    <p class="text-muted">{{ __('message.Start_listing_your_plates') }}</p>
+                                                    <a href="{{ route('user.plates.create') }}" class="btn btn-primary">{{ __('message.Add_New_Plate') }}</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -163,10 +163,10 @@
                             });
 
                             // Show success message
-                            toastr.success(response.message || "Plate deleted successfully");
+                            toastr.success(response.message || "{{ __('message.Plate_deleted_successfully') }}");
                         },
                         error: function(xhr) {
-                            toastr.error(xhr.responseJSON?.message || "Error deleting plate");
+                            toastr.error(xhr.responseJSON?.message || "{{ __('message.Error_deleting_plate') }}");
                             console.log(xhr.responseText);
                         }
                     });
@@ -192,18 +192,18 @@
                 },
                 success: function(response) {
                     // Update label text
-                    label.text(isSold ? 'Sold' : 'Not Sold');
+                    label.text(isSold ? "{{ __('message.Sold') }}" : "{{ __('message.Not_Sold') }}");
 
                     // Show success message
-                    toastr.success(response.message || "Plate status updated successfully");
+                    toastr.success(response.message || "{{ __('message.Plate_status_updated') }}");
                 },
                 error: function(xhr) {
                     // Revert checkbox state on error
                     checkbox.prop('checked', !isSold);
-                    label.text(!isSold ? 'Sold' : 'Not Sold');
+                    label.text(!isSold ? "{{ __('message.Sold') }}" : "{{ __('message.Not_Sold') }}");
 
                     // Show error message
-                    toastr.error(xhr.responseJSON?.message || "Error updating plate status");
+                    toastr.error(xhr.responseJSON?.message || "{{ __('message.Error_updating_plate_status') }}");
                     console.log(xhr.responseText);
                 }
             });
@@ -227,18 +227,18 @@
                 },
                 success: function(response) {
                     // Update label text
-                    label.text(isVisible ? 'Visible' : 'Hidden');
+                    label.text(isVisible ? "{{ __('message.Visible') }}" : "{{ __('message.Hidden') }}");
 
                     // Show success message
-                    toastr.success(response.message || "Visibility updated successfully");
+                    toastr.success(response.message || "{{ __('message.Visibility_updated') }}");
                 },
                 error: function(xhr) {
                     // Revert checkbox state on error
                     checkbox.prop('checked', !isVisible);
-                    label.text(!isVisible ? 'Visible' : 'Hidden');
+                    label.text(!isVisible ? "{{ __('message.Visible') }}" : "{{ __('message.Hidden') }}");
 
                     // Show error message
-                    toastr.error(xhr.responseJSON?.message || "Error updating visibility");
+                    toastr.error(xhr.responseJSON?.message || "{{ __('message.Error_updating_visibility') }}");
                     console.log(xhr.responseText);
                 }
             });

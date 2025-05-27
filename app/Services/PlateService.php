@@ -55,8 +55,7 @@ class PlateService
         $user = Auth::user();
 
         $data['user_id'] = $user->id;
-        $data['length'] = 4;
-
+        $data['length'] = (int) strlen((string) $data ['number']); // Default length to 4 if not provi
         $plate = Plate::create($data);
 
         return $plate;
@@ -71,7 +70,7 @@ class PlateService
         // Check permissions based on user role
         if (($user->hasRole('user') && $plate->user_id == $user->id) || $user->hasRole('admin')) {
             // Admin can edit any plate
-            $data['length'] = 4;
+           $data['length'] = (int) strlen((string) $data ['number']); 
 
             $plate->update($data);
 

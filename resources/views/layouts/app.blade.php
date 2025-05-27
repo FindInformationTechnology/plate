@@ -45,18 +45,10 @@
 
     <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
-
-<<<<<<< HEAD
     <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
 
-=======
-    @if(app()->getLocale() === 'ar')
-    <link rel="stylesheet" href="{{ asset('assets/css/rtl.css') }}">
-    @endif
 
->>>>>>> a21fd7be782a97e649c81f3c1b6a6abef75a5096
+
     <style>
         .dashboard-section {
             background: none;
@@ -66,7 +58,34 @@
         .header .header-navbar-rht .has-arrow .dropdown-toggle .user-text {
             color: #FFF;
         }
+
+        .header .main-menu-wrapper .main-nav>li a i {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .navbar .fa-globe:before {
+            color: #ffa633;
+        }
     </style>
+
+    @if(app()->getLocale() === 'ar')
+    <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css') }}">
+
+    <style>
+        .fa-eye-slash:before {
+
+            float: inline-end;
+            padding-left: 20px;
+        }
+
+        .header .main-menu-wrapper .main-nav > li a i{
+           
+           margin-left: 10px;
+        } 
+    </style>
+    @endif
+
 
 </head>
 

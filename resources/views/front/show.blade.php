@@ -90,6 +90,4 @@
 
 <!-- Plate Details -->
 
-
-
 @endsection
