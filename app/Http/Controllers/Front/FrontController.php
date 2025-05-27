@@ -86,6 +86,7 @@ class FrontController extends Controller
         // Get featured plates (for example, most viewed or premium)
         $featuredPlates = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
             ->with(['emirate', 'code'])
+            ->where('is_featured', true)
             ->where('is_visible', true)
             ->where('is_approved', true)
             ->where('is_sold', false)
