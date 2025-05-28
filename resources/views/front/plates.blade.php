@@ -23,20 +23,10 @@
 <!-- Plate Details -->
 
 <section class="plate-details">
-    <div class="container my-4 ">
-        <!-- Search Form -->
-        <div class="mt-5 col-md-12 rounded-md search">
-            <form class="d-flex flex-wrap gap-2 search-bar" action="{{ route('plates.search') }}" method="GET">
-                <!-- All Options -->
-                <div class="options d-flex flex-wrap gap-2 w-100">
-                    <!-- Main Options -->
-                    <select class="form-control search-option" id="emirate_id" name="emirate_id">
-                        <option value="">{{ __('message.Select_Emirate') }}</option>
-                        @foreach(\App\Models\Emirate::all() as $emirate)
-                        <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
-                        @endforeach
-                    </select>
+	<div class="container my-5 search">
 
+        <form class="search-bar">
+        <div class="options">
                     <select class="form-control search-option" id="code_id" name="code_id">
                         <option value="">{{ __('message.Select_Code') }}</option>
                         <!-- Codes will be populated here dynamically -->
@@ -78,9 +68,9 @@
 
 
 
-        <div class="p-3">
+        <div>
             <!-- <h1 class="text-secondary fs-3">Similar</h1> -->
-            <div class="pt-5 d-grid">
+            <div class="pt-3 d-grid">
                 <div class="row">
                     @foreach($plates as $plate)
                     <div class="col-lg-4 col-md-6 col-12">
@@ -95,15 +85,15 @@
                                         loading="lazy">
                                 </div>
                                 @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                                <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold">{{
+                                <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{
                                     $plate->code->name }}</h1>
-                                <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{
+                                <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{
                                     $plate->number }}</h2>
                                 @else
                                 <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex
                                     justify-content-between align-items-center">
-                                    <h1 class="fw-medium">{{ $plate->code->name }}</h1>
-                                    <h2 class="fw-medium">{{ $plate->number }}</h2>
+                                    <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+                                    <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                                 </div>
                                 @endif
                             </div>
@@ -122,8 +112,8 @@
                     @endforeach
                 </div>
             </div>
-            {{ $plates->links() }}        
-            {{ $plates->links('pagination::bootstrap-4') }}   
+            {{ $plates->links() }}
+            {{ $plates->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </section>

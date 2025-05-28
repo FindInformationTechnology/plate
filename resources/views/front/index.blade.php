@@ -142,12 +142,12 @@
                                 <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100" loading="lazy">
                             </div>
                             @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                            <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold">{{ $plate->code->name }}</h1>
-                            <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
+                            <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
+                            <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
                             @else
                             <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
-                                <h1 class=" fw-medium">{{ $plate->code->name }}</h1>
-                                <h2 class="fw-medium">{{ $plate->number }}</h2>
+                                <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+                                <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                             </div>
                             @endif
                         </div>
@@ -175,7 +175,7 @@
 
 
 
-   
+
 
     <!-- Then continue with your existing section header for regular plates -->
 
@@ -193,44 +193,45 @@
             @forelse ($plates as $plate)
 
 
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="listing-item plate-card position-relative">
-                    <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
-                    <div class="d-flex justify-content-end align-items-center">
-                        <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-                    </div>
-                    <div class="position-relative plate ">
-                        <div class="w-100 my-4">
-                            <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
-                                loading="lazy">
-                        </div>
-                        @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                        <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold">{{ $plate->code->name }}</h1>
-                        <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal">{{ $plate->number }}</h2>
-                        @else
-                        <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
-                            <h1 class=" fw-medium">{{ $plate->code->name }}</h1>
-                            <h2 class="fw-medium">{{ $plate->number }}</h2>
-                        </div>
-                        @endif
-                    </div>
-                    <div>
-                        <p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price_digits }}</p>
-                    </div>
-                    <div class="border-top">
-                        <a href="{{ route('plate.show', $plate->id) }}"
-                            class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i
-                                class="bx bx-phone"></i>
-                            <p>{{ __('message.Contact') }}</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
+			<div class="col-lg-4 col-md-6 col-12">
+				<div class="listing-item plate-card position-relative">
+					<!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
+					<div class="d-flex justify-content-end align-items-center">
+						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+					</div>
+					<div class="position-relative plate ">
+						<div class="w-100 my-4">
+							<img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
+								loading="lazy">
+						</div>
+						@if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
+						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
+						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
+						@else
+						<div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
+							<h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+							<h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
+						</div>
+						@endif
+					</div>
+					<div>
+						<p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price_digits }}</p>
+					</div>
+					<div class="border-top">
+						<a href="{{ route('plate.show', $plate->id) }}"
+							class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i
+								class="bx bx-phone"></i>
+							<p>Contact</p>
+						</a>
+					</div>
+				</div>
+			</div>
+
 
 
             @empty
 
-            
+
             <div class="col-12 text-center py-5">
                 <h3>{{ __('message.No_Plates_Found') }}</h3>
                 <p>{{ __('message.Try_Different_Search') }}</p>
@@ -240,7 +241,7 @@
 
             <div class="col-md-12">
                 <div class="view-more-btn text-center">
-             
+
                     <a href="{{ route('plates') }}" class="btn btn-secondary">{{ __('message.View_More_Plates') }}</a>
                 </div>
             </div>
