@@ -71,8 +71,6 @@ class FrontController extends Controller
 
     public function index(PlateService $plateService)
     {
-
-
         // Get the latest plates with pagination (12 per page)
         $plates = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
             ->with(['emirate', 'code'])
@@ -122,7 +120,6 @@ class FrontController extends Controller
             $this->recordView($plate);
         }
 
-        // Get related plates
         // Get related plates by same emirate
         $relatedByEmirate = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
             ->with(['emirate', 'code'])
