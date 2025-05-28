@@ -214,5 +214,13 @@ return [
     'Send' => 'إرسال' ,
     'Email_or_Phone' => 'البريد الإلكتروني أو الهاتف',
     'Digits' => 'أرقام',
+    'Featured' => 'مميز',
+    'Featured_Plates' => 'لوحات مميزة ',
+    'Most_Popular_Plates' => 'أكثر مُعطاة لوحات',
+    'Latest_Plates' => 'أحدث لوحات ',
+    'Recently_Added_Plates' => 'لوحات المضافة مؤخراً',
+    'Related_By_Emirate' => 'مرتبط بالإمارة',
+    'Views' => 'مشاهدات',
+  
     
 ];

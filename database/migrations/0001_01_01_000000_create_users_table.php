@@ -15,16 +15,22 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone')->unique()->nullable();
-            $table->string('whatsapp')->unique()->nullable();
+            $table->string('phone')->nullable()->unique();
+            $table->string('whatsapp')->nullable()->unique();
             $table->string('password');
+            $table->string('google_id')->nullable();
+            $table->string('facebook_id')->nullable();
+            $table->string('apple_id')->nullable();
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
+            $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('emirate')->nullable();
             $table->string('nationality')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_phone_verified')->default(false);
             $table->enum('status', ['active', 'suspended'])->default('active');
-            $table->string('provider')->nullable(); // for social login
-            $table->string('provider_id')->nullable(); // for social login
+            $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             

@@ -19,9 +19,12 @@ class Plate extends Model
         'is_approved',
         'is_sold',
         'is_visible',
+        'is_featured',
+        'is_premium',
+        'is_urgent',
         'image'
     ];
-    protected $appends = ['image_url', 'price_digits','views_count'];
+    protected $appends = ['image_url', 'price_digits', 'views_count'];
 
     public function user()
     {
@@ -46,11 +49,10 @@ class Plate extends Model
     public function getPriceDigitsAttribute()
     {
         if ($this->price <= 0) {
-            if(app()->getLocale() == 'ar')
+            if (app()->getLocale() == 'ar')
                 return 'تواصل للسعر';
             else
                 return 'Call for Price';
-
         }
 
         // Format price as integer (no decimal places)
@@ -66,5 +68,48 @@ class Plate extends Model
         }
     }
 
-    
+    // ... existing code ...
+
+    public function getViewsCountAttribute()
+    {
+        return $this->views()->count();
+    }
+
+    // related to search
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_visible', true)
+            ->where('is_approved', true)
+            ->where('is_sold', false);
+    }
+
+    public function scopeSimilarTo($query, $plate, $excludeId = true)
+    {
+        $query->active();
+
+        if ($excludeId) {
+            $query->where('id', '!=', $plate->id);
+        }
+
+        return $query;
+    }
+
+    public function scopeSameEmirate($query, $emirateId)
+    {
+        return $query->where('emirate_id', $emirateId);
+    }
+
+    public function scopeSameCode($query, $codeId)
+    {
+        return $query->where('code_id', $codeId);
+    }
+
+    public function scopeSimilarPrice($query, $price, $rangeFactor = 0.2)
+    {
+        $minPrice = $price * (1 - $rangeFactor);
+        $maxPrice = $price * (1 + $rangeFactor);
+
+        return $query->whereBetween('price', [$minPrice, $maxPrice]);
+    }
 }
