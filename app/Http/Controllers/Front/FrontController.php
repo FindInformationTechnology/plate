@@ -93,6 +93,8 @@ class FrontController extends Controller
             ->take(4)
             ->get();
 
+            
+
         return view("front.index", [
             "plates" => $plates,
             "featuredPlates" => $featuredPlates

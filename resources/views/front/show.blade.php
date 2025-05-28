@@ -27,7 +27,7 @@
         <div class="border-bottom border-dark-subtle">
             <div class="d-flex justify-content-between align-items-center pb-2">
                 <div>
-                    <h1 class="text-success py-2 fs-1 fw-semibold">
+                    <h1 class="price py-2 fs-1 fw-normal">
                         {{ $plate->price_digits }}
                     </h1>
                     <p class="text-secondary fs-6 mb-2">
@@ -93,7 +93,7 @@
                                 @endif
                             </div>
                             <div>
-                                <p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price_digits }}</p>
+                                <p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
                             </div>
                             <div class="border-top">
                                 <a href="{{ route('plate.show', $plate->id) }}"

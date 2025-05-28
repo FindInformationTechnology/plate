@@ -1,5 +1,5 @@
 body {
-    --main-color: #ffa633;
+    --main-color: #AC1E23;
     --alt-color: #e4e2df;
     font-family: "Roboto", sans-serif;;
 }
@@ -394,8 +394,8 @@ body {
     transition-duration: 0.5s;
 }
 .plate-details .contact {
-    background-color: #ffa633;
-    border: 1px solid #ffa633;
+    background-color: #AC1E23;
+    border: 1px solid #AC1E23;
 }
 .plate-details .whatsapp {
     background-color: #28b055;
@@ -414,10 +414,65 @@ body {
     box-shadow: inset 0 70px 0 0 #ffffff;
 }
 .plate-details .contact:hover {
-    border: 1px solid #ffa633;
-    color: #ffa633;
+    border: 1px solid #AC1E23;
+    color: #AC1E23;
 }
 .plate-details .whatsapp:hover {
     border: 1px solid #28b055;
     color: #28b055;
 }
+
+.search {
+    padding: 15px;
+    background-color: rgb(32, 31, 29, 0.7);
+    border-radius: 5px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+@media(min-width: 768px){
+    .search-option {
+        flex: 1 1 0;
+        min-width: 180px;
+        padding: 10px;
+    }
+}
+
+.search p {
+    color: #e2e2e2;
+    margin-top: 5px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.search-bar button.search-btn {
+    padding-block: 10px;
+    padding-inline: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #AC1E23;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+    .search-option {
+        width: 48%;
+    }
+    .search-bar button.search-btn {
+        width: 100%;
+    }
+}
+

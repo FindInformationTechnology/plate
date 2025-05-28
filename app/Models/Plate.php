@@ -48,15 +48,23 @@ class Plate extends Model
 
     public function getPriceDigitsAttribute()
     {
+       
         if ($this->price <= 0) {
-            if (app()->getLocale() == 'ar')
+
+            if (app()->getLocale() == 'ar') {
+                
                 return 'تواصل للسعر';
-            else
+            }
+            else{
+               
                 return 'Call for Price';
+            }
         }
 
+       
+
         // Format price as integer (no decimal places)
-        return number_format((int)$this->price, 0) . ' AED';
+        return number_format((int)$this->price, 0) .' '. $this->currency();
     }
 
     public function getImageUrlAttribute()
@@ -111,5 +119,14 @@ class Plate extends Model
         $maxPrice = $price * (1 + $rangeFactor);
 
         return $query->whereBetween('price', [$minPrice, $maxPrice]);
+    }
+
+    public function currency () {
+        if (app()->getLocale() == 'ar') {
+            return 'د.إ';
+        }
+        else{
+            return 'AED';
+        }
     }
 }

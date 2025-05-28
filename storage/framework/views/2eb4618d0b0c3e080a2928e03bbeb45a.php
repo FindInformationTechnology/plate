@@ -1,6 +1,6 @@
 <!-- Header -->
 <header class="header header-two">
-    @if(Route::currentRouteName() == 'home')
+    <?php if(Route::currentRouteName() == 'home'): ?>
     <!-- <div class="header-two-top">
         <div class="container">
             <div class="header-top-items">
@@ -70,7 +70,7 @@
             </div>
         </div>
     </div> -->
-    @endif
+    <?php endif; ?>
     <div class="container">
         <nav class="navbar navbar-expand-lg header-nav">
             <div class="navbar-header">
@@ -82,60 +82,60 @@
                     </span>
                 </a>
 
-                @if (Route::currentRouteName() == 'home')
-                <a href="{{ route('home')}}" class="navbar-brand logo">
-                    <img src="{{  asset ('assets/img/logo-r.png')}}" width="150" class="img-fluid" alt="Logo">
+                <?php if(Route::currentRouteName() == 'home'): ?>
+                <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" width="150" class="img-fluid" alt="Logo">
                 </a>
-                <a href="{{ route('home')}}" class="navbar-brand logo-small">
-                    <img src="{{  asset ('assets/img/logo-r.png')}}" class="img-fluid" width="150" alt="Logo">
+                <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
+                    <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" class="img-fluid" width="150" alt="Logo">
                 </a>
-                @else
-                <a href="{{ route('home')}}" class="navbar-brand logo">
-                    <img src="{{  asset ('assets/img/logo-r.png')}}" width="150" class="img-fluid" alt="Logo">
+                <?php else: ?>
+                <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" width="150" class="img-fluid" alt="Logo">
                 </a>
-                <a href="{{ route('home')}}" class="navbar-brand logo-small">
-                    <img src="{{  asset ('assets/img/logo-r.png')}}" class="img-fluid" width="150" alt="Logo">
+                <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
+                    <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" class="img-fluid" width="150" alt="Logo">
                 </a>
-                @endif
+                <?php endif; ?>
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
-                    <!-- <a href="{{ route ('home') }}" class="menu-logo">
-                        <img src="{{  asset ('assets/img/logo-r.png')}}" class="img-fluid" alt="Logo">
+                    <!-- <a href="<?php echo e(route ('home')); ?>" class="menu-logo">
+                        <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" class="img-fluid" alt="Logo">
                     </a> -->
                     <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                 </div>
                 <ul class="main-nav">
-                    <li><a href="{{ route('home')}}">{{ __('message.Home') }}</a></li>
-                    <li><a href="{{ route('plates')}}">{{ __('message.Plates') }}</a></li>
+                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('message.Home')); ?></a></li>
+                    <li><a href="<?php echo e(route('plates')); ?>"><?php echo e(__('message.Plates')); ?></a></li>
 
 
                     <!-- <li><a href="#">Contact</a></li> -->
 
 
 
-                    @guest
+                    <?php if(auth()->guard()->guest()): ?>
                     <!-- <li class="login-link">
-                        <a href="{{ route('register') }}">{{ __('message.Sign_Up') }}</a>
+                        <a href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Sign_Up')); ?></a>
                     </li> -->
                     <li class="login-link">
-                        <a href="{{ route('login') }}">{{ __('message.Sign_In') }}</a>
+                        <a href="<?php echo e(route('login')); ?>"><?php echo e(__('message.Sign_In')); ?></a>
                     </li>
 
-                    @endguest
+                    <?php endif; ?>
 
-                    @auth
-                    @if(auth()->user()->hasRole('user'))
+                    <?php if(auth()->guard()->check()): ?>
+                    <?php if(auth()->user()->hasRole('user')): ?>
                     <li class="nav-item">
-                        <a class="nav-link header-reg" href="{{ route('user.plates') }}">
-                            </span>{{ __('message.My_Plates') }}</a>
+                        <a class="nav-link header-reg" href="<?php echo e(route('user.plates')); ?>">
+                            </span><?php echo e(__('message.My_Plates')); ?></a>
                     </li>
 
-                    @endif
-                    @if(auth()->user()->hasRole('admin'))
+                    <?php endif; ?>
+                    <?php if(auth()->user()->hasRole('admin')): ?>
                     <li class="nav-item">
-                        <a class="nav-link header-reg" href="{{ route('admin.dashboard') }}">
-                            <span><i class="bx bx-plus-circle"></i></span>{{ __('message.Dashboard_Admin') }}</a>
+                        <a class="nav-link header-reg" href="<?php echo e(route('admin.dashboard')); ?>">
+                            <span><i class="bx bx-plus-circle"></i></span><?php echo e(__('message.Dashboard_Admin')); ?></a>
                     </li>
 
                    
@@ -143,30 +143,32 @@
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form-admin').submit()">
-                            <i class="feather-power"></i> {{ __('message.Logout') }}
+                            <i class="feather-power"></i> <?php echo e(__('message.Logout')); ?>
+
 
                         </a>
-                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
-                            @csrf
+                        <form method="POST" action="<?php echo e(route('logout')); ?>" class="d-none" id="logout-form-admin">
+                            <?php echo csrf_field(); ?>
                         </form>
                     </li>
-                    @endif
-                    @endauth
+                    <?php endif; ?>
+                    <?php endif; ?>
 
 
 
                     <!-- user menu -->
-                    @auth
-                    @if(auth()->user()->hasRole('user'))
+                    <?php if(auth()->guard()->check()): ?>
+                    <?php if(auth()->user()->hasRole('user')): ?>
                     <li class="nav-item d-md-none">
-                        <a class="nav-link header-reg" href="{{ route('user.dashboard') }}">
+                        <a class="nav-link header-reg" href="<?php echo e(route('user.dashboard')); ?>">
                             <span><i class="bx bx-plus-circle"></i></span>
-                            {{ __('message.My_Dashboard') }} </a>
+                            <?php echo e(__('message.My_Dashboard')); ?> </a>
                     </li>
 
                     <li class="nav-item d-md-none">
-                        <a class="nav-link header-reg" href="{{ route('user.profile') }}">
-                            <span><i class="bx bx-user"></i></span>{{ __('message.Profile') }}
+                        <a class="nav-link header-reg" href="<?php echo e(route('user.profile')); ?>">
+                            <span><i class="bx bx-user"></i></span><?php echo e(__('message.Profile')); ?>
+
                         </a>
                     </li>
                    
@@ -175,31 +177,34 @@
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form-admin').submit()">
                             <i class="bx bx-power-off"></i>
-                            {{ __('message.Logout') }}
+                            <?php echo e(__('message.Logout')); ?>
+
 
                         </a>
-                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
-                            @csrf
+                        <form method="POST" action="<?php echo e(route('logout')); ?>" class="d-none" id="logout-form-admin">
+                            <?php echo csrf_field(); ?>
                         </form>
                     </li>
-                    @endif
-                    @endauth
+                    <?php endif; ?>
+                    <?php endif; ?>
 
                     <!-- Language Switcher -->
                     <li class="nav-item dropdown d-md-none">
                         <a class="nav-link dropdown-toggle" href="#">
-                            <i class="fa fa-globe "></i> {{ __('message.Language') }}</a>
+                            <i class="fa fa-globe "></i> <?php echo e(__('message.Language')); ?></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a class="dropdown-item" style="color: #2F2F2F;"
-                                    href="{{ route('change.language', 'en') }}">
-                                    {{ __('message.English') }}
+                                    href="<?php echo e(route('change.language', 'en')); ?>">
+                                    <?php echo e(__('message.English')); ?>
+
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" style="color: #2F2F2F;"
-                                    href="{{ route('change.language', 'ar') }}">
-                                    {{ __('message.Arabic') }}
+                                    href="<?php echo e(route('change.language', 'ar')); ?>">
+                                    <?php echo e(__('message.Arabic')); ?>
+
                                 </a>
                             </li>
                         </ul>
@@ -220,43 +225,45 @@
                         <i class="fa fa-globe"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ route('change.language', 'en') }}">
-                            {{ __('message.English') }}
+                        <a class="dropdown-item" href="<?php echo e(route('change.language', 'en')); ?>">
+                            <?php echo e(__('message.English')); ?>
+
                         </a>
-                        <a class="dropdown-item" href="{{ route('change.language', 'ar') }}">
-                            {{ __('message.Arabic') }}
+                        <a class="dropdown-item" href="<?php echo e(route('change.language', 'ar')); ?>">
+                            <?php echo e(__('message.Arabic')); ?>
+
                         </a>
                     </div>
                 </li>
 
-                @guest
+                <?php if(auth()->guard()->guest()): ?>
                 <li class="nav-item">
-                    <a class="nav-link login-link" href="{{ route('login') }}"><span><i class="bx bx-user me-2"></i></span>{{ __('message.Sign_In') }}  </a>
-                    @if(Route::has('register') )
-                    <!-- <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a> -->
-                    @endif
+                    <a class="nav-link login-link" href="<?php echo e(route('login')); ?>"><span><i class="bx bx-user me-2"></i></span><?php echo e(__('message.Sign_In')); ?>  </a>
+                    <?php if(Route::has('register') ): ?>
+                    <!-- <a class="nav-link login-link ms-1" href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Register')); ?> </a> -->
+                    <?php endif; ?>
 
 
                 </li>
 
 
-                @endguest
+                <?php endif; ?>
 
 
-                @auth
-                @if(auth()->user()->hasRole('user'))
+                <?php if(auth()->guard()->check()): ?>
+                <?php if(auth()->user()->hasRole('user')): ?>
 
 
                 <!-- Notifications -->
                 <li class="nav-item dropdown logged-item noti-nav noti-wrapper">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <span class="bell-icon"><img src="{{ asset ('assets/img/icons/bell-icon.svg') }}" alt="Bell"></span>
+                        <span class="bell-icon"><img src="<?php echo e(asset ('assets/img/icons/bell-icon.svg')); ?>" alt="Bell"></span>
                         <span class="badge badge-pill"></span>
                     </a>
                     <div class="dropdown-menu notifications">
                         <div class="topnav-dropdown-header">
-                            <span class="notification-title">{{ __('message.Notifications') }}</span>
-                            <a href="javascript:void(0)" class="clear-noti"> {{ __('message.Clear_All') }} </a>
+                            <span class="notification-title"><?php echo e(__('message.Notifications')); ?></span>
+                            <a href="javascript:void(0)" class="clear-noti"> <?php echo e(__('message.Clear_All')); ?> </a>
                         </div>
                         <div class="noti-content">
                             <ul class="notification-list">
@@ -265,10 +272,10 @@
                                         <div class="media d-flex">
                                             <span class="avatar avatar-lg flex-shrink-0">
                                                 <img class="avatar-img rounded-circle" alt="User Image"
-                                                    src="{{ asset('assets/img/profiles/avatar-01.jpg')}}">
+                                                    src="<?php echo e(asset('assets/img/profiles/avatar-01.jpg')); ?>">
                                             </span>
                                             <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Jonathan Doe </span> {{ __('message.has_booked') }} <span class="noti-title">{{ __('message.your_service') }}</span></p>
+                                                <p class="noti-details"><span class="noti-title">Jonathan Doe </span> <?php echo e(__('message.has_booked')); ?> <span class="noti-title"><?php echo e(__('message.your_service')); ?></span></p>
                                                 <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
                                             </div>
                                         </div>
@@ -278,7 +285,7 @@
                             </ul>
                         </div>
                         <div class="topnav-dropdown-footer">
-                            <a href="#">{{ __('message.View_all_Notifications') }}</a>
+                            <a href="#"><?php echo e(__('message.View_all_Notifications')); ?></a>
                         </div>
                     </div>
                 </li>
@@ -288,38 +295,41 @@
                 <li class="nav-item dropdown has-arrow logged-item">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
-                            <img class="rounded-circle" src="{{  asset ('assets/img/profiles/avatar-14.jpg') }}" alt="Profile">
+                            <img class="rounded-circle" src="<?php echo e(asset ('assets/img/profiles/avatar-14.jpg')); ?>" alt="Profile">
                         </span>
-                        @if (Route::currentRouteName() == 'home')
-                        <span class="user-text" style="color: #fff;">{{ auth()->user()->name }}</span>
-                        @else
-                        <span class="user-text" style="color: black;">{{ auth()->user()->name }}</span>
-                        @endif
+                        <?php if(Route::currentRouteName() == 'home'): ?>
+                        <span class="user-text" style="color: #fff;"><?php echo e(auth()->user()->name); ?></span>
+                        <?php else: ?>
+                        <span class="user-text" style="color: black;"><?php echo e(auth()->user()->name); ?></span>
+                        <?php endif; ?>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ route('user.dashboard') }}">
-                            <i class="feather-settings"></i> {{ __('message.Dashboard') }}
+                        <a class="dropdown-item" href="<?php echo e(route('user.dashboard')); ?>">
+                            <i class="feather-settings"></i> <?php echo e(__('message.Dashboard')); ?>
+
                         </a>
-                        <a class="dropdown-item" href="{{ route('user.profile') }}">
-                            <i class="feather-user-check"></i> {{ __('message.Profile') }}
+                        <a class="dropdown-item" href="<?php echo e(route('user.profile')); ?>">
+                            <i class="feather-user-check"></i> <?php echo e(__('message.Profile')); ?>
+
                         </a>
                         <a class="dropdown-item" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit()">
-                            <i class="feather-power"></i> {{ __('message.Logout') }}
+                            <i class="feather-power"></i> <?php echo e(__('message.Logout')); ?>
+
 
                         </a>
-                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
-                            @csrf
+                        <form method="POST" action="<?php echo e(route('logout')); ?>" class="d-none" id="logout-form">
+                            <?php echo csrf_field(); ?>
                         </form>
                     </div>
                 </li>
                 <!-- /User Menu -->
-                @endif
+                <?php endif; ?>
 
-                @endauth
+                <?php endif; ?>
 
             </ul>
         </nav>
     </div>
 </header>
-<!-- /Header -->
+<!-- /Header --><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/header.blade.php ENDPATH**/ ?>

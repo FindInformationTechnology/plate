@@ -33,14 +33,14 @@
 <!-- Banner -->
 <section class="banner-section banner-sec-two banner-slider">
     <div class="banner-img-slider owl-carousel" style="direction: ltr;">
+        <!-- <div class="slider-img">
+            <img src="assets/img/owl-2.jpg" alt="Img" loading="lazy">
+        </div> -->
         <div class="slider-img">
-            <img src="assets/img/owl-2.jpg" alt="Img">
+            <img src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
         </div>
         <div class="slider-img">
-            <img src="assets/img/owl-1.jpg" alt="Img">
-        </div>
-        <div class="slider-img">
-            <img src="assets/img/owl-3.jpg" alt="Img">
+            <img src="assets/img/owl-3.jpg" alt="Img" loading="lazy">
         </div>
     </div>
     <div class="container">
@@ -139,7 +139,7 @@
                         </div>
                         <div class="position-relative plate">
                             <div class="w-100 my-4">
-                                <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100" loading="lazy">
+                                <img src="{{ $plate->emirate->image_url }}" alt="{{ $plate->emirate->name }}" class="w-100" loading="lazy">
                             </div>
                             @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
                             <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
@@ -152,7 +152,7 @@
                             @endif
                         </div>
                         <div>
-                            <p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price_digits }}</p>
+                            <p class=" fs-4 text-center fw-normal pb-4 price">{{ $plate->price_digits }}</p>
                         </div>
                         <div class="border-top">
                             <a href="{{ route('plate.show', $plate->id) }}" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2">
@@ -215,7 +215,7 @@
 						@endif
 					</div>
 					<div>
-						<p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price_digits }}</p>
+						<p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
 					</div>
 					<div class="border-top">
 						<a href="{{ route('plate.show', $plate->id) }}"

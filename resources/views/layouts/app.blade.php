@@ -10,29 +10,29 @@
     <link rel="shortcut icon" href="{{ asset ('assets/img/favicon.png')}}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap.min.css')}}" as="style">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
-    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/fontawesome.min.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/all.min.css')}}" media="print" onload="this.media='all'">
 
     <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/plugins/fancybox/fancybox.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/plugins/fancybox/fancybox.css')}}" media="print" onload="this.media='all'">
 
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Select2 CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/plugins/select2/css/select2.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('assets/plugins/select2/css/select2.min.css')}}"> -->
 
     <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap-datetimepicker.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap-datetimepicker.min.css')}}"> -->
 
     <!-- Aos CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/plugins/aos/aos.css')}}">
 
     <!-- Fearther CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/css/feather.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('assets/css/feather.css')}}"> -->
 
     <!-- Boxicons CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/plugins/boxicons/css/boxicons.min.css')}}">
@@ -41,11 +41,11 @@
     <link rel="stylesheet" href="{{ asset ('assets/css/owl.carousel.min.css')}}">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}" as="style">
 
     <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
 
-    <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}"> -->
 
 
 
@@ -65,7 +65,7 @@
         }
 
         .navbar .fa-globe:before {
-            color: #ffa633;
+            color: #AC1E23;
         }
     </style>
 
@@ -79,10 +79,10 @@
             padding-left: 20px;
         }
 
-        .header .main-menu-wrapper .main-nav > li a i{
-           
-           margin-left: 10px;
-        } 
+        .header .main-menu-wrapper .main-nav>li a i {
+
+            margin-left: 10px;
+        }
     </style>
     @endif
 
@@ -129,33 +129,33 @@
         <script src="{{ asset ('assets/js/jquery-3.7.1.min.js') }}"></script>
 
         <!-- Bootstrap Core JS -->
-        <script src="{{ asset ('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset ('assets/js/bootstrap.bundle.min.js') }}" defer></script>
 
         <!-- counterup JS -->
-        <script src="{{ asset ('assets/js/jquery.waypoints.js') }}"></script>
-        <script src="{{ asset ('assets/js/jquery.counterup.min.js') }}"></script>
+        <script src="{{ asset ('assets/js/jquery.waypoints.js') }}" defer></script>
+        <script src="{{ asset ('assets/js/jquery.counterup.min.js') }}" defer></script>
 
         <!-- Select2 JS -->
-        <script src="{{ asset ('assets/plugins/select2/js/select2.min.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/select2/js/select2.min.js') }}" defer></script>
 
         <!-- Aos -->
-        <script src="{{ asset ('assets/plugins/aos/aos.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/aos/aos.js') }}" defer></script>
 
         <!-- Top JS -->
-        <script src="{{ asset ('assets/js/backToTop.js') }}"></script>
+        <script src="{{ asset ('assets/js/backToTop.js') }}" defer></script>
 
         <!-- Fancybox JS -->
-        <script src="{{ asset ('assets/plugins/fancybox/fancybox.umd.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/fancybox/fancybox.umd.js') }}" defer></script>
 
         <!-- Datepicker Core JS -->
-        <script src="{{ asset ('assets/plugins/moment/moment.min.js') }}"></script>
-        <script src="{{ asset ('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/moment/moment.min.js') }}" defer></script>
+        <script src="{{ asset ('assets/js/bootstrap-datetimepicker.min.js') }}" defer></script>
 
         <!-- Owl Carousel JS -->
-        <script src="{{ asset ('assets/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset ('assets/js/owl.carousel.min.js') }}" ></script>
 
         <!-- Custom JS -->
-        <script src="{{ asset ('assets/js/script.js') }}"></script>
+        <script src="{{ asset ('assets/js/script.js') }}" defer></script>
 
 
         <!-- Toastr JS -->
