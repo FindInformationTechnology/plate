@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Select2 CSS -->
-    <!-- <link rel="stylesheet" href="{{ asset ('assets/plugins/select2/css/select2.min.css')}}"> -->
+    <link rel="stylesheet" href="{{ asset ('assets/plugins/select2/css/select2.min.css')}}">
 
     <!-- Datepicker CSS -->
     <!-- <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap-datetimepicker.min.css')}}"> -->
@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset ('assets/plugins/aos/aos.css')}}">
 
     <!-- Fearther CSS -->
-    <!-- <link rel="stylesheet" href="{{ asset ('assets/css/feather.css')}}"> -->
+    <link rel="stylesheet" href="{{ asset ('assets/css/feather.css')}}">
 
     <!-- Boxicons CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/plugins/boxicons/css/boxicons.min.css')}}">

@@ -82,7 +82,7 @@ body {
     font-weight: normal !important;
 }
 .plate .dubai-number,
-.plate .dubai-c-number {
+.plate .dubai-classic {
     color: #000;
     top: 50%;
     transform: translateY(-50%);
@@ -281,7 +281,7 @@ body {
         font-size: 30px !important;
     }
     .plate .dubai-number,
-    .plate .dubai-c-number,
+    .plate .dubai-classic,
     .big-plate .dubai-number {
         left: 40%;
         font-size: 55px !important;

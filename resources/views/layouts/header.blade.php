@@ -91,10 +91,10 @@
                 </a>
                 @else
                 <a href="{{ route('home')}}" class="navbar-brand logo">
-                    <img src="{{  asset ('assets/img/logo-r.png')}}" width="150" class="img-fluid" alt="Logo">
+                    <img src="{{  asset ('assets/img/logo-b.png')}}" width="150" class="img-fluid" alt="Logo">
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo-small">
-                    <img src="{{  asset ('assets/img/logo-r.png')}}" class="img-fluid" width="150" alt="Logo">
+                    <img src="{{  asset ('assets/img/logo-b.png')}}" class="img-fluid" width="150" alt="Logo">
                 </a>
                 @endif
             </div>
@@ -135,7 +135,8 @@
                     @if(auth()->user()->hasRole('admin'))
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="{{ route('admin.dashboard') }}">
-                            <span><i class="bx bx-plus-circle"></i></span>{{ __('message.Dashboard_Admin') }}</a>
+                            <!-- <span><i class="bx bx-plus-circle"></i></span> -->
+                            {{ __('message.Dashboard_Admin') }}</a>
                     </li>
 
                    
@@ -143,7 +144,8 @@
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form-admin').submit()">
-                            <i class="feather-power"></i> {{ __('message.Logout') }}
+                            <!-- <i class="feather-power"></i>  -->
+                            {{ __('message.Logout') }}
 
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">

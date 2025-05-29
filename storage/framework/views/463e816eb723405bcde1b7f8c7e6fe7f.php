@@ -13,7 +13,7 @@
                 <div data-kt-menu-trigger="click" class="menu-item ">
 
                     <!--begin:Menu link-->
-                    <a class="menu-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                    <a class="menu-link <?php echo e(request()->routeIs('admin.dashboard') ? 'active' : ''); ?>" href="<?php echo e(route('admin.dashboard')); ?>">
                         <span class="menu-icon">
                             <i class="ki-duotone ki-element-11 fs-2 text-white">
                                 <span class="path1"></span>
@@ -119,7 +119,7 @@
                         <div class="menu-item">
                             <!--begin:Menu link-->
                             <a class="menu-link "
-                                href="{{ route('admin.plates.index') }}">
+                                href="<?php echo e(route('admin.plates.index')); ?>">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -208,7 +208,7 @@
                                              <div class="menu-item">
                             <!--begin:Menu link-->
                             <a class="menu-link "
-                                href="{{ route('admin.emirates.index') }}">
+                                href="<?php echo e(route('admin.emirates.index')); ?>">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -221,7 +221,7 @@
                         <!--begin:Menu item-->
                         <div class="menu-item">
                             <!--begin:Menu link-->
-                            <a class="menu-link " href="{{ route('admin.codes.index') }}">
+                            <a class="menu-link " href="<?php echo e(route('admin.codes.index')); ?>">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -238,4 +238,4 @@
         </div>
     </div>
 
-</div>
+</div><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/admin/layouts/_aside.blade.php ENDPATH**/ ?>

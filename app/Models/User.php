@@ -38,6 +38,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function plates()
+    {
+        return $this->hasMany(Plate::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *

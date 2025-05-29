@@ -3,7 +3,7 @@
 <!--begin::Head-->
 
 <head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title>Admin</title>
     <meta charset="utf-8" />
     <meta name="description"
@@ -17,17 +17,17 @@
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Metronic by Keenthemes" /> -->
     <!-- <link rel="canonical" href="http://index.html" /> -->
-    <link rel="shortcut icon" href="{{ asset('assets/dashboard-assets/media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="<?php echo e(asset('assets/dashboard-assets/media/logos/favicon.ico')); ?>" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
 
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="{{ asset('assets/dashboard-assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+    <link href="<?php echo e(asset('assets/dashboard-assets/plugins/global/plugins.bundle.css')); ?>" rel="stylesheet"
         type="text/css" />
 
-    <link href="{{ asset('assets/dashboard-assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="<?php echo e(asset('assets/dashboard-assets/css/style.bundle.css')); ?>" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
    
     <!-- liveware -->
@@ -55,7 +55,7 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
         <!--begin::Page-->
         <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
             <!--begin::Header-->
-            @include('admin.layouts._header')
+            <?php echo $__env->make('admin.layouts._header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
             <!--end::Header-->
             <!--begin::Wrapper-->
             <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
@@ -67,7 +67,7 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
                     <!--begin::Logo-->
                     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                         <!--begin::Logo image-->
-                        <a href="{{ route('admin.dashboard') }}">
+                        <a href="<?php echo e(route('admin.dashboard')); ?>">
                            <h1 style="color: #fff;">Admin Panale</h1>
                         </a>
 
@@ -85,7 +85,7 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
 
                     <!--end::Logo-->
                     <!--begin::sidebar menu-->
-                    @include('admin.layouts._aside')
+                    <?php echo $__env->make('admin.layouts._aside', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                     <!--end::sidebar menu-->
 
                 </div>
@@ -94,9 +94,10 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
 
               
 
-                @yield('content')
+                <?php echo $__env->yieldContent('content'); ?>
 
-                {{ $content ?? '' }}
+                <?php echo e($content ?? ''); ?>
+
                 <!--end:::Main-->
             </div>
             <!--end::Wrapper-->
@@ -123,8 +124,8 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
         var hostUrl = "assets/";
     </script>
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
-    <script src="{{ asset('assets/dashboard-assets/plugins/global/plugins.bundle.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/scripts.bundle.js') }}"></script>
+    <script src="<?php echo e(asset('assets/dashboard-assets/plugins/global/plugins.bundle.js')); ?>"></script>
+    <script src="<?php echo e(asset('assets/dashboard-assets/js/scripts.bundle.js')); ?>"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
 
@@ -132,14 +133,7 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
     <!--begin::Custom Javascript(used for this page only)-->
     
     <script src="/assets/dashboard-assets/js/custom/apps/ecommerce/catalog/products.js"></script>
-    <!-- {{-- <script src="{{ asset('assets/dashboard-assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/custom/widgets.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/custom/apps/chat/chat.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/custom/utilities/modals/create-app.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/custom/utilities/modals/new-target.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/custom/utilities/modals/users-search.js') }}"></script>
-    <script src="{{ asset('assets/dashboard-assets/js/custom/utilities/modals/users-search.js') }}"></script> --}} -->
+    <!--  -->
 
 
 		
@@ -196,14 +190,14 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
         };
     </script>
 
-    @include('admin.includes/_messages')
+    <?php echo $__env->make('admin.includes/_messages', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 
-    @stack('scripts')
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>
 <!--end::Body-->
 
-</html>
+</html><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/admin/layouts/master.blade.php ENDPATH**/ ?>

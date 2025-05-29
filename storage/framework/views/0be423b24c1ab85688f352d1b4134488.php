@@ -1,6 +1,4 @@
-@extends('admin.layouts.master')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <!--begin::Content-->
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -20,7 +18,7 @@
 					<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
 						<!--begin::Item-->
 						<li class="breadcrumb-item text-muted">
-							<a href="{{ route ('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+							<a href="<?php echo e(route ('admin.dashboard')); ?>" class="text-muted text-hover-primary">Home</a>
 						</li>
 						<!--end::Item-->
 						<!--begin::Item-->
@@ -55,7 +53,7 @@
 								<!--begin::Title-->
 								<div class="card-title d-flex flex-column">
 									<!--begin::Amount-->
-									<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ $totalPlates }}</span>
+									<span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2"><?php echo e($totalPlates); ?></span>
 									<!--end::Amount-->
 									<!--begin::Subtitle-->
 									<span class="text-white opacity-75 pt-1 fw-semibold fs-6">Total Plates</span>
@@ -70,11 +68,11 @@
 								<div class="d-flex align-items-center flex-column mt-3 w-100">
 									<div
 										class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-										<span>{{ $pendingApproval }} Pending</span>
-										<span>{{ $activePlates }} Active</span>
+										<span><?php echo e($pendingApproval); ?> Pending</span>
+										<span><?php echo e($activePlates); ?> Active</span>
 									</div>
 									<div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
-										<div class="bg-white rounded h-8px" role="progressbar" style="width: '{{ ($activePlates / ($totalPlates ?: 1)) * 100 }}'%;"
+										<div class="bg-white rounded h-8px" role="progressbar" style="width: '<?php echo e(($activePlates / ($totalPlates ?: 1)) * 100); ?>'%;"
 											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</div>
@@ -90,7 +88,7 @@
 								<!--begin::Title-->
 								<div class="card-title d-flex flex-column">
 									<!--begin::Amount-->
-									<span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ $totalUsers }}</span>
+									<span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2"><?php echo e($totalUsers); ?></span>
 									<!--end::Amount-->
 									<!--begin::Subtitle-->
 									<span class="text-gray-500 pt-1 fw-semibold fs-6">Total Users</span>
@@ -108,11 +106,11 @@
 								<div class="d-flex align-items-center">
 									<div class="d-flex align-items-center me-4">
 										<span class="fs-7 fw-bold text-gray-700">Today:</span>
-										<span class="fs-7 fw-bolder text-gray-900 ms-1">{{ $newUsersToday }}</span>
+										<span class="fs-7 fw-bolder text-gray-900 ms-1"><?php echo e($newUsersToday); ?></span>
 									</div>
 									<div class="d-flex align-items-center">
 										<span class="fs-7 fw-bold text-gray-700">This Week:</span>
-										<span class="fs-7 fw-bolder text-gray-900 ms-1">{{ $newUsersThisWeek }}</span>
+										<span class="fs-7 fw-bolder text-gray-900 ms-1"><?php echo e($newUsersThisWeek); ?></span>
 									</div>
 								</div>
 								<!--end::Users group-->
@@ -136,7 +134,7 @@
 										<span class="fs-4 fw-semibold text-gray-500 me-1 align-self-start">AED</span>
 										<!--end::Currency-->
 										<!--begin::Amount-->
-										<span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">{{ $averagePrice }}</span>
+										<span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2"><?php echo e($averagePrice); ?></span>
 										<!--end::Amount-->
 									</div>
 									<!--end::Info-->
@@ -160,7 +158,7 @@
 										<div class="text-gray-500 flex-grow-1 me-4">Highest Price</div>
 										<!--end::Label-->
 										<!--begin::Stats-->
-										<div class="fw-bolder text-gray-700 text-xxl-end">AED {{ $highestPrice }}</div>
+										<div class="fw-bolder text-gray-700 text-xxl-end">AED <?php echo e($highestPrice); ?></div>
 										<!--end::Stats-->
 									</div>
 									<!--end::Label-->
@@ -173,7 +171,7 @@
 										<div class="text-gray-500 flex-grow-1 me-4">Lowest Price</div>
 										<!--end::Label-->
 										<!--begin::Stats-->
-										<div class="fw-bolder text-gray-700 text-xxl-end">AED {{ $lowestPrice }}</div>
+										<div class="fw-bolder text-gray-700 text-xxl-end">AED <?php echo e($lowestPrice); ?></div>
 										<!--end::Stats-->
 									</div>
 									<!--end::Label-->
@@ -220,7 +218,7 @@
 									<!--begin::Wrapper-->
 									<div class="d-flex align-items-center">
 										<!--begin::Number-->
-										<span class="text-gray-800 fw-bold fs-6 me-3">{{ $activePlates }}</span>
+										<span class="text-gray-800 fw-bold fs-6 me-3"><?php echo e($activePlates); ?></span>
 										<!--end::Number-->
 									</div>
 									<!--end::Wrapper-->
@@ -255,7 +253,7 @@
 									<!--begin::Wrapper-->
 									<div class="d-flex align-items-center">
 										<!--begin::Number-->
-										<span class="text-gray-800 fw-bold fs-6 me-3">{{ $pendingApproval }}</span>
+										<span class="text-gray-800 fw-bold fs-6 me-3"><?php echo e($pendingApproval); ?></span>
 										<!--end::Number-->
 									</div>
 									<!--end::Wrapper-->
@@ -290,7 +288,7 @@
 									<!--begin::Wrapper-->
 									<div class="d-flex align-items-center">
 										<!--begin::Number-->
-										<span class="text-gray-800 fw-bold fs-6 me-3">{{ $soldPlates }}</span>
+										<span class="text-gray-800 fw-bold fs-6 me-3"><?php echo e($soldPlates); ?></span>
 										<!--end::Number-->
 									</div>
 									<!--end::Wrapper-->
@@ -311,13 +309,13 @@
 								<!--begin::Title-->
 								<h3 class="card-title align-items-start flex-column">
 									<span class="card-label fw-bold text-gray-800">View Statistics</span>
-									<span class="text-gray-500 mt-1 fw-semibold fs-6">Total Views: {{ $totalViews }}</span>
+									<span class="text-gray-500 mt-1 fw-semibold fs-6">Total Views: <?php echo e($totalViews); ?></span>
 								</h3>
 								<!--end::Title-->
 								<!--begin::Toolbar-->
 								<div class="card-toolbar">
 									<span class="badge badge-light-success fs-base">
-										<i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"></i>Today: {{ $viewsToday }}</span>
+										<i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"></i>Today: <?php echo e($viewsToday); ?></span>
 								</div>
 								<!--end::Toolbar-->
 							</div>
@@ -339,23 +337,23 @@
 										<!--end::Table head-->
 										<!--begin::Table body-->
 										<tbody>
-											@foreach($mostViewedPlates as $plate)
+											<?php $__currentLoopData = $mostViewedPlates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 											<tr>
 												<!-- <td>
 													<div class="symbol symbol-50px">
-														<img src="{{ $plate->image_url }}" alt="" class="w-100" />
+														<img src="<?php echo e($plate->image_url); ?>" alt="" class="w-100" />
 													</div>
 												</td> -->
 												<td>
-													<a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $plate->emirate->name }} {{ $plate->code->name }} {{ $plate->number }}</a>
-													<span class="text-gray-500 fw-semibold d-block fs-7">{{ $plate->user->name }}</span>
+													<a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6"><?php echo e($plate->emirate->name); ?> <?php echo e($plate->code->name); ?> <?php echo e($plate->number); ?></a>
+													<span class="text-gray-500 fw-semibold d-block fs-7"><?php echo e($plate->user->name); ?></span>
 												</td>
 												<td class="text-end">
-													<span class="text-gray-800 fw-bold d-block fs-6">{{ $plate->views_count }}</span>
+													<span class="text-gray-800 fw-bold d-block fs-6"><?php echo e($plate->views_count); ?></span>
 													<span class="text-gray-500 fw-semibold d-block fs-7">Views</span>
 												</td>
 											</tr>
-											@endforeach
+											<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 										</tbody>
 										<!--end::Table body-->
 									</table>
@@ -388,33 +386,33 @@
 							<!--end::Header-->
 							<!--begin::Body-->
 							<div class="card-body pt-7">
-								@foreach($recentPlates as $plate)
+								<?php $__currentLoopData = $recentPlates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Section-->
 									<div class="d-flex align-items-center me-5">
 										<!--begin::Symbol-->
 										<!-- <div class="symbol symbol-40px me-4">
-											<img src="{{ $plate->image_url }}" class="" alt="" />
+											<img src="<?php echo e($plate->image_url); ?>" class="" alt="" />
 										</div> -->
 										<!--end::Symbol-->
 										<!--begin::Title-->
 										<div class="me-5">
-											<a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">{{ $plate->emirate->name }} {{ $plate->code->name }} {{ $plate->number }}</a>
-											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">{{ $plate->user->name }}</span>
+											<a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6"><?php echo e($plate->emirate->name); ?> <?php echo e($plate->code->name); ?> <?php echo e($plate->number); ?></a>
+											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0"><?php echo e($plate->user->name); ?></span>
 										</div>
 										<!--end::Title-->
 									</div>
 									<!--end::Section-->
 									<!--begin::Label-->
-									<span class="badge badge-light-{{ $plate->is_approved ? 'success' : 'warning' }} fs-7 fw-bold">{{ $plate->is_approved ? 'Approved' : 'Pending' }}</span>
+									<span class="badge badge-light-<?php echo e($plate->is_approved ? 'success' : 'warning'); ?> fs-7 fw-bold"><?php echo e($plate->is_approved ? 'Approved' : 'Pending'); ?></span>
 									<!--end::Label-->
 								</div>
 								<!--end::Item-->
-								@if(!$loop->last)
+								<?php if(!$loop->last): ?>
 								<div class="separator separator-dashed my-4"></div>
-								@endif
-								@endforeach
+								<?php endif; ?>
+								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</div>
 							<!--end::Body-->
 						</div>
@@ -437,7 +435,7 @@
 							<!--end::Header-->
 							<!--begin::Body-->
 							<div class="card-body pt-7">
-								@foreach($mostActiveUsers as $user)
+								<?php $__currentLoopData = $mostActiveUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 								<!--begin::Item-->
 								<div class="d-flex flex-stack">
 									<!--begin::Section-->
@@ -451,21 +449,21 @@
 										<!--end::Symbol-->
 										<!--begin::Title-->
 										<div class="me-5">
-											<a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">{{ $user->name }}</a>
-											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">{{ $user->email }}</span>
+											<a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6"><?php echo e($user->name); ?></a>
+											<span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0"><?php echo e($user->email); ?></span>
 										</div>
 										<!--end::Title-->
 									</div>
 									<!--end::Section-->
 									<!--begin::Label-->
-									<span class="badge badge-light-primary fs-7 fw-bold">{{ $user->plates_count }} Plates</span>
+									<span class="badge badge-light-primary fs-7 fw-bold"><?php echo e($user->plates_count); ?> Plates</span>
 									<!--end::Label-->
 								</div>
 								<!--end::Item-->
-								@if(!$loop->last)
+								<?php if(!$loop->last): ?>
 								<div class="separator separator-dashed my-4"></div>
-								@endif
-								@endforeach
+								<?php endif; ?>
+								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</div>
 							<!--end::Body-->
 						</div>
@@ -483,4 +481,5 @@
 </div>
 <!--end::Content-->
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/admin/pages/index.blade.php ENDPATH**/ ?>

@@ -2,7 +2,7 @@
 	<footer class="footer-two">
 		<div class="sec-bg">
 			<img src="{{   asset ('assets/img/bg/sec-bg-wave.png') }}" alt="Img">
-			<img src="{{   asset ('assets/img/bg/anchor-img-02.png') }}" alt="Img">
+			<!-- <img src="{{   asset ('assets/img/bg/anchor-img-02.png') }}" alt="Img"> -->
 		</div>
 		<div class="container">
 			<div class="footer-top">
@@ -10,11 +10,13 @@
 					<div class="col-md-6">
 						<div class="footer-widget">
 							<div class="widget-title">
-								<h4>Plate 35</h4>
+								<div>
+								<img src="{{  asset ('assets/img/logo-b.png')}}" width="150" class="img-fluid" alt="Logo">
+								</div>
 								<p class="mt-3 mb-3">{{ __('message.Plate_is_a_premier_platform') }}</p>
 								<ul class="footer-address">
 									<li><i class="fas fa-map-marker-alt me-2"></i>{{ __('message.Dubai_United_Arab_Emirates') }}</li>
-									<li><i class="fas fa-phone-alt me-2"></i>+971 50 123 4567</li>
+									<li ><i class="fas fa-phone-alt me-2"></i> <span style="direction: ltr !important;">050 551 5131</span> </li>
 									<li><i class="fas fa-envelope me-2"></i>info@plate35.com</li>
 								</ul>
 								<!-- <li class="social-link mt-3">
