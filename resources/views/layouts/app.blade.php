@@ -96,6 +96,10 @@
 
 </head>
 
+<div id="page-transition-overlay" class="hidden">
+  <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" />
+</div>
+
 <body class="home-two">
 
     <div class="main-wrapper">
@@ -177,6 +181,35 @@
                     window.location.href = '{{ route("home") }}';
                 }
             });
+
+            // page loader
+            const links = document.querySelectorAll(".nav-link");
+  const overlay = document.getElementById("page-transition-overlay");
+
+  links.forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const href = this.getAttribute("href");
+
+      overlay.classList.remove("hidden");
+      overlay.classList.add("show");
+
+
+      setTimeout(() => {
+        overlay.classList.add("start-grow");
+      }, 200);
+
+
+      setTimeout(() => {
+        overlay.classList.add("hide-logo");
+      }, 1000);
+
+
+      setTimeout(() => {
+        window.location.href = href;
+      }, 1000);
+    });
+  });
         </script>
 
 

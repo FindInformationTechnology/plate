@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <!-- Plate Details -->
 
 <section class="plate-details">
@@ -97,7 +98,7 @@
                             </div>
                             <div class="border-top">
                                 <a href="{{ route('plate.show', $plate->id) }}"
-                                    class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i
+                                    class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
                                         class="bx bx-phone"></i>
                                     <p>{{ __('message.Contact') }}</p>
                                 </a>
@@ -112,5 +113,6 @@
 </section>
 
 <!-- Plate Details -->
+
 
 @endsection

@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <!-- Breadscrumb Section -->
 <div class="breadcrumb-bar">
     <div class="container">
@@ -64,7 +65,7 @@
                     placeholder="{{ __('message.End_With') }}: ex:000">
 
                 <!-- Search Button -->
-                <button class="search-btn" type="submit">{{ __('message.Search') }}</button>
+                <button class="search-btn d-flex align-items-center gap-2" type="submit"><i class="bx bx-search "></i><span>{{ __('message.Search') }}</span></button>
             </div>
         </form>
         <p class="toggle-options">+ {{ __('message.more_options') }}</p>
@@ -110,7 +111,7 @@
                             </div>
                             <div class="border-top">
                                 <a href="{{ route('plate.show', $plate->id) }}"
-                                    class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i
+                                    class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
                                         class="bx bx-phone"></i>
                                     <p>{{ __('message.Contact') }}</p>
                                 </a>
@@ -166,6 +167,8 @@
                 });
         }
     });
+
+
 </script>
 
 @endpush
