@@ -1,5 +1,10 @@
 @extends('admin.layouts.master')
-
+@push('styles')
+<!-- Add DataTables CSS -->
+<link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<!-- Add DataTables Responsive CSS -->
+<link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+@endpush
 @section('content')
 <!--begin::Main-->
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -119,7 +124,7 @@
                     <!--begin::Card body-->
                     <div class="card-body py-4">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_plates">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5 dt-responsive nowrap" id="kt_table_plates" width="100%">
                             <thead>
                                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                     <th class="min-w-125px">ID</th>
@@ -203,17 +208,16 @@
 <!--end:::Main-->
 @endsection
 
-@push('styles')
-<!-- Add DataTables CSS -->
-<link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-@endpush
-
 @push('scripts')
 <!-- Make sure jQuery is loaded first -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Then load DataTables -->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<!-- Add DataTables Responsive JS -->
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
+
 @endpush
 
 @push('scripts')

@@ -50,6 +50,13 @@
 
 
     <style>
+        .hero-sec-main .header-two {
+            background-color: #FFF;
+        }
+
+        .hero-sec-main .header-two.header-fixed {
+            background-color: #FFF;
+        }
         .dashboard-section {
             background: none;
             box-shadow: none;
@@ -152,7 +159,7 @@
         <script src="<?php echo e(asset ('assets/js/bootstrap-datetimepicker.min.js')); ?>" defer></script>
 
         <!-- Owl Carousel JS -->
-        <script src="<?php echo e(asset ('assets/js/owl.carousel.min.js')); ?>" ></script>
+        <script src="<?php echo e(asset ('assets/js/owl.carousel.min.js')); ?>"></script>
 
         <!-- Custom JS -->
         <script src="<?php echo e(asset ('assets/js/script.js')); ?>" defer></script>
@@ -161,6 +168,16 @@
         <!-- Toastr JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+        <script>
+            // Add this to your main layout file
+            document.addEventListener('DOMContentLoaded', function() {
+                // Check if user is already logged in but gets a 419 error
+                if (document.referrer.includes('419')) {
+                    // Redirect to dashboard or home page
+                    window.location.href = '<?php echo e(route("home")); ?>';
+                }
+            });
+        </script>
 
 
         <script>
@@ -196,6 +213,8 @@
             toastr.warning("<?php echo e(Session::get('warning')); ?>");
             <?php endif; ?>
         </script>
+
+
 
         <?php echo $__env->yieldPushContent('scripts'); ?>
 

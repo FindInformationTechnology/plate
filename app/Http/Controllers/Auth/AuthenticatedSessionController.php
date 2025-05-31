@@ -20,7 +20,7 @@ class AuthenticatedSessionController extends Controller
         if (request()->is('admin/login') || request()->is('admin/*')) {
             return view('admin.pages.auth.login');
         }
-        
+
         return view('auth.login');
     }
 
@@ -29,22 +29,39 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+
+        // Check if user is already authenticated
+        if (Auth::check()) {
+            // Regenerate the session to ensure fresh CSRF token
+            $request->session()->regenerate();
+
+            $user = auth()->user();
+
+            if ($user->hasRole('admin')) {
+                return redirect()->intended(route('admin.dashboard'))
+                    ->with('success', 'Welcome to the admin dashboard');
+            } else {
+                return redirect()->intended(route('home'))
+                    ->with('success', 'Welcome back, ' . $user->name . '! You are logged in successfully.');
+            }
+        }
+
         $request->authenticate();
 
         $request->session()->regenerate();
 
         $user = auth()->user();
 
-        if($user->hasRole('admin')){
+        if ($user->hasRole('admin')) {
             return redirect()->intended(route('admin.dashboard'))
-            ->with('success', 'Welcome to the admin dashboard');
-        }elseif ($user->hasRole('user')) {
+                ->with('success', 'Welcome to the admin dashboard');
+        } elseif ($user->hasRole('user')) {
             return redirect()->intended(route('home'))
-            ->with('success', 'Welcome back, ' . $user->name . '! You are logged in successfully.');
+                ->with('success', 'Welcome back, ' . $user->name . '! You are logged in successfully.');
         }
 
         return redirect()->intended(route('home'))
-        ->with('success', 'You have been logged in successfully.');
+            ->with('success', 'You have been logged in successfully.');
     }
 
     /**

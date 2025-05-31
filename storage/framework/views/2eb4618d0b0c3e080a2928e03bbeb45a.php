@@ -84,24 +84,24 @@
 
                 <?php if(Route::currentRouteName() == 'home'): ?>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
-                    <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" width="150" class="img-fluid" alt="Logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="145" class="img-fluid" alt="Logo">
                 </a>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
-                    <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" class="img-fluid" width="150" alt="Logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" width="145" alt="Logo">
                 </a>
                 <?php else: ?>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
-                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="150" class="img-fluid" alt="Logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="145" class="img-fluid" alt="Logo">
                 </a>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
-                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" width="150" alt="Logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" width="145" alt="Logo">
                 </a>
                 <?php endif; ?>
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
                     <!-- <a href="<?php echo e(route ('home')); ?>" class="menu-logo">
-                        <img src="<?php echo e(asset ('assets/img/logo-r.png')); ?>" class="img-fluid" alt="Logo">
+                        <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" alt="Logo">
                     </a> -->
                     <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                 </div>
