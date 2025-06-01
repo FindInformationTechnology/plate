@@ -30,6 +30,7 @@
 }
 </style>
 
+
 <!-- Banner -->
 <section class="banner-section banner-sec-two banner-slider">
     <div class="banner-img-slider owl-carousel" style="direction: ltr;">
@@ -100,7 +101,7 @@
                             <input type="number" class="form-control search-option extra d-none" name="end_with" placeholder="<?php echo e(__('message.End_With')); ?>: ex:000">
 
                             <!-- Search Button -->
-                            <button class="search-btn" type="submit"><?php echo e(__('message.Search')); ?></button>
+                            <button class="search-btn d-flex align-items-center gap-2" type="submit"><i class="bx bx-search "></i><span><?php echo e(__('message.Search')); ?></span></button>
                         </div>
                     </form>
                     <p class="toggle-options">+ <?php echo e(__('message.more_options')); ?></p>
@@ -158,7 +159,7 @@
                             <p class=" fs-4 text-center fw-normal pb-4 price"><?php echo e($plate->price_digits); ?></p>
                         </div>
                         <div class="border-top">
-                            <a href="<?php echo e(route('plate.show', $plate->id)); ?>" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2">
+                            <a href="<?php echo e(route('plate.show', $plate->id)); ?>" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link">
                                 <i class="bx bx-phone"></i>
                                 <p><?php echo e(__('message.Contact')); ?></p>
                             </a>
@@ -222,7 +223,7 @@
 					</div>
 					<div class="border-top">
 						<a href="<?php echo e(route('plate.show', $plate->id)); ?>"
-							class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i
+							class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
 								class="bx bx-phone"></i>
 							<p>Contact</p>
 						</a>
@@ -310,6 +311,7 @@
             }
         }
     });
+
 </script>
 
 <?php $__env->stopPush(); ?>

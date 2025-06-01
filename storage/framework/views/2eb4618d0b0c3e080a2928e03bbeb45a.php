@@ -106,8 +106,8 @@
                     <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                 </div>
                 <ul class="main-nav">
-                    <li><a href="<?php echo e(route('home')); ?>"><?php echo e(__('message.Home')); ?></a></li>
-                    <li><a href="<?php echo e(route('plates')); ?>"><?php echo e(__('message.Plates')); ?></a></li>
+                    <li><a href="<?php echo e(route('home')); ?>" class="nav-link"><?php echo e(__('message.Home')); ?></a></li>
+                    <li><a href="<?php echo e(route('plates')); ?>" class="nav-link"><?php echo e(__('message.Plates')); ?></a></li>
 
 
                     <!-- <li><a href="#">Contact</a></li> -->
@@ -139,7 +139,7 @@
                             <?php echo e(__('message.Dashboard_Admin')); ?></a>
                     </li>
 
-                   
+
 
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
@@ -173,7 +173,7 @@
 
                         </a>
                     </li>
-                   
+
 
                     <li class="nav-item d-md-none">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
@@ -334,4 +334,5 @@
         </nav>
     </div>
 </header>
-<!-- /Header --><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/header.blade.php ENDPATH**/ ?>
+<!-- /Header -->
+<?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/header.blade.php ENDPATH**/ ?>
