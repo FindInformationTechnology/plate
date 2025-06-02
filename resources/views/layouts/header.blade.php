@@ -82,7 +82,7 @@
                     </span>
                 </a>
 
-                @if (Route::currentRouteName() == 'home')
+                @if (Route::currentRouteName() == 'home' && Route::has('register') && Route::has('login'))
                 <a href="{{ route('home')}}" class="navbar-brand logo">
                     <img src="{{  asset ('assets/img/logo-b.png')}}" width="145" class="img-fluid" alt="Logo">
                 </a>
@@ -292,7 +292,7 @@
                         <span class="user-img">
                             <img class="rounded-circle" src="{{  asset ('assets/img/profiles/avatar-14.jpg') }}" alt="Profile">
                         </span>
-                        @if (Route::currentRouteName() == 'home')
+                        @if (Route::currentRouteName() == 'home' && Route::has('register') && Route::has('login'))
                         <span class="user-text" style="color: #fff;">{{ auth()->user()->name }}</span>
                         @else
                         <span class="user-text" style="color: black;">{{ auth()->user()->name }}</span>
