@@ -82,21 +82,14 @@
                     </span>
                 </a>
 
-                <?php if(Route::currentRouteName() == 'home'): ?>
+              
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
                     <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="145" class="img-fluid" alt="Logo">
                 </a>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
                     <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" width="145" alt="Logo">
                 </a>
-                <?php else: ?>
-                <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
-                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="145" class="img-fluid" alt="Logo">
-                </a>
-                <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
-                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" width="145" alt="Logo">
-                </a>
-                <?php endif; ?>
+               
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
@@ -299,7 +292,7 @@
                         <span class="user-img">
                             <img class="rounded-circle" src="<?php echo e(asset ('assets/img/profiles/avatar-14.jpg')); ?>" alt="Profile">
                         </span>
-                        <?php if(Route::currentRouteName() == 'home'): ?>
+                        <?php if(Route::currentRouteName() == 'home' ): ?>
                         <span class="user-text" style="color: #fff;"><?php echo e(auth()->user()->name); ?></span>
                         <?php else: ?>
                         <span class="user-text" style="color: black;"><?php echo e(auth()->user()->name); ?></span>
