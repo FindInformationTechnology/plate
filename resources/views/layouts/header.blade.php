@@ -76,12 +76,12 @@
             <div class="navbar-header">
                 <a id="mobile_btn" href="javascript:void(0);">
                     <span class="bar-icon">
-                        <span></span>
+                        <span></span>   
                         <span></span>
                         <span></span>
                     </span>
                 </a>
-
+ 
               
                 <a href="{{ route('home')}}" class="navbar-brand logo">
                     <img src="{{  asset ('assets/img/logo-b.png')}}" width="145" class="img-fluid" alt="Logo">
@@ -182,17 +182,17 @@
 
                     <!-- Language Switcher -->
                     <li class="nav-item dropdown d-md-none">
-                        <a class="nav-link dropdown-toggle" href="#">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0);">
                             <i class="fa fa-globe "></i> {{ __('message.Language') }}</a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" style="color: #2F2F2F;"
+                                <a class="dropdown-item b-color" 
                                     href="{{ route('change.language', 'en') }}">
                                     {{ __('message.English') }}
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" style="color: #2F2F2F;"
+                                <a class="dropdown-item b-color" 
                                     href="{{ route('change.language', 'ar') }}">
                                     {{ __('message.Arabic') }}
                                 </a>

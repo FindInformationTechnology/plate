@@ -57,6 +57,7 @@
         .hero-sec-main .header-two.header-fixed {
             background-color: #FFF;
         }
+
         .dashboard-section {
             background: none;
             box-shadow: none;
@@ -97,7 +98,7 @@
 </head>
 
 <div id="page-transition-overlay" class="hidden">
-  <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" />
+    <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" />
 </div>
 
 <body class="home-two">
@@ -183,33 +184,34 @@
             });
 
             // page loader
-            const links = document.querySelectorAll(".nav-link");
-  const overlay = document.getElementById("page-transition-overlay");
+            const links = document.querySelectorAll(".nav-link:not([data-bs-toggle])");
+            const overlay = document.getElementById("page-transition-overlay");
 
-  links.forEach(link => {
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      const href = this.getAttribute("href");
+            links.forEach(link => {
+                        link.addEventListener("click", function(e) {
+                                e.preventDefault();
+                                // Only apply to links with actual URLs, not javascript:void(0)
+                                if (this.getAttribute("href") && !this.getAttribute("href").includes("javascript:")) {
+                                    e.preventDefault();
+                                    const href = this.getAttribute("href");
 
-      overlay.classList.remove("hidden");
-      overlay.classList.add("show");
+                                    overlay.classList.remove("hidden");
+                                    overlay.classList.add("show");
 
+                                    setTimeout(() => {
+                                        overlay.classList.add("start-grow");
+                                    }, 200);
 
-      setTimeout(() => {
-        overlay.classList.add("start-grow");
-      }, 200);
+                                    setTimeout(() => {
+                                        overlay.classList.add("hide-logo");
+                                    }, 1000);
 
+                                    setTimeout(() => {
+                                        window.location.href = href;
+                                    }, 1000);
 
-      setTimeout(() => {
-        overlay.classList.add("hide-logo");
-      }, 1000);
-
-
-      setTimeout(() => {
-        window.location.href = href;
-      }, 1000);
-    });
-  });
+                                });
+                        });
         </script>
 
 

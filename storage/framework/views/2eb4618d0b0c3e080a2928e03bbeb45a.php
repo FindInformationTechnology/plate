@@ -76,12 +76,12 @@
             <div class="navbar-header">
                 <a id="mobile_btn" href="javascript:void(0);">
                     <span class="bar-icon">
-                        <span></span>
+                        <span></span>   
                         <span></span>
                         <span></span>
                     </span>
                 </a>
-
+ 
               
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
                     <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="145" class="img-fluid" alt="Logo">
@@ -185,18 +185,18 @@
 
                     <!-- Language Switcher -->
                     <li class="nav-item dropdown d-md-none">
-                        <a class="nav-link dropdown-toggle" href="#">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0);">
                             <i class="fa fa-globe "></i> <?php echo e(__('message.Language')); ?></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" style="color: #2F2F2F;"
+                                <a class="dropdown-item b-color" 
                                     href="<?php echo e(route('change.language', 'en')); ?>">
                                     <?php echo e(__('message.English')); ?>
 
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" style="color: #2F2F2F;"
+                                <a class="dropdown-item b-color" 
                                     href="<?php echo e(route('change.language', 'ar')); ?>">
                                     <?php echo e(__('message.Arabic')); ?>
 

@@ -11,6 +11,8 @@ body {
 
 .header .navbar-header .navbar-brand{
     width: 90px !important;
+    margin: auto;
+    
 }
 
 /* Loader */
@@ -44,6 +46,10 @@ body {
   #page-transition-overlay.hide-logo img {
     transform: scale(0.2);
     opacity: 0;
+  }
+
+  .hero-sec-main .header-two .header-nav .main-nav > li a.b-color {
+    color: #2a2828 !important;
   }
 
 
