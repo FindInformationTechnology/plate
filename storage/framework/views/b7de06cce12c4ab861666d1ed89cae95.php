@@ -118,9 +118,9 @@
 
 
 <section class="yacht-offer-sec">
-			<!-- <div class="sec-bg">
+			<div class="sec-bg">
 				<img src="<?php echo e(asset ('assets/img/bg/sec-bg-wave.png')); ?>" class="wave-bottom" alt="Bg">
-			</div> -->
+			</div>
      <!-- After the yacht-category-sec opening and before the regular plates display -->
      <div class="container">
         <div class="section-header-two">

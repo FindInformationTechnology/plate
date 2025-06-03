@@ -18,6 +18,16 @@ html[lang="ar"] body {
   text-align: right;
 }
 
+/* Breadcrumb RTL adjustments */
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before,
+html[lang="ar"] .breadcrumb-item + .breadcrumb-item::before {
+  float: right;
+  padding-right: 0;
+  padding-left: var(--bs-breadcrumb-item-padding-x);
+  /* Change the separator direction for RTL */
+  transform: scaleX(-1); /* Mirror the separator horizontally */
+}
+
 
 /*  Common Element Adjustments */
 
