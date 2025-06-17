@@ -12,7 +12,6 @@ body {
 .header .navbar-header .navbar-brand{
     width: 90px !important;
     margin: auto;
-    
 }
 
 /* Loader */
@@ -140,7 +139,7 @@ body {
     left: 45%;
     font-size: 70px;
     font-family: "dubai";
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 .big-plate .abu-dhabi-icon {
     font-size: 120px !important;
@@ -189,23 +188,25 @@ body {
 }
 .big-plate .sharjah-icon {
     font-size: 140px !important;
+    font-weight: 100 !important;
 }
 .big-plate .sharjah-number {
     font-size: 230px !important;
+    font-weight: 100 !important;
 }
 .plate .sharjah-icon {
     top: 50%;
     left: 15%;
     transform: translateY(-50%);
+    font-weight: 100 !important;
     font-size: 32px;
     font-family: "sharjah";
 }
 .plate .sharjah-number {
-    color: #111112;
     top: 50%;
     transform: translateY(-50%);
     left: 58%;
-    font-weight: 200 !important;
+    font-weight: 100 !important;
     font-size: 60px;
     font-family: "sharjah";
     letter-spacing: 3px;
@@ -335,8 +336,8 @@ body {
     .plate .dubai-number,
     .plate .dubai-classic,
     .big-plate .dubai-number {
-        left: 50%;
-        font-size: 60px !important;
+        left: 45%;
+        font-size: 55px !important;
     }
     .plate .abu-dhabi-icon {
         top: 15%;
@@ -430,8 +431,6 @@ body {
     color: #ffffff !important;
 }
 
-
-
 .hero-sec-main .banner-slider {
     margin-top: 100px !important;
 }
@@ -460,6 +459,7 @@ body {
     color: #ffffff;
     text-transform: capitalize;
     font-weight: 600;
+    transition-duration: 0.5s;
 }
 .plate-details .contact:hover,
 .plate-details .whatsapp:hover {
@@ -472,6 +472,12 @@ body {
 }
 .plate-details .whatsapp:hover {
     border: 1px solid #28b055;
+    color: #28b055;
+}
+.plate-details .contact:hover p {
+    color: #AC1E23;
+}
+.plate-details .whatsapp:hover p {
     color: #28b055;
 }
 

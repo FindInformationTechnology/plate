@@ -216,6 +216,7 @@ return [
   'Digits' => 'Digits',
 
   'Featured_Plates' => 'Featured Plates',
+  'Why_Choose_Us' => 'Why Choose Us',
   'Most_Popular_Plates' => 'Our most viewed plates',
   'Latest_Plates' => 'Latest Plates',
   'Recently_Added_Plates' => 'Recently added to our collection',
