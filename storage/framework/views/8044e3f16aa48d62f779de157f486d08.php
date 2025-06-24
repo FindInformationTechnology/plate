@@ -1,11 +1,10 @@
-@extends('admin.layouts.master')
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <!-- Add DataTables CSS -->
 <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 <!-- Add DataTables Responsive CSS -->
 <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-@endpush
-@section('content')
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('content'); ?>
 <!--begin::Main-->
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     <!--begin::Content wrapper-->
@@ -23,7 +22,7 @@
                     <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                         <!--begin::Item-->
                         <li class="breadcrumb-item text-muted">
-                            <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Home</a>
+                            <a href="<?php echo e(route('admin.dashboard')); ?>" class="text-muted text-hover-primary">Home</a>
                         </li>
                         <!--end::Item-->
                         <!--begin::Item-->
@@ -40,7 +39,7 @@
                 <!--end::Page title-->
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
-                    <a href="{{ route('admin.plates.create') }}" class="btn btn-sm fw-bold btn-primary">Add New Plate</a>
+                    <a href="<?php echo e(route('admin.plates.create')); ?>" class="btn btn-sm fw-bold btn-primary">Add New Plate</a>
                 </div>
                 <!--end::Actions-->
             </div>
@@ -140,24 +139,26 @@
                                 </tr>
                             </thead>
                             <tbody class="text-gray-600 fw-semibold">
-                                @foreach ($plates as $plate)
+                                <?php $__currentLoopData = $plates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td>{{ $plate->id }}</td>
-                                    <td>{{ $plate->user ? $plate->user->name : 'N/A' }}</td>
-                                    <td>{{ $plate->emirate ? $plate->emirate->name : 'N/A' }}</td>
-                                    <td>{{ $plate->code ? $plate->code->name : 'N/A' }}</td>
-                                    <td>{{ $plate->number }}</td>
-                                    <!-- <td>{{ $plate->length }}</td> -->
-                                    <td>{{ number_format($plate->price, 2) }}</td>
+                                    <td><?php echo e($plate->id); ?></td>
+                                    <td><?php echo e($plate->user ? $plate->user->name : 'N/A'); ?></td>
+                                    <td><?php echo e($plate->emirate ? $plate->emirate->name : 'N/A'); ?></td>
+                                    <td><?php echo e($plate->code ? $plate->code->name : 'N/A'); ?></td>
+                                    <td><?php echo e($plate->number); ?></td>
+                                    <!-- <td><?php echo e($plate->length); ?></td> -->
+                                    <td><?php echo e(number_format($plate->price, 2)); ?></td>
                                     <td>
-                                        <div class="badge badge-light-{{ $plate->is_approved ? 'success' : 'warning' }} me-2">
-                                            {{ $plate->is_approved ? 'Approved' : 'Pending' }}
+                                        <div class="badge badge-light-<?php echo e($plate->is_approved ? 'success' : 'warning'); ?> me-2">
+                                            <?php echo e($plate->is_approved ? 'Approved' : 'Pending'); ?>
+
                                         </div>
-                                        <div class="badge badge-light-{{ $plate->is_sold ? 'danger' : 'success' }}">
-                                            {{ $plate->is_sold ? 'Sold' : 'Available' }}
+                                        <div class="badge badge-light-<?php echo e($plate->is_sold ? 'danger' : 'success'); ?>">
+                                            <?php echo e($plate->is_sold ? 'Sold' : 'Available'); ?>
+
                                         </div>
                                     </td>
-                                    <td>{{ $plate->created_at->format('d M Y, h:i a') }}</td>
+                                    <td><?php echo e($plate->created_at->format('d M Y, h:i a')); ?></td>
                                     <td class="text-end">
                                         <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                             <span class="svg-icon svg-icon-5 m-0">
@@ -168,28 +169,30 @@
                                         </a>
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                             <div class="menu-item px-3">
-                                                <a href="{{ route('admin.plates.show', $plate->id) }}" class="menu-link px-3">View</a>
+                                                <a href="<?php echo e(route('admin.plates.show', $plate->id)); ?>" class="menu-link px-3">View</a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="{{ route('admin.plates.edit', $plate->id) }}" class="menu-link px-3">Edit</a>
+                                                <a href="<?php echo e(route('admin.plates.edit', $plate->id)); ?>" class="menu-link px-3">Edit</a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 toggle-status" data-id="{{ $plate->id }}" data-status="{{ $plate->is_approved ? 0 : 1 }}">
-                                                    {{ $plate->is_approved ? 'Unapprove' : 'Approve' }}
+                                                <a href="#" class="menu-link px-3 toggle-status" data-id="<?php echo e($plate->id); ?>" data-status="<?php echo e($plate->is_approved ? 0 : 1); ?>">
+                                                    <?php echo e($plate->is_approved ? 'Unapprove' : 'Approve'); ?>
+
                                                 </a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 toggle-sold" data-id="{{ $plate->id }}" data-status="{{ $plate->is_sold ? 0 : 1 }}">
-                                                    {{ $plate->is_sold ? 'Mark as Available' : 'Mark as Sold' }}
+                                                <a href="#" class="menu-link px-3 toggle-sold" data-id="<?php echo e($plate->id); ?>" data-status="<?php echo e($plate->is_sold ? 0 : 1); ?>">
+                                                    <?php echo e($plate->is_sold ? 'Mark as Available' : 'Mark as Sold'); ?>
+
                                                 </a>
                                             </div>
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3 delete-plate" data-id="{{ $plate->id }}">Delete</a>
+                                                <a href="#" class="menu-link px-3 delete-plate" data-id="<?php echo e($plate->id); ?>">Delete</a>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                         <!--end::Table-->
@@ -206,9 +209,9 @@
     <div class="pb-4 mb-5"></div>
 </div>
 <!--end:::Main-->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <!-- Make sure jQuery is loaded first -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Then load DataTables -->
@@ -283,4 +286,5 @@
         });
     });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('admin.layouts.master', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/admin/pages/plates/index.blade.php ENDPATH**/ ?>
