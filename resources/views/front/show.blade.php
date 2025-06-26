@@ -7,7 +7,7 @@
 
 <section class="plate-details container d-flex align-items-center gap-5">
     <div class="container">
-        <div class="my-5 p-4 bg-white shadow-lg rounded" style="background-color: //#e7eaef">
+        <div class="my-5 p-4 bg-white shadow-lg rounded" style="background-color: #e7eaef">
             <div class="w-100">
                 <div class="position-relative plate big-plate">
                     <div class="w-100">
@@ -18,7 +18,7 @@
                         $plate->code->name }}</h1>
                     <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
                     @else
-                    <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between
+                    <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around
                         align-items-center">
                         <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                         <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
