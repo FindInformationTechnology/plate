@@ -5,69 +5,71 @@
 
 <!-- Plate Details -->
 
-<section class="plate-details">
-    <div class="container my-4 border border-dark-subtle rounded-3">
-        <div class="w-100">
-            <div class="position-relative plate big-plate">
-                <div class="w-100 my-4">
-                    <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100" loading="lazy">
-                </div>
-                <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
-                <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
-                <?php else: ?>
-                <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-between
-                    align-items-center">
-                    <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
-                    <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
-                </div>
-                <?php endif; ?>
-            </div>
-        </div>
-        <div class="border-bottom border-dark-subtle">
-            <div class="d-flex justify-content-between align-items-center pb-2">
-                <div>
-                    <h1 class="price py-2 fs-1 fw-normal">
-                        <?php echo e($plate->price_digits); ?>
-
-                    </h1>
-                    <p class="text-secondary fs-6 mb-2">
-                        <i class="fa fa-eye me-1" aria-hidden="true"></i> <?php echo e($plate->views_count); ?> <?php echo e(__('message.Views')); ?>
-
-                    </p>
-                    <div class="alert alert-warning mt-2">
-                        <ul class="icons list-unstyled mb-0">
-                            <li class="mb-1">
-                                <i class="fa fa-credit-card me-2" aria-hidden="true"></i>
-                                <?php echo e(app()->getLocale() == 'ar' ? 'لا تقم بتحويل المال مباشرة' : 'Do not transfer money directly'); ?>
-
-                            </li>
-                            <li>
-                                <i class="fa fa-handshake me-2" aria-hidden="true"></i>
-                                <?php echo e(app()->getLocale() == 'ar' ? 'قابل البائع شخصيا' : 'Meet the seller in person'); ?>
-
-                            </li>
-                        </ul>
+<section class="plate-details container d-flex align-items-center gap-5">
+    <div class="container">
+        <div class="my-5 p-4 bg-white shadow-lg rounded" style="background-color: //#e7eaef">
+            <div class="w-100">
+                <div class="position-relative plate big-plate">
+                    <div class="w-100">
+                        <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100" loading="lazy">
                     </div>
+                    <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
+                    <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
+                    <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
+                    <?php else: ?>
+                    <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-between
+                        align-items-center">
+                        <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
+                        <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
+                    </div>
+                    <?php endif; ?>
                 </div>
-                <!-- <div>
-                    <i class="bx bx-heart fs-2"></i>
-                </div> -->
             </div>
-            <div class="d-flex align-items-center gap-3 mt-2 mb-4 text-center contact-button">
-                <a href="tel:<?php echo e($plate->user->phone_number ?? ''); ?>"
-                    class="contact d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
-                    target="_blank"><i class="bx bx-phone fs-5"></i>
-                    <p><?php echo e(__('message.Contact')); ?></p>
-                </a>
-                <a href="https://wa.me/<?php echo e($plate->user->whatsapp_number ?? ''); ?>"
-                    class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
-                    target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
-                    <p><?php echo e(__('message.WhatsApp')); ?></p>
-                </a>
+            <div>
+                <div class="d-flex justify-content-between align-items-center pb-2">
+                    <div>
+                        <h1 class="price py-2 fs-1 fw-normal">
+                            <?php echo e($plate->price_digits); ?>
+
+                        </h1>
+                        <p class="text-secondary fs-6 mb-2">
+                            <i class="fa fa-eye me-1" aria-hidden="true"></i> <?php echo e($plate->views_count); ?> <?php echo e(__('message.Views')); ?>
+
+                        </p>
+                        <div class="alert alert-warning mt-2">
+                            <ul class="icons list-unstyled mb-0">
+                                <li class="mb-1">
+                                    <i class="fa fa-credit-card me-2" aria-hidden="true"></i>
+                                    <?php echo e(app()->getLocale() == 'ar' ? 'لا تقم بتحويل المال مباشرة' : 'Do not transfer money directly'); ?>
+
+                                </li>
+                                <li>
+                                    <i class="fa fa-handshake me-2" aria-hidden="true"></i>
+                                    <?php echo e(app()->getLocale() == 'ar' ? 'قابل البائع شخصيا' : 'Meet the seller in person'); ?>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <div>
+                        <i class="bx bx-heart fs-2"></i>
+                    </div> -->
+                </div>
+                <div class="d-flex align-items-center gap-3 mt-2 text-center contact-button">
+                    <a href="tel:<?php echo e($plate->user->phone_number ?? ''); ?>"
+                        class="contact d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
+                        target="_blank"><i class="bx bx-phone fs-5"></i>
+                        <p><?php echo e(__('message.Contact')); ?></p>
+                    </a>
+                    <a href="https://wa.me/<?php echo e($plate->user->whatsapp_number ?? ''); ?>"
+                        class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
+                        target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
+                        <p><?php echo e(__('message.WhatsApp')); ?></p>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="pt-4">
+        <div>
             <h1 class="text-secondary fs-3"><?php echo e(__('message.Related_By_Emirate')); ?></h1>
             <div class="pt-3 d-grid">
                 <div class="row">
@@ -100,7 +102,7 @@
                             <div class="border-top">
                                 <a href="<?php echo e(route('plate.show', $plate->id)); ?>"
                                     class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
-                                        class="bx bx-phone"></i>
+                                        class="bx bx-phone text-[20px]"></i>
                                     <p><?php echo e(__('message.Contact')); ?></p>
                                 </a>
                             </div>
@@ -111,6 +113,25 @@
             </div>
         </div>
     </div>
+    <!-- <div style="flex: 1" class="position-relative">
+        <img src="<?php echo e(asset('storage/assets/media/demo-car.webp')); ?>" alt="car-showing-plate" style="max-width: 100%">
+        <div class=" position-absolute" style="width: 37%; top: 58%; left: 32%;">
+            <div class="position-relative plate ">
+                <div class="w-100 my-4">
+                    <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100" loading="lazy">
+                </div>
+                <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
+                <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
+                <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
+                <?php else: ?>
+                <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-between
+                    align-items-center">
+                    <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
+                    <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
+                </div>
+                <?php endif; ?>
+            </
+    </div> -->
 </section>
 
 <!-- Plate Details -->
