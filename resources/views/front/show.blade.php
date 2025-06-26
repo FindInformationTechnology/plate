@@ -89,7 +89,7 @@
                                     $plate->number }}</h2>
                                 @else
                                 <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex
-                                    justify-content-between align-items-center">
+                                    justify-content-around align-items-center">
                                     <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                                     <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                                 </div>
@@ -112,26 +112,7 @@
             </div>
         </div>
     </div>
-    <!-- <div style="flex: 1" class="position-relative">
-        <img src="{{ asset('storage/assets/media/demo-car.webp') }}" alt="car-showing-plate" style="max-width: 100%">
-        <div class=" position-absolute" style="width: 37%; top: 58%; left: 32%;">
-            <div class="position-relative plate ">
-                <div class="w-100 my-4">
-                    <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100" loading="lazy">
-                </div>
-                @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{
-                    $plate->code->name }}</h1>
-                <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
-                @else
-                <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between
-                    align-items-center">
-                    <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
-                    <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
-                </div>
-                @endif
-            </
-    </div> -->
+    
 </section>
 
 <!-- Plate Details -->
