@@ -70,7 +70,7 @@
 			</div>
 			<div class="footer-bottom">
 				<div class="copy-right">
-					<p><?php echo e(__('message.Copyright')); ?> &copy; 2025 <span>   Plate 35 </span> . <?php echo e(__('message.All_Rights_Reserved')); ?>.</p>
+					<p><?php echo e(__('message.Copyright')); ?> &copy; 2025 <span>   Find Information Technology </span> . <?php echo e(__('message.All_Rights_Reserved')); ?>.</p>
 				</div>
 				<div class="app-store-links d-flex align-items-center">
 					<span class="me-2"><a href="javascript:void(0);"><img src="<?php echo e(asset ('assets/img/icons/google-play.svg')); ?>" alt="Img"></a></span>

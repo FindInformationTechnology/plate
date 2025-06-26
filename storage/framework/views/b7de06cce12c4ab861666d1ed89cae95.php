@@ -149,7 +149,7 @@
                             <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
                             <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
                             <?php else: ?>
-                            <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-between align-items-center">
+                            <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center">
                                 <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
                                 <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
                             </div>
