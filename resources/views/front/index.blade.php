@@ -146,7 +146,7 @@
                             <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
                             <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
                             @else
-                            <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
+                            <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center">
                                 <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                                 <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                             </div>
