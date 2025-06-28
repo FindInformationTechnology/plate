@@ -35,6 +35,7 @@
                         <p class="text-secondary fs-6 mb-2">
                             <i class="fa fa-eye me-1" aria-hidden="true"></i> {{ $plate->views_count }} {{ __('message.Views') }}
                         </p>
+                    
                         <div class="alert alert-warning mt-2">
                             <ul class="icons list-unstyled mb-0">
                                 <li class="mb-1">
@@ -48,6 +49,8 @@
                             </ul>
                         </div>
                     </div>
+
+                  
                     <!-- <div>
                         <i class="bx bx-heart fs-2"></i>
                     </div> -->
@@ -56,12 +59,12 @@
                     <a href="tel:{{ $plate->user->phone_number ?? '' }}"
                         class="contact d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                         target="_blank"><i class="bx bx-phone fs-5"></i>
-                        <p>{{ __('message.Contact') }}</p>
+                        <p>{{ $plate->user->phone_number }}</p>
                     </a>
                     <a href="https://wa.me/{{ $plate->user->whatsapp_number ?? '' }}"
                         class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                         target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
-                        <p>{{ __('message.WhatsApp') }}</p>
+                        <p>{{ $plate->user->phone_number }}</p>
                     </a>
                 </div>
             </div>

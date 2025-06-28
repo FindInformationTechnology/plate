@@ -7,7 +7,7 @@
 
 <section class="plate-details container d-flex align-items-center gap-5">
     <div class="container">
-        <div class="my-5 p-4 bg-white shadow-lg rounded" style="background-color: //#e7eaef">
+        <div class="my-5 p-4 bg-white shadow-lg rounded" style="background-color: #e7eaef">
             <div class="w-100">
                 <div class="position-relative plate big-plate">
                     <div class="w-100">
@@ -17,7 +17,7 @@
                     <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
                     <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
                     <?php else: ?>
-                    <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-between
+                    <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around
                         align-items-center">
                         <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
                         <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
@@ -36,6 +36,7 @@
                             <i class="fa fa-eye me-1" aria-hidden="true"></i> <?php echo e($plate->views_count); ?> <?php echo e(__('message.Views')); ?>
 
                         </p>
+                    
                         <div class="alert alert-warning mt-2">
                             <ul class="icons list-unstyled mb-0">
                                 <li class="mb-1">
@@ -51,6 +52,8 @@
                             </ul>
                         </div>
                     </div>
+
+                  
                     <!-- <div>
                         <i class="bx bx-heart fs-2"></i>
                     </div> -->
@@ -59,12 +62,12 @@
                     <a href="tel:<?php echo e($plate->user->phone_number ?? ''); ?>"
                         class="contact d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                         target="_blank"><i class="bx bx-phone fs-5"></i>
-                        <p><?php echo e(__('message.Contact')); ?></p>
+                        <p><?php echo e($plate->user->phone_number); ?></p>
                     </a>
                     <a href="https://wa.me/<?php echo e($plate->user->whatsapp_number ?? ''); ?>"
                         class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                         target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
-                        <p><?php echo e(__('message.WhatsApp')); ?></p>
+                        <p><?php echo e($plate->user->phone_number); ?></p>
                     </a>
                 </div>
             </div>
@@ -90,7 +93,7 @@
                                 <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
                                 <?php else: ?>
                                 <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex
-                                    justify-content-between align-items-center">
+                                    justify-content-around align-items-center">
                                     <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
                                     <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
                                 </div>
@@ -113,25 +116,7 @@
             </div>
         </div>
     </div>
-    <!-- <div style="flex: 1" class="position-relative">
-        <img src="<?php echo e(asset('storage/assets/media/demo-car.webp')); ?>" alt="car-showing-plate" style="max-width: 100%">
-        <div class=" position-absolute" style="width: 37%; top: 58%; left: 32%;">
-            <div class="position-relative plate ">
-                <div class="w-100 my-4">
-                    <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100" loading="lazy">
-                </div>
-                <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
-                <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
-                <?php else: ?>
-                <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-between
-                    align-items-center">
-                    <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
-                    <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
-                </div>
-                <?php endif; ?>
-            </
-    </div> -->
+    
 </section>
 
 <!-- Plate Details -->

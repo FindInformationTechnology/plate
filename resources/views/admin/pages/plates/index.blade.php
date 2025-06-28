@@ -132,11 +132,11 @@
                                     <th class="min-w-125px">Emirate</th>
                                     <th class="min-w-125px">Code</th>
                                     <th class="min-w-125px">Number</th>
-                                    <!-- <th class="min-w-125px">Length</th> -->
+                                    <!-- <th class="min-w-125px">Length</th> --> 
                                     <th class="min-w-125px">Price</th>
                                     <th class="min-w-125px">Status</th>
-                                    <th class="min-w-125px">Created Date</th>
-                                    <th class="text-end min-w-100px">Actions</th>
+                                    <th class="min-w-125px">C reated Date</th>
+                                    <th class="text-end min -w-100px">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-600 fw-semibold">
@@ -167,25 +167,31 @@
                                             </span>
                                         </a>
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                            <div class="menu-item px-3">
+                                            
+                                        <div class="menu-item px-3">
                                                 <a href="{{ route('admin.plates.show', $plate->id) }}" class="menu-link px-3">View</a>
                                             </div>
+
                                             <div class="menu-item px-3">
                                                 <a href="{{ route('admin.plates.edit', $plate->id) }}" class="menu-link px-3">Edit</a>
                                             </div>
+
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3 toggle-status" data-id="{{ $plate->id }}" data-status="{{ $plate->is_approved ? 0 : 1 }}">
                                                     {{ $plate->is_approved ? 'Unapprove' : 'Approve' }}
                                                 </a>
                                             </div>
+
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3 toggle-sold" data-id="{{ $plate->id }}" data-status="{{ $plate->is_sold ? 0 : 1 }}">
                                                     {{ $plate->is_sold ? 'Mark as Available' : 'Mark as Sold' }}
                                                 </a>
                                             </div>
+
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3 delete-plate" data-id="{{ $plate->id }}">Delete</a>
                                             </div>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -220,66 +226,142 @@
 
 <script>
     $(document).ready(function() {
-        $(document).ready(function() {
-            // Initial KTMenu initialization
-            function initializeKTMenu() {
-                document.querySelectorAll('[data-kt-menu="true"]').forEach(function(element) {
-                    var menu = new KTMenu(element);
-                });
-            }
+        // Initial KTMenu initialization
+        function initializeKTMenu() {
+            document.querySelectorAll('[data-kt-menu="true"]').forEach(function(element) {
+                var menu = new KTMenu(element);
+            });
+        }
+        
+        // Run initial initialization
+        initializeKTMenu();
+        
+        if ($.fn.DataTable) {
+            // Initialize datatable with responsive features properly configured
+            var table = $("#kt_table_plates").DataTable({
+                "info": false,
+                'order': [],
+                'pageLength': 10,
+                responsive: true,
+                columnDefs: [{
+                    targets: -1, // Target the last column (Actions)
+                    responsivePriority: 1, // Give it highest priority
+                    className: 'all' // Make it always visible in responsive mode
+                }]
+            });
+    
+            // Re-initialize KTMenu after DataTables draws or redraws the table
+            table.on('draw.dt responsive-display.dt', function() {
+                // Small delay to ensure DOM is updated
+                setTimeout(function() {
+                    initializeKTMenu();
+                }, 100);
+            });
+    
+            // Search functionality
+            $('[data-kt-plate-table-filter="search"]').on('keyup', function() {
+                table.search($(this).val()).draw();
+            });
+    
+            // Filter functionality
+            $('[data-kt-plate-table-filter="filter"]').on('click', function() {
+                const filterStatus = $('[data-kt-plate-table-filter="status"]').val();
+    
+                if (filterStatus === 'all') {
+                    table.search('').columns(7).search('').draw();
+                } else {
+                    table.columns(7).search(filterStatus).draw();
+                }
+            });
+    
+            // Reset filter
+            $('[data-kt-plate-table-filter="reset"]').on('click', function() {
+                $('[data-kt-plate-table-filter="status"]').val('').trigger('change');
+                table.search('').columns(7).search('').draw();
+            });
+        } else {
+            console.log('DataTables is not defined.');
+        }
+    
+        // Toggle approval status
+        $(document).on('click', '.toggle-status', function(e) {
+            e.preventDefault();
+            var plateId = $(this).data('id');
+            var newStatus = $(this).data('status');
             
-            // Run initial initialization
-            initializeKTMenu();
-            
-            if ($.fn.DataTable) {
-                // Initialize datatable with responsive features properly configured
-                var table = $("#kt_table_plates").DataTable({
-                    "info": false,
-                    'order': [],
-                    'pageLength': 10,
-                    responsive: true,
-                    columnDefs: [{
-                        targets: -1, // Target the last column (Actions)
-                        responsivePriority: 1, // Give it highest priority
-                        className: 'all' // Make it always visible in responsive mode
-                    }]
-                });
-        
-                // Re-initialize KTMenu after DataTables draws or redraws the table
-                table.on('draw.dt responsive-display.dt', function() {
-                    // Small delay to ensure DOM is updated
-                    setTimeout(function() {
-                        initializeKTMenu();
-                    }, 100);
-                });
-        
-                // Search functionality
-                $('[data-kt-plate-table-filter="search"]').on('keyup', function() {
-                    table.search($(this).val()).draw();
-                });
-        
-                // Filter functionality
-                $('[data-kt-plate-table-filter="filter"]').on('click', function() {
-                    const filterStatus = $('[data-kt-plate-table-filter="status"]').val();
-        
-                    if (filterStatus === 'all') {
-                        table.search('').columns(7).search('').draw();
+            $.ajax({
+                url: '{{ route("admin.plates.update-status") }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: plateId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
                     } else {
-                        table.columns(7).search(filterStatus).draw();
+                        alert('Failed to update approval status.');
+                    }
+                },
+                error: function(xhr) {
+                    alert('Failed to update approval status.');
+                }
+            });
+        });
+
+        // Toggle sold status
+        $(document).on('click', '.toggle-sold', function(e) {
+            e.preventDefault();
+            var plateId = $(this).data('id');
+            var newStatus = $(this).data('status');
+            
+            $.ajax({
+                url: '{{ route("admin.plates.update-sold") }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: plateId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to update sold status.');
+                    }
+                },
+                error: function(xhr) {
+                    alert('Failed to update sold status.');
+                }
+            });
+        });
+
+        // Delete plate
+        $(document).on('click', '.delete-plate', function(e) {
+            e.preventDefault();
+            var plateId = $(this).data('id');
+            
+            if (confirm('Are you sure you want to delete this plate?')) {
+                $.ajax({
+                    url: '{{ route("admin.plates.destroy") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: plateId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            alert('Failed to delete plate.');
+                        }
+                    },
+                    error: function(xhr) {
+                        alert('Failed to delete plate.');
                     }
                 });
-        
-                // Reset filter
-                $('[data-kt-plate-table-filter="reset"]').on('click', function() {
-                    $('[data-kt-plate-table-filter="status"]').val('').trigger('change');
-                    table.search('').columns(7).search('').draw();
-                });
-            } else {
-                console.log('DataTables is not defined.');
             }
-        
-            // Toggle status
-            // ... rest of your existing code ...
         });
     });
 </script>
