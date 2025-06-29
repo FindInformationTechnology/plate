@@ -38,7 +38,7 @@
 									<h4>{{ __('message.Quick_Links') }}</h4>
 									<ul class="footer-links">
 										<li><a href="{{ route('home') }}"><i class="fas fa-chevron-right"></i>{{ __('message.Home') }}</a></li>
-										<li><a href=""><i class="fas fa-chevron-right"></i>{{ __('message.About_Us') }}</a></li>
+										<!-- <li><a href=""><i class="fas fa-chevron-right"></i>{{ __('message.About_Us') }}</a></li> -->
 										<li><a href="{{ route('plates') }}"><i class="fas fa-chevron-right"></i>{{ __('message.Browse_Plates') }}</a></li>
 
 

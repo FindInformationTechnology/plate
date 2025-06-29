@@ -101,7 +101,7 @@
                 <ul class="main-nav">
                     <li><a href="{{ route('home')}}" class="nav-link">{{ __('message.Home') }}</a></li>
                     <li><a href="{{ route('plates')}}" class="nav-link">{{ __('message.Plates') }}</a></li>
-                    <li><a href="{{ route('contact')}}" class="nav-link">{{ __('message.Contact_Us') }}</a></li>
+                    <!-- <li><a href="{{ route('contact')}}" class="nav-link">{{ __('message.Contact_Us') }}</a></li> -->
 
                     <!-- <li><a href="#">Contact</a></li> -->
 

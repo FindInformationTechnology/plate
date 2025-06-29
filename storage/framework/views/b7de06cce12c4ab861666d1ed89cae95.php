@@ -1,3 +1,5 @@
+﻿
+
 <?php $__env->startSection('content'); ?>
 
 <style>
@@ -239,7 +241,6 @@
                         <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
                         <?php else: ?>
                         <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center
-                         
                         ">
                             <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
                             <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
@@ -283,6 +284,7 @@
 
 
 <section id="works" class="yacht-offer-sec py-16 bg-slate-100">
+
     <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold mb-4"><?php echo e(__('message.🔍 How It Works')); ?></h1>
@@ -339,7 +341,7 @@
     class="yacht-offer-sec bg-cover bg-fixed py-24 relative before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-800/60"
     style="background-image: url('https://www.motorverso.com/wp-content/uploads/2019/03/CarReg-0010.jpg');">
 
-    <!-- المحتوى -->
+
     <div class="relative z-10 container mx-auto px-4 text-center text-white">
         <h2 class="text-white text-2xl font-bold mb-4"><?php echo e(__('message.Stay_Updated')); ?></h2>
         <p class="text-white mb-6"><?php echo e(__('message.Subscribe_notification')); ?></p>
@@ -423,4 +425,5 @@
 </script>
 
 <?php $__env->stopPush(); ?>
+
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/front/index.blade.php ENDPATH**/ ?>
