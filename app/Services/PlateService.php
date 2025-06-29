@@ -59,9 +59,9 @@ class PlateService
       
         $data['length'] = (int) strlen((string) $data['number']); // Default length to 4 if not provi
         // Set default values for checkboxes if not provided
-        $data['is_approved'] = $request->has('is_approved') ? 1 : 0;
+        $data['is_approved'] = 1;
 
-        $data['is_visible'] = $request->has('is_visible') ? 1 : 0;
+        $data['is_visible'] =  1;
 
         return Plate::create($data);
 
