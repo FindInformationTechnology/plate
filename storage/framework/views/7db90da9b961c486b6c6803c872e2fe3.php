@@ -45,6 +45,9 @@
 
     <link rel="stylesheet" href="<?php echo e(asset ('assets/css/edition.css')); ?>">
 
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
     <!-- <link rel="stylesheet" href="<?php echo e(asset ('assets/css/addition-styles.css')); ?>"> -->
 
 
@@ -209,6 +212,7 @@
                                     setTimeout(() => {
                                         window.location.href = href;
                                     }, 1000);
+                                }
 
                                 });
                         });
@@ -255,4 +259,5 @@
 
 </body>
 
-</html><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/app.blade.php ENDPATH**/ ?>

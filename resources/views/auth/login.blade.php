@@ -52,7 +52,7 @@
                     </div>
                     <!-- Social Login -->
                     <div class="social-login">
-                        <a href="#"
+                        <a href="{{ route('auth.google') }}"
                             class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img
                                     src="assets/img/icons/google.svg" class="img-fluid" alt="Google"></span>{{
                             __('message.Log_in_with_Google') }}</a>

@@ -7,7 +7,7 @@
 
 <section class="plate-details container d-flex align-items-center gap-5">
     <div class="container">
-        <div class="my-5 p-4 bg-white shadow-lg rounded" style="background-color: //#e7eaef">
+        <div class="my-5 p-4 bg-white shadow-lg rounded" style="background-color: #e7eaef">
             <div class="w-100">
                 <div class="position-relative plate big-plate">
                     <div class="w-100">
@@ -18,7 +18,7 @@
                         $plate->code->name }}</h1>
                     <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
                     @else
-                    <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between
+                    <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around
                         align-items-center">
                         <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                         <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
@@ -35,6 +35,7 @@
                         <p class="text-secondary fs-6 mb-2">
                             <i class="fa fa-eye me-1" aria-hidden="true"></i> {{ $plate->views_count }} {{ __('message.Views') }}
                         </p>
+                    
                         <div class="alert alert-warning mt-2">
                             <ul class="icons list-unstyled mb-0">
                                 <li class="mb-1">
@@ -48,6 +49,8 @@
                             </ul>
                         </div>
                     </div>
+
+                  
                     <!-- <div>
                         <i class="bx bx-heart fs-2"></i>
                     </div> -->
@@ -56,12 +59,12 @@
                     <a href="tel:{{ $plate->user->phone_number ?? '' }}"
                         class="contact d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                         target="_blank"><i class="bx bx-phone fs-5"></i>
-                        <p>{{ __('message.Contact') }}</p>
+                        <p>{{ $plate->user->phone_number }}</p>
                     </a>
                     <a href="https://wa.me/{{ $plate->user->whatsapp_number ?? '' }}"
                         class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
                         target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
-                        <p>{{ __('message.WhatsApp') }}</p>
+                        <p>{{ $plate->user->phone_number }}</p>
                     </a>
                 </div>
             </div>
@@ -89,7 +92,7 @@
                                     $plate->number }}</h2>
                                 @else
                                 <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex
-                                    justify-content-between align-items-center">
+                                    justify-content-around align-items-center">
                                     <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                                     <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                                 </div>
@@ -112,26 +115,7 @@
             </div>
         </div>
     </div>
-    <!-- <div style="flex: 1" class="position-relative">
-        <img src="{{ asset('storage/assets/media/demo-car.webp') }}" alt="car-showing-plate" style="max-width: 100%">
-        <div class=" position-absolute" style="width: 37%; top: 58%; left: 32%;">
-            <div class="position-relative plate ">
-                <div class="w-100 my-4">
-                    <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100" loading="lazy">
-                </div>
-                @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{
-                    $plate->code->name }}</h1>
-                <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
-                @else
-                <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between
-                    align-items-center">
-                    <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
-                    <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
-                </div>
-                @endif
-            </
-    </div> -->
+    
 </section>
 
 <!-- Plate Details -->

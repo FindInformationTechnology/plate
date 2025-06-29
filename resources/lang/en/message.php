@@ -223,26 +223,32 @@ return [
   'Featured' => 'Featured',
   'Related_By_Emirate' => 'Related by Emirate',
   'Views' => 'Views',
-  'Trusted' => '100% Trusted',
-  'Secure_Transactions' => 'Secure transactions with real users',
-  'Top-Tier_Plates' => 'Top-Tier Plates',
-'Access_Unique' => 'Access unique, high-value plates',
+
+  'tire_mark' => 'tire mark',
+'Trusted' => '100% Trusted',
+'Secure_transactions' => 'Secure transactions with real users.',
+'Top_Tier_Plates' => 'Top-Tier Plates',
+'Access_unique_plates' => 'Access unique, high-value plates.',
 'Live_Support' => 'Live Support',
-'Help_Anytime' => 'We\'re here to help anytime',
-'How_It_Works' => 'How It Works ?',
-'Easily_Browse' => 'Easily browse available plates, filter by type or region, then connect directly with the seller. From negotiation to purchase,
-         the process is smooth, secure, and designed to get you on the road fast',
-'Find_Plate' => 'Find Plate',
-'Effortlessly_Explore' => 'Effortlessly explore a wide range of available plates using filters by city, category, or keyword.
-         Find the perfect match that fits your style or number preferences in seconds.',
-'Contact_Seller' => 'Contact Seller',
-'Reach_Out' => 'Reach out directly to the seller through secure messaging. Ask questions, discuss pricing, and negotiate
-         the deal — all in one smooth conversation',
-'Done' => 'Done!',
-'Finalize' => 'Finalize the purchase with confidence. Once the deal is sealed, you’ll get all the details needed to
-        transfer the plate securely and start using it right away.',
+'Help_anytime' => 'We\'re here to help anytime.',
+'Why_Choose_Us' => 'Why Choose Us',
+'🚗 Find Your Perfect Plate' => 'Find Your Perfect Plate',
+'Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.'
+=> 'Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.',
+'Meet, Confirm & Finalize Safely' => 'Meet, Confirm & Finalize Safely',
+'Connect Directly with the Seller' => 'Connect Directly with the Seller',
+'Call or chat with the seller instantly via WhatsApp. Ask questions, negotiate the price, and get all the details — no middlemen, just smooth and secure communication.' =>
+'Call or chat with the seller instantly via WhatsApp. Ask questions, negotiate the price, and get all the details — no middlemen, just smooth and secure communication.',
+'Once you agree on the deal, make sure to meet the seller in person and verify everything before making any payment. We help ensure your transaction is transparent and secure from start to finish.'
+=> 'Once you agree on the deal, make sure to meet the seller in person and verify everything before making any payment. We help ensure your transaction is transparent and secure from start to finish.',
+'🔍 How It Works' => '🔍 How It Works',
+'From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:'
+=> 'From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:',
+// ... existing code ...
 'Stay_Updated' => 'Stay Updated',
-'Subscribe' => 'Subscribe to get notified about the latest plates and offers.',
+'Subscribe_notification' => 'Subscribe to get notified about the latest plates and offers.',
+'Your_email_address' => 'Your email address',
+// ... existing code ...
 
 'Contact_Us' => 'Contact Us',
 'Contact_Us_Subtitle' => 'We are here to answer all your inquiries',

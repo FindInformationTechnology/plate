@@ -17,26 +17,16 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::resource('codes', CodeController::class)->only(['index', 'edit', 'store', 'update', 'destroy']);
 
     // Plates Management
-    // Route::get('/plates', [PlateController::class, 'index'])->name('plates.index');
-    // Route::get('/plates/create', [PlateController::class, 'create'])->name('plates.create');
-    // Route::post('/plates', [PlateController::class, 'store'])->name('plates.store');
-    // Route::get('/plates/{id}', [PlateController::class, 'show'])->name('plates.show');
-    // Route::get('/plates/{id}/edit', [PlateController::class, 'edit'])->name('plates.edit');
-    // Route::put('/plates/{id}', [PlateController::class, 'update'])->name('plates.update');
-    // Route::delete('/plates/{id}', [PlateController::class, 'destroy'])->name('plates.destroy');
+    // Route::resource('plates', PlateController::class);
+    // Route::post('plates/update-status', [PlateController::class, 'updateStatus'])->name('plates.update-status');
+    // Route::post('plates/update-sold', [PlateController::class, 'updateSold'])->name('plates.update-sold');
+    // Route::post('plates/destroy', [PlateController::class, 'destroy'])->name('plates.destroy');
 
-    // Plates routes
     Route::resource('plates', PlateController::class);
     Route::post('plates/update-status', [PlateController::class, 'updateStatus'])->name('plates.update-status');
     Route::post('plates/update-sold', [PlateController::class, 'updateSold'])->name('plates.update-sold');
-
-    Route::post('/plates/update-status', [PlateController::class, 'updateStatus'])->name('plates.update-status');
-    Route::post('/plates/update-sold', [PlateController::class, 'updateSold'])->name('plates.update-sold');
-    Route::post('/plates/destroy', [PlateController::class, 'destroy'])->name('plates.destroy');
+    Route::post('plates/destroy', [PlateController::class, 'destroy'])->name('plates.destroy');
 });
-
-
-
 
 Route::get('/lang', function () {
     // return view('front.plates');

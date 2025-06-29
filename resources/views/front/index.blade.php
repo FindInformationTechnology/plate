@@ -4,30 +4,30 @@
 
 <style>
     .featured-plates-slider .owl-nav {
-    position: absolute;
-    top: -50px;
-    right: 0;
-}
+        position: absolute;
+        top: -50px;
+        right: 0;
+    }
 
-.featured-plates-slider .owl-nav button {
-    width: 30px;
-    height: 30px;
-    background-color: #f5f5f5 !important;
-    border-radius: 50%;
-    margin-left: 5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
+    .featured-plates-slider .owl-nav button {
+        width: 30px;
+        height: 30px;
+        background-color: #f5f5f5 !important;
+        border-radius: 50%;
+        margin-left: 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.featured-plates-slider .owl-nav button:hover {
-    background-color: #28a745 !important;
-    color: white;
-}
+    .featured-plates-slider .owl-nav button:hover {
+        background-color: #28a745 !important;
+        color: white;
+    }
 
-.featured-plates-slider .item {
-    padding: 10px;
-}
+    .featured-plates-slider .item {
+        padding: 10px;
+    }
 </style>
 
 
@@ -115,12 +115,12 @@
 <!-- /Banner -->
 
 
-<section class="yacht-offer-sec">
-			<div class="sec-bg">
-				<img src="{{ asset ('assets/img/bg/sec-bg-wave.png') }}" class="wave-bottom" alt="Bg">
-			</div>
-     <!-- After the yacht-category-sec opening and before the regular plates display -->
-     <div class="container">
+<section class=" yacht-category-sec">
+    <div class="sec-bg">
+        <img src="{{ asset ('assets/img/bg/sec-bg-wave.png') }}" class="wave-bottom" alt="Bg">
+    </div>
+    <!-- After the yacht-category-sec opening and before the regular plates display -->
+    <div class="container">
         <div class="section-header-two">
             <h2>{{ __('message.Featured_Plates') }}</h2>
             <!-- <p>{{ __('message.Most_Popular_Plates') }}</p> -->
@@ -146,7 +146,7 @@
                             <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
                             <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
                             @else
-                            <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
+                            <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center">
                                 <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                                 <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                             </div>
@@ -171,41 +171,41 @@
 
 <section class="yacht-offer-sec relative bg-slate-50 py-16">
 
-<img src="assets/img/footer-left.png"
-       alt="tire mark"
-       class="absolute top-0 left-0 w-40 opacity-20 pointer-events-none select-none" />
+    <img src="assets/img/footer-left.png"
+        alt="{{ __('message.tire_mark') }}"
+        class="absolute top-0 left-0 w-40 opacity-20 pointer-events-none select-none" />
 
-  <div class="container mx-auto px-4 text-center">
-    <div class="section-header-two">
-    <h2 class="text-2xl font-bold mb-6">{{ __('message.Why_Choose_Us') }}</h2>
-    </div>
-    <div class="grid md:grid-cols-3 gap-8">
-  <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
-    <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
-      <i class="bx bx-shield-quarter text-3xl"></i>
-    </div>
-    <h4 class="font-semibold text-lg mb-2">{{ __('message.Trusted') }}</h4>
-    <p class="text-gray-600 text-sm">{{ __('message.Secure_Transactions') }}</p>
-  </div>
+    <div class="container mx-auto px-4 text-center">
+        <div class="section-header-two">
+            <h2 class="text-2xl font-bold mb-6">{{ __('message.Why_Choose_Us') }}</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
+                <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
+                    <i class="bx bx-shield-quarter text-3xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-2">{{ __('message.Trusted') }}</h4>
+                <p class="text-gray-600 text-sm">{{ __('message.Secure_transactions') }}</p>
+            </div>
 
-  <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
-    <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
-      <i class="bx bxs-star text-3xl"></i>
-    </div>
-    <h4 class="font-semibold text-lg mb-2">{{ __('message.Top-Tier_Plates') }}</h4>
-    <p class="text-gray-600 text-sm">{{ __('message.Access_Unique') }}</p>
-  </div>
+            <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
+                <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
+                    <i class="bx bxs-star text-3xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-2">{{ __('message.Top_Tier_Plates') }}</h4>
+                <p class="text-gray-600 text-sm">{{ __('message.Access_unique_plates') }}</p>
+            </div>
 
-  <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
-    <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
-      <i class="bx bx-headphone text-3xl"></i>
-    </div>
-    <h4 class="font-semibold text-lg mb-2">{{ __('message.Live_Support') }}</h4>
-    <p class="text-gray-600 text-sm">{{ __('message.Help_Anytime') }}</p>
-  </div>
-</div>
+            <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
+                <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
+                    <i class="bx bx-headphone text-3xl"></i>
+                </div>
+                <h4 class="font-semibold text-lg mb-2">{{ __('message.Live_Support') }}</h4>
+                <p class="text-gray-600 text-sm">{{ __('message.Help_anytime') }}</p>
+            </div>
+        </div>
 
-  </div>
+    </div>
 </section>
 
 
@@ -213,13 +213,6 @@
 
 <!-- Yacht Categories -->
 <section class="yacht-category-sec">
-
-
-
-
-
-    <!-- Then continue with your existing section header for regular plates -->
-
 
     <div class="container">
 
@@ -229,39 +222,40 @@
         </div>
         <div class="row yacht-category-lists">
             @forelse ($plates as $plate)
-			<div class="col-lg-4 col-md-6 col-12">
-				<div class="listing-item plate-card position-relative">
-					<!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
-					<div class="d-flex justify-content-end align-items-center">
-						<div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-					</div>
-					<div class="position-relative plate ">
-						<div class="w-100 my-4">
-							<img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
-								loading="lazy">
-						</div>
-						@if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-						<h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
-						<h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
-						@else
-						<div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-between align-items-center">
-							<h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
-							<h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
-						</div>
-						@endif
-					</div>
-					<div>
-						<p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
-					</div>
-					<div class="border-top">
-						<a href="{{ route('plate.show', $plate->id) }}"
-							class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
-								class="bx bx-phone"></i>
-							<p>Contact</p>
-						</a>
-					</div>
-				</div>
-			</div>
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="listing-item plate-card position-relative">
+                    <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+                    </div>
+                    <div class="position-relative plate ">
+                        <div class="w-100 my-4">
+                            <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
+                                loading="lazy">
+                        </div>
+                        @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
+                        <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
+                        <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
+                        @else
+                        <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center
+                        {{-- $plate->emirate->slug == 'rak' ? 'justify-content-around' : 'justify-content-between' --}}">
+                            <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+                            <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
+                        </div>
+                        @endif
+                    </div>
+                    <div>
+                        <p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
+                    </div>
+                    <div class="border-top">
+                        <a href="{{ route('plate.show', $plate->id) }}"
+                            class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
+                                class="bx bx-phone"></i>
+                            <p>Contact</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
 
 
@@ -287,81 +281,79 @@
 
 
 <section id="works" class="yacht-offer-sec py-16 bg-slate-100">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold mb-4">{{ __('message.How_It_Works') }}</h1>
-      <span class="text-gray-600 max-w-2xl block mx-auto">
-      {{ __('message.Easily_Browse') }}
-      </span>
+
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4">{{ __('message.🔍 How It Works') }}</h1>
+            <span class="text-gray-600 max-w-2xl block mx-auto">
+
+{{ __('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:') }}            </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-11 pt-10">
+            <!-- Box 1 -->
+            <div class="relative p-8 text-white bg-[#ac1e23] rounded shadow-[0_4px_16px_#919eb1] hover:text-[#ac1e23] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-white after:duration-500 hover:after:w-full">
+                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-white group-hover:!text-[#AC1E23] transition-all duration-300 select-none z-10">01</div>
+                <div class="flex items-center mt-20 text-lg relative z-10">
+                    <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]">{{ __('message.🚗 Find Your Perfect Plate') }}</h3>
+                </div>
+                <p class="text-md leading-6 m-4 text-white relative group-hover:!text-[#ac1e23] z-10">
+                    {{ __('message.Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.') }}
+                </p>
+                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-[#ac1e23] bg-white duration-300 z-10"></div>
+            </div>
+
+            <!-- Box 2 -->
+            <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] hover:text-white overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
+                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:text-white transition-all duration-300 select-none z-10">02</div>
+                <div class="flex items-center mt-20 text-lg relative z-10">
+                    <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Connect Directly with the Seller') }}</h3>
+                </div>
+                <p class="text-md leading-6 m-4 relative group-hover:text-white z-10">
+                    {{ __('message.Call or chat with the seller instantly via WhatsApp. Ask questions, negotiate the price, and get all the details — no middlemen, just smooth and secure communication.') }}
+                </p>
+                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
+            </div>
+
+            <!-- Box 3 -->
+            <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
+                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:!text-white transition-all duration-300 select-none z-10">03</div>
+                <div class="flex items-center mt-20 text-lg relative z-10">
+                    <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Meet, Confirm & Finalize Safely') }}</h3>
+                </div>
+                <p class="text-md leading-6 m-4 relative z-10 group-hover:!text-white">
+                    {{ __('message.Once you agree on the deal, make sure to meet the seller in person and verify everything before making any payment. We help ensure your transaction is transparent and secure from start to finish.') }}
+                </p>
+                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
+            </div>
+        </div>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-11 pt-10">
-      <!-- Box 1 -->
-      <div class="relative p-8 text-white bg-[#ac1e23] rounded shadow-[0_4px_16px_#919eb1] hover:text-[#ac1e23] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-white after:duration-500 hover:after:w-full">
-        <div class="absolute -top-24 -left-8 text-[150px] font-bold text-white group-hover:!text-[#AC1E23] transition-all duration-300 select-none z-10">01</div>
-        <div class="flex items-center mt-20 text-lg relative z-10">
-          <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]">{{ __('message.Find_Plate') }}</h3>
-        </div>
-        <p class="text-md leading-6 m-4 text-white relative group-hover:!text-[#ac1e23] z-10">
-        {{ __('message.Effortlessly_Explore') }}
-        </p>
-        <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-[#ac1e23] bg-white duration-300 z-10"></div>
-      </div>
-
-      <!-- Box 2 -->
-      <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] hover:text-white overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
-        <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:text-white transition-all duration-300 select-none z-10">02</div>
-        <div class="flex items-center mt-20 text-lg relative z-10">
-          <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Contact_Seller') }}</h3>
-        </div>
-        <p class="text-md leading-6 m-4 relative group-hover:text-white z-10">
-        {{ __('message.Reach_Out') }}
-        </p>
-        <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
-      </div>
-
-      <!-- Box 3 -->
-      <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
-        <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:!text-white transition-all duration-300 select-none z-10">03</div>
-        <div class="flex items-center mt-20 text-lg relative z-10">
-          <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Done') }}</h3>
-        </div>
-        <p class="text-md leading-6 m-4 relative z-10 group-hover:!text-white">
-        {{ __('message.Finalize') }}
-        </p>
-        <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
-      </div>
-    </div>
-  </div>
 </section>
 
 
 <section
-  class="yacht-offer-sec bg-cover bg-fixed py-24 relative before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-800/60"
-  style="background-image: url('https://www.motorverso.com/wp-content/uploads/2019/03/CarReg-0010.jpg');"
->
+    class="yacht-offer-sec bg-cover bg-fixed py-24 relative before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-800/60"
+    style="background-image: url('https://www.motorverso.com/wp-content/uploads/2019/03/CarReg-0010.jpg');">
 
-  <!-- المحتوى -->
-  <div class="relative z-10 container mx-auto px-4 text-center text-white">
-    <h2 class="text-white text-2xl font-bold mb-4">{{ __('message.Stay_Updated') }}</h2>
-    <p class="text-white mb-6">{{ __('message.Subscribe') }}</p>
 
-    <div class="flex justify-center">
-      <div class="relative w-full md:w-1/2">
-        <input
-          type="email"
-          placeholder="Your email address"
-          class="p-3 pr-12 rounded-md text-black w-full border outline-none"
-        >
-        <button
-          type="submit"
-          class="absolute end-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition"
-        >
-          <i class='bx bx-envelope text-xl'></i>
-        </button>
-      </div>
+    <div class="relative z-10 container mx-auto px-4 text-center text-white">
+        <h2 class="text-white text-2xl font-bold mb-4">{{ __('message.Stay_Updated') }}</h2>
+        <p class="text-white mb-6">{{ __('message.Subscribe_notification') }}</p>
+
+        <div class="flex justify-center">
+            <div class="relative w-full md:w-1/2">
+                <input
+                    type="email"
+                    placeholder="{{ __('message.Your_email_address') }}"
+                    class="p-3 pr-12 rounded-md text-black w-full border outline-none">
+                <button
+                    type="submit"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition">
+                    <i class='bx bx-send text-xl'></i>
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
 
@@ -424,7 +416,6 @@
             }
         }
     });
-
 </script>
 
 @endpush

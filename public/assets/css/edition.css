@@ -103,6 +103,7 @@ body {
     transition-duration: 0.5s !important;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
     z-index: 10;
+    direction: ltr !important;
 }
 
 .plate-card .status {
@@ -247,6 +248,8 @@ body {
     font-size: 50px;
     font-family: "ajman";
     color: #111112;
+    text-transform: capitalize;
+    
 }
 .plate .rak-plate {
     width: 60%;
@@ -257,6 +260,7 @@ body {
 .big-plate .rak-plate h1,
 .big-plate .rak-plate h2 {
     font-size: 250px !important;
+    
 }
 .plate .rak-plate h1,
 .plate .rak-plate h2 {
@@ -264,6 +268,7 @@ body {
     font-weight: lighter !important;
     font-size: 70px;
     color: #111112;
+    text-transform: capitalize;
 }
 @media (max-width: 991px) {
     .big-plate .dubai-icon {
@@ -460,6 +465,7 @@ body {
     text-transform: capitalize;
     font-weight: 600;
     transition-duration: 0.5s;
+    direction: ltr;
 }
 .plate-details .contact:hover,
 .plate-details .whatsapp:hover {
