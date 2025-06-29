@@ -76,20 +76,20 @@
             <div class="navbar-header">
                 <a id="mobile_btn" href="javascript:void(0);">
                     <span class="bar-icon">
-                        <span></span>   
+                        <span></span>
                         <span></span>
                         <span></span>
                     </span>
                 </a>
- 
-              
+
+
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
                     <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="145" class="img-fluid" alt="Logo">
                 </a>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
                     <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" width="145" alt="Logo">
                 </a>
-               
+
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
@@ -101,7 +101,7 @@
                 <ul class="main-nav">
                     <li><a href="<?php echo e(route('home')); ?>" class="nav-link"><?php echo e(__('message.Home')); ?></a></li>
                     <li><a href="<?php echo e(route('plates')); ?>" class="nav-link"><?php echo e(__('message.Plates')); ?></a></li>
-
+                    <li><a href="<?php echo e(route('contact')); ?>" class="nav-link"><?php echo e(__('message.Contact_Us')); ?></a></li>
 
                     <!-- <li><a href="#">Contact</a></li> -->
 
@@ -189,14 +189,14 @@
                             <i class="fa fa-globe "></i> <?php echo e(__('message.Language')); ?></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item b-color" 
+                                <a class="dropdown-item b-color"
                                     href="<?php echo e(route('change.language', 'en')); ?>">
                                     <?php echo e(__('message.English')); ?>
 
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item b-color" 
+                                <a class="dropdown-item b-color"
                                     href="<?php echo e(route('change.language', 'ar')); ?>">
                                     <?php echo e(__('message.Arabic')); ?>
 

@@ -184,24 +184,24 @@
     <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
       <i class="bx bx-shield-quarter text-3xl"></i>
     </div>
-    <h4 class="font-semibold text-lg mb-2">100% Trusted</h4>
-    <p class="text-gray-600 text-sm">Secure transactions with real users.</p>
+    <h4 class="font-semibold text-lg mb-2">{{ __('message.Trusted') }}</h4>
+    <p class="text-gray-600 text-sm">{{ __('message.Secure_Transactions') }}</p>
   </div>
 
   <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
     <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
       <i class="bx bxs-star text-3xl"></i>
     </div>
-    <h4 class="font-semibold text-lg mb-2">Top-Tier Plates</h4>
-    <p class="text-gray-600 text-sm">Access unique, high-value plates.</p>
+    <h4 class="font-semibold text-lg mb-2">{{ __('message.Top-Tier_Plates') }}</h4>
+    <p class="text-gray-600 text-sm">{{ __('message.Access_Unique') }}</p>
   </div>
 
   <div class="p-6 rounded-2xl border hover:shadow-lg transition duration-300 text-center">
     <div class="w-20 h-20 mx-auto mb-4 bg-white text-primary flex items-center justify-center rounded-full">
       <i class="bx bx-headphone text-3xl"></i>
     </div>
-    <h4 class="font-semibold text-lg mb-2">Live Support</h4>
-    <p class="text-gray-600 text-sm">We're here to help anytime.</p>
+    <h4 class="font-semibold text-lg mb-2">{{ __('message.Live_Support') }}</h4>
+    <p class="text-gray-600 text-sm">{{ __('message.Help_Anytime') }}</p>
   </div>
 </div>
 
@@ -289,10 +289,9 @@
 <section id="works" class="yacht-offer-sec py-16 bg-slate-100">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold mb-4">How It Works ?</h1>
+      <h1 class="text-4xl font-bold mb-4">{{ __('message.How_It_Works') }}</h1>
       <span class="text-gray-600 max-w-2xl block mx-auto">
-
-Easily browse available plates, filter by type or region, then connect directly with the seller. From negotiation to purchase, the process is smooth, secure, and designed to get you on the road fast
+      {{ __('message.Easily_Browse') }}
       </span>
     </div>
 
@@ -301,11 +300,10 @@ Easily browse available plates, filter by type or region, then connect directly 
       <div class="relative p-8 text-white bg-[#ac1e23] rounded shadow-[0_4px_16px_#919eb1] hover:text-[#ac1e23] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-white after:duration-500 hover:after:w-full">
         <div class="absolute -top-24 -left-8 text-[150px] font-bold text-white group-hover:!text-[#AC1E23] transition-all duration-300 select-none z-10">01</div>
         <div class="flex items-center mt-20 text-lg relative z-10">
-          <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]">Find Plate</h3>
+          <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]">{{ __('message.Find_Plate') }}</h3>
         </div>
         <p class="text-md leading-6 m-4 text-white relative group-hover:!text-[#ac1e23] z-10">
-
-Effortlessly explore a wide range of available plates using filters by city, category, or keyword. Find the perfect match that fits your style or number preferences in seconds.
+        {{ __('message.Effortlessly_Explore') }}
         </p>
         <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-[#ac1e23] bg-white duration-300 z-10"></div>
       </div>
@@ -314,10 +312,10 @@ Effortlessly explore a wide range of available plates using filters by city, cat
       <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] hover:text-white overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
         <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:text-white transition-all duration-300 select-none z-10">02</div>
         <div class="flex items-center mt-20 text-lg relative z-10">
-          <h3 class="text-xl font-semibold group-hover:!text-white">Contact Seller</h3>
+          <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Contact_Seller') }}</h3>
         </div>
         <p class="text-md leading-6 m-4 relative group-hover:text-white z-10">
-        Reach out directly to the seller through secure messaging. Ask questions, discuss pricing, and negotiate the deal — all in one smooth conversation
+        {{ __('message.Reach_Out') }}
         </p>
         <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
       </div>
@@ -326,10 +324,10 @@ Effortlessly explore a wide range of available plates using filters by city, cat
       <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
         <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:!text-white transition-all duration-300 select-none z-10">03</div>
         <div class="flex items-center mt-20 text-lg relative z-10">
-          <h3 class="text-xl font-semibold group-hover:!text-white">Done!</h3>
+          <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Done') }}</h3>
         </div>
         <p class="text-md leading-6 m-4 relative z-10 group-hover:!text-white">
-        Finalize the purchase with confidence. Once the deal is sealed, you’ll get all the details needed to transfer the plate securely and start using it right away.
+        {{ __('message.Finalize') }}
         </p>
         <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
       </div>
@@ -345,8 +343,8 @@ Effortlessly explore a wide range of available plates using filters by city, cat
 
   <!-- المحتوى -->
   <div class="relative z-10 container mx-auto px-4 text-center text-white">
-    <h2 class="text-white text-2xl font-bold mb-4">Stay Updated</h2>
-    <p class="text-white mb-6">Subscribe to get notified about the latest plates and offers.</p>
+    <h2 class="text-white text-2xl font-bold mb-4">{{ __('message.Stay_Updated') }}</h2>
+    <p class="text-white mb-6">{{ __('message.Subscribe') }}</p>
 
     <div class="flex justify-center">
       <div class="relative w-full md:w-1/2">
@@ -357,9 +355,9 @@ Effortlessly explore a wide range of available plates using filters by city, cat
         >
         <button
           type="submit"
-          class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition"
+          class="absolute end-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition"
         >
-          <i class='bx bx-send text-xl'></i>
+          <i class='bx bx-envelope text-xl'></i>
         </button>
       </div>
     </div>
