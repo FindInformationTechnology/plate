@@ -38,7 +38,7 @@
 									<h4><?php echo e(__('message.Quick_Links')); ?></h4>
 									<ul class="footer-links">
 										<li><a href="<?php echo e(route('home')); ?>"><i class="fas fa-chevron-right"></i><?php echo e(__('message.Home')); ?></a></li>
-										<li><a href=""><i class="fas fa-chevron-right"></i><?php echo e(__('message.About_Us')); ?></a></li>
+										<!-- <li><a href=""><i class="fas fa-chevron-right"></i><?php echo e(__('message.About_Us')); ?></a></li> -->
 										<li><a href="<?php echo e(route('plates')); ?>"><i class="fas fa-chevron-right"></i><?php echo e(__('message.Browse_Plates')); ?></a></li>
 
 

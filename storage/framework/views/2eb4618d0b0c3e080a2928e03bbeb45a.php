@@ -101,7 +101,7 @@
                 <ul class="main-nav">
                     <li><a href="<?php echo e(route('home')); ?>" class="nav-link"><?php echo e(__('message.Home')); ?></a></li>
                     <li><a href="<?php echo e(route('plates')); ?>" class="nav-link"><?php echo e(__('message.Plates')); ?></a></li>
-                    <li><a href="<?php echo e(route('contact')); ?>" class="nav-link"><?php echo e(__('message.Contact_Us')); ?></a></li>
+                    <!-- <li><a href="<?php echo e(route('contact')); ?>" class="nav-link"><?php echo e(__('message.Contact_Us')); ?></a></li> -->
 
                     <!-- <li><a href="#">Contact</a></li> -->
 

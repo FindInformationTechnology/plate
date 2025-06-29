@@ -40,13 +40,13 @@ class PlateController extends Controller
                 // 'image' => 'nullable|image|max:8192',
 
             ]);
-
-            if ($request->has('image')) {
-                $path = $request->file('image')->store('plates', 'public');
-                $validated['image'] = $path;
-            }
-
-            $plate = $plate->createPlate($validated);
+            
+            // if ($request->has('image')) {
+            //     $path = $request->file('image')->store('plates', 'public');
+            //     $validated['image'] = $path;
+            // }
+            
+            $plate = $plate->createPlate($validated, $request);
 
             return redirect()->route("user.plates")->with("success", "The record has been added");
         } catch (\Exception $e) {

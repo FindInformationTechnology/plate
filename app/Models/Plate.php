@@ -20,7 +20,7 @@ class Plate extends Model
         'is_sold',
         'is_visible',
         'is_featured',
-        'is_premium',
+        'is_premium', 
         'is_urgent',
         'image'
     ];
