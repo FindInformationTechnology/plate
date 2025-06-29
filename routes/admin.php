@@ -26,6 +26,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::post('plates/update-status', [PlateController::class, 'updateStatus'])->name('plates.update-status');
     Route::post('plates/update-sold', [PlateController::class, 'updateSold'])->name('plates.update-sold');
     Route::post('plates/destroy', [PlateController::class, 'destroy'])->name('plates.destroy');
+    Route::post('plates/update-featured', [PlateController::class, 'updateFeatured'])->name('plates.update-featured');
 });
 
 Route::get('/lang', function () {

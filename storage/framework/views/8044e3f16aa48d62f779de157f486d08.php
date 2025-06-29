@@ -131,8 +131,8 @@
                                     <th class="min-w-125px">Emirate</th>
                                     <th class="min-w-125px">Code</th>
                                     <th class="min-w-125px">Number</th>
-                                    <!-- <th class="min-w-125px">Length</th> --> 
                                     <th class="min-w-125px">Price</th>
+                                    <th class="min-w-125px">Feature</th> 
                                     <th class="min-w-125px">Status</th>
                                     <th class="min-w-125px">C reated Date</th>
                                     <th class="text-end min -w-100px">Actions</th>
@@ -148,6 +148,13 @@
                                     <td><?php echo e($plate->number); ?></td>
                                     <!-- <td><?php echo e($plate->length); ?></td> -->
                                     <td><?php echo e(number_format($plate->price, 2)); ?></td>
+                                    <td>
+                                        <div class="badge badge-light-<?php echo e($plate->is_featured ? 'success' : 'warning'); ?> me-2">
+                                            <?php echo e($plate->is_featured ? 'Featured' : 'Normal'); ?>
+
+                                        </div>
+
+                                    </td>
                                     <td>
                                         <div class="badge badge-light-<?php echo e($plate->is_approved ? 'success' : 'warning'); ?> me-2">
                                             <?php echo e($plate->is_approved ? 'Approved' : 'Pending'); ?>
@@ -184,6 +191,12 @@
                                                 </a>
                                             </div>
 
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 toggle-featured" data-id="<?php echo e($plate->id); ?>" data-status="<?php echo e($plate->is_featured ? 0 : 1); ?>">
+                                                    <?php echo e($plate->is_featured ? 'Unfeatured' : 'Featured'); ?>
+
+                                                </a>
+                                            </div>
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3 toggle-sold" data-id="<?php echo e($plate->id); ?>" data-status="<?php echo e($plate->is_sold ? 0 : 1); ?>">
                                                     <?php echo e($plate->is_sold ? 'Mark as Available' : 'Mark as Sold'); ?>
@@ -336,6 +349,34 @@
                 },
                 error: function(xhr) {
                     alert('Failed to update sold status.');
+                }
+            });
+        });
+
+        // Toggle featured
+
+        $(document).on('click', '.toggle-featured', function(e) {
+            e.preventDefault();
+            var plateId = $(this).data('id');
+            var newStatus = $(this).data('status');
+            
+            $.ajax({
+                url: '<?php echo e(route("admin.plates.update-featured")); ?>',
+                type: 'POST',
+                data: {
+                    _token: '<?php echo e(csrf_token()); ?>',
+                    id: plateId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to update featured status.');
+                    }
+                },
+                error: function(xhr) {
+                    alert('Failed to update featured status.');
                 }
             });
         });

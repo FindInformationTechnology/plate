@@ -170,5 +170,21 @@ class PlateController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    /**
+     * Update the featured status of a plate.
+     */
+    public function updateFeatured(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:plates,id',
+            'status' => 'required|boolean',
+        ]);
+
+        $plate = Plate::findOrFail($request->id);
+        $plate->update(['is_featured' => $request->status]);
+
+        return response()->json(['success' => true]);
+    }   
 }
 
