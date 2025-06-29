@@ -223,6 +223,7 @@ return [
   'Featured' => 'Featured',
   'Related_By_Emirate' => 'Related by Emirate',
   'Views' => 'Views',
+
   'tire_mark' => 'tire mark',
 'Trusted' => '100% Trusted',
 'Secure_transactions' => 'Secure transactions with real users.',
@@ -234,7 +235,7 @@ return [
 '🚗 Find Your Perfect Plate' => 'Find Your Perfect Plate',
 'Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.'
 => 'Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.',
-'Meet, Confirm & Finalize Safely' => 'Meet, Confirm & Finalize Safely', 
+'Meet, Confirm & Finalize Safely' => 'Meet, Confirm & Finalize Safely',
 'Connect Directly with the Seller' => 'Connect Directly with the Seller',
 'Call or chat with the seller instantly via WhatsApp. Ask questions, negotiate the price, and get all the details — no middlemen, just smooth and secure communication.' =>
 'Call or chat with the seller instantly via WhatsApp. Ask questions, negotiate the price, and get all the details — no middlemen, just smooth and secure communication.',
@@ -248,5 +249,20 @@ return [
 'Subscribe_notification' => 'Subscribe to get notified about the latest plates and offers.',
 'Your_email_address' => 'Your email address',
 // ... existing code ...
+
+'Contact_Us' => 'Contact Us',
+'Contact_Us_Subtitle' => 'We are here to answer all your inquiries',
+'Send_Us_Message' => 'Send Us a Message',
+'Your_Name' => 'Your Name',
+'Your_Email' => 'Your Email',
+'Your_Message' => 'Your Message',
+'Send_Message' => 'Send Message',
+'Contact_Details' => 'Contact Details',
+'Address' => 'Address',
+'Phone' => 'Phone',
+'Email' => 'Email',
+'Location' => 'Dubai, UAE',
+'Quick_Help' => 'Need Quick Help?',
+'Call_Us_Now' => 'Call Us Now',
 
 ];

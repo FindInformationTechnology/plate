@@ -18,6 +18,10 @@ Route::get('/plates', [FrontController::class, 'plates'])->name('plates');
 
 Route::get('/plate/details/{id}', [FrontController::class, 'show'])->name('plate.show');
 
+Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
+// Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+
 // Search Route
 Route::get('/search', [FrontController::class, 'search'])->name('search');
 Route::get('/plates/search', [FrontController::class, 'search'])->name('plates.search');
@@ -39,7 +43,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'changeLanguage'])->name
 Route::middleware(['auth', 'verified', 'role:user'])
     ->prefix('user')->name('user.')
     ->group(function () {
-        
+
 
         Route::get('/plates', [PlateController::class, 'index'])->name('plates');
         Route::get('/plates/create', [PlateController::class, 'create'])->name('plates.create');

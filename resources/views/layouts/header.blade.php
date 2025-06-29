@@ -76,20 +76,20 @@
             <div class="navbar-header">
                 <a id="mobile_btn" href="javascript:void(0);">
                     <span class="bar-icon">
-                        <span></span>   
+                        <span></span>
                         <span></span>
                         <span></span>
                     </span>
                 </a>
- 
-              
+
+
                 <a href="{{ route('home')}}" class="navbar-brand logo">
                     <img src="{{  asset ('assets/img/logo-b.png')}}" width="145" class="img-fluid" alt="Logo">
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo-small">
                     <img src="{{  asset ('assets/img/logo-b.png')}}" class="img-fluid" width="145" alt="Logo">
                 </a>
-               
+
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
@@ -101,7 +101,7 @@
                 <ul class="main-nav">
                     <li><a href="{{ route('home')}}" class="nav-link">{{ __('message.Home') }}</a></li>
                     <li><a href="{{ route('plates')}}" class="nav-link">{{ __('message.Plates') }}</a></li>
-
+                    <li><a href="{{ route('contact')}}" class="nav-link">{{ __('message.Contact_Us') }}</a></li>
 
                     <!-- <li><a href="#">Contact</a></li> -->
 
@@ -186,13 +186,13 @@
                             <i class="fa fa-globe "></i> {{ __('message.Language') }}</a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item b-color" 
+                                <a class="dropdown-item b-color"
                                     href="{{ route('change.language', 'en') }}">
                                     {{ __('message.English') }}
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item b-color" 
+                                <a class="dropdown-item b-color"
                                     href="{{ route('change.language', 'ar') }}">
                                     {{ __('message.Arabic') }}
                                 </a>

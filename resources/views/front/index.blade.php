@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
 
@@ -238,8 +238,7 @@
                         <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
                         @else
                         <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center
-                        {{-- $plate->emirate->slug == "rak" ? 'justify-content-around' : 'justify-content-between' --}} 
-                        ">
+                        {{-- $plate->emirate->slug == 'rak' ? 'justify-content-around' : 'justify-content-between' --}}">
                             <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                             <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                         </div>
@@ -282,6 +281,7 @@
 
 
 <section id="works" class="yacht-offer-sec py-16 bg-slate-100">
+
     <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
             <h1 class="text-4xl font-bold mb-4">{{ __('message.🔍 How It Works') }}</h1>
@@ -335,7 +335,7 @@
     class="yacht-offer-sec bg-cover bg-fixed py-24 relative before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-slate-800/60"
     style="background-image: url('https://www.motorverso.com/wp-content/uploads/2019/03/CarReg-0010.jpg');">
 
-    <!-- المحتوى -->
+
     <div class="relative z-10 container mx-auto px-4 text-center text-white">
         <h2 class="text-white text-2xl font-bold mb-4">{{ __('message.Stay_Updated') }}</h2>
         <p class="text-white mb-6">{{ __('message.Subscribe_notification') }}</p>

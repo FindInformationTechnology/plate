@@ -9,6 +9,7 @@ return [
     'contact' => 'اتصل بنا',
     'Popular Plates Categorie' => 'تصنيفات الوجبات الشعبية',
 
+
     'About_Plate' => 'عن اللوحة',
     'Plate_is_a_premier_platform' => 'اللوحة هي منصة رائدة لشراء وبيع لوحات ترخيص المركبات في الإمارات العربية المتحدة. نحن نربط مالكي اللوحات بالمشترين المحتملين، مما يجعل العملية بسيطة وآمنة.',
     'Dubai_United_Arab_Emirates' => 'دبي، الإمارات العربية المتحدة',
@@ -221,6 +222,7 @@ return [
     'Recently_Added_Plates' => 'لوحات المضافة مؤخراً',
     'Related_By_Emirate' => 'مرتبط بالإمارة',
     'Views' => 'مشاهدات',
+
     'tire_mark' => 'علامة إطار',
     'Trusted' => 'موثوق 100%',
     'Secure_transactions' => 'معاملات آمنة مع مستخدمين حقيقيين.',
@@ -250,4 +252,18 @@ return [
     'Your_email_address' => 'عنوان بريدك الإلكتروني',
     // ... existing code ...
 
+    'Contact_Us' => 'تواصل معنا',
+    'Contact_Us_Subtitle' => 'نحن في خدمتك للرد على جميع استفساراتك',
+    'Send_Us_Message' => 'أرسل لنا رسالة',
+    'Your_Name' => 'اسمك',
+    'Your_Email' => 'بريدك الإلكتروني',
+    'Your_Message' => 'رسالتك',
+    'Send_Message' => 'إرسال الرسالة',
+    'Contact_Details' => 'معلومات التواصل',
+    'Address' => 'العنوان',
+    'Phone' => 'الهاتف',
+    'Email' => 'البريد الإلكتروني',
+    'Location' => 'دبي، الإمارات العربية المتحدة',
+    'Quick_Help' => 'تحتاج إلى مساعدة سريعة؟',
+    'Call_Us_Now' => 'اتصل بنا الآن',
 ];
