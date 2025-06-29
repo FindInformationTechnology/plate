@@ -73,7 +73,7 @@
     <!-- End Search Form -->
     </div>
 
-    <div class="container my-4 border border-dark-subtle rounded-3">
+    <div class="container my-4 ">
 
 
 

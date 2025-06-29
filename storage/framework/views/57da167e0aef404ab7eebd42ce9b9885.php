@@ -62,7 +62,7 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <!-- Social Login -->
                     <div class="social-login">
-                        <a href="#"
+                        <a href="<?php echo e(route('auth.google')); ?>"
                             class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img
                                     src="assets/img/icons/google.svg" class="img-fluid" alt="Google"></span><?php echo e(__('message.Log_in_with_Google')); ?></a>
                     </div>
