@@ -7,9 +7,33 @@ use App\Http\Controllers\Front\ProfileController;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LanguageController;
+use App\Models\Plate;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 
 
+Route::get('/sitemap.xml', function () {
+    $sitemap = Sitemap::create();
+
+    // Add main static pages
+    $sitemap->add(url::create('/')->setPriority(1.0));
+    $sitemap->add(Url::create('/plates')->setPriority(0.9));
+    // $sitemap->add(Url::create('/')->setPriority(0.7)); 
+    $sitemap->add(Url::create('/contact')->setPriority(0.7)); 
+
+    // Add dynamic plate listing pages
+    Plate::where('is_visible', true)->get()->each(function (Plate $plate) use ($sitemap) {
+        $sitemap->add(
+            Url::create("/plates/details/{$plate->id}")
+                ->setLastModificationDate($plate->updated_at)
+                ->setPriority(0.8)
+        );
+    });
+
+    // Return XML response
+    return $sitemap->toResponse(request());
+});
 
 
 Route::get('/', [FrontController::class, 'index'])->name('home');

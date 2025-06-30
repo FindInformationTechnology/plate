@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title> {{ config('app.name') }}</title>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RW30DCWP1K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RW30DCWP1K');
+    </script>
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset ('assets/img/favicon.png')}}">
 
@@ -100,6 +113,8 @@
 
 </head>
 
+
+
 <div id="page-transition-overlay" class="hidden">
     <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" />
 </div>
@@ -191,31 +206,31 @@
             const overlay = document.getElementById("page-transition-overlay");
 
             links.forEach(link => {
-                        link.addEventListener("click", function(e) {
-                                e.preventDefault();
-                                // Only apply to links with actual URLs, not javascript:void(0)
-                                if (this.getAttribute("href") && !this.getAttribute("href").includes("javascript:")) {
-                                    e.preventDefault();
-                                    const href = this.getAttribute("href");
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    // Only apply to links with actual URLs, not javascript:void(0)
+                    if (this.getAttribute("href") && !this.getAttribute("href").includes("javascript:")) {
+                        e.preventDefault();
+                        const href = this.getAttribute("href");
 
-                                    overlay.classList.remove("hidden");
-                                    overlay.classList.add("show");
+                        overlay.classList.remove("hidden");
+                        overlay.classList.add("show");
 
-                                    setTimeout(() => {
-                                        overlay.classList.add("start-grow");
-                                    }, 200);
+                        setTimeout(() => {
+                            overlay.classList.add("start-grow");
+                        }, 200);
 
-                                    setTimeout(() => {
-                                        overlay.classList.add("hide-logo");
-                                    }, 1000);
+                        setTimeout(() => {
+                            overlay.classList.add("hide-logo");
+                        }, 1000);
 
-                                    setTimeout(() => {
-                                        window.location.href = href;
-                                    }, 1000);
-                                }
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 1000);
+                    }
 
-                                });
-                        });
+                });
+            });
         </script>
 
 
