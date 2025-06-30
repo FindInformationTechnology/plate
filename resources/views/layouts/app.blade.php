@@ -8,6 +8,7 @@
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RW30DCWP1K"></script>
+    
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -18,6 +19,8 @@
 
         gtag('config', 'G-RW30DCWP1K');
     </script>
+
+    
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset ('assets/img/favicon.png')}}">
