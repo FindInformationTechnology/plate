@@ -6,6 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <title> <?php echo e(config('app.name')); ?></title>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RW30DCWP1K"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RW30DCWP1K');
+    </script>
+
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WZ8WB8CV');
+    </script>
+    <!-- End Google Tag Manager -->
+
+
+
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo e(asset ('assets/img/favicon.png')); ?>">
 
@@ -100,11 +137,20 @@
 
 </head>
 
+
+
 <div id="page-transition-overlay" class="hidden">
     <img src="<?php echo e(asset('assets/img/logo-b.png')); ?>" alt="Logo" />
 </div>
 
 <body class="home-two">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ8WB8CV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
 
     <div class="main-wrapper">
 
@@ -191,31 +237,31 @@
             const overlay = document.getElementById("page-transition-overlay");
 
             links.forEach(link => {
-                        link.addEventListener("click", function(e) {
-                                e.preventDefault();
-                                // Only apply to links with actual URLs, not javascript:void(0)
-                                if (this.getAttribute("href") && !this.getAttribute("href").includes("javascript:")) {
-                                    e.preventDefault();
-                                    const href = this.getAttribute("href");
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    // Only apply to links with actual URLs, not javascript:void(0)
+                    if (this.getAttribute("href") && !this.getAttribute("href").includes("javascript:")) {
+                        e.preventDefault();
+                        const href = this.getAttribute("href");
 
-                                    overlay.classList.remove("hidden");
-                                    overlay.classList.add("show");
+                        overlay.classList.remove("hidden");
+                        overlay.classList.add("show");
 
-                                    setTimeout(() => {
-                                        overlay.classList.add("start-grow");
-                                    }, 200);
+                        setTimeout(() => {
+                            overlay.classList.add("start-grow");
+                        }, 200);
 
-                                    setTimeout(() => {
-                                        overlay.classList.add("hide-logo");
-                                    }, 1000);
+                        setTimeout(() => {
+                            overlay.classList.add("hide-logo");
+                        }, 1000);
 
-                                    setTimeout(() => {
-                                        window.location.href = href;
-                                    }, 1000);
-                                }
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 1000);
+                    }
 
-                                });
-                        });
+                });
+            });
         </script>
 
 
@@ -259,5 +305,4 @@
 
 </body>
 
-</html>
-<?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/app.blade.php ENDPATH**/ ?>
