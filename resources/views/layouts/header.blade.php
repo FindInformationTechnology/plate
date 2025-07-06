@@ -108,9 +108,10 @@
 
 
                     @guest
-                    <!-- <li class="login-link">
-                        <a href="{{ route('register') }}">{{ __('message.Sign_Up') }}</a>
-                    </li> -->
+                    <li class="login-link">
+                        <a href="{{ route('register') }}">{{ __('message.Sign_Up') }} / </a>
+                    </li>
+                    
                     <li class="login-link">
                         <a href="{{ route('login') }}">{{ __('message.Sign_In') }}</a>
                     </li>
@@ -226,10 +227,10 @@
 
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link login-link" href="{{ route('login') }}"><span><i class="bx bx-user me-2"></i></span>{{ __('message.Sign_In') }}  </a>
-                    @if(Route::has('register') )
-                    <!-- <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a> -->
-                    @endif
+                    <a class="nav-link login-link" href="{{ route('login') }}"><span><i class="bx bx-user me-2"></i></span>{{ __('message.Sign_In') }} / </a>
+                    <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a>
+                    <!-- @if(Route::has('register') )
+                    @endif -->
 
 
                 </li>

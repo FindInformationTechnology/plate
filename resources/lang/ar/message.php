@@ -19,7 +19,7 @@ return [
     'Browse_Plates' => 'تصفح اللوحات',
     'User_Account' => 'حساب المستخدم',
     'Login' => 'تسجيل الدخول',
-    'Register' => 'تسجيل',
+    'Register' => 'اشتراك',
     'My_Dashboard' => 'لوحة التحكم الخاصة بي',
     'My_Plates' => 'لوحاتي',
     'My_Profile' => 'ملفي الشخصي',
@@ -232,7 +232,7 @@ return [
     'Help_anytime' => 'نحن هنا للمساعدة في أي وقت.',
     'Why_Choose_Us' => 'لماذا تختارنا؟',
     'Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.'
-    => 'استعرض الآلاف من اللوحات المتاحة بكل سهولة باستخدام الفلاتر الذكية — اختر الإمارة، الكود، السعر أو الترتيب المناسب لك. خلال ثوانٍ، ستجد اللوحة التي تعبّر عنك.',
+    => 'اللوحة هي منصة رائدة لشراء وبيع لوحات ترخيص المركبات في الإمارات العربية المتحدة. نحن نربط مالكي اللوحات بالمشترين المحتملين، مما يجعل العملية بسيطة وآمنة.',
 
     '🚗 Find Your Perfect Plate' => ' ابحث عن لوحتك المميزة',
     'Meet, Confirm & Finalize Safely' => ' اتفق وآمن الصفقة بذكاء',

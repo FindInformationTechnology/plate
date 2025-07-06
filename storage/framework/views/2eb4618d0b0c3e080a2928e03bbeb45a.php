@@ -108,9 +108,10 @@
 
 
                     <?php if(auth()->guard()->guest()): ?>
-                    <!-- <li class="login-link">
-                        <a href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Sign_Up')); ?></a>
-                    </li> -->
+                    <li class="login-link">
+                        <a href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Sign_Up')); ?> / </a>
+                    </li>
+                    
                     <li class="login-link">
                         <a href="<?php echo e(route('login')); ?>"><?php echo e(__('message.Sign_In')); ?></a>
                     </li>
@@ -233,10 +234,10 @@
 
                 <?php if(auth()->guard()->guest()): ?>
                 <li class="nav-item">
-                    <a class="nav-link login-link" href="<?php echo e(route('login')); ?>"><span><i class="bx bx-user me-2"></i></span><?php echo e(__('message.Sign_In')); ?>  </a>
-                    <?php if(Route::has('register') ): ?>
-                    <!-- <a class="nav-link login-link ms-1" href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Register')); ?> </a> -->
-                    <?php endif; ?>
+                    <a class="nav-link login-link" href="<?php echo e(route('login')); ?>"><span><i class="bx bx-user me-2"></i></span><?php echo e(__('message.Sign_In')); ?> / </a>
+                    <a class="nav-link login-link ms-1" href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Register')); ?> </a>
+                    <!-- <?php if(Route::has('register') ): ?>
+                    <?php endif; ?> -->
 
 
                 </li>
