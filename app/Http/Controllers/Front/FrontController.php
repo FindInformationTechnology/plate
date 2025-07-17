@@ -17,7 +17,7 @@ class FrontController extends Controller
 
     public function search(Request $request)
     {
-        // Get all the input values from the form
+        // Gather input
         $emirateId = $request->input('emirate_id');
         $codeId = $request->input('code_id');
         $length = $request->input('length');
@@ -25,65 +25,52 @@ class FrontController extends Controller
         $minPrice = $request->input('min_price');
         $startWith = $request->input('start_with');
         $endWith = $request->input('end_with');
-        $format = $request->input('format'); // NEW: get format input
+        $format = $request->input('format');
 
-        // Start building the query
+        // Start query
         $query = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
             ->with(['emirate', 'code'])
             ->where('is_visible', true)
             ->where('is_approved', true)
             ->where('is_sold', false);
 
-        // Apply filters based on the input values
+        // Basic filters
         if ($emirateId) {
             $query->where('emirate_id', $emirateId);
         }
-
         if ($codeId) {
             $query->where('code_id', $codeId);
         }
-
         if ($length) {
             $query->where('length', $length);
         }
-
         if ($maxPrice) {
-            $query->where('price', '<=', $maxPrice); // Use 'price' instead of 'price_digits'
+            $query->where('price', '<=', $maxPrice);
         }
-
         if ($minPrice) {
-            $query->where('price', '>=', $minPrice); // Use 'price' instead of 'price_digits'
+            $query->where('price', '>=', $minPrice);
         }
-
         if ($startWith) {
             $query->where('number', 'like', $startWith . '%');
         }
-
         if ($endWith) {
             $query->where('number', 'like', '%' . $endWith);
         }
 
-        // NEW: Handle format filter
+        // Format-based filters (all REGEXP, MySQL compatible)
         if ($format) {
             switch ($format) {
                 case 'repeat_2':
-                    // At least one digit appears exactly twice (and not more)
-                    $query->whereRaw(
-                        // Find any digit that appears exactly twice
-                        "number REGEXP '(.)\\1' AND NOT number REGEXP '(.)\\1{2,}'"
-                    );
+                    // Any digit appears exactly twice (and not more)
+                    $query->whereRaw("number REGEXP '(.)\\1' AND NOT number REGEXP '(.)\\1{2,}'");
                     break;
                 case 'repeat_3':
-                    // At least one digit appears exactly three times (and not more)
-                    $query->whereRaw(
-                        "number REGEXP '(.)\\1\\1' AND NOT number REGEXP '(.)\\1{3,}'"
-                    );
+                    // Any digit appears exactly three times (and not more)
+                    $query->whereRaw("number REGEXP '(.)\\1\\1' AND NOT number REGEXP '(.)\\1{3,}'");
                     break;
                 case 'repeat_4':
-                    // At least one digit appears exactly four times (and not more)
-                    $query->whereRaw(
-                        "number REGEXP '(.)\\1\\1\\1' AND NOT number REGEXP '(.)\\1{4,}'"
-                    );
+                    // Any digit appears exactly four times (and not more)
+                    $query->whereRaw("number REGEXP '(.)\\1\\1\\1' AND NOT number REGEXP '(.)\\1{4,}'");
                     break;
                 case 'x_any_any_any_x':
                     $query->where('length', 5)
@@ -113,12 +100,12 @@ class FrontController extends Controller
                         ->whereRaw("SUBSTRING(number, 3, 1) = SUBSTRING(number, 4, 1)")
                         ->whereRaw("SUBSTRING(number, 3, 1) = SUBSTRING(number, 5, 1)");
                     break;
-                case 'x_x_x_any_any':
+                case 'xxx??_5_Digits':
                     $query->where('length', 5)
                         ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
                         ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)");
                     break;
-                case 'x_x_x_x_x':
+                case 'xxxxx_5_Digits':
                     $query->where('length', 5)
                         ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
                         ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)")
