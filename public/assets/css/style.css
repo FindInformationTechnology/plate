@@ -2762,7 +2762,7 @@ span.select2-container.select2-container--default.select2-container--open {
   margin-top: 2px;
 }
 .table tbody td a {
-  color: #2F2F2F;
+  color: #FFFFFF !important;
 }
 .table tbody td a.btn-action-icon {
   background: #F3F3F3;

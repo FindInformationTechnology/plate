@@ -10,11 +10,14 @@ use App\Http\Controllers\Admin\CodeController;
 
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/users', [DashboardController::class, 'users'])->name('users');
+    
 
     // Emirates and code management
     Route::resource('emirates', EmirateController::class)->only(['index', 'edit', 'store', 'update', 'destroy']);
     Route::resource('codes', CodeController::class)->only(['index', 'edit', 'store', 'update', 'destroy']);
+
+    Route::view('/users','admin.pages.users.list')->name('users.index');
+    
 
     // Plates Management
     // Route::resource('plates', PlateController::class);

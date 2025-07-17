@@ -10,8 +10,8 @@ return [
     'Popular Plates Categorie' => 'تصنيفات الوجبات الشعبية',
 
 
-    'About_Plate' => 'عن اللوحة',
-    'Plate_is_a_premier_platform' => 'اللوحة هي منصة رائدة لشراء وبيع لوحات ترخيص المركبات في الإمارات العربية المتحدة. نحن نربط مالكي اللوحات بالمشترين المحتملين، مما يجعل العملية بسيطة وآمنة.',
+    'About_Plate' => 'عن بليد 35',
+    'Plate_is_a_premier_platform' => 'بليد 35 هي منصة رائدة لشراء وبيع لوحات ترخيص المركبات في الإمارات العربية المتحدة. نحن نربط مالكي اللوحات بالمشترين المحتملين، مما يجعل العملية بسيطة وآمنة.',
     'Dubai_United_Arab_Emirates' => 'دبي، الإمارات العربية المتحدة',
     'Quick_Links' => 'روابط سريعة',
 
@@ -232,7 +232,7 @@ return [
     'Help_anytime' => 'نحن هنا للمساعدة في أي وقت.',
     'Why_Choose_Us' => 'لماذا تختارنا؟',
     'Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.'
-    => 'اللوحة هي منصة رائدة لشراء وبيع لوحات ترخيص المركبات في الإمارات العربية المتحدة. نحن نربط مالكي اللوحات بالمشترين المحتملين، مما يجعل العملية بسيطة وآمنة.',
+    => 'بليد 35 هي منصة رائدة لشراء وبيع لوحات ترخيص المركبات في الإمارات العربية المتحدة. نحن نربط مالكي اللوحات بالمشترين المحتملين، مما يجعل العملية بسيطة وآمنة.',
 
     '🚗 Find Your Perfect Plate' => ' ابحث عن لوحتك المميزة',
     'Meet, Confirm & Finalize Safely' => ' اتفق وآمن الصفقة بذكاء',
