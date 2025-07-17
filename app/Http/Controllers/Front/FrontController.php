@@ -260,9 +260,22 @@ class FrontController extends Controller
 
     public function show(Request $request, $id)
     {
+        // Validate that ID is numeric and exists
+        if (!is_numeric($id)) {
+            abort(404);
+        }
+
+        // Find plate or fail with 404
+        $plate = Plate::where('id', $id)
+            ->where('is_visible', true)
+            ->where('is_approved', true)
+            ->first();
+
+        if (!$plate) {
+            abort(404);
+        }
 
         // Record view if not the owner
-        $plate = Plate::findOrFail($id);
         if (Auth::id() !== $plate->user_id) {
             $this->recordView($plate);
         }
@@ -341,19 +354,24 @@ class FrontController extends Controller
     }
 
 
+    /**
+     * Handle missing contact method
+     */
     public function contact()
-{
-    return view('front.contact');
-}
+    {
+        return view('front.contact');
+    }
 
-
-
+    /**
+     * Get codes by emirate (AJAX endpoint)
+     */
     public function getCodes($emirate_id)
     {
-        // Fetch codes based on emirate_id
-        $codes = Code::where('emirate_id', $emirate_id)->get();
+        if (!is_numeric($emirate_id)) {
+            return response()->json(['error' => 'Invalid emirate ID'], 400);
+        }
 
-        // Return the codes as JSON
+        $codes = \App\Models\Code::where('emirate_id', $emirate_id)->get();
         return response()->json($codes);
     }
 }

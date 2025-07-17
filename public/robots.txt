@@ -1,2 +1,38 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin and user private areas
+Disallow: /admin/
+Disallow: /user/
+Disallow: /login
+Disallow: /register
+Disallow: /password/
+
+# Disallow API endpoints from indexing
+Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /plates
+Allow: /plate/details/
+Allow: /plates/search
+Allow: /contact
+
+# Block sensitive files
+Disallow: /*.env
+Disallow: /*.git
+Disallow: /storage/
+Disallow: /vendor/
+
+# Sitemap location (replace with your actual domain)
+Sitemap: https://yourdomain.com/sitemap.xml

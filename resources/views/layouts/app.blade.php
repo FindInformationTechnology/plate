@@ -17,11 +17,59 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title> {{ config('app.name') }}</title>
-
-
-
     
+    <!-- SEO Meta Tags -->
+    <title>@yield('title', config('app.name') . ' - Premium UAE License Plates')</title>
+    <meta name="description" content="@yield('meta_description', __('message.Home_Meta_Description'))">
+    <meta name="keywords" content="UAE license plates, Dubai number plates, Abu Dhabi plates, car plates, vehicle registration, premium plates, @yield('keywords', '')">
+    <meta name="author" content="{{ config('app.name') }}">
+    <meta name="robots" content="@yield('robots', 'index, follow')">
+    <link rel="canonical" href="@yield('canonical', request()->url())">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="@yield('og_title', config('app.name') . ' - Premium UAE License Plates')">
+    <meta property="og:description" content="@yield('og_description', __('message.Home_Meta_Description'))">
+    <meta property="og:image" content="@yield('og_image', asset('assets/img/og-image.jpg'))">
+    <meta property="og:url" content="@yield('og_url', request()->url())">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:locale" content="{{ app()->getLocale() == 'ar' ? 'ar_AE' : 'en_US' }}">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('twitter_title', config('app.name') . ' - Premium UAE License Plates')">
+    <meta name="twitter:description" content="@yield('twitter_description', __('message.Home_Meta_Description'))">
+    <meta name="twitter:image" content="@yield('twitter_image', asset('assets/img/og-image.jpg'))">
+    
+    <!-- Language Alternatives -->
+    <link rel="alternate" hreflang="en" href="{{ url('/') }}">
+    <link rel="alternate" hreflang="ar" href="{{ url('/lang/ar') }}">
+    <link rel="alternate" hreflang="x-default" href="{{ url('/') }}">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoPartsStore",
+        "name": "{{ config('app.name') }}",
+        "description": "{{ __('message.Home_Meta_Description') }}",
+        "url": "{{ url('/') }}",
+        "logo": "{{ asset('assets/img/logo.webp') }}",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "AE",
+            "addressRegion": "Dubai"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "url": "{{ route('contact') }}"
+        },
+        "sameAs": [
+            "@yield('social_links', '')"
+        ]
+    }
+    </script>
 
     <!-- Google Tag Manager -->
     <script>
@@ -42,11 +90,12 @@
     </script>
     <!-- End Google Tag Manager -->
 
-
-
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset ('assets/img/favicon.png')}}">
+    <!-- Favicon and Touch Icons -->
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('/site.webmanifest') }}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap.min.css')}}" as="style">

@@ -16,23 +16,63 @@ use Spatie\Sitemap\Tags\Url;
 Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create();
 
-    // Add main static pages
-    $sitemap->add(url::create('/')->setPriority(1.0));
-    $sitemap->add(Url::create('/plates')->setPriority(0.9));
-    // $sitemap->add(Url::create('/')->setPriority(0.7)); 
-    $sitemap->add(Url::create('/contact')->setPriority(0.7)); 
+    // Add main static pages with priorities
+    $sitemap->add(Url::create('/')
+        ->setPriority(1.0)
+        ->setChangeFrequency('daily')
+        ->setLastModificationDate(now())
+    );
+    
+    $sitemap->add(Url::create('/plates')
+        ->setPriority(0.9)
+        ->setChangeFrequency('daily')
+        ->setLastModificationDate(now())
+    );
+    
+    $sitemap->add(Url::create('/contact')
+        ->setPriority(0.7)
+        ->setChangeFrequency('monthly')
+        ->setLastModificationDate(now())
+    );
 
-    // Add dynamic plate listing pages
-    Plate::where('is_visible', true)->get()->each(function (Plate $plate) use ($sitemap) {
+    // Add search page
+    $sitemap->add(Url::create('/plates/search')
+        ->setPriority(0.8)
+        ->setChangeFrequency('weekly')
+        ->setLastModificationDate(now())
+    );
+
+    // Add emirate-specific pages
+    \App\Models\Emirate::all()->each(function ($emirate) use ($sitemap) {
         $sitemap->add(
-            Url::create("/plates/details/{$plate->id}")
-                ->setLastModificationDate($plate->updated_at)
+            Url::create("/plates/search?emirate_id={$emirate->id}")
                 ->setPriority(0.8)
+                ->setChangeFrequency('daily')
+                ->setLastModificationDate($emirate->updated_at ?? now())
         );
     });
 
-    // Return XML response
-    return $sitemap->toResponse(request());
+    // Add dynamic plate listing pages (only visible and approved)
+    Plate::where('is_visible', true)
+        ->where('is_approved', true)
+        ->where('is_sold', false)
+        ->select(['id', 'updated_at'])
+        ->chunk(1000, function ($plates) use ($sitemap) {
+            foreach ($plates as $plate) {
+                $sitemap->add(
+                    Url::create("/plate/details/{$plate->id}")
+                        ->setLastModificationDate($plate->updated_at)
+                        ->setPriority(0.8)
+                        ->setChangeFrequency('weekly')
+                );
+            }
+        });
+
+    // Return XML response with proper headers
+    return response($sitemap->render(), 200, [
+        'Content-Type' => 'application/xml',
+        'Cache-Control' => 'public, max-age=3600', // Cache for 1 hour
+    ]);
 });
 
 

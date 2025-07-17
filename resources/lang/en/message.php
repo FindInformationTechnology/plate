@@ -288,4 +288,17 @@ return [
     'x_x_y_3_Digits' => 'XXY (First Two Digits Same, 3 Digits)',
     'x_x_x_3_Digits' => 'XXX (All Digits Same, 3 Digits)',
 
+    'Page_Not_Found' => 'Page Not Found',
+    'Page_Not_Found_Description' => 'The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.',
+    'Search_For_Plates' => 'Search for Plates',
+    'Popular_Categories' => 'Popular Categories',
+    'Back_to_Previous_Page' => 'Back to Previous Page',
+    'Browse_Plates' => 'Browse Plates',
+    
+    // SEO Meta Descriptions
+    'Home_Meta_Description' => 'Find and buy premium UAE license plates. Browse thousands of unique number plates from Dubai, Abu Dhabi, and all Emirates. Secure transactions guaranteed.',
+    'Plates_Meta_Description' => 'Browse our extensive collection of UAE license plates. Find the perfect number plate from all Emirates with advanced search filters.',
+    'Contact_Meta_Description' => 'Contact Plate UAE for assistance with buying or selling license plates. Get expert help and secure transactions.',
+    'Search_Meta_Description' => 'Search results for UAE license plates. Find your perfect number plate with our advanced filtering system.',
+
 ];

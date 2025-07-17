@@ -1,5 +1,11 @@
 ﻿@extends('layouts.app')
 
+@section('title', __('message.Browse_Plates') . ' - ' . config('app.name'))
+@section('meta_description', __('message.Plates_Meta_Description'))
+@section('keywords', 'browse UAE plates, search license plates, Dubai car plates, Abu Dhabi number plates')
+@section('og_title', __('message.Browse_Plates') . ' - ' . config('app.name'))
+@section('og_description', __('message.Plates_Meta_Description'))
+
 @section('content')
 
 

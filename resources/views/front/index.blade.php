@@ -1,5 +1,12 @@
 ﻿@extends('layouts.app')
 
+@section('title', config('app.name') . ' - ' . __('message.Premium_UAE_Plates') . ' | ' . __('message.At_Your_Fingertips'))
+@section('meta_description', __('message.Home_Meta_Description'))
+@section('keywords', 'UAE license plates, Dubai plates, Abu Dhabi plates, premium number plates, car registration, vehicle plates')
+@section('og_title', config('app.name') . ' - ' . __('message.Premium_UAE_Plates'))
+@section('og_description', __('message.Home_Meta_Description'))
+@section('og_type', 'website')
+
 @section('content')
 
 <style>
