@@ -17,7 +17,7 @@ class FrontController extends Controller
 
     public function search(Request $request)
     {
-        // Gather input
+        // Gather input with validation
         $emirateId = $request->input('emirate_id');
         $codeId = $request->input('code_id');
         $length = $request->input('length');
@@ -27,14 +27,33 @@ class FrontController extends Controller
         $endWith = $request->input('end_with');
         $format = $request->input('format');
 
-        // Start query
+        // Start query with active plates only
         $query = Plate::select(['id', 'emirate_id', 'code_id', 'number', 'price'])
             ->with(['emirate', 'code'])
             ->where('is_visible', true)
             ->where('is_approved', true)
             ->where('is_sold', false);
 
-        // Basic filters
+        // Apply basic filters
+        $this->applyBasicFilters($query, $emirateId, $codeId, $length, $maxPrice, $minPrice, $startWith, $endWith);
+
+        // Apply format-based filters
+        if ($format) {
+            $this->applyFormatFilter($query, $format);
+        }
+
+        // Get results with pagination
+        $plates = $query->orderBy('created_at', 'desc')->get();
+
+        // Pass search results and current filters to view
+        return view('front.search', compact('plates'));
+    }
+
+    /**
+     * Apply basic search filters
+     */
+    private function applyBasicFilters($query, $emirateId, $codeId, $length, $maxPrice, $minPrice, $startWith, $endWith)
+    {
         if ($emirateId) {
             $query->where('emirate_id', $emirateId);
         }
@@ -56,114 +75,143 @@ class FrontController extends Controller
         if ($endWith) {
             $query->where('number', 'like', '%' . $endWith);
         }
+    }
 
-        // Format-based filters (all REGEXP, MySQL compatible)
-        if ($format) {
-            switch ($format) {
-                case 'repeat_2':
-                    // Any digit appears exactly twice (and not more)
-                    $query->whereRaw("number REGEXP '(.)\\1' AND NOT number REGEXP '(.)\\1{2,}'");
-                    break;
-                case 'repeat_3':
-                    // Any digit appears exactly three times (and not more)
-                    $query->whereRaw("number REGEXP '(.)\\1\\1' AND NOT number REGEXP '(.)\\1{3,}'");
-                    break;
-                case 'repeat_4':
-                    // Any digit appears exactly four times (and not more)
-                    $query->whereRaw("number REGEXP '(.)\\1\\1\\1' AND NOT number REGEXP '(.)\\1{4,}'");
-                    break;
-                case 'x_any_any_any_x':
-                    $query->where('length', 5)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)");
-                    break;
-                case 'x_y_z_y_x':
-                    $query->where('length', 5)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)")
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 4, 1)")
-                        ->whereRaw("SUBSTRING(number, 3, 1) != SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 3, 1) != SUBSTRING(number, 1, 1)");
-                    break;
-                case 'x_x_z_x_x':
-                    $query->where('length', 5)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)")
-                        ->whereRaw("SUBSTRING(number, 3, 1) != SUBSTRING(number, 1, 1)");
-                    break;
-                case 'any_x_x_x_any':
-                    $query->where('length', 5)
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)")
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 4, 1)");
-                    break;
-                case 'any_any_x_x_x':
-                    $query->where('length', 5)
-                        ->whereRaw("SUBSTRING(number, 3, 1) = SUBSTRING(number, 4, 1)")
-                        ->whereRaw("SUBSTRING(number, 3, 1) = SUBSTRING(number, 5, 1)");
-                    break;
-                case 'xxx??_5_Digits':
-                    $query->where('length', 5)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)");
-                    break;
-                case 'xxxxx_5_Digits':
-                    $query->where('length', 5)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)");
-                    break;
-                case 'x_any_any_x':
-                    $query->where('length', 4)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)");
-                    break;
-                case 'x_y_y_x_4_Digits':
-                    $query->where('length', 4)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)")
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)");
-                    break;
-                case '?_x_x_?_4_Digits':
-                    $query->where('length', 4)
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)");
-                    break;
-                case 'x_y_y_y_4_Digits':
-                    $query->where('length', 4)
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)")
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 4, 1)");
-                    break;
-                case 'x_x_x_y_4_Digits':
-                    $query->where('length', 4)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)");
-                    break;
-                case 'x_y_z_3_Digits':
-                    $query->where('length', 3)
-                        ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 2, 1) != SUBSTRING(number, 3, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 3, 1)");
-                    break;
-                case 'x_y_y_3_Digits':
-                    $query->where('length', 3)
-                        ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 2, 1)");
-                    break;
-                case 'x_x_y_3_Digits':
-                    $query->where('length', 3)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 3, 1)");
-                    break;
-                case 'x_x_x_3_Digits':
-                    $query->where('length', 3)
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
-                        ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)");
-                    break;
-            }
+    /**
+     * Apply format-based filters with proper MySQL regex
+     */
+    private function applyFormatFilter($query, $format)
+    {
+        switch ($format) {
+            // Repeat patterns - improved regex
+            case 'repeat_2':
+                $query->whereRaw("(
+                    (number REGEXP '(.).*\\1' AND LENGTH(number) - LENGTH(REPLACE(number, SUBSTRING(number, 1, 1), '')) = 2) OR
+                    (number REGEXP '.(.).*\\1' AND LENGTH(number) - LENGTH(REPLACE(number, SUBSTRING(number, 2, 1), '')) = 2) OR
+                    (number REGEXP '..(.).*\\1' AND LENGTH(number) - LENGTH(REPLACE(number, SUBSTRING(number, 3, 1), '')) = 2) OR
+                    (number REGEXP '...(.).*\\1' AND LENGTH(number) - LENGTH(REPLACE(number, SUBSTRING(number, 4, 1), '')) = 2) OR
+                    (number REGEXP '....(.).*\\1' AND LENGTH(number) - LENGTH(REPLACE(number, SUBSTRING(number, 5, 1), '')) = 2)
+                )");
+                break;
+            case 'repeat_3':
+                $query->whereRaw("(
+                    LENGTH(number) - LENGTH(REPLACE(number, '0', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '1', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '2', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '3', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '4', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '5', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '6', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '7', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '8', '')) = 3 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '9', '')) = 3
+                )");
+                break;
+            case 'repeat_4':
+                $query->whereRaw("(
+                    LENGTH(number) - LENGTH(REPLACE(number, '0', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '1', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '2', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '3', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '4', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '5', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '6', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '7', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '8', '')) = 4 OR
+                    LENGTH(number) - LENGTH(REPLACE(number, '9', '')) = 4
+                )");
+                break;
+
+            // 3-digit patterns
+            case 'x_y_z_3_Digits':
+                $query->where('length', 3)
+                    ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 2, 1) != SUBSTRING(number, 3, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 3, 1)");
+                break;
+            case 'x_y_y_3_Digits':
+                $query->where('length', 3)
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 2, 1)");
+                break;
+            case 'x_x_y_3_Digits':
+                $query->where('length', 3)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) != SUBSTRING(number, 3, 1)");
+                break;
+            case 'x_x_x_3_Digits':
+                $query->where('length', 3)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)");
+                break;
+
+            // 4-digit patterns
+            case 'x_any_any_x':
+                $query->where('length', 4)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)");
+                break;
+            case 'x_y_y_x_4_Digits':
+                $query->where('length', 4)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)")
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)");
+                break;
+            case '?_x_x_?_4_Digits':
+                $query->where('length', 4)
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)");
+                break;
+            case 'x_y_y_y_4_Digits':
+                $query->where('length', 4)
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)")
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 4, 1)");
+                break;
+            case 'x_x_x_y_4_Digits':
+                $query->where('length', 4)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)");
+                break;
+
+            // 5-digit patterns
+            case 'x_any_any_any_x':
+                $query->where('length', 5)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)");
+                break;
+            case 'x_y_z_y_x':
+                $query->where('length', 5)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)")
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 4, 1)")
+                    ->whereRaw("SUBSTRING(number, 3, 1) != SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 3, 1) != SUBSTRING(number, 1, 1)");
+                break;
+            case 'x_x_z_x_x':
+                $query->where('length', 5)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)")
+                    ->whereRaw("SUBSTRING(number, 3, 1) != SUBSTRING(number, 1, 1)");
+                break;
+            case 'any_x_x_x_any':
+                $query->where('length', 5)
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 3, 1)")
+                    ->whereRaw("SUBSTRING(number, 2, 1) = SUBSTRING(number, 4, 1)");
+                break;
+            case 'any_any_x_x_x':
+                $query->where('length', 5)
+                    ->whereRaw("SUBSTRING(number, 3, 1) = SUBSTRING(number, 4, 1)")
+                    ->whereRaw("SUBSTRING(number, 3, 1) = SUBSTRING(number, 5, 1)");
+                break;
+            case 'xxx??_5_Digits':
+                $query->where('length', 5)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)");
+                break;
+            case 'xxxxx_5_Digits':
+                $query->where('length', 5)
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 2, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 3, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 4, 1)")
+                    ->whereRaw("SUBSTRING(number, 1, 1) = SUBSTRING(number, 5, 1)");
+                break;
         }
-
-        // Get the search results
-        $plates = $query->get();
-
-        // Pass the search results to the view
-        return view('front.search', compact('plates'));
     }
 
     public function index(PlateService $plateService)

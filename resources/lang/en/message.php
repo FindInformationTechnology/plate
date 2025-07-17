@@ -264,6 +264,10 @@ return [
 'Call_Us_Now' => 'Call Us Now',
 
     'Select_Format' => 'Select Format',
+    'Repeat_Patterns' => 'Repeat Patterns',
+    '3_Digit_Patterns' => '3 Digit Patterns',
+    '4_Digit_Patterns' => '4 Digit Patterns',
+    '5_Digit_Patterns' => '5 Digit Patterns',
     'Contains_Digit_Repeated_2_Times' => 'Contains Digit Repeated 2 Times',
     'Contains_Digit_Repeated_3_Times' => 'Contains Digit Repeated 3 Times',
     'Contains_Digit_Repeated_4_Times' => 'Contains Digit Repeated 4 Times',
