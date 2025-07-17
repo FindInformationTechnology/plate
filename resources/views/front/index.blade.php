@@ -3,57 +3,67 @@
 @section('content')
 
 <style>
-    .featured-plates-slider .owl-nav {
-        position: absolute;
-        top: -50px;
-        right: 0;
+.featured-plates-slider .owl-nav {
+    position: absolute;
+    top: -50px;
+    right: 0;
+}
+
+.featured-plates-slider .owl-nav button {
+    width: 30px;
+    height: 30px;
+    background-color: #f5f5f5 !important;
+    border-radius: 50%;
+    margin-left: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.featured-plates-slider .owl-nav button:hover {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+.featured-plates-slider .item {
+    padding: 10px;
+}
+
+/* By default, hide the small image and show the large one */
+.slider-img-large {
+    display: block;
+}
+
+.slider-img-small {
+    display: none;
+}
+
+/* When the screen is 678px or less, show the small image and hide the large one */
+@media (max-width: 678px) {
+    .slider-img-large {
+        display: none;
     }
 
-    .featured-plates-slider .owl-nav button {
-        width: 30px;
-        height: 30px;
-        background-color: #f5f5f5 !important;
-        border-radius: 50%;
-        margin-left: 5px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+    .slider-img-small {
+        display: block;
     }
-
-    .featured-plates-slider .owl-nav button:hover {
-        background-color: #28a745 !important;
-        color: white;
-    }
-
-    .featured-plates-slider .item {
-        padding: 10px;
-    }
-
-    /* By default, hide the small image and show the large one */
-    .slider-img-large { display: block; }
-    .slider-img-small { display: none; }
-
-    /* When the screen is 678px or less, show the small image and hide the large one */
-    @media (max-width: 678px) {
-        .slider-img-large { display: none; }
-        .slider-img-small { display: block; }
-    }
+}
 </style>
 
 
 <!-- Banner -->
 <section class="banner-section banner-sec-two banner-slider">
     <div class="banner-img-slider owl-carousel" style="direction: ltr;">
-        
-    <div class="slider-img ">
+
+        <div class="slider-img ">
             <img class="slider-img-small" src="assets/img/owl-1.png" alt="Img" loading="lazy">
             <img class="slider-img slider-img-large" src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
         </div>
-        
-      
 
-      
-       
+
+
+
+
     </div>
     <div class="container">
         <div class="home-banner">
@@ -64,7 +74,8 @@
                             <h1 class="text-[35px] md:text-[65px]">{{ __('message.Premium_UAE_Plates')}}
                                 <span>{{ __('message.At_Your_Fingertips') }}.</span>
                             </h1>
-                            <p class="text-[16px] md:!text-[25px]">{{ __('message.Find_Buy_Sell_Exclusive_Number_Plates') }}
+                            <p class="text-[16px] md:!text-[25px]">
+                                {{ __('message.Find_Buy_Sell_Exclusive_Number_Plates') }}
                             </p>
                         </div>
 
@@ -73,6 +84,7 @@
                 </div>
 
                 <!-- Search Form -->
+
                 @include('front.search-form')
                 <!-- End Search Form -->
 
@@ -102,7 +114,8 @@
                 @foreach ($featuredPlates as $plate)
                 <div class="item">
                     <div class="listing-item plate-card position-relative">
-                        <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute" style="top: 10px; left: 10px;">
+                        <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute"
+                            style="top: 10px; left: 10px;">
                             {{ __('message.Featured') }}
                         </div>
                         <div class="d-flex justify-content-end align-items-center">
@@ -110,13 +123,17 @@
                         </div>
                         <div class="position-relative plate">
                             <div class="w-100 my-4">
-                                <img src="{{ $plate->emirate->image_url }}" alt="{{ $plate->emirate->name }}" class="w-100" loading="lazy">
+                                <img src="{{ $plate->emirate->image_url }}" alt="{{ $plate->emirate->name }}"
+                                    class="w-100" loading="lazy">
                             </div>
                             @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                            <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
-                            <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
+                            <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">
+                                {{ $plate->code->name }}</h1>
+                            <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">
+                                {{ $plate->number }}</h2>
                             @else
-                            <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center">
+                            <div
+                                class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center">
                                 <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                                 <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                             </div>
@@ -126,7 +143,8 @@
                             <p class=" fs-4 text-center fw-normal pb-4 price">{{ $plate->price_digits }}</p>
                         </div>
                         <div class="border-top">
-                            <a href="{{ route('plate.show', $plate->id) }}" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link">
+                            <a href="{{ route('plate.show', $plate->id) }}"
+                                class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link">
                                 <i class="bx bx-phone"></i>
                                 <p>{{ __('message.Contact') }}</p>
                             </a>
@@ -141,8 +159,7 @@
 
 <section class="yacht-offer-sec relative bg-slate-50 py-16">
 
-    <img src="assets/img/footer-left.png"
-        alt="{{ __('message.tire_mark') }}"
+    <img src="assets/img/footer-left.png" alt="{{ __('message.tire_mark') }}"
         class="absolute top-0 left-0 w-40 opacity-20 pointer-events-none select-none" />
 
     <div class="container mx-auto px-4 text-center">
@@ -200,14 +217,16 @@
                     </div>
                     <div class="position-relative plate ">
                         <div class="w-100 my-4">
-                            <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
-                                loading="lazy">
+                            <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100" loading="lazy">
                         </div>
                         @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                        <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{ $plate->code->name }}</h1>
-                        <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
+                        <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">
+                            {{ $plate->code->name }}</h1>
+                        <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">
+                            {{ $plate->number }}</h2>
                         @else
-                        <div class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center
+                        <div
+                            class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center
                         {{-- $plate->emirate->slug == 'rak' ? 'justify-content-around' : 'justify-content-between' --}}">
                             <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                             <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
@@ -257,44 +276,63 @@
             <h1 class="text-4xl font-bold mb-4">{{ __('message.🔍 How It Works') }}</h1>
             <span class="text-gray-600 max-w-2xl block mx-auto">
 
-{{ __('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:') }}            </span>
+                {{ __('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:') }}
+            </span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-11 pt-10">
             <!-- Box 1 -->
-            <div class="relative p-8 text-white bg-[#ac1e23] rounded shadow-[0_4px_16px_#919eb1] hover:text-[#ac1e23] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-white after:duration-500 hover:after:w-full">
-                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-white group-hover:!text-[#AC1E23] transition-all duration-300 select-none z-10">01</div>
+            <div
+                class="relative p-8 text-white bg-[#ac1e23] rounded shadow-[0_4px_16px_#919eb1] hover:text-[#ac1e23] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-white after:duration-500 hover:after:w-full">
+                <div
+                    class="absolute -top-24 -left-8 text-[150px] font-bold text-white group-hover:!text-[#AC1E23] transition-all duration-300 select-none z-10">
+                    01</div>
                 <div class="flex items-center mt-20 text-lg relative z-10">
-                    <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]">{{ __('message.🚗 Find Your Perfect Plate') }}</h3>
+                    <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]">
+                        {{ __('message.🚗 Find Your Perfect Plate') }}</h3>
                 </div>
                 <p class="text-md leading-6 m-4 text-white relative group-hover:!text-[#ac1e23] z-10">
                     {{ __('message.Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.') }}
                 </p>
-                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-[#ac1e23] bg-white duration-300 z-10"></div>
+                <div
+                    class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-[#ac1e23] bg-white duration-300 z-10">
+                </div>
             </div>
 
             <!-- Box 2 -->
-            <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] hover:text-white overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
-                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:text-white transition-all duration-300 select-none z-10">02</div>
+            <div
+                class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] hover:text-white overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
+                <div
+                    class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:text-white transition-all duration-300 select-none z-10">
+                    02</div>
                 <div class="flex items-center mt-20 text-lg relative z-10">
-                    <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Connect Directly with the Seller') }}</h3>
+                    <h3 class="text-xl font-semibold group-hover:!text-white">
+                        {{ __('message.Connect Directly with the Seller') }}</h3>
                 </div>
                 <p class="text-md leading-6 m-4 relative group-hover:text-white z-10">
                     {{ __('message.Call or chat with the seller instantly via WhatsApp. Ask questions, negotiate the price, and get all the details — no middlemen, just smooth and secure communication.') }}
                 </p>
-                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
+                <div
+                    class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10">
+                </div>
             </div>
 
             <!-- Box 3 -->
-            <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
-                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:!text-white transition-all duration-300 select-none z-10">03</div>
+            <div
+                class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
+                <div
+                    class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:!text-white transition-all duration-300 select-none z-10">
+                    03</div>
                 <div class="flex items-center mt-20 text-lg relative z-10">
-                    <h3 class="text-xl font-semibold group-hover:!text-white">{{ __('message.Meet, Confirm & Finalize Safely') }}</h3>
+                    <h3 class="text-xl font-semibold group-hover:!text-white">
+                        {{ __('message.Meet, Confirm & Finalize Safely') }}</h3>
                 </div>
                 <p class="text-md leading-6 m-4 relative z-10 group-hover:!text-white">
                     {{ __('message.Once you agree on the deal, make sure to meet the seller in person and verify everything before making any payment. We help ensure your transaction is transparent and secure from start to finish.') }}
                 </p>
-                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
+                <div
+                    class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10">
+                </div>
             </div>
         </div>
     </div>
@@ -312,12 +350,9 @@
 
         <div class="flex justify-center">
             <div class="relative w-full md:w-1/2">
-                <input
-                    type="email"
-                    placeholder="{{ __('message.Your_email_address') }}"
+                <input type="email" placeholder="{{ __('message.Your_email_address') }}"
                     class="p-3 pr-12 rounded-md text-black w-full border outline-none">
-                <button
-                    type="submit"
+                <button type="submit"
                     class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition">
                     <i class='bx bx-send text-xl'></i>
                 </button>
@@ -333,59 +368,59 @@
 
 @push('scripts')
 <script>
-    document.querySelector(".toggle-options").addEventListener("click", function() {
-        const extraOptions = document.querySelectorAll(".extra");
-        const isHidden = extraOptions[0].classList.contains("d-none");
+document.querySelector(".toggle-options").addEventListener("click", function() {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
 
-        extraOptions.forEach(opt => {
-            opt.classList.toggle("d-none");
-        });
-
-        this.textContent = isHidden ? "- {{ __('message.less_options') }}" : "+ {{ __('message.more_options') }}";
+    extraOptions.forEach(opt => {
+        opt.classList.toggle("d-none");
     });
-    document.getElementById('emirate_id').addEventListener('change', function() {
-        var emirateId = this.value;
-        var codeSelect = document.getElementById('code_id');
 
-        // Clear existing options
-        codeSelect.innerHTML = '<option value="">{{ __("message.Select_Code") }}</option>';
+    this.textContent = isHidden ? "- {{ __('message.less_options') }}" : "+ {{ __('message.more_options') }}";
+});
+document.getElementById('emirate_id').addEventListener('change', function() {
+    var emirateId = this.value;
+    var codeSelect = document.getElementById('code_id');
 
-        if (emirateId) {
-            // Make AJAX request to fetch codes
-            fetch('/getCodes/' + emirateId) // Define this route in your web.php
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(code => {
-                        var option = document.createElement('option');
-                        option.value = code.id;
-                        option.textContent = code.name;
-                        codeSelect.appendChild(option);
-                    });
+    // Clear existing options
+    codeSelect.innerHTML = '<option value="">{{ __("message.Select_Code") }}</option>';
+
+    if (emirateId) {
+        // Make AJAX request to fetch codes
+        fetch('/getCodes/' + emirateId) // Define this route in your web.php
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(code => {
+                    var option = document.createElement('option');
+                    option.value = code.id;
+                    option.textContent = code.name;
+                    codeSelect.appendChild(option);
                 });
-        }
-    });
+            });
+    }
+});
 
-    $('.featured-plates-slider').owlCarousel({
-        loop: true,
-        margin: 20,
-        nav: true,
-        dots: false,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        smartSpeed: 1000,
-        navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
-        responsive: {
-            0: {
-                items: 1
-            },
-            576: {
-                items: 2
-            },
-            992: {
-                items: 3
-            }
+$('.featured-plates-slider').owlCarousel({
+    loop: true,
+    margin: 20,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    smartSpeed: 1000,
+    navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
+    responsive: {
+        0: {
+            items: 1
+        },
+        576: {
+            items: 2
+        },
+        992: {
+            items: 3
         }
-    });
+    }
+});
 </script>
 
 @endpush
