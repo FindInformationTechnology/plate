@@ -24,54 +24,11 @@
 <!-- Plate Details -->
 
 <section class="plate-details">
-    <div class="container my-5 search">
-
-        <form class="search-bar" action="{{ route('plates.search') }}" method="GET">
-            <div class="options">
-
-                <select class="form-control search-option" id="emirate_id" name="emirate_id">
-                    <option value="">{{ __('message.Select_Emirate') }}</option>
-                    @foreach(\App\Models\Emirate::all() as $emirate)
-                    <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
-                    @endforeach
-                </select>
-
-                <select class="form-control search-option" id="code_id" name="code_id">
-                    <option value="">{{ __('message.Select_Code') }}</option>
-                    <!-- Codes will be populated here dynamically -->
-                </select>
-
-                <select class="form-control search-option" name="length">
-                    <option value="">{{ __('message.All_Digit') }}</option>
-
-                    <option value="1">1 {{__('message.Digits') }}</option>
-                    <option value="2">2 {{__('message.Digits') }}</option>
-                    <option value="3">3 {{__('message.Digits') }}</option>
-                    <option value="4">4 {{__('message.Digits') }}</option>
-                    <option value="5">5 {{__('message.Digits') }}</option>
-
-                </select>
-
-                <!-- <input type="length" class="form-control search-option" name="number" placeholder="Plate Number"> -->
-
-                <!-- More Options -->
-                <input type="number" class="form-control search-option extra d-none" name="max_price"
-                    placeholder="{{ __('message.Maximum_Price') }}">
-                <input type="number" class="form-control search-option extra d-none" name="min_price"
-                    placeholder="{{ __('message.Minimum_Price') }}">
-                <input type="number" class="form-control search-option extra d-none" name="start_with"
-                    placeholder="{{ __('message.Start_With') }}: ex:123">
-                <input type="number" class="form-control search-option extra d-none" name="end_with"
-                    placeholder="{{ __('message.End_With') }}: ex:000">
-
-                <!-- Search Button -->
-                <button class="search-btn d-flex align-items-center gap-2" type="submit"><i class="bx bx-search "></i><span>{{ __('message.Search') }}</span></button>
-            </div>
-        </form>
-        <p class="toggle-options">+ {{ __('message.more_options') }}</p>
+   
+    <div class="container">
+    @include('front.search-form')
     </div>
-    <!-- End Search Form -->
-    </div>
+   
 
     <div class="container my-4 ">
 
@@ -135,40 +92,38 @@
 
 @push('scripts')
 <script>
-    document.querySelector(".toggle-options").addEventListener("click", function() {
-        const extraOptions = document.querySelectorAll(".extra");
-        const isHidden = extraOptions[0].classList.contains("d-none");
+document.querySelector(".toggle-options").addEventListener("click", function() {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
 
-        extraOptions.forEach(opt => {
-            opt.classList.toggle("d-none");
-        });
-
-        this.textContent = isHidden ? "- {{ __('message.less_options') }}" : "+ {{ __('message.more_options') }}";
+    extraOptions.forEach(opt => {
+        opt.classList.toggle("d-none");
     });
 
-    document.getElementById('emirate_id').addEventListener('change', function() {
-        var emirateId = this.value;
-        var codeSelect = document.getElementById('code_id');
+    this.textContent = isHidden ? "- {{ __('message.less_options') }}" : "+ {{ __('message.more_options') }}";
+});
 
-        // Clear existing options
-        codeSelect.innerHTML = '<option value="">{{ __("message.Select_Code") }}</option>';
+document.getElementById('emirate_id').addEventListener('change', function() {
+    var emirateId = this.value;
+    var codeSelect = document.getElementById('code_id');
 
-        if (emirateId) {
-            // Make AJAX request to fetch codes
-            fetch('/getCodes/' + emirateId) // Define this route in your web.php
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(code => {
-                        var option = document.createElement('option');
-                        option.value = code.id;
-                        option.textContent = code.name;
-                        codeSelect.appendChild(option);
-                    });
+    // Clear existing options
+    codeSelect.innerHTML = '<option value="">{{ __("message.Select_Code") }}</option>';
+
+    if (emirateId) {
+        // Make AJAX request to fetch codes
+        fetch('/getCodes/' + emirateId) // Define this route in your web.php
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(code => {
+                    var option = document.createElement('option');
+                    option.value = code.id;
+                    option.textContent = code.name;
+                    codeSelect.appendChild(option);
                 });
-        }
-    });
-
-
+            });
+    }
+});
 </script>
 
 @endpush

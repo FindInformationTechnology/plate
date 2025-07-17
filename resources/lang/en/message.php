@@ -244,11 +244,9 @@ return [
 '🔍 How It Works' => '🔍 How It Works',
 'From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:'
 => 'From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:',
-// ... existing code ...
 'Stay_Updated' => 'Stay Updated',
 'Subscribe_notification' => 'Subscribe to get notified about the latest plates and offers.',
 'Your_email_address' => 'Your email address',
-// ... existing code ...
 
 'Contact_Us' => 'Contact Us',
 'Contact_Us_Subtitle' => 'We are here to answer all your inquiries',
@@ -264,5 +262,26 @@ return [
 'Location' => 'Dubai, UAE',
 'Quick_Help' => 'Need Quick Help?',
 'Call_Us_Now' => 'Call Us Now',
+
+    'Select_Format' => 'Select Format',
+    'Contains_Digit_Repeated_2_Times' => 'Contains Digit Repeated 2 Times',
+    'Contains_Digit_Repeated_3_Times' => 'Contains Digit Repeated 3 Times',
+    'Contains_Digit_Repeated_4_Times' => 'Contains Digit Repeated 4 Times',
+    'X???X_5_Digits' => 'X???X (First and Last Digit Same, 5 Digits)',
+    'XYZYX_5_Digits' => 'XYZYX (Palindrome, 5 Digits)',
+    'XXZXX_5_Digits' => 'XXZXX (1st, 2nd, 4th, 5th Same, 5 Digits)',
+    '?XXX?_5_Digits' => '?XXX? (Middle Three Digits Same, 5 Digits)',
+    '??xxx_5_Digits' => '??XXX (Last Three Digits Same, 5 Digits)',
+    'xxx??_5_Digits' => 'XXX?? (First Three Digits Same, 5 Digits)',
+    'xxxxx_5_Digits' => 'XXXXX (All Digits Same, 5 Digits)',
+    'x??x_4_Digits' => 'X??X (First and Last Digit Same, 4 Digits)',
+    'x_y_y_x_4_Digits' => 'XYYX (First and Last Same, Middle Two Same, 4 Digits)',
+    '?_x_x_?_4_Digits' => '?XX? (Middle Two Digits Same, 4 Digits)',
+    'x_y_y_y_4_Digits' => 'XYYY (Last Three Digits Same, 4 Digits)',
+    'x_x_x_y_4_Digits' => 'XXXY (First Three Digits Same, 4 Digits)',
+    'x_y_z_3_Digits' => 'XYZ (All Digits Different, 3 Digits)',
+    'x_y_y_3_Digits' => 'XYY (Last Two Digits Same, 3 Digits)',
+    'x_x_y_3_Digits' => 'XXY (First Two Digits Same, 3 Digits)',
+    'x_x_x_3_Digits' => 'XXX (All Digits Same, 3 Digits)',
 
 ];

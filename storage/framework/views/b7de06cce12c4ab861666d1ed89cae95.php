@@ -28,21 +28,32 @@
     .featured-plates-slider .item {
         padding: 10px;
     }
+
+    /* By default, hide the small image and show the large one */
+    .slider-img-large { display: block; }
+    .slider-img-small { display: none; }
+
+    /* When the screen is 678px or less, show the small image and hide the large one */
+    @media (max-width: 678px) {
+        .slider-img-large { display: none; }
+        .slider-img-small { display: block; }
+    }
 </style>
 
 
 <!-- Banner -->
 <section class="banner-section banner-sec-two banner-slider">
     <div class="banner-img-slider owl-carousel" style="direction: ltr;">
-        <!-- <div class="slider-img">
-            <img src="assets/img/owl-2.jpg" alt="Img" loading="lazy">
-        </div> -->
-        <div class="slider-img">
-            <img src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
+        
+    <div class="slider-img ">
+            <img class="slider-img-small" src="assets/img/owl-1.png" alt="Img" loading="lazy">
+            <img class="slider-img slider-img-large" src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
         </div>
-        <div class="slider-img">
-            <img src="assets/img/owl-3.jpg" alt="Img" loading="lazy">
-        </div>
+        
+      
+
+      
+       
     </div>
     <div class="container">
         <div class="home-banner">
@@ -64,48 +75,7 @@
                 </div>
 
                 <!-- Search Form -->
-                <div class="mt-5 col-md-12 rounded-md search">
-                    <form class="d-flex flex-wrap gap-2 search-bar" action="<?php echo e(route('plates.search')); ?>" method="GET">
-                        <!-- All Options -->
-                        <div class="options d-flex flex-wrap gap-2 w-100">
-                            <!-- Main Options -->
-                            <select class="form-control search-option" id="emirate_id" name="emirate_id">
-                                <option value=""><?php echo e(__('message.Select_Emirate')); ?></option>
-                                <?php $__currentLoopData = \App\Models\Emirate::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($emirate->id); ?>"><?php echo e($emirate->name); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-
-                            <select class="form-control search-option" id="code_id" name="code_id">
-                                <option value=""><?php echo e(__('message.Select_Code')); ?></option>
-                                <!-- Codes will be populated here dynamically -->
-                            </select>
-
-                            <select class="form-control search-option" name="length">
-                                <option value=""><?php echo e(__('message.All_Digit')); ?></option>
-
-                                <option value="1">1 <?php echo e(__('message.Digits')); ?></option>
-                                <option value="2">2 <?php echo e(__('message.Digits')); ?></option>
-                                <option value="3">3 <?php echo e(__('message.Digits')); ?></option>
-                                <option value="4">4 <?php echo e(__('message.Digits')); ?></option>
-                                <option value="5">5 <?php echo e(__('message.Digits')); ?></option>
-
-                            </select>
-
-                            <!-- <input type="length" class="form-control search-option" name="number" placeholder="Plate Number"> -->
-
-                            <!-- More Options -->
-                            <input type="number" class="form-control search-option extra d-none" name="max_price" placeholder="<?php echo e(__('message.Maximum_Price')); ?>">
-                            <input type="number" class="form-control search-option extra d-none" name="min_price" placeholder="<?php echo e(__('message.Minimum_Price')); ?>">
-                            <input type="number" class="form-control search-option extra d-none" name="start_with" placeholder="<?php echo e(__('message.Start_With')); ?>: ex:123">
-                            <input type="number" class="form-control search-option extra d-none" name="end_with" placeholder="<?php echo e(__('message.End_With')); ?>: ex:000">
-
-                            <!-- Search Button -->
-                            <button class="search-btn d-flex align-items-center gap-2" type="submit"><i class="bx bx-search "></i><span><?php echo e(__('message.Search')); ?></span></button>
-                        </div>
-                    </form>
-                    <p class="toggle-options">+ <?php echo e(__('message.more_options')); ?></p>
-                </div>
+                <?php echo $__env->make('front.search-form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                 <!-- End Search Form -->
 
 

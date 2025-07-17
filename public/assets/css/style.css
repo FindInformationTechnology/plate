@@ -4737,7 +4737,7 @@ table .badge {
 }
 @media (max-width: 991.98px) {
   .banner-sec-two .banner-img-slider {
-    display: none;
+    /* display: none; */
   }
 }
 .banner-sec-two .banner-img-slider img {
@@ -4746,7 +4746,7 @@ table .badge {
 }
 .banner-sec-two .banner-img-slider::after {
   content: "";
-  background: linear-gradient(102.39deg, rgba(6, 19, 26, 0.8) 2.09%, rgba(0, 0, 0, 0.64) 81.2%);
+  background: linear-gradient(102.39deg, rgba(6, 19, 26, 0.171) 2.09%, rgba(0, 0, 0, 0.123) 81.2%);
   left: 0;
   top: 0;
   right: 0;

@@ -24,54 +24,11 @@
 <!-- Plate Details -->
 
 <section class="plate-details">
-    <div class="container my-5 search">
-
-        <form class="search-bar" action="<?php echo e(route('plates.search')); ?>" method="GET">
-            <div class="options">
-
-                <select class="form-control search-option" id="emirate_id" name="emirate_id">
-                    <option value=""><?php echo e(__('message.Select_Emirate')); ?></option>
-                    <?php $__currentLoopData = \App\Models\Emirate::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($emirate->id); ?>"><?php echo e($emirate->name); ?></option>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
-
-                <select class="form-control search-option" id="code_id" name="code_id">
-                    <option value=""><?php echo e(__('message.Select_Code')); ?></option>
-                    <!-- Codes will be populated here dynamically -->
-                </select>
-
-                <select class="form-control search-option" name="length">
-                    <option value=""><?php echo e(__('message.All_Digit')); ?></option>
-
-                    <option value="1">1 <?php echo e(__('message.Digits')); ?></option>
-                    <option value="2">2 <?php echo e(__('message.Digits')); ?></option>
-                    <option value="3">3 <?php echo e(__('message.Digits')); ?></option>
-                    <option value="4">4 <?php echo e(__('message.Digits')); ?></option>
-                    <option value="5">5 <?php echo e(__('message.Digits')); ?></option>
-
-                </select>
-
-                <!-- <input type="length" class="form-control search-option" name="number" placeholder="Plate Number"> -->
-
-                <!-- More Options -->
-                <input type="number" class="form-control search-option extra d-none" name="max_price"
-                    placeholder="<?php echo e(__('message.Maximum_Price')); ?>">
-                <input type="number" class="form-control search-option extra d-none" name="min_price"
-                    placeholder="<?php echo e(__('message.Minimum_Price')); ?>">
-                <input type="number" class="form-control search-option extra d-none" name="start_with"
-                    placeholder="<?php echo e(__('message.Start_With')); ?>: ex:123">
-                <input type="number" class="form-control search-option extra d-none" name="end_with"
-                    placeholder="<?php echo e(__('message.End_With')); ?>: ex:000">
-
-                <!-- Search Button -->
-                <button class="search-btn d-flex align-items-center gap-2" type="submit"><i class="bx bx-search "></i><span><?php echo e(__('message.Search')); ?></span></button>
-            </div>
-        </form>
-        <p class="toggle-options">+ <?php echo e(__('message.more_options')); ?></p>
+   
+    <div class="container">
+    <?php echo $__env->make('front.search-form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </div>
-    <!-- End Search Form -->
-    </div>
+   
 
     <div class="container my-4 ">
 
@@ -135,42 +92,39 @@
 
 <?php $__env->startPush('scripts'); ?>
 <script>
-    document.querySelector(".toggle-options").addEventListener("click", function() {
-        const extraOptions = document.querySelectorAll(".extra");
-        const isHidden = extraOptions[0].classList.contains("d-none");
+document.querySelector(".toggle-options").addEventListener("click", function() {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
 
-        extraOptions.forEach(opt => {
-            opt.classList.toggle("d-none");
-        });
-
-        this.textContent = isHidden ? "- <?php echo e(__('message.less_options')); ?>" : "+ <?php echo e(__('message.more_options')); ?>";
+    extraOptions.forEach(opt => {
+        opt.classList.toggle("d-none");
     });
 
-    document.getElementById('emirate_id').addEventListener('change', function() {
-        var emirateId = this.value;
-        var codeSelect = document.getElementById('code_id');
+    this.textContent = isHidden ? "- <?php echo e(__('message.less_options')); ?>" : "+ <?php echo e(__('message.more_options')); ?>";
+});
 
-        // Clear existing options
-        codeSelect.innerHTML = '<option value=""><?php echo e(__("message.Select_Code")); ?></option>';
+document.getElementById('emirate_id').addEventListener('change', function() {
+    var emirateId = this.value;
+    var codeSelect = document.getElementById('code_id');
 
-        if (emirateId) {
-            // Make AJAX request to fetch codes
-            fetch('/getCodes/' + emirateId) // Define this route in your web.php
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(code => {
-                        var option = document.createElement('option');
-                        option.value = code.id;
-                        option.textContent = code.name;
-                        codeSelect.appendChild(option);
-                    });
+    // Clear existing options
+    codeSelect.innerHTML = '<option value=""><?php echo e(__("message.Select_Code")); ?></option>';
+
+    if (emirateId) {
+        // Make AJAX request to fetch codes
+        fetch('/getCodes/' + emirateId) // Define this route in your web.php
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(code => {
+                    var option = document.createElement('option');
+                    option.value = code.id;
+                    option.textContent = code.name;
+                    codeSelect.appendChild(option);
                 });
-        }
-    });
-
-
+            });
+    }
+});
 </script>
 
 <?php $__env->stopPush(); ?>
-
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/front/plates.blade.php ENDPATH**/ ?>
