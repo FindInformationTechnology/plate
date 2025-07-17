@@ -9526,9 +9526,15 @@ table .badge {
   border-radius: 5px;
   margin: 0;
   padding: 13px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 400;
   color: #201F1D;
+}
+
+.input-block .form-control option{
+  font-size: 12px;
+  font-weight: 400;
+  /* color: #201F1D; */
 }
 @media (max-width: 767.98px) {
   .input-block .form-control {

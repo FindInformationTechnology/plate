@@ -3,57 +3,67 @@
 <?php $__env->startSection('content'); ?>
 
 <style>
-    .featured-plates-slider .owl-nav {
-        position: absolute;
-        top: -50px;
-        right: 0;
+.featured-plates-slider .owl-nav {
+    position: absolute;
+    top: -50px;
+    right: 0;
+}
+
+.featured-plates-slider .owl-nav button {
+    width: 30px;
+    height: 30px;
+    background-color: #f5f5f5 !important;
+    border-radius: 50%;
+    margin-left: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.featured-plates-slider .owl-nav button:hover {
+    background-color: #28a745 !important;
+    color: white;
+}
+
+.featured-plates-slider .item {
+    padding: 10px;
+}
+
+/* By default, hide the small image and show the large one */
+.slider-img-large {
+    display: block;
+}
+
+.slider-img-small {
+    display: none;
+}
+
+/* When the screen is 678px or less, show the small image and hide the large one */
+@media (max-width: 678px) {
+    .slider-img-large {
+        display: none;
     }
 
-    .featured-plates-slider .owl-nav button {
-        width: 30px;
-        height: 30px;
-        background-color: #f5f5f5 !important;
-        border-radius: 50%;
-        margin-left: 5px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+    .slider-img-small {
+        display: block;
     }
-
-    .featured-plates-slider .owl-nav button:hover {
-        background-color: #28a745 !important;
-        color: white;
-    }
-
-    .featured-plates-slider .item {
-        padding: 10px;
-    }
-
-    /* By default, hide the small image and show the large one */
-    .slider-img-large { display: block; }
-    .slider-img-small { display: none; }
-
-    /* When the screen is 678px or less, show the small image and hide the large one */
-    @media (max-width: 678px) {
-        .slider-img-large { display: none; }
-        .slider-img-small { display: block; }
-    }
+}
 </style>
 
 
 <!-- Banner -->
 <section class="banner-section banner-sec-two banner-slider">
     <div class="banner-img-slider owl-carousel" style="direction: ltr;">
-        
-    <div class="slider-img ">
+
+        <div class="slider-img ">
             <img class="slider-img-small" src="assets/img/owl-1.png" alt="Img" loading="lazy">
             <img class="slider-img slider-img-large" src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
         </div>
-        
-      
 
-      
-       
+
+
+
+
     </div>
     <div class="container">
         <div class="home-banner">
@@ -65,7 +75,8 @@
 
                                 <span><?php echo e(__('message.At_Your_Fingertips')); ?>.</span>
                             </h1>
-                            <p class="text-[16px] md:!text-[25px]"><?php echo e(__('message.Find_Buy_Sell_Exclusive_Number_Plates')); ?>
+                            <p class="text-[16px] md:!text-[25px]">
+                                <?php echo e(__('message.Find_Buy_Sell_Exclusive_Number_Plates')); ?>
 
                             </p>
                         </div>
@@ -75,6 +86,7 @@
                 </div>
 
                 <!-- Search Form -->
+
                 <?php echo $__env->make('front.search-form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                 <!-- End Search Form -->
 
@@ -104,7 +116,8 @@
                 <?php $__currentLoopData = $featuredPlates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="item">
                     <div class="listing-item plate-card position-relative">
-                        <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute" style="top: 10px; left: 10px;">
+                        <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute"
+                            style="top: 10px; left: 10px;">
                             <?php echo e(__('message.Featured')); ?>
 
                         </div>
@@ -113,13 +126,17 @@
                         </div>
                         <div class="position-relative plate">
                             <div class="w-100 my-4">
-                                <img src="<?php echo e($plate->emirate->image_url); ?>" alt="<?php echo e($plate->emirate->name); ?>" class="w-100" loading="lazy">
+                                <img src="<?php echo e($plate->emirate->image_url); ?>" alt="<?php echo e($plate->emirate->name); ?>"
+                                    class="w-100" loading="lazy">
                             </div>
                             <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                            <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
-                            <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
+                            <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
+                                <?php echo e($plate->code->name); ?></h1>
+                            <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow">
+                                <?php echo e($plate->number); ?></h2>
                             <?php else: ?>
-                            <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center">
+                            <div
+                                class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center">
                                 <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
                                 <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
                             </div>
@@ -129,7 +146,8 @@
                             <p class=" fs-4 text-center fw-normal pb-4 price"><?php echo e($plate->price_digits); ?></p>
                         </div>
                         <div class="border-top">
-                            <a href="<?php echo e(route('plate.show', $plate->id)); ?>" class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link">
+                            <a href="<?php echo e(route('plate.show', $plate->id)); ?>"
+                                class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link">
                                 <i class="bx bx-phone"></i>
                                 <p><?php echo e(__('message.Contact')); ?></p>
                             </a>
@@ -144,8 +162,7 @@
 
 <section class="yacht-offer-sec relative bg-slate-50 py-16">
 
-    <img src="assets/img/footer-left.png"
-        alt="<?php echo e(__('message.tire_mark')); ?>"
+    <img src="assets/img/footer-left.png" alt="<?php echo e(__('message.tire_mark')); ?>"
         class="absolute top-0 left-0 w-40 opacity-20 pointer-events-none select-none" />
 
     <div class="container mx-auto px-4 text-center">
@@ -203,14 +220,16 @@
                     </div>
                     <div class="position-relative plate ">
                         <div class="w-100 my-4">
-                            <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100"
-                                loading="lazy">
+                            <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100" loading="lazy">
                         </div>
                         <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                        <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow"><?php echo e($plate->code->name); ?></h1>
-                        <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow"><?php echo e($plate->number); ?></h2>
+                        <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
+                            <?php echo e($plate->code->name); ?></h1>
+                        <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow">
+                            <?php echo e($plate->number); ?></h2>
                         <?php else: ?>
-                        <div class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center
+                        <div
+                            class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center
                         ">
                             <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
                             <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
@@ -260,47 +279,67 @@
             <h1 class="text-4xl font-bold mb-4"><?php echo e(__('message.🔍 How It Works')); ?></h1>
             <span class="text-gray-600 max-w-2xl block mx-auto">
 
-<?php echo e(__('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:')); ?>            </span>
+                <?php echo e(__('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:')); ?>
+
+            </span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-11 pt-10">
             <!-- Box 1 -->
-            <div class="relative p-8 text-white bg-[#ac1e23] rounded shadow-[0_4px_16px_#919eb1] hover:text-[#ac1e23] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-white after:duration-500 hover:after:w-full">
-                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-white group-hover:!text-[#AC1E23] transition-all duration-300 select-none z-10">01</div>
+            <div
+                class="relative p-8 text-white bg-[#ac1e23] rounded shadow-[0_4px_16px_#919eb1] hover:text-[#ac1e23] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-white after:duration-500 hover:after:w-full">
+                <div
+                    class="absolute -top-24 -left-8 text-[150px] font-bold text-white group-hover:!text-[#AC1E23] transition-all duration-300 select-none z-10">
+                    01</div>
                 <div class="flex items-center mt-20 text-lg relative z-10">
-                    <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]"><?php echo e(__('message.🚗 Find Your Perfect Plate')); ?></h3>
+                    <h3 class="text-xl font-semibold text-white group-hover:!text-[#ac1e23]">
+                        <?php echo e(__('message.🚗 Find Your Perfect Plate')); ?></h3>
                 </div>
                 <p class="text-md leading-6 m-4 text-white relative group-hover:!text-[#ac1e23] z-10">
                     <?php echo e(__('message.Easily explore thousands of available plates using smart filters — search by emirate, code, price, or custom sorting. In just seconds, you’ll discover the plate that matches your identity and style.')); ?>
 
                 </p>
-                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-[#ac1e23] bg-white duration-300 z-10"></div>
+                <div
+                    class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-[#ac1e23] bg-white duration-300 z-10">
+                </div>
             </div>
 
             <!-- Box 2 -->
-            <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] hover:text-white overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
-                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:text-white transition-all duration-300 select-none z-10">02</div>
+            <div
+                class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] hover:text-white overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
+                <div
+                    class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:text-white transition-all duration-300 select-none z-10">
+                    02</div>
                 <div class="flex items-center mt-20 text-lg relative z-10">
-                    <h3 class="text-xl font-semibold group-hover:!text-white"><?php echo e(__('message.Connect Directly with the Seller')); ?></h3>
+                    <h3 class="text-xl font-semibold group-hover:!text-white">
+                        <?php echo e(__('message.Connect Directly with the Seller')); ?></h3>
                 </div>
                 <p class="text-md leading-6 m-4 relative group-hover:text-white z-10">
                     <?php echo e(__('message.Call or chat with the seller instantly via WhatsApp. Ask questions, negotiate the price, and get all the details — no middlemen, just smooth and secure communication.')); ?>
 
                 </p>
-                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
+                <div
+                    class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10">
+                </div>
             </div>
 
             <!-- Box 3 -->
-            <div class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
-                <div class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:!text-white transition-all duration-300 select-none z-10">03</div>
+            <div
+                class="relative p-8 text-[#AC1E23] bg-white rounded shadow-[0_4px_16px_#919eb1] overflow-hidden group after:content-[''] after:absolute after:h-full after:w-0 after:top-0 after:left-0 after:bg-[#ac1e23] after:duration-500 hover:after:w-full">
+                <div
+                    class="absolute -top-24 -left-8 text-[150px] font-bold text-[#AC1E23] group-hover:!text-white transition-all duration-300 select-none z-10">
+                    03</div>
                 <div class="flex items-center mt-20 text-lg relative z-10">
-                    <h3 class="text-xl font-semibold group-hover:!text-white"><?php echo e(__('message.Meet, Confirm & Finalize Safely')); ?></h3>
+                    <h3 class="text-xl font-semibold group-hover:!text-white">
+                        <?php echo e(__('message.Meet, Confirm & Finalize Safely')); ?></h3>
                 </div>
                 <p class="text-md leading-6 m-4 relative z-10 group-hover:!text-white">
                     <?php echo e(__('message.Once you agree on the deal, make sure to meet the seller in person and verify everything before making any payment. We help ensure your transaction is transparent and secure from start to finish.')); ?>
 
                 </p>
-                <div class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10"></div>
+                <div
+                    class="absolute bottom-5 end-5 h-1 w-1/4 rounded-lg group-hover:!bg-white bg-black duration-300 z-10">
+                </div>
             </div>
         </div>
     </div>
@@ -318,12 +357,9 @@
 
         <div class="flex justify-center">
             <div class="relative w-full md:w-1/2">
-                <input
-                    type="email"
-                    placeholder="<?php echo e(__('message.Your_email_address')); ?>"
+                <input type="email" placeholder="<?php echo e(__('message.Your_email_address')); ?>"
                     class="p-3 pr-12 rounded-md text-black w-full border outline-none">
-                <button
-                    type="submit"
+                <button type="submit"
                     class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition">
                     <i class='bx bx-send text-xl'></i>
                 </button>
@@ -339,61 +375,60 @@
 
 <?php $__env->startPush('scripts'); ?>
 <script>
-    document.querySelector(".toggle-options").addEventListener("click", function() {
-        const extraOptions = document.querySelectorAll(".extra");
-        const isHidden = extraOptions[0].classList.contains("d-none");
+document.querySelector(".toggle-options").addEventListener("click", function() {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
 
-        extraOptions.forEach(opt => {
-            opt.classList.toggle("d-none");
-        });
-
-        this.textContent = isHidden ? "- <?php echo e(__('message.less_options')); ?>" : "+ <?php echo e(__('message.more_options')); ?>";
+    extraOptions.forEach(opt => {
+        opt.classList.toggle("d-none");
     });
-    document.getElementById('emirate_id').addEventListener('change', function() {
-        var emirateId = this.value;
-        var codeSelect = document.getElementById('code_id');
 
-        // Clear existing options
-        codeSelect.innerHTML = '<option value=""><?php echo e(__("message.Select_Code")); ?></option>';
+    this.textContent = isHidden ? "- <?php echo e(__('message.less_options')); ?>" : "+ <?php echo e(__('message.more_options')); ?>";
+});
+document.getElementById('emirate_id').addEventListener('change', function() {
+    var emirateId = this.value;
+    var codeSelect = document.getElementById('code_id');
 
-        if (emirateId) {
-            // Make AJAX request to fetch codes
-            fetch('/getCodes/' + emirateId) // Define this route in your web.php
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(code => {
-                        var option = document.createElement('option');
-                        option.value = code.id;
-                        option.textContent = code.name;
-                        codeSelect.appendChild(option);
-                    });
+    // Clear existing options
+    codeSelect.innerHTML = '<option value=""><?php echo e(__("message.Select_Code")); ?></option>';
+
+    if (emirateId) {
+        // Make AJAX request to fetch codes
+        fetch('/getCodes/' + emirateId) // Define this route in your web.php
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(code => {
+                    var option = document.createElement('option');
+                    option.value = code.id;
+                    option.textContent = code.name;
+                    codeSelect.appendChild(option);
                 });
-        }
-    });
+            });
+    }
+});
 
-    $('.featured-plates-slider').owlCarousel({
-        loop: true,
-        margin: 20,
-        nav: true,
-        dots: false,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        smartSpeed: 1000,
-        navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
-        responsive: {
-            0: {
-                items: 1
-            },
-            576: {
-                items: 2
-            },
-            992: {
-                items: 3
-            }
+$('.featured-plates-slider').owlCarousel({
+    loop: true,
+    margin: 20,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    autoplayTimeout: 5000,
+    smartSpeed: 1000,
+    navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
+    responsive: {
+        0: {
+            items: 1
+        },
+        576: {
+            items: 2
+        },
+        992: {
+            items: 3
         }
-    });
+    }
+});
 </script>
 
 <?php $__env->stopPush(); ?>
-
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/front/index.blade.php ENDPATH**/ ?>
