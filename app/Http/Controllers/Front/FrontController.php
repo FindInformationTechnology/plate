@@ -67,22 +67,22 @@ class FrontController extends Controller
         if ($format) {
             switch ($format) {
                 case 'repeat_2':
-                    // At least one digit appears exactly twice
+                    // At least one digit appears exactly twice (and not more)
                     $query->whereRaw(
-                        "REGEXP_LIKE(number, '^(?:(\\d)(?:(?!\\1)\\d)*\\1(?:(?!\\1)\\d)*)$') OR " .
-                        "REGEXP_LIKE(number, '([0-9])(?=(?:.*\\1){1}(?!.*\\1{3,}))')"
+                        // Find any digit that appears exactly twice
+                        "number REGEXP '(.)\\1' AND NOT number REGEXP '(.)\\1{2,}'"
                     );
                     break;
                 case 'repeat_3':
-                    // At least one digit appears exactly three times
+                    // At least one digit appears exactly three times (and not more)
                     $query->whereRaw(
-                        "REGEXP_LIKE(number, '([0-9])(?=(?:.*\\1){2}(?!.*\\1{4,}))')"
+                        "number REGEXP '(.)\\1\\1' AND NOT number REGEXP '(.)\\1{3,}'"
                     );
                     break;
                 case 'repeat_4':
-                    // At least one digit appears exactly four times
+                    // At least one digit appears exactly four times (and not more)
                     $query->whereRaw(
-                        "REGEXP_LIKE(number, '([0-9])(?=(?:.*\\1){3}(?!.*\\1{5,}))')"
+                        "number REGEXP '(.)\\1\\1\\1' AND NOT number REGEXP '(.)\\1{4,}'"
                     );
                     break;
                 case 'x_any_any_any_x':
