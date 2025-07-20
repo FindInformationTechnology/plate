@@ -34,5 +34,5 @@ Disallow: /*.git
 Disallow: /storage/
 Disallow: /vendor/
 
-# Sitemap location (replace with your actual domain)
-Sitemap: https://yourdomain.com/sitemap.xml
+# Sitemap location
+Sitemap: https://plate35.com/sitemap.xml

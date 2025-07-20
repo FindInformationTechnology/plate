@@ -17,11 +17,59 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title> <?php echo e(config('app.name')); ?></title>
-
-
-
     
+    <!-- SEO Meta Tags -->
+    <title><?php echo $__env->yieldContent('title', config('app.name') . ' - Premium UAE License Plates'); ?></title>
+    <meta name="description" content="<?php echo $__env->yieldContent('meta_description', __('message.Home_Meta_Description')); ?>">
+    <meta name="keywords" content="UAE license plates, Dubai number plates, Abu Dhabi plates, car plates, vehicle registration, premium plates, <?php echo $__env->yieldContent('keywords', ''); ?>">
+    <meta name="author" content="<?php echo e(config('app.name')); ?>">
+    <meta name="robots" content="<?php echo $__env->yieldContent('robots', 'index, follow'); ?>">
+    <link rel="canonical" href="<?php echo $__env->yieldContent('canonical', request()->url()); ?>">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<?php echo $__env->yieldContent('og_title', config('app.name') . ' - Premium UAE License Plates'); ?>">
+    <meta property="og:description" content="<?php echo $__env->yieldContent('og_description', __('message.Home_Meta_Description')); ?>">
+    <meta property="og:image" content="<?php echo $__env->yieldContent('og_image', asset('assets/img/og-image.jpg')); ?>">
+    <meta property="og:url" content="<?php echo $__env->yieldContent('og_url', request()->url()); ?>">
+    <meta property="og:type" content="<?php echo $__env->yieldContent('og_type', 'website'); ?>">
+    <meta property="og:site_name" content="<?php echo e(config('app.name')); ?>">
+    <meta property="og:locale" content="<?php echo e(app()->getLocale() == 'ar' ? 'ar_AE' : 'en_US'); ?>">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo $__env->yieldContent('twitter_title', config('app.name') . ' - Premium UAE License Plates'); ?>">
+    <meta name="twitter:description" content="<?php echo $__env->yieldContent('twitter_description', __('message.Home_Meta_Description')); ?>">
+    <meta name="twitter:image" content="<?php echo $__env->yieldContent('twitter_image', asset('assets/img/og-image.jpg')); ?>">
+    
+    <!-- Language Alternatives -->
+    <link rel="alternate" hreflang="en" href="<?php echo e(url('/')); ?>">
+    <link rel="alternate" hreflang="ar" href="<?php echo e(url('/lang/ar')); ?>">
+    <link rel="alternate" hreflang="x-default" href="<?php echo e(url('/')); ?>">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoPartsStore",
+        "name": "<?php echo e(config('app.name')); ?>",
+        "description": "<?php echo e(__('message.Home_Meta_Description')); ?>",
+        "url": "<?php echo e(url('/')); ?>",
+        "logo": "<?php echo e(asset('assets/img/logo.webp')); ?>",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "AE",
+            "addressRegion": "Dubai"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "url": "<?php echo e(route('contact')); ?>"
+        },
+        "sameAs": [
+            "<?php echo $__env->yieldContent('social_links', ''); ?>"
+        ]
+    }
+    </script>
 
     <!-- Google Tag Manager -->
     <script>
@@ -42,11 +90,12 @@
     </script>
     <!-- End Google Tag Manager -->
 
-
-
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="<?php echo e(asset ('assets/img/favicon.png')); ?>">
+    <!-- Favicon and Touch Icons -->
+    <link rel="shortcut icon" href="<?php echo e(asset('assets/img/favicon.png')); ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('assets/img/favicon-32x32.png')); ?>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo e(asset('assets/img/favicon-16x16.png')); ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo e(asset('assets/img/apple-touch-icon.png')); ?>">
+    <link rel="manifest" href="<?php echo e(asset('/site.webmanifest')); ?>">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo e(asset ('assets/css/bootstrap.min.css')); ?>" as="style">

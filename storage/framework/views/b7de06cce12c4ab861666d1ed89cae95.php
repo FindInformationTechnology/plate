@@ -1,5 +1,12 @@
 ﻿
 
+<?php $__env->startSection('title', config('app.name') . ' - ' . __('message.Premium_UAE_Plates') . ' | ' . __('message.At_Your_Fingertips')); ?>
+<?php $__env->startSection('meta_description', __('message.Home_Meta_Description')); ?>
+<?php $__env->startSection('keywords', 'UAE license plates, Dubai plates, Abu Dhabi plates, premium number plates, car registration, vehicle plates'); ?>
+<?php $__env->startSection('og_title', config('app.name') . ' - ' . __('message.Premium_UAE_Plates')); ?>
+<?php $__env->startSection('og_description', __('message.Home_Meta_Description')); ?>
+<?php $__env->startSection('og_type', 'website'); ?>
+
 <?php $__env->startSection('content'); ?>
 
 <style>
