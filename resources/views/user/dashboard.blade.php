@@ -2,7 +2,29 @@
 
 @section('content')
 
-<!-- Page Content -->
+<!-- Phone Verification Alert -->
+@auth
+    @if(auth()->user()->needsPhoneVerification())
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="container">
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-phone me-3" style="font-size: 1.5rem;"></i>
+                    <div class="flex-grow-1">
+                        <h6 class="alert-heading mb-1">{{ __('message.Phone_Verification_Required') }}</h6>
+                        <p class="mb-0">{{ __('message.Phone_Not_Verified_Warning') }}</p>
+                    </div>
+                    <a href="{{ route('phone.verify.show') }}" class="btn btn-warning btn-sm ms-3">
+                        <i class="bx bx-check-shield me-1"></i>
+                        {{ __('message.Verify_Now') }}
+                    </a>
+                </div>
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+@endauth
+
+<!-- Dashboard Content -->
 <div class="content dashboard-content">
     <div class="container">
         <div class="row">

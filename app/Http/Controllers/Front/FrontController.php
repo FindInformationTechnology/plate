@@ -358,9 +358,9 @@ class FrontController extends Controller
      * Handle missing contact method
      */
     public function contact()
-    {
-        return view('front.contact');
-    }
+{
+    return view('front.contact');
+}
 
     /**
      * Get codes by emirate (AJAX endpoint)

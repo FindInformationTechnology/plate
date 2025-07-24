@@ -301,4 +301,52 @@ return [
     'Contact_Meta_Description' => 'Contact Plate UAE for assistance with buying or selling license plates. Get expert help and secure transactions.',
     'Search_Meta_Description' => 'Search results for UAE license plates. Find your perfect number plate with our advanced filtering system.',
 
+    // Phone Verification Messages
+    'Verify_Phone_Number' => 'Verify Phone Number',
+    'Phone_Verification_Required' => 'Phone Verification Required',
+    'Phone_Not_Verified_Warning' => 'Please verify your phone number to upload plate advertisements.',
+    'Verify_Now' => 'Verify Now',
+    'Verification_Code_Sent_To' => 'Verification code sent to',
+    'Verification_Code_Sent_Automatically' => 'Verification code sent automatically!',
+    'Code_Sent_To' => 'Enter the 6-digit code sent to',
+    'Enter_Code_Or_Request_New' => 'Click "Send Code" to receive verification code for',
+    'Enter_Verification_Code' => 'Enter Verification Code',
+    'Verify_Phone' => 'Verify Phone',
+    'Verifying' => 'Verifying',
+    'Didnt_Receive_Code' => 'Didn\'t receive the code?',
+    'Resend_Code' => 'Send Code',
+    'Sending' => 'Sending',
+    'Resend_Available_In' => 'Resend available in',
+    'Change_Phone_Number' => 'Change Phone',
+    'Need_Help' => 'Need Help?',
+    'Verification_Code_Sent' => 'Verification code sent successfully!',
+    'Phone_Verified_Successfully' => 'Phone number verified successfully!',
+    'Phone_Verification_Skipped' => 'Phone verification skipped for development.',
+    'Invalid_Verification_Code' => 'Invalid verification code. :attempts attempts remaining.',
+    'Too_Many_Verification_Attempts' => 'Too many failed attempts. Account temporarily blocked.',
+    'Contact_Support_To_Unlock' => 'Please contact support to unlock your account.',
+    'Too_Many_SMS_Requests' => 'Too many SMS requests. Please wait :seconds seconds.',
+    'Wait_Before_Requesting_New_Code' => 'Please wait before requesting a new code.',
+    'Failed_To_Send_SMS' => 'Failed to send SMS. Please try again later.',
+    'Verification_Failed' => 'Verification failed. Please try again.',
+
+    // Dashboard & User Messages
+    'Phone_Not_Verified_Warning' => 'Your phone number is not verified. Please verify it to upload ads.',
+    'Verify_Now' => 'Verify Now',
+    'Phone_Status' => 'Phone Status',
+    'Verified' => 'Verified',
+    'Not_Verified' => 'Not Verified',
+    'Verification_Pending' => 'Verification Pending',
+    
+    // Plate Upload Messages
+    'Cannot_Upload_Without_Phone_Verification' => 'You must verify your phone number before uploading ads.',
+    'Complete_Phone_Verification_First' => 'Please complete phone verification first.',
+
+    // General Messages
+    'Success' => 'Success',
+    'Error' => 'Error',
+    'Warning' => 'Warning',
+    'Info' => 'Info',
+    'Just_Now' => 'Just now',
+
 ];

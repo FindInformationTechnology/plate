@@ -26,6 +26,11 @@ class User extends Authenticatable
         'google_id',
         'facebook_id',
         'twitter_id',
+        'phone_verified_at',
+        'phone_verification_required',
+        'phone_verification_sent_at',
+        'phone_verification_code',
+        'phone_verification_attempts',
     ];
 
     /**
@@ -36,6 +41,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'phone_verification_code',
     ];
 
     public function plates()
@@ -52,6 +58,8 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'phone_verified_at' => 'datetime',
+            'phone_verification_sent_at' => 'datetime',
             'password' => 'hashed',
         ];
     }
@@ -89,5 +97,92 @@ class User extends Authenticatable
         
         // If less than 9 digits, pad with leading zeros to make it 9 digits
         return str_pad($cleanPhone, 9, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * Check if user's phone is verified
+     */
+    public function hasVerifiedPhone(): bool
+    {
+        return !is_null($this->phone_verified_at);
+    }
+
+    /**
+     * Check if user needs phone verification
+     */
+    public function needsPhoneVerification(): bool
+    {
+        return $this->phone_verification_required && !$this->hasVerifiedPhone();
+    }
+
+    /**
+     * Mark phone as verified
+     */
+    public function markPhoneAsVerified(): void
+    {
+        $this->forceFill([
+            'phone_verified_at' => now(),
+            'phone_verification_code' => null,
+            'phone_verification_attempts' => 0,
+        ])->save();
+    }
+
+    /**
+     * Generate and store phone verification code
+     */
+    public function generatePhoneVerificationCode(): string
+    {
+        $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+        
+        $this->forceFill([
+            'phone_verification_code' => $code,
+            'phone_verification_sent_at' => now(),
+        ])->save();
+
+        return $code;
+    }
+
+    /**
+     * Check if verification code is valid
+     */
+    public function isValidPhoneVerificationCode(string $code): bool
+    {
+        if (!$this->phone_verification_code) {
+            return false;
+        }
+
+        // Check if code matches
+        if ($this->phone_verification_code !== $code) {
+            $this->increment('phone_verification_attempts');
+            return false;
+        }
+
+        // Check if code is not expired (5 minutes)
+        if ($this->phone_verification_sent_at->addMinutes(5)->isPast()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if user can request new verification code
+     */
+    public function canRequestNewVerificationCode(): bool
+    {
+        if (!$this->phone_verification_sent_at) {
+            return true;
+        }
+
+        // Allow new code after 1 minute
+        return $this->phone_verification_sent_at->addMinute()->isPast();
+    }
+
+    /**
+     * Check if user is blocked from verification (too many attempts)
+     */
+    public function isBlockedFromVerification(): bool
+    {
+        return $this->phone_verification_attempts >= 5;
     }
 }

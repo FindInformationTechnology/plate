@@ -1,5 +1,11 @@
 ﻿
 
+<?php $__env->startSection('title', __('message.Browse_Plates') . ' - ' . config('app.name')); ?>
+<?php $__env->startSection('meta_description', __('message.Plates_Meta_Description')); ?>
+<?php $__env->startSection('keywords', 'browse UAE plates, search license plates, Dubai car plates, Abu Dhabi number plates'); ?>
+<?php $__env->startSection('og_title', __('message.Browse_Plates') . ' - ' . config('app.name')); ?>
+<?php $__env->startSection('og_description', __('message.Plates_Meta_Description')); ?>
+
 <?php $__env->startSection('content'); ?>
 
 

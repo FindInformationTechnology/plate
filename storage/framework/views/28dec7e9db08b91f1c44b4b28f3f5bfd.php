@@ -4,27 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title> Plate 35</title>
 
     <!-- Favicon -->
-    <!-- <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}"> -->
+    <!-- <link rel="shortcut icon" href="<?php echo e(asset('assets/img/favicon.png')); ?>"> -->
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/bootstrap.min.css')); ?>">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/plugins/fontawesome/css/fontawesome.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/plugins/fontawesome/css/all.min.css')); ?>">
 
     <!-- Fearther CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/feather.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/feather.css')); ?>">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
 
-    @if(app()->getLocale() === 'ar')
-    <link rel="stylesheet" href="{{ asset('assets/css/style-rtl.css') }}">
+    <?php if(app()->getLocale() === 'ar'): ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/style-rtl.css')); ?>">
     
     <style>
         .fa-eye-slash:before {
@@ -34,7 +34,7 @@
         }
 
     </style>
-    @endif
+    <?php endif; ?>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
         </header> -->
         <!-- /Header -->
 
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
 
 
         <!-- Footer -->
@@ -69,14 +69,14 @@
     <!-- /Main Wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/jquery-3.7.1.min.js')); ?>"></script>
 
     <!-- Bootstrap Core JS -->
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/bootstrap.bundle.min.js')); ?>"></script>
 
     <!-- Custom JS -->
-    <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="<?php echo e(asset('assets/js/script.js')); ?>"></script>
 
 </body>
 
-</html>
+</html><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/layouts/auth.blade.php ENDPATH**/ ?>

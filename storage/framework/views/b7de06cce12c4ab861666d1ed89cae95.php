@@ -67,10 +67,6 @@
             <img class="slider-img slider-img-large" src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
         </div>
 
-
-
-
-
     </div>
     <div class="container">
         <div class="home-banner">

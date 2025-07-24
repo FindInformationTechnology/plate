@@ -74,8 +74,40 @@
                     <div class="col-md-6">
                         <div class="profile-form-group">
                             <label><?php echo e(__('message.Phone_Number')); ?> <span class="text-danger">*</span></label>
-                            <input  type="text" name="phone" class="form-control " style="direction: ltr;"
-                                value="<?php echo e(auth()->user()->phone_number ?? ''); ?>" required>
+                            <div class="phone-input-wrapper">
+                                <input type="text" name="phone" class="form-control" style="direction: ltr;"
+                                    value="<?php echo e(auth()->user()->phone_number ?? ''); ?>" required>
+                                
+                                <!-- Phone Verification Status -->
+                                <div class="phone-verification-status mt-2">
+                                    <?php if(auth()->user()->hasVerifiedPhone()): ?>
+                                        <div class="d-flex align-items-center text-success">
+                                            <i class="bx bx-check-circle me-2"></i>
+                                            <span class="small"><?php echo e(__('message.Verified')); ?></span>
+                                            <span class="badge bg-success ms-2"><?php echo e(__('message.Phone_Status')); ?></span>
+                                        </div>
+                                    <?php else: ?>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center text-warning">
+                                                <i class="bx bx-error-circle me-2"></i>
+                                                <span class="small"><?php echo e(__('message.Not_Verified')); ?></span>
+                                            </div>
+                                            <a href="<?php echo e(route('phone.verify.show')); ?>" class="btn btn-sm btn-outline-primary">
+                                                <i class="bx bx-check-shield me-1"></i>
+                                                <?php echo e(__('message.Verify_Now')); ?>
+
+                                            </a>
+                                        </div>
+                                        <div class="alert alert-info mt-2 py-2">
+                                            <small>
+                                                <i class="bx bx-info-circle me-1"></i>
+                                                <?php echo e(__('message.Cannot_Upload_Without_Phone_Verification')); ?>
+
+                                            </small>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
