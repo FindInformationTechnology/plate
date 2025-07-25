@@ -2,23 +2,7 @@
 
 @section('content')
 
-<!-- Breadscrumb Section -->
-<!-- <div class="breadcrumb-bar">
-    <div class="container">
-        <div class="row align-items-center text-center">
-            <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">Plates</h2>
-                <nav aria-label="breadcrumb" class="page-breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Plates</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- /Breadscrumb Section -->
+
 
 <!-- Plate Details -->
 
@@ -48,14 +32,14 @@
                                     $plate->number }}</h2>
                                 @else
                                 <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex
-                                    justify-content-between align-items-center">
+                                    justify-content-around align-items-center">
                                     <h1 class="fw-medium">{{ $plate->code->name }}</h1>
                                     <h2 class="fw-medium">{{ $plate->number }}</h2>
                                 </div>
                                 @endif
                             </div>
                             <div>
-                                <p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price_digits }}</p>
+                                <p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
                             </div>
                             <div class="border-top">
                                 <a href="{{ route('plate.show', $plate->id) }}"

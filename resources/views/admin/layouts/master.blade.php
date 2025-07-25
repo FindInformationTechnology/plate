@@ -68,10 +68,7 @@ id="kt_app_body" data-kt-app-layout="dark-sidebar" data-kt-app-header-fixed="tru
                     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
                         <!--begin::Logo image-->
                         <a href="{{ route('admin.dashboard') }}">
-                            <img alt="Logo" src="{{ asset('assets/dashboard-assets/media/logos/default-dark.svg') }}"
-                                class="h-25px app-sidebar-logo-default" />
-                            <img alt="Logo" src="{{ asset('assets/dashboard-assets/media/logos/default-small.svg') }}"
-                                class="h-20px app-sidebar-logo-minimize" />
+                           <h1 style="color: #fff;">Admin Panale</h1>
                         </a>
 
                         <div id="kt_app_sidebar_toggle"

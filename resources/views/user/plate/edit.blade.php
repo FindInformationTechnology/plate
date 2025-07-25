@@ -102,49 +102,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    @if($plate->image)
-                                                    <div class="current-image mb-3">
-                                                        <label class="form-label">{{ __('message.Current_Image') }}</label>
-                                                        <div class="d-flex align-items-center">
-                                                            @if($plate->image_url)
-                                                            <img src="{{ asset($plate->image_url) }}"
-                                                                alt="Current Plate Image" class="img-thumbnail me-3"
-                                                                style="max-width: 150px;">
-
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    id="removeImage" name="remove_image">
-                                                                <label class="form-check-label"
-                                                                    for="removeImage">{{ __('message.Remove_current_image') }}</label>
-                                                            </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                    @endif
-                                                    <div class="upload-div">
-                                                        <input type="file" name="image">
-                                                        <div class="upload-photo-drag">
-                                                            <span><i class="fa fa-upload me-2"></i> {{
-                                                                __('message.Update_Plate_Photo') }}</span>
-                                                            <h6>{{ __('message.or_Drag_New_Photo') }}</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="upload-list">
-                                                        <ul>
-                                                            <li>{{ __('message.The_maximum_photo_size') }}</li>
-                                                            <li>{{ __('message.Leave_empty_to_keep_the_current_image') }}.</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -171,7 +129,7 @@
             const loadingSpinner = $('#code-loading');
 
             // Clear current options
-            codeSelect.empty().append('<option value="">{{ __('message.Loading_codes') }}...</option>');
+            codeSelect.empty().append('<option value="">{{ __("message.Loading_codes") }}...</option>');
 
             if (emirateId) {
                 // Show loading spinner
@@ -189,7 +147,7 @@
                         codeSelect.empty();
 
                         // Add a default option
-                        codeSelect.append('<option value="">{{ __('message.Select_Code') }}</option>');
+                        codeSelect.append('<option value="">{{ __("message.Select_Code") }}</option>');
 
                         // Add options for each code
                         $.each(response.codes, function(key, code) {
@@ -201,13 +159,13 @@
                     },
                     error: function(xhr, status, error) {
                         console.error("Error loading codes:", error);
-                        codeSelect.empty().append('<option value="">{{ __('message.Error_loading_codes') }}</option>');
+                        codeSelect.empty().append('<option value="">{{ __("message.Error_loading_codes") }}</option>');
                         loadingSpinner.addClass('d-none');
                     }
                 });
             } else {
                 // If no emirate is selected, show default message
-                codeSelect.empty().append('<option value="">{{ __('message.Select_Emirate_First') }}</option>');
+                codeSelect.empty().append('<option value="">{{ __("message.Select_Emirate_First") }}</option>');
             }
         });
 

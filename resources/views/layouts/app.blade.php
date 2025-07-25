@@ -2,22 +2,110 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RW30DCWP1K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-RW30DCWP1K');
+    </script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title> {{ config('app.name') }}</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>@yield('title', config('app.name') . ' - Premium UAE License Plates')</title>
+    <meta name="description" content="@yield('meta_description', __('message.Home_Meta_Description'))">
+    <meta name="keywords" content="UAE license plates, Dubai number plates, Abu Dhabi plates, car plates, vehicle registration, premium plates, @yield('keywords', '')">
+    <meta name="author" content="{{ config('app.name') }}">
+    <meta name="robots" content="@yield('robots', 'index, follow')">
+    <link rel="canonical" href="@yield('canonical', request()->url())">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="@yield('og_title', config('app.name') . ' - Premium UAE License Plates')">
+    <meta property="og:description" content="@yield('og_description', __('message.Home_Meta_Description'))">
+    <meta property="og:image" content="@yield('og_image', asset('assets/img/og-image.jpg'))">
+    <meta property="og:url" content="@yield('og_url', request()->url())">
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:locale" content="{{ app()->getLocale() == 'ar' ? 'ar_AE' : 'en_US' }}">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('twitter_title', config('app.name') . ' - Premium UAE License Plates')">
+    <meta name="twitter:description" content="@yield('twitter_description', __('message.Home_Meta_Description'))">
+    <meta name="twitter:image" content="@yield('twitter_image', asset('assets/img/og-image.jpg'))">
+    
+    <!-- Language Alternatives -->
+    <link rel="alternate" hreflang="en" href="{{ url('/') }}">
+    <link rel="alternate" hreflang="ar" href="{{ url('/lang/ar') }}">
+    <link rel="alternate" hreflang="x-default" href="{{ url('/') }}">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AutoPartsStore",
+        "name": "{{ config('app.name') }}",
+        "description": "{{ __('message.Home_Meta_Description') }}",
+        "url": "{{ url('/') }}",
+        "logo": "{{ asset('assets/img/logo.webp') }}",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "AE",
+            "addressRegion": "Dubai"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "url": "{{ route('contact') }}"
+        },
+        "sameAs": [
+            "@yield('social_links', '')"
+        ]
+    }
+    </script>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset ('assets/img/favicon.png')}}">
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WZ8WB8CV');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Favicon and Touch Icons -->
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ asset('/site.webmanifest') }}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap.min.css')}}" as="style">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/fontawesome.min.css')}}">
-    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/fontawesome.min.css')}}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset ('assets/plugins/fontawesome/css/all.min.css')}}" media="print" onload="this.media='all'">
 
     <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/plugins/fancybox/fancybox.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/plugins/fancybox/fancybox.css')}}" media="print" onload="this.media='all'">
 
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -26,7 +114,7 @@
     <link rel="stylesheet" href="{{ asset ('assets/plugins/select2/css/select2.min.css')}}">
 
     <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap-datetimepicker.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{ asset ('assets/css/bootstrap-datetimepicker.min.css')}}"> -->
 
     <!-- Aos CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/plugins/aos/aos.css')}}">
@@ -41,15 +129,26 @@
     <link rel="stylesheet" href="{{ asset ('assets/css/owl.carousel.min.css')}}">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}" as="style">
 
     <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
 
-    <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}"> -->
 
 
 
     <style>
+        .hero-sec-main .header-two {
+            background-color: #FFF;
+        }
+
+        .hero-sec-main .header-two.header-fixed {
+            background-color: #FFF;
+        }
+
         .dashboard-section {
             background: none;
             box-shadow: none;
@@ -65,7 +164,7 @@
         }
 
         .navbar .fa-globe:before {
-            color: #ffa633;
+            color: #AC1E23;
         }
     </style>
 
@@ -79,17 +178,30 @@
             padding-left: 20px;
         }
 
-        .header .main-menu-wrapper .main-nav > li a i{
-           
-           margin-left: 10px;
-        } 
+        .header .main-menu-wrapper .main-nav>li a i {
+
+            margin-left: 10px;
+        }
     </style>
     @endif
 
 
 </head>
 
+
+
+<div id="page-transition-overlay" class="hidden">
+    <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" />
+</div>
+
 <body class="home-two">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ8WB8CV"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
 
     <div class="main-wrapper">
 
@@ -129,38 +241,79 @@
         <script src="{{ asset ('assets/js/jquery-3.7.1.min.js') }}"></script>
 
         <!-- Bootstrap Core JS -->
-        <script src="{{ asset ('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset ('assets/js/bootstrap.bundle.min.js') }}" defer></script>
 
         <!-- counterup JS -->
-        <script src="{{ asset ('assets/js/jquery.waypoints.js') }}"></script>
-        <script src="{{ asset ('assets/js/jquery.counterup.min.js') }}"></script>
+        <script src="{{ asset ('assets/js/jquery.waypoints.js') }}" defer></script>
+        <script src="{{ asset ('assets/js/jquery.counterup.min.js') }}" defer></script>
 
         <!-- Select2 JS -->
-        <script src="{{ asset ('assets/plugins/select2/js/select2.min.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/select2/js/select2.min.js') }}" defer></script>
 
         <!-- Aos -->
-        <script src="{{ asset ('assets/plugins/aos/aos.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/aos/aos.js') }}" defer></script>
 
         <!-- Top JS -->
-        <script src="{{ asset ('assets/js/backToTop.js') }}"></script>
+        <script src="{{ asset ('assets/js/backToTop.js') }}" defer></script>
 
         <!-- Fancybox JS -->
-        <script src="{{ asset ('assets/plugins/fancybox/fancybox.umd.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/fancybox/fancybox.umd.js') }}" defer></script>
 
         <!-- Datepicker Core JS -->
-        <script src="{{ asset ('assets/plugins/moment/moment.min.js') }}"></script>
-        <script src="{{ asset ('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+        <script src="{{ asset ('assets/plugins/moment/moment.min.js') }}" defer></script>
+        <script src="{{ asset ('assets/js/bootstrap-datetimepicker.min.js') }}" defer></script>
 
         <!-- Owl Carousel JS -->
         <script src="{{ asset ('assets/js/owl.carousel.min.js') }}"></script>
 
         <!-- Custom JS -->
-        <script src="{{ asset ('assets/js/script.js') }}"></script>
+        <script src="{{ asset ('assets/js/script.js') }}" defer></script>
 
 
         <!-- Toastr JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+        <script>
+            // Add this to your main layout file
+            document.addEventListener('DOMContentLoaded', function() {
+                // Check if user is already logged in but gets a 419 error
+                if (document.referrer.includes('419')) {
+                    // Redirect to dashboard or home page
+                    window.location.href = '{{ route("home") }}';
+                }
+            });
+
+            // page loader
+            const links = document.querySelectorAll(".nav-link:not([data-bs-toggle])");
+            const overlay = document.getElementById("page-transition-overlay");
+
+            links.forEach(link => {
+                link.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    // Only apply to links with actual URLs, not javascript:void(0)
+                    if (this.getAttribute("href") && !this.getAttribute("href").includes("javascript:")) {
+                        e.preventDefault();
+                        const href = this.getAttribute("href");
+
+                        overlay.classList.remove("hidden");
+                        overlay.classList.add("show");
+
+                        setTimeout(() => {
+                            overlay.classList.add("start-grow");
+                        }, 200);
+
+                        setTimeout(() => {
+                            overlay.classList.add("hide-logo");
+                        }, 1000);
+
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 1000);
+                    }
+
+                });
+            });
+        </script>
 
 
         <script>
@@ -196,6 +349,8 @@
             toastr.warning("{{ Session::get('warning') }}");
             @endif
         </script>
+
+
 
         @stack('scripts')
 

@@ -81,33 +81,37 @@
                         <span></span>
                     </span>
                 </a>
+
+
                 <a href="{{ route('home')}}" class="navbar-brand logo">
-                    <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{  asset ('assets/img/logo-b.png')}}" width="145" class="img-fluid" alt="Logo">
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo-small">
-                    <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
+                    <img src="{{  asset ('assets/img/logo-b.png')}}" class="img-fluid" width="145" alt="Logo">
                 </a>
+
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
-                    <a href="{{ route ('home') }}" class="menu-logo">
-                        <img src="{{  asset ('assets/img/logo.png')}}" class="img-fluid" alt="Logo">
-                    </a>
+                    <!-- <a href="{{ route ('home') }}" class="menu-logo">
+                        <img src="{{  asset ('assets/img/logo-b.png')}}" class="img-fluid" alt="Logo">
+                    </a> -->
                     <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                 </div>
                 <ul class="main-nav">
-                    <li><a href="{{ route('home')}}">{{ __('message.Home') }}</a></li>
-                    <li><a href="{{ route('plates')}}">{{ __('message.Plates') }}</a></li>
-
+                    <li><a href="{{ route('home')}}" class="nav-link">{{ __('message.Home') }}</a></li>
+                    <li><a href="{{ route('plates')}}" class="nav-link">{{ __('message.Plates') }}</a></li>
+                    <!-- <li><a href="{{ route('contact')}}" class="nav-link">{{ __('message.Contact_Us') }}</a></li> -->
 
                     <!-- <li><a href="#">Contact</a></li> -->
 
-                   
+
 
                     @guest
                     <li class="login-link">
-                        <a href="{{ route('register') }}">{{ __('message.Sign_Up') }}</a>
+                        <a href="{{ route('register') }}">{{ __('message.Sign_Up') }} / </a>
                     </li>
+                    
                     <li class="login-link">
                         <a href="{{ route('login') }}">{{ __('message.Sign_In') }}</a>
                     </li>
@@ -125,12 +129,17 @@
                     @if(auth()->user()->hasRole('admin'))
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="{{ route('admin.dashboard') }}">
-                            <span><i class="bx bx-plus-circle"></i></span>{{ __('message.Dashboard_Admin') }}</a>
+                            <!-- <span><i class="bx bx-plus-circle"></i></span> -->
+                            {{ __('message.Dashboard_Admin') }}</a>
                     </li>
+
+
+
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form-admin').submit()">
-                            <i class="feather-power"></i> {{ __('message.Logout') }}
+                            <!-- <i class="feather-power"></i>  -->
+                            {{ __('message.Logout') }}
 
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
@@ -140,21 +149,29 @@
                     @endif
                     @endauth
 
-                    
+
 
                     <!-- user menu -->
                     @auth
                     @if(auth()->user()->hasRole('user'))
-                     <li class="nav-item d-md-none">
+                    <li class="nav-item d-md-none">
                         <a class="nav-link header-reg" href="{{ route('user.dashboard') }}">
-                           {{ __('message.My_Dashboard') }} </a>
+                            <span><i class="bx bx-plus-circle"></i></span>
+                            {{ __('message.My_Dashboard') }} </a>
                     </li>
-                   
+
+                    <li class="nav-item d-md-none">
+                        <a class="nav-link header-reg" href="{{ route('user.profile') }}">
+                            <span><i class="bx bx-user"></i></span>{{ __('message.Profile') }}
+                        </a>
+                    </li>
+
 
                     <li class="nav-item d-md-none">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form-admin').submit()">
-                            <i class="feather-power px-2"></i> {{ __('message.Logout') }}
+                            <i class="bx bx-power-off"></i>
+                            {{ __('message.Logout') }}
 
                         </a>
                         <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
@@ -164,35 +181,35 @@
                     @endif
                     @endauth
 
-                     <!-- Language Switcher -->
-                     <li class="nav-item dropdown d-md-none">
-                        <a class="nav-link dropdown-toggle" href="#"> 
-                            <i class="fa fa-globe px-2"></i> {{ __('message.Language') }}</a>
-                        <ul class="dropdown-menu"  >
+                    <!-- Language Switcher -->
+                    <li class="nav-item dropdown d-md-none">
+                        <a class="nav-link dropdown-toggle" href="javascript:void(0);">
+                            <i class="fa fa-globe "></i> {{ __('message.Language') }}</a>
+                        <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" style="color: #2F2F2F;"
-                                 href="{{ route('change.language', 'en') }}">
+                                <a class="dropdown-item b-color"
+                                    href="{{ route('change.language', 'en') }}">
                                     {{ __('message.English') }}
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" style="color: #2F2F2F;"
-                                 href="{{ route('change.language', 'ar') }}">
+                                <a class="dropdown-item b-color"
+                                    href="{{ route('change.language', 'ar') }}">
                                     {{ __('message.Arabic') }}
                                 </a>
                             </li>
                         </ul>
                     </li>
                     <!-- /Language Switcher -->
-                    
+
                 </ul>
             </div>
 
 
             <ul class="nav header-navbar-rht">
 
-               
-               
+
+
                 <!-- Add language switcher for right side as well -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0);" id="language-dropdown" data-bs-toggle="dropdown">
@@ -211,11 +228,11 @@
                 @guest
                 <li class="nav-item">
                     <a class="nav-link login-link" href="{{ route('login') }}"><span><i class="bx bx-user me-2"></i></span>{{ __('message.Sign_In') }} / </a>
-                    @if(Route::has('register') )
                     <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a>
-                    @endif
+                    <!-- @if(Route::has('register') )
+                    @endif -->
 
-                    
+
                 </li>
 
 
@@ -269,7 +286,7 @@
                         <span class="user-img">
                             <img class="rounded-circle" src="{{  asset ('assets/img/profiles/avatar-14.jpg') }}" alt="Profile">
                         </span>
-                        @if (Route::currentRouteName() == 'home')
+                        @if (Route::currentRouteName() == 'home' )
                         <span class="user-text" style="color: #fff;">{{ auth()->user()->name }}</span>
                         @else
                         <span class="user-text" style="color: black;">{{ auth()->user()->name }}</span>

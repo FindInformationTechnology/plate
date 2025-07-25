@@ -24,10 +24,18 @@ return new class extends Migration
             $table->text('two_factor_secret')->nullable();
             $table->text('two_factor_recovery_codes')->nullable();
             $table->timestamp('two_factor_confirmed_at')->nullable();
+            
             $table->string('emirate')->nullable();
             $table->string('nationality')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_phone_verified')->default(false);
+          
+            $table->string('otp_code')->nullable();
+            $table->timestamp('otp_expiry')->nullable();
+            $table->timestamp('otp_verified_at')->nullable();
+            $table->integer('otp_attempts')->default(0);
+            $table->timestamp('otp_sent_at')->nullable();
+
             $table->enum('status', ['active', 'suspended'])->default('active');
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();

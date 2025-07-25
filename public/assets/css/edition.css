@@ -1,8 +1,58 @@
 body {
-    --main-color: #ffa633;
+    --main-color: #AC1E23;
     --alt-color: #e4e2df;
     font-family: "Roboto", sans-serif;;
 }
+
+/* Main Header  */
+.hero-sec-main .header-two{
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px !important;
+}
+
+.header .navbar-header .navbar-brand{
+    width: 90px !important;
+    margin: auto;
+}
+
+/* Loader */
+#page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #page-transition-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+  #page-transition-overlay img {
+    width: 200px;
+    height: auto;
+    transform: scale(0.3);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  #page-transition-overlay.start-grow img {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  #page-transition-overlay.hide-logo img {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+
+  .hero-sec-main .header-two .header-nav .main-nav > li a.b-color {
+    color: #2a2828 !important;
+  }
+
+
+/*  */
 
 @font-face {
     font-family: "dubai";
@@ -53,6 +103,7 @@ body {
     transition-duration: 0.5s !important;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
     z-index: 10;
+    direction: ltr !important;
 }
 
 .plate-card .status {
@@ -72,7 +123,7 @@ body {
     font-size: 120px !important;
 }
 .big-plate .dubai-number {
-    font-size: 200px !important;
+    font-size: 230px !important;
 }
 .plate .dubai-icon {
     top: 40%;
@@ -82,14 +133,14 @@ body {
     font-weight: normal !important;
 }
 .plate .dubai-number,
-.plate .dubai-c-number {
+.plate .dubai-classic {
     color: #000;
     top: 50%;
     transform: translateY(-50%);
     left: 45%;
-    font-size: 60px;
+    font-size: 70px;
     font-family: "dubai";
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 .big-plate .abu-dhabi-icon {
     font-size: 120px !important;
@@ -138,51 +189,54 @@ body {
 }
 .big-plate .sharjah-icon {
     font-size: 140px !important;
+    font-weight: 100 !important;
 }
 .big-plate .sharjah-number {
-    font-size: 200px !important;
+    font-size: 230px !important;
+    font-weight: 100 !important;
 }
 .plate .sharjah-icon {
     top: 50%;
     left: 15%;
     transform: translateY(-50%);
+    font-weight: 100 !important;
     font-size: 32px;
     font-family: "sharjah";
 }
 .plate .sharjah-number {
-    color: #111112;
     top: 50%;
     transform: translateY(-50%);
-    left: 60%;
-    font-weight: 200 !important;
-    font-size: 50px;
+    left: 58%;
+    font-weight: 100 !important;
+    font-size: 60px;
     font-family: "sharjah";
     letter-spacing: 3px;
 }
 .big-plate .uaq-icon,
 .big-plate .uaq-number {
-    font-size: 200px !important;
+    font-size: 230px !important;
 }
 .plate .uaq-icon {
     top: 50%;
     transform: translateY(-50%);
     left: 8%;
     font-size: 70px;
+    font-family: "dubai";
 }
 .plate .uaq-number {
     color: #111112;
     top: 50%;
     transform: translateY(-50%);
     left: 48%;
-    font-size: 65px;
+    font-size: 70px;
     font-family: "dubai";
     letter-spacing: 4px;
 }
 .plate .ajman-plate {
-    width: 60%;
+    width: 62%;
     top: 50%;
     transform: translateY(-50%);
-    left: 5%;
+    left: 3%;
 }
 .big-plate .ajman-plate h1,
 .big-plate .ajman-plate h2 {
@@ -194,6 +248,8 @@ body {
     font-size: 50px;
     font-family: "ajman";
     color: #111112;
+    text-transform: capitalize;
+    
 }
 .plate .rak-plate {
     width: 60%;
@@ -204,6 +260,7 @@ body {
 .big-plate .rak-plate h1,
 .big-plate .rak-plate h2 {
     font-size: 250px !important;
+    
 }
 .plate .rak-plate h1,
 .plate .rak-plate h2 {
@@ -211,6 +268,7 @@ body {
     font-weight: lighter !important;
     font-size: 70px;
     color: #111112;
+    text-transform: capitalize;
 }
 @media (max-width: 991px) {
     .big-plate .dubai-icon {
@@ -253,7 +311,7 @@ body {
         font-size: 50px !important;
     }
     .big-plate .abu-dhabi-icon {
-        font-size: 20px !important;
+        font-size: 22px !important;
     }
     .big-plate .abu-dhabi-number {
         font-size: 45px !important;
@@ -281,18 +339,19 @@ body {
         font-size: 30px !important;
     }
     .plate .dubai-number,
-    .plate .dubai-c-number,
+    .plate .dubai-classic,
     .big-plate .dubai-number {
-        left: 40%;
+        left: 45%;
         font-size: 55px !important;
     }
     .plate .abu-dhabi-icon {
         top: 15%;
         left: 9%;
-        font-size: 20px;
+        font-size: 22px;
     }
     .plate .abu-dhabi-number {
         left: 50%;
+        top: 45%;
         font-size: 45px;
     }
     .plate .fujairah-icon {
@@ -377,8 +436,6 @@ body {
     color: #ffffff !important;
 }
 
-
-
 .hero-sec-main .banner-slider {
     margin-top: 100px !important;
 }
@@ -394,8 +451,8 @@ body {
     transition-duration: 0.5s;
 }
 .plate-details .contact {
-    background-color: #ffa633;
-    border: 1px solid #ffa633;
+    background-color: #AC1E23;
+    border: 1px solid #AC1E23;
 }
 .plate-details .whatsapp {
     background-color: #28b055;
@@ -407,6 +464,8 @@ body {
     color: #ffffff;
     text-transform: capitalize;
     font-weight: 600;
+    transition-duration: 0.5s;
+    direction: ltr;
 }
 .plate-details .contact:hover,
 .plate-details .whatsapp:hover {
@@ -414,10 +473,71 @@ body {
     box-shadow: inset 0 70px 0 0 #ffffff;
 }
 .plate-details .contact:hover {
-    border: 1px solid #ffa633;
-    color: #ffa633;
+    border: 1px solid #AC1E23;
+    color: #AC1E23;
 }
 .plate-details .whatsapp:hover {
     border: 1px solid #28b055;
     color: #28b055;
 }
+.plate-details .contact:hover p {
+    color: #AC1E23;
+}
+.plate-details .whatsapp:hover p {
+    color: #28b055;
+}
+
+.search {
+    padding: 15px;
+    background-color: rgb(32, 31, 29, 0.7);
+    border-radius: 5px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+@media(min-width: 768px){
+    .search-option {
+        flex: 1 1 0;
+        min-width: 180px;
+        padding: 10px;
+    }
+}
+
+.search p {
+    color: #e2e2e2;
+    margin-top: 5px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.search-bar button.search-btn {
+    padding-block: 10px;
+    padding-inline: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #AC1E23;
+    color: white;
+    flex-shrink: 0;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+    .search-option {
+        width: 48%;
+    }
+    .search-bar button.search-btn {
+        width: 100%;
+    }
+}
+

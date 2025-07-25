@@ -1,6 +1,13 @@
 ﻿@extends('layouts.app')
 
+@section('title', __('message.Browse_Plates') . ' - ' . config('app.name'))
+@section('meta_description', __('message.Plates_Meta_Description'))
+@section('keywords', 'browse UAE plates, search license plates, Dubai car plates, Abu Dhabi number plates')
+@section('og_title', __('message.Browse_Plates') . ' - ' . config('app.name'))
+@section('og_description', __('message.Plates_Meta_Description'))
+
 @section('content')
+
 
 <!-- Breadscrumb Section -->
 <div class="breadcrumb-bar">
@@ -23,48 +30,13 @@
 <!-- Plate Details -->
 
 <section class="plate-details">
-	<div class="container my-5 search">
-
-        <form class="search-bar">
-        <div class="options">
-                    <select class="form-control search-option" id="code_id" name="code_id">
-                        <option value="">{{ __('message.Select_Code') }}</option>
-                        <!-- Codes will be populated here dynamically -->
-                    </select>
-
-                    <select class="form-control search-option" name="length">
-                        <option value="">{{ __('message.All_Digit') }}</option>
-
-                        <option value="1">1 Digit</option>
-                        <option value="2">2 Digit</option>
-                        <option value="3">3 Digit</option>
-                        <option value="4">4 Digit</option>
-                        <option value="5">5 Digit</option>
-
-                    </select>
-
-                    <!-- <input type="length" class="form-control search-option" name="number" placeholder="Plate Number"> -->
-
-                    <!-- More Options -->
-                    <input type="number" class="form-control search-option extra d-none" name="max_price"
-                        placeholder="{{ __('message.Maximum_Price') }}">
-                    <input type="number" class="form-control search-option extra d-none" name="min_price"
-                        placeholder="{{ __('message.Minimum_Price') }}">
-                    <input type="number" class="form-control search-option extra d-none" name="start_with"
-                        placeholder="{{ __('message.Start_With') }}: ex:123">
-                    <input type="number" class="form-control search-option extra d-none" name="end_with"
-                        placeholder="{{ __('message.End_With') }}: ex:000">
-
-                    <!-- Search Button -->
-                    <button class="search-btn" type="submit">{{ __('message.Search') }}</button>
-                </div>
-            </form>
-            <p class="toggle-options">+ {{ __('message.more_options') }}</p>
-        </div>
-        <!-- End Search Form -->
+   
+    <div class="container">
+    @include('front.search-form')
     </div>
+   
 
-    <div class="container my-4 border border-dark-subtle rounded-3">
+    <div class="container my-4 ">
 
 
 
@@ -91,18 +63,18 @@
                                     $plate->number }}</h2>
                                 @else
                                 <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex
-                                    justify-content-between align-items-center">
+                                    justify-content-around align-items-center">
                                     <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                                     <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                                 </div>
                                 @endif
                             </div>
                             <div>
-                                <p class="text-success fs-4 text-center fw-semibold pb-4">{{ $plate->price_digits }}</p>
+                                <p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
                             </div>
                             <div class="border-top">
                                 <a href="{{ route('plate.show', $plate->id) }}"
-                                    class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2"><i
+                                    class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
                                         class="bx bx-phone"></i>
                                     <p>{{ __('message.Contact') }}</p>
                                 </a>
@@ -126,37 +98,38 @@
 
 @push('scripts')
 <script>
-    document.querySelector(".toggle-options").addEventListener("click", function() {
-        const extraOptions = document.querySelectorAll(".extra");
-        const isHidden = extraOptions[0].classList.contains("d-none");
+document.querySelector(".toggle-options").addEventListener("click", function() {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
 
-        extraOptions.forEach(opt => {
-            opt.classList.toggle("d-none");
-        });
-
-        this.textContent = isHidden ? "- {{ __('message.less_options') }}" : "+ {{ __('message.more_options') }}";
+    extraOptions.forEach(opt => {
+        opt.classList.toggle("d-none");
     });
-    document.getElementById('emirate_id').addEventListener('change', function() {
-        var emirateId = this.value;
-        var codeSelect = document.getElementById('code_id');
 
-        // Clear existing options
-        codeSelect.innerHTML = '<option value="">{{ __("message.Select_Code") }}</option>';
+    this.textContent = isHidden ? "- {{ __('message.less_options') }}" : "+ {{ __('message.more_options') }}";
+});
 
-        if (emirateId) {
-            // Make AJAX request to fetch codes
-            fetch('/getCodes/' + emirateId) // Define this route in your web.php
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(code => {
-                        var option = document.createElement('option');
-                        option.value = code.id;
-                        option.textContent = code.name;
-                        codeSelect.appendChild(option);
-                    });
+document.getElementById('emirate_id').addEventListener('change', function() {
+    var emirateId = this.value;
+    var codeSelect = document.getElementById('code_id');
+
+    // Clear existing options
+    codeSelect.innerHTML = '<option value="">{{ __("message.Select_Code") }}</option>';
+
+    if (emirateId) {
+        // Make AJAX request to fetch codes
+        fetch('/getCodes/' + emirateId) // Define this route in your web.php
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(code => {
+                    var option = document.createElement('option');
+                    option.value = code.id;
+                    option.textContent = code.name;
+                    codeSelect.appendChild(option);
                 });
-        }
-    });
+            });
+    }
+});
 </script>
 
 @endpush

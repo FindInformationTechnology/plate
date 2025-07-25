@@ -15,19 +15,17 @@ return Application::configure(basePath: dirname(__DIR__))
     )
 
     ->withMiddleware(function (Middleware $middleware) {
-        //
-        // Add the language middleware to the web middleware group
-        $middleware->web(append: [
-            \App\Http\Middleware\SetLanguage::class,
-        ]);
-
-        //
+        // Register custom middleware
         $middleware->alias([
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
             'is_admin' => \App\Http\Middleware\IsAdmin::class,
-            // 'language' => \App\Http\Middleware\SetLanguage::class,
+            'phone.verified' => \App\Http\Middleware\RequirePhoneVerification::class,
+        ]);
+        
+        $middleware->web(append: [
+            \App\Http\Middleware\SetLanguage::class,
         ]);
 
         $middleware->validateCsrfTokens(except: [

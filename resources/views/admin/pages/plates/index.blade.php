@@ -1,5 +1,10 @@
 @extends('admin.layouts.master')
-
+@push('styles')
+<!-- Add DataTables CSS -->
+<link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<!-- Add DataTables Responsive CSS -->
+<link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+@endpush
 @section('content')
 <!--begin::Main-->
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -119,7 +124,7 @@
                     <!--begin::Card body-->
                     <div class="card-body py-4">
                         <!--begin::Table-->
-                        <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_plates">
+                        <table class="table align-middle table-row-dashed fs-6 gy-5 dt-responsive nowrap" id="kt_table_plates" width="100%">
                             <thead>
                                 <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                     <th class="min-w-125px">ID</th>
@@ -127,11 +132,11 @@
                                     <th class="min-w-125px">Emirate</th>
                                     <th class="min-w-125px">Code</th>
                                     <th class="min-w-125px">Number</th>
-                                    <!-- <th class="min-w-125px">Length</th> -->
                                     <th class="min-w-125px">Price</th>
+                                    <th class="min-w-125px">Feature</th> 
                                     <th class="min-w-125px">Status</th>
-                                    <th class="min-w-125px">Created Date</th>
-                                    <th class="text-end min-w-100px">Actions</th>
+                                    <th class="min-w-125px">C reated Date</th>
+                                    <th class="text-end min -w-100px">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-600 fw-semibold">
@@ -144,6 +149,12 @@
                                     <td>{{ $plate->number }}</td>
                                     <!-- <td>{{ $plate->length }}</td> -->
                                     <td>{{ number_format($plate->price, 2) }}</td>
+                                    <td>
+                                        <div class="badge badge-light-{{ $plate->is_featured ? 'success' : 'warning' }} me-2">
+                                            {{ $plate->is_featured ? 'Featured' : 'Normal' }}
+                                        </div>
+
+                                    </td>
                                     <td>
                                         <div class="badge badge-light-{{ $plate->is_approved ? 'success' : 'warning' }} me-2">
                                             {{ $plate->is_approved ? 'Approved' : 'Pending' }}
@@ -162,15 +173,24 @@
                                             </span>
                                         </a>
                                         <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                            <div class="menu-item px-3">
+                                            
+                                        <div class="menu-item px-3">
                                                 <a href="{{ route('admin.plates.show', $plate->id) }}" class="menu-link px-3">View</a>
                                             </div>
+
                                             <div class="menu-item px-3">
                                                 <a href="{{ route('admin.plates.edit', $plate->id) }}" class="menu-link px-3">Edit</a>
                                             </div>
+
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3 toggle-status" data-id="{{ $plate->id }}" data-status="{{ $plate->is_approved ? 0 : 1 }}">
                                                     {{ $plate->is_approved ? 'Unapprove' : 'Approve' }}
+                                                </a>
+                                            </div>
+
+                                            <div class="menu-item px-3">
+                                                <a href="#" class="menu-link px-3 toggle-featured" data-id="{{ $plate->id }}" data-status="{{ $plate->is_featured ? 0 : 1 }}">
+                                                    {{ $plate->is_featured ? 'Unfeatured' : 'Featured' }}
                                                 </a>
                                             </div>
                                             <div class="menu-item px-3">
@@ -178,9 +198,11 @@
                                                     {{ $plate->is_sold ? 'Mark as Available' : 'Mark as Sold' }}
                                                 </a>
                                             </div>
+
                                             <div class="menu-item px-3">
                                                 <a href="#" class="menu-link px-3 delete-plate" data-id="{{ $plate->id }}">Delete</a>
                                             </div>
+
                                         </div>
                                     </td>
                                 </tr>
@@ -203,47 +225,66 @@
 <!--end:::Main-->
 @endsection
 
-@push('styles')
-<!-- Add DataTables CSS -->
-<link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-@endpush
-
 @push('scripts')
 <!-- Make sure jQuery is loaded first -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Then load DataTables -->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-@endpush
+<!-- Add DataTables Responsive JS -->
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
 
-@push('scripts')
 <script>
     $(document).ready(function() {
+        // Initial KTMenu initialization
+        function initializeKTMenu() {
+            document.querySelectorAll('[data-kt-menu="true"]').forEach(function(element) {
+                var menu = new KTMenu(element);
+            });
+        }
+        
+        // Run initial initialization
+        initializeKTMenu();
+        
         if ($.fn.DataTable) {
-            // Initialize datatable
+            // Initialize datatable with responsive features properly configured
             var table = $("#kt_table_plates").DataTable({
                 "info": false,
                 'order': [],
                 'pageLength': 10,
+                responsive: true,
+                columnDefs: [{
+                    targets: -1, // Target the last column (Actions)
+                    responsivePriority: 1, // Give it highest priority
+                    className: 'all' // Make it always visible in responsive mode
+                }]
             });
-
+    
+            // Re-initialize KTMenu after DataTables draws or redraws the table
+            table.on('draw.dt responsive-display.dt', function() {
+                // Small delay to ensure DOM is updated
+                setTimeout(function() {
+                    initializeKTMenu();
+                }, 100);
+            });
+    
             // Search functionality
-
             $('[data-kt-plate-table-filter="search"]').on('keyup', function() {
                 table.search($(this).val()).draw();
             });
-
+    
             // Filter functionality
             $('[data-kt-plate-table-filter="filter"]').on('click', function() {
                 const filterStatus = $('[data-kt-plate-table-filter="status"]').val();
-
+    
                 if (filterStatus === 'all') {
                     table.search('').columns(7).search('').draw();
                 } else {
                     table.columns(7).search(filterStatus).draw();
                 }
             });
-
+    
             // Reset filter
             $('[data-kt-plate-table-filter="reset"]').on('click', function() {
                 $('[data-kt-plate-table-filter="status"]').val('').trigger('change');
@@ -252,179 +293,114 @@
         } else {
             console.log('DataTables is not defined.');
         }
-
-        // Toggle status
-        $('.toggle-status').on('click', function(e) {
+    
+        // Toggle approval status
+        $(document).on('click', '.toggle-status', function(e) {
             e.preventDefault();
-
-            const plateId = $(this).data('id');
-            const newStatus = $(this).data('status');
-            const statusText = newStatus ? 'approve' : 'unapprove';
-
-            Swal.fire({
-                text: `Are you sure you want to ${statusText} this plate?`,
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: `Yes, ${statusText} it!`,
-                cancelButtonText: "No, cancel",
-                customClass: {
-                    confirmButton: "btn fw-bold btn-primary",
-                    cancelButton: "btn fw-bold btn-active-light-primary"
-                }
-            }).then(function(result) {
-                if (result.value) {
-                    $.ajax({
-                        url: '{{ route("admin.plates.update-status") }}',
-                        type: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            id: plateId,
-                            status: newStatus
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                text: `Plate ${statusText}d successfully!`,
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                }
-                            }).then(function() {
-                                location.reload();
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                text: `Error ${statusText}ing plate!`,
-                                icon: "error",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                }
-                            });
-                        }
-                    });
+            var plateId = $(this).data('id');
+            var newStatus = $(this).data('status');
+            
+            $.ajax({
+                url: '{{ route("admin.plates.update-status") }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: plateId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to update approval status.');
+                    }
+                },
+                error: function(xhr) {
+                    alert('Failed to update approval status.');
                 }
             });
         });
 
         // Toggle sold status
-        $('.toggle-sold').on('click', function(e) {
+        $(document).on('click', '.toggle-sold', function(e) {
             e.preventDefault();
-
-            const plateId = $(this).data('id');
-            const newStatus = $(this).data('status');
-            const statusText = newStatus ? 'mark as sold' : 'mark as available';
-
-            Swal.fire({
-                text: `Are you sure you want to ${statusText} this plate?`,
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: `Yes, ${statusText}!`,
-                cancelButtonText: "No, cancel",
-                customClass: {
-                    confirmButton: "btn fw-bold btn-primary",
-                    cancelButton: "btn fw-bold btn-active-light-primary"
+            var plateId = $(this).data('id');
+            var newStatus = $(this).data('status');
+            
+            $.ajax({
+                url: '{{ route("admin.plates.update-sold") }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: plateId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to update sold status.');
+                    }
+                },
+                error: function(xhr) {
+                    alert('Failed to update sold status.');
                 }
-            }).then(function(result) {
-                if (result.value) {
-                    $.ajax({
-                        url: '{{ route("admin.plates.update-sold") }}',
-                        type: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            id: plateId,
-                            status: newStatus
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                text: `Plate ${newStatus ? 'marked as sold' : 'marked as available'} successfully!`,
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                }
-                            }).then(function() {
-                                location.reload();
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                text: `Error updating plate status!`,
-                                icon: "error",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                }
-                            });
-                        }
-                    });
+            });
+        });
+
+        // Toggle featured
+
+        $(document).on('click', '.toggle-featured', function(e) {
+            e.preventDefault();
+            var plateId = $(this).data('id');
+            var newStatus = $(this).data('status');
+            
+            $.ajax({
+                url: '{{ route("admin.plates.update-featured") }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: plateId,
+                    status: newStatus
+                },
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to update featured status.');
+                    }
+                },
+                error: function(xhr) {
+                    alert('Failed to update featured status.');
                 }
             });
         });
 
         // Delete plate
-        $('.delete-plate').on('click', function(e) {
-
+        $(document).on('click', '.delete-plate', function(e) {
             e.preventDefault();
-
-            const plateId = $(this).data('id');
-            const row = $(this).closest('tr');
+            var plateId = $(this).data('id');
             
-
-            Swal.fire({
-                text: "Are you sure you want to delete this plate?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, delete!",
-                cancelButtonText: "No, cancel",
-                customClass: {
-                    confirmButton: "btn fw-bold btn-danger",
-                    cancelButton: "btn fw-bold btn-active-light-primary"
-                }
-            }).then(function(result) {
-                if (result.value) {
-                    $.ajax({
-                        url: '{{ route("admin.plates.destroy") }}',
-                        type: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            id: plateId
-                        },
-                        success: function(response) {
-                            console.log('delete process confirmed ');        
-                            row.remove();
-                            Swal.fire({
-                                text: "Plate deleted successfully!",
-                                icon: "success",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                }
-                            });
-                        },
-                        error: function(xhr) {
-                            Swal.fire({
-                                text: "Error deleting plate!",
-                                icon: "error",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok, got it!",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                }
-                            });
+            if (confirm('Are you sure you want to delete this plate?')) {
+                $.ajax({
+                    url: '{{ route("admin.plates.destroy") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id: plateId
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            location.reload();
+                        } else {
+                            alert('Failed to delete plate.');
                         }
-                    });
-                }
-            });
+                    },
+                    error: function(xhr) {
+                        alert('Failed to delete plate.');
+                    }
+                });
+            }
         });
     });
 </script>

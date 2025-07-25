@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>999 | Plate</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title> Plate 35</title>
 
     <!-- Favicon -->
     <!-- <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}"> -->
@@ -57,7 +58,7 @@
                 <!-- Copyright -->
                 <div class="copyright">
                     <div class="copyright-text">
-                        <p>© 2025 999 | Plate. All Rights Reserved.</p>
+                        <p>© 2025  | Plate 35. All Rights Reserved.</p>
                     </div>
                 </div>
                 <!-- /Copyright -->

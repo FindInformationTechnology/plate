@@ -29,19 +29,19 @@ class PlateService
         //  $this->model = $plate;  
     }
 
-   
+
 
     public function getAllPlates(): Collection
     {
         $user = Auth::user();
 
         // Check permissions based on user role
-        
+
         if ($user->hasRole('user')) {
-            
+
             return Plate::where('user_id', $user->id)->get();
         }
-        
+
         if ($user->hasRole('admin')) {
 
             return Plate::all();
@@ -50,18 +50,24 @@ class PlateService
         return collect();
     }
 
-    public function createPlate(array $data): Plate
+    public function createPlate(array $data, $request): Plate
     {
-        $user = Auth::user();
 
-        $data['user_id'] = $user->id;
-        $data['length'] = (int) strlen((string) $data ['number']); // Default length to 4 if not provi
-        $plate = Plate::create($data);
+        //code...
+       
+        $data['user_id'] = Auth::user()->id;
+      
+        $data['length'] = (int) strlen((string) $data['number']); // Default length to 4 if not provi
+        // Set default values for checkboxes if not provided
+        $data['is_approved'] = 1;
 
-        return $plate;
+        $data['is_visible'] =  1;
+
+        return Plate::create($data);
+
     }
 
-    public function updatePlate( $plateId,array $data): Plate
+    public function updatePlate($plateId, array $data): Plate
     {
         $user = Auth::user();
 
@@ -70,13 +76,13 @@ class PlateService
         // Check permissions based on user role
         if (($user->hasRole('user') && $plate->user_id == $user->id) || $user->hasRole('admin')) {
             // Admin can edit any plate
-           $data['length'] = (int) strlen((string) $data ['number']); 
+            $data['length'] = (int) strlen((string) $data['number']);
 
             $plate->update($data);
 
             return $plate;
         }
-        
+
         throw new \Exception('You do not have permission to edit this plate');
     }
 
