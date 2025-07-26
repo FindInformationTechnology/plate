@@ -41,7 +41,7 @@
                                                 <tr class="plate-row" data-row="0">
                                                     <td>
                                                         <input type="text" name="plates[0][number]" class="form-control" 
-                                                            placeholder="<?php echo e(__('message.Plate_Number')); ?>" required>
+                                                            placeholder="<?php echo e(__('message.Plate_Number')); ?>" value="<?php echo e(old('plates.0.number')); ?>" required>
                                                     </td>
                                                     <td>
                                                         <select class="form-select emirate-select" name="plates[0][emirate_id]" data-row="0" required>
@@ -101,11 +101,6 @@
 <script>
     $(document).ready(function() {
         let rowCount = 1;
-        
-        // Store emirate options for dynamic rows
-        const emirateOptions = <?php echo json_encode(\App\Models\Emirate::all()->map(function($emirate) { 
-            return ['id' => $emirate->id, 'name' => $emirate->name]; 
-        }), 512) ?>;
 
         // Add new row functionality
         $('#add-row').on('click', function() {
@@ -171,11 +166,6 @@
         });
 
         function createNewRow(index) {
-            let emirateOptionsHtml = '<option value=""><?php echo e(__("message.City")); ?></option>';
-            emirateOptions.forEach(function(emirate) {
-                emirateOptionsHtml += `<option value="${emirate.id}">${emirate.name}</option>`;
-            });
-
             return `
                 <tr class="plate-row" data-row="${index}">
                     <td>
@@ -184,7 +174,10 @@
                     </td>
                     <td>
                         <select class="form-select emirate-select" name="plates[${index}][emirate_id]" data-row="${index}" required>
-                            ${emirateOptionsHtml}
+                            <option value=""><?php echo e(__('message.City')); ?></option>
+                            <?php $__currentLoopData = \App\Models\Emirate::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($emirate->id); ?>"><?php echo e($emirate->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </td>
                     <td>

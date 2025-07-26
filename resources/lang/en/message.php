@@ -362,5 +362,11 @@ return [
     'Save_All_Plates' => 'Save All Plates',
     'Action' => 'Action',
     'Print_sold?' => 'Print sold?',
+    'Back' => 'Back',
+    'Remove' => 'Remove',
+    'Fields_marked_with_asterisk_are_required' => 'Fields marked with asterisk (*) are required',
+    'Please_fill_all_required_fields' => 'Please fill all required fields',
+    'Change_Phone_Number' => 'Change Phone Number',
+    'Change_Phone' => 'Change Phone',
 
 ];

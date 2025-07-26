@@ -362,4 +362,10 @@ return [
     'Save_All_Plates' => 'حفظ جميع اللوحات',
     'Action' => 'الإجراء',
     'Print_sold?' => 'طباعة مباع؟',
+    'Back' => 'العودة',
+    'Remove' => 'إزالة',
+    'Fields_marked_with_asterisk_are_required' => 'الحقول المحددة بـ (*) مطلوبة',
+    'Please_fill_all_required_fields' => 'يرجى ملء جميع الحقول المطلوبة',
+    'Change_Phone_Number' => 'تغيير رقم الهاتف',
+    'Change_Phone' => 'تغيير الهاتف',
 ];

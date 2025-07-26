@@ -43,7 +43,7 @@
                                                 <tr class="plate-row" data-row="0">
                                                     <td>
                                                         <input type="text" name="plates[0][number]" class="form-control" 
-                                                            placeholder="{{ __('message.Plate_Number') }}" required>
+                                                            placeholder="{{ __('message.Plate_Number') }}" value="{{ old('plates.0.number') }}" required>
                                                     </td>
                                                     <td>
                                                         <select class="form-select emirate-select" name="plates[0][emirate_id]" data-row="0" required>
@@ -102,11 +102,6 @@
 <script>
     $(document).ready(function() {
         let rowCount = 1;
-        
-        // Store emirate options for dynamic rows
-        const emirateOptions = @json(\App\Models\Emirate::all()->map(function($emirate) { 
-            return ['id' => $emirate->id, 'name' => $emirate->name]; 
-        }));
 
         // Add new row functionality
         $('#add-row').on('click', function() {
@@ -172,11 +167,6 @@
         });
 
         function createNewRow(index) {
-            let emirateOptionsHtml = '<option value="">{{ __("message.City") }}</option>';
-            emirateOptions.forEach(function(emirate) {
-                emirateOptionsHtml += `<option value="${emirate.id}">${emirate.name}</option>`;
-            });
-
             return `
                 <tr class="plate-row" data-row="${index}">
                     <td>
@@ -185,7 +175,10 @@
                     </td>
                     <td>
                         <select class="form-select emirate-select" name="plates[${index}][emirate_id]" data-row="${index}" required>
-                            ${emirateOptionsHtml}
+                            <option value="">{{ __('message.City') }}</option>
+                            @foreach(\App\Models\Emirate::all() as $emirate)
+                            <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
+                            @endforeach
                         </select>
                     </td>
                     <td>
