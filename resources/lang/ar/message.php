@@ -348,4 +348,18 @@ return [
     'Warning' => 'تحذير',
     'Info' => 'معلومات',
     'Just_Now' => 'الآن',
+
+    // Multi-plate Upload Messages
+    'Note' => 'ملاحظة',
+    'you_may_use' => 'يمكنك استخدام',
+    'and' => 'و',
+    'characters_to_hide_some_numbers' => 'لإخفاء بعض الأرقام',
+    'Optional' => 'اختياري',
+    'Plate_Number' => 'رقم اللوحة',
+    'Price_Optional' => 'السعر (اختياري)',
+    'Avail.' => 'متاح',
+    'Add_Another_Plate' => 'إضافة لوحة أخرى',
+    'Save_All_Plates' => 'حفظ جميع اللوحات',
+    'Action' => 'الإجراء',
+    'Print_sold?' => 'طباعة مباع؟',
 ];

@@ -349,4 +349,18 @@ return [
     'Info' => 'Info',
     'Just_Now' => 'Just now',
 
+    // Multi-plate Upload Messages
+    'Note' => 'Note',
+    'you_may_use' => 'you may use',
+    'and' => 'and',
+    'characters_to_hide_some_numbers' => 'characters to hide some numbers',
+    'Optional' => 'Optional',
+    'Plate_Number' => 'Plate Number',
+    'Price_Optional' => 'Price (Optional)',
+    'Avail.' => 'Avail.',
+    'Add_Another_Plate' => 'Add Another Plate',
+    'Save_All_Plates' => 'Save All Plates',
+    'Action' => 'Action',
+    'Print_sold?' => 'Print sold?',
+
 ];

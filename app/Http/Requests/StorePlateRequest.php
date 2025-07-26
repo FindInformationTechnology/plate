@@ -22,14 +22,11 @@ class StorePlateRequest extends FormRequest
     public function rules(): array
     {
         return [
-        
-                'emirate_id' => 'required|integer|min:1',
-                'code_id' => 'required|string|max:255',
-                'number' => 'required|string|max:255',
-                // 'image' => 'required', 
-                // Consider using file validation if uploading images
-                
-                // 'price' => 'required|integer|min:1',
+            'plates' => 'required|array|min:1',
+            'plates.*.emirate_id' => 'required|integer|exists:emirates,id',
+            'plates.*.number' => 'required|string|max:255',
+            'plates.*.code_id' => 'required|string|exists:codes,id',
+            'plates.*.price' => 'nullable|numeric|min:0',
         ];
     }
         
