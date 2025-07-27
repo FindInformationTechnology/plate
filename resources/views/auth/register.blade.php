@@ -61,14 +61,14 @@
                         </div>
                     </div>
 
+                    @if(!config('app.debug'))
                     <div class="input-block">
-                       
                         <div class="pass-group">
                             <!-- Add hidden reCAPTCHA input field -->
                             <input type="hidden" name="g-recaptcha-response" id="recaptchaResponse">
-
                         </div>
                     </div>
+                    @endif
 
 
 
@@ -107,6 +107,7 @@
     </div>
 </div>
 
+@if(!config('app.debug'))
 <!-- Add reCAPTCHA v3 script at the end of the body -->
 <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
 <script>
@@ -121,5 +122,6 @@
             });
     });
 </script>
+@endif
 
 @endsection
