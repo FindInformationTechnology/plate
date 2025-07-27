@@ -27,52 +27,71 @@ class SmsService
     {
         $message = $this->buildVerificationMessage($code);
         
-        // Try providers in order of preference for UAE
-        $providers = ['vonage', 'unifonic', 'twilio'];
+        // For production, use only Vonage
+        $provider = config('sms.default_provider', 'vonage');
         
-        foreach ($providers as $provider) {
-            try {
-                $config = config('sms.providers.' . $provider, []);
-                if (empty($config) || !$this->isProviderConfigured($provider)) {
-                    continue;
-                }
-
-                $success = match($provider) {
-                    'vonage' => $this->sendViaVonage($phoneNumber, $message, $config),
-                    'unifonic' => $this->sendViaUnifonic($phoneNumber, $message, $config),
-                    'twilio' => $this->sendViaTwilio($phoneNumber, $message, $config),
-                    default => false
-                };
-                
-                if ($success) {
-                    Log::info("SMS sent successfully via {$provider}", [
-                        'phone' => $this->maskPhoneNumber($phoneNumber),
-                        'provider' => $provider,
-                        'platform' => 'plate35.com'
-                    ]);
-                    return true;
-                }
-            } catch (\Exception $e) {
-                Log::warning("SMS failed via {$provider}", [
-                    'phone' => $this->maskPhoneNumber($phoneNumber),
-                    'provider' => $provider,
-                    'error' => $e->getMessage()
-                ]);
-                continue;
-            }
-        }
-        
-        // Fallback to log provider for development
-        if (config('app.debug')) {
+        // If in development and no provider configured, use log
+        if (config('app.debug') && $provider === 'log') {
             return $this->sendViaLog($phoneNumber, $message, $code);
         }
         
-        Log::error('All SMS providers failed', [
-            'phone' => $this->maskPhoneNumber($phoneNumber),
-            'providers_tried' => $providers
-        ]);
-        
-        return false;
+        // Use configured provider (production: Vonage only)
+        try {
+            $config = config('sms.providers.' . $provider, []);
+            
+            if (empty($config) || !$this->isProviderConfigured($provider)) {
+                Log::error('Primary SMS provider not configured', [
+                    'provider' => $provider,
+                    'phone' => $this->maskPhoneNumber($phoneNumber),
+                    'platform' => 'plate35.com'
+                ]);
+                
+                // Only fallback in development
+                if (config('app.debug')) {
+                    return $this->sendViaLog($phoneNumber, $message, $code);
+                }
+                
+                return false;
+            }
+
+            $success = match($provider) {
+                'vonage' => $this->sendViaVonage($phoneNumber, $message, $config),
+                'unifonic' => $this->sendViaUnifonic($phoneNumber, $message, $config),
+                'twilio' => $this->sendViaTwilio($phoneNumber, $message, $config),
+                default => false
+            };
+            
+            if ($success) {
+                Log::info("✅ SMS sent successfully via {$provider}", [
+                    'phone' => $this->maskPhoneNumber($phoneNumber),
+                    'provider' => $provider,
+                    'platform' => 'plate35.com'
+                ]);
+                return true;
+            } else {
+                Log::error('SMS failed via primary provider', [
+                    'phone' => $this->maskPhoneNumber($phoneNumber),
+                    'provider' => $provider,
+                    'platform' => 'plate35.com'
+                ]);
+                return false;
+            }
+            
+        } catch (\Exception $e) {
+            Log::error("SMS service error", [
+                'phone' => $this->maskPhoneNumber($phoneNumber),
+                'provider' => $provider,
+                'error' => $e->getMessage(),
+                'platform' => 'plate35.com'
+            ]);
+            
+            // Only fallback in development
+            if (config('app.debug')) {
+                return $this->sendViaLog($phoneNumber, $message, $code);
+            }
+            
+            return false;
+        }
     }
 
     /**
@@ -126,11 +145,39 @@ class SmsService
     }
 
     /**
+     * Send SMS via Vonage only (for testing credentials)
+     */
+    public function sendViaVonageOnly(string $phoneNumber, string $code): bool
+    {
+        $message = $this->buildVerificationMessage($code);
+        $config = config('sms.providers.vonage');
+        
+        // Log the attempt
+        Log::info('Testing Vonage-only SMS', [
+            'phone' => $this->maskPhoneNumber($phoneNumber),
+            'config_present' => !empty($config),
+            'platform' => 'plate35.com'
+        ]);
+        
+        return $this->sendViaVonage($phoneNumber, $message, $config);
+    }
+
+    /**
      * Send SMS via Vonage (proper implementation)
      */
     private function sendViaVonage(string $phoneNumber, string $message, array $config): bool
     {
         try {
+            // Log detailed attempt info
+            Log::info('Attempting Vonage SMS', [
+                'phone' => $this->maskPhoneNumber($phoneNumber),
+                'has_key' => !empty($config['key']),
+                'has_secret' => !empty($config['secret']),
+                'from' => $config['from'] ?? 'PLATE35',
+                'message_length' => strlen($message),
+                'platform' => 'plate35.com'
+            ]);
+
             $credentials = new Basic($config['key'], $config['secret']);
             $client = new Client($credentials);
 
@@ -140,8 +187,21 @@ class SmsService
                 $message
             );
             
+            Log::info('Vonage SMS object created', [
+                'to' => $this->maskPhoneNumber($phoneNumber),
+                'from' => $config['from'] ?? 'PLATE35',
+                'platform' => 'plate35.com'
+            ]);
+            
             $response = $client->sms()->send($smsMessage);
             $smsMessage = $response->current();
+            
+            Log::info('Vonage API Response received', [
+                'phone' => $this->maskPhoneNumber($phoneNumber),
+                'status' => $smsMessage->getStatus(),
+                'message_id' => $smsMessage->getMessageId(),
+                'platform' => 'plate35.com'
+            ]);
             
             if ($smsMessage->getStatus() == 0) {
                 Log::info('Vonage SMS Sent Successfully', [
@@ -156,16 +216,35 @@ class SmsService
                     'phone' => $this->maskPhoneNumber($phoneNumber),
                     'status' => $smsMessage->getStatus(),
                     'error' => $smsMessage->getStatusText(),
+                    'network_error_code' => $smsMessage->getNetworkErrorCode(),
                     'platform' => 'plate35.com'
                 ]);
                 return false;
             }
 
+        } catch (\Vonage\Client\Exception\Request $e) {
+            Log::error('Vonage Request Failed', [
+                'phone' => $this->maskPhoneNumber($phoneNumber),
+                'error' => $e->getMessage(),
+                'code' => $e->getCode(),
+                'platform' => 'plate35.com'
+            ]);
+            return false;
+        } catch (\Vonage\Client\Exception\Exception $e) {
+            Log::error('Vonage Client Failed', [
+                'phone' => $this->maskPhoneNumber($phoneNumber),
+                'error' => $e->getMessage(),
+                'code' => $e->getCode(),
+                'platform' => 'plate35.com'
+            ]);
+            return false;
         } catch (\Exception $e) {
             Log::error('Vonage SMS Service Error', [
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
+                'code' => $e->getCode(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
                 'platform' => 'plate35.com'
             ]);
             return false;
@@ -198,7 +277,7 @@ class SmsService
                 ]);
                 return true;
             } else {
-                Log::error('Unifonic SMS Failed', [
+                Log::warning('Unifonic SMS Failed (fallback available)', [
                     'phone' => $this->maskPhoneNumber($phoneNumber),
                     'error' => $result['message'] ?? 'Unknown error',
                     'response' => $result,
@@ -208,7 +287,7 @@ class SmsService
             }
 
         } catch (\Exception $e) {
-            Log::error('Unifonic SMS Service Error', [
+            Log::warning('Unifonic SMS Service Error (fallback available)', [
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'error' => $e->getMessage(),
                 'platform' => 'plate35.com'
@@ -241,7 +320,7 @@ class SmsService
                 ]);
                 return true;
             } else {
-                Log::error('Twilio SMS Failed', [
+                Log::warning('Twilio SMS Failed (fallback available)', [
                     'phone' => $this->maskPhoneNumber($phoneNumber),
                     'error' => $result['message'] ?? 'Unknown error',
                     'platform' => 'plate35.com'
@@ -250,7 +329,7 @@ class SmsService
             }
 
         } catch (\Exception $e) {
-            Log::error('Twilio SMS Service Error', [
+            Log::warning('Twilio SMS Service Error (fallback available)', [
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'error' => $e->getMessage(),
                 'platform' => 'plate35.com'
