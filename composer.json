@@ -7,6 +7,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.9",
         "laravel/fortify": "^1.25",
         "laravel/framework": "^11.31",
         "laravel/sanctum": "^4.0",
@@ -15,7 +16,8 @@
         "livewire/livewire": "^3.6",
         "spatie/laravel-permission": "^6.17",
         "spatie/laravel-sitemap": "^7.3",
-        "spatie/laravel-translatable": "^6.11"
+        "spatie/laravel-translatable": "^6.11",
+        "vonage/client": "^4.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.15",
