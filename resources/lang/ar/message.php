@@ -329,6 +329,7 @@ return [
     'Too_Many_SMS_Requests' => 'طلبات رسائل كثيرة. يرجى الانتظار :seconds ثانية.',
     'Wait_Before_Requesting_New_Code' => 'يرجى الانتظار قبل طلب رمز جديد.',
     'Failed_To_Send_SMS' => 'فشل في إرسال الرسالة. يرجى المحاولة لاحقاً.',
+    'Please_Add_Phone_Number_First' => 'يرجى إضافة رقم هاتفك في الملف الشخصي أولاً.',
     'Verification_Failed' => 'فشل في التحقق. يرجى المحاولة مرة أخرى.',
     
     // Dashboard & User Messages

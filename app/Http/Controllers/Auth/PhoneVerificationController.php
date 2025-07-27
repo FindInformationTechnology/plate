@@ -27,17 +27,25 @@ class PhoneVerificationController extends Controller
     {
         $user = $request->user();
 
+        // Check if user exists and has a phone number
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+        if (!$user->phone) {
+            return redirect()->route('user.profile')
+                ->with('error', __('message.Please_Add_Phone_Number_First'));
+        }
+
         // If phone is already verified, redirect to intended page
-        if ($user && $user->hasVerifiedPhone()) {
+        if ($user->hasVerifiedPhone()) {
             return redirect()->intended(route('user.dashboard'));
         }
 
         // Auto-send verification code on first visit (if user hasn't received one recently)
         $autoSent = false;
-        if ($user && $user->canRequestNewVerificationCode() && !$user->isBlockedFromVerification()) {
+        if ($user->canRequestNewVerificationCode() && !$user->isBlockedFromVerification()) {
             try {
-
-              
                 // Check if this is likely a first visit (no recent verification code)
                 $isFirstVisit = !$user->phone_verification_sent_at || 
                                $user->phone_verification_sent_at->addMinutes(10)->isPast();
@@ -48,23 +56,23 @@ class PhoneVerificationController extends Controller
                     
                     if ($sent) {
                         $autoSent = true;
-                       
                         session()->flash('status', __('message.Verification_Code_Sent_Automatically'));
                     }
                 }
             } catch (\Exception $e) {
                 // If auto-send fails, don't block the page - user can still request manually
-                \Log::warning('Auto-send verification code failed', [
+                Log::warning('Auto-send verification code failed', [
                     'user_id' => $user->id,
+                    'phone' => $user->phone ? substr($user->phone, 0, 3) . '****' . substr($user->phone, -3) : 'NULL',
                     'error' => $e->getMessage()
                 ]);
             }
         }
 
         return view('auth.verify-phone', [
-            'phoneNumber' => $user ? $user->phone : '',
-            'canResend' => $user ? $user->canRequestNewVerificationCode() : false,
-            'isBlocked' => $user ? $user->isBlockedFromVerification() : false,
+            'phoneNumber' => $user->phone ?: '',
+            'canResend' => $user->canRequestNewVerificationCode(),
+            'isBlocked' => $user->isBlockedFromVerification(),
             'autoSent' => $autoSent,
         ]);
     }
@@ -76,9 +84,15 @@ class PhoneVerificationController extends Controller
     {
         $user = $request->user();
 
-        
         if (!$user) {
             abort(401);
+        }
+
+        // Check if user has a phone number
+        if (!$user->phone) {
+            throw ValidationException::withMessages([
+                'phone' => __('message.Please_Add_Phone_Number_First'),
+            ]);
         }
 
         // Check if user is blocked

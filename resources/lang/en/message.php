@@ -328,6 +328,7 @@ return [
     'Too_Many_SMS_Requests' => 'Too many SMS requests. Please wait :seconds seconds.',
     'Wait_Before_Requesting_New_Code' => 'Please wait before requesting a new code.',
     'Failed_To_Send_SMS' => 'Failed to send SMS. Please try again later.',
+    'Please_Add_Phone_Number_First' => 'Please add your phone number in your profile first.',
     'Verification_Failed' => 'Verification failed. Please try again.',
 
     // Dashboard & User Messages
