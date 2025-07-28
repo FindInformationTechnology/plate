@@ -90,9 +90,9 @@ class RegisteredUserController extends Controller
         $user->assignRole('user');
 
         // Send welcome email
-        // Mail::to($user->email)->send(new WelcomeEmail($user));
+        Mail::to($user->email)->send(new WelcomeEmail($user));
 
-        // event(new Registered($user));
+        event(new Registered($user));
 
         Auth::login($user);
 

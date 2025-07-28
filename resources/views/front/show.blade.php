@@ -1,5 +1,18 @@
 ﻿@extends('layouts.app')
 
+@push('styles')
+<style>
+/* Reduce text size for plate code and number on this page only */
+.plate h1 {
+    font-size: 0.9em !important;
+}
+
+.plate h2 {
+    font-size: 0.8em !important;
+}
+</style>
+@endpush
+
 @section('content')
 
 
@@ -55,14 +68,14 @@
                         <i class="bx bx-heart fs-2"></i>
                     </div> -->
                 </div>
-                <div class="d-flex align-items-center gap-3 mt-2 text-center contact-button">
+                <div class="d-flex flex-column flex-md-row align-items-center gap-3 mt-2 text-center contact-button">
                     <a href="tel:{{ $plate->user->phone_number ?? '' }}"
-                        class="contact d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
+                        class="contact d-flex align-items-center justify-content-center gap-2 py-2 w-100 flex-md-grow-1 rounded-2"
                         target="_blank"><i class="bx bx-phone fs-5"></i>
                         <p>{{ $plate->user->phone_number }}</p>
                     </a>
                     <a href="https://wa.me/{{ $plate->user->whatsapp_number ?? '' }}"
-                        class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 flex-grow-1 rounded-2"
+                        class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 w-100 flex-md-grow-1 rounded-2"
                         target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
                         <p>{{ $plate->user->whatsapp_number ?? '' }}</p>
                     </a>
