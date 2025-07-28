@@ -138,6 +138,8 @@
 
     <!-- <link rel="stylesheet" href="{{ asset ('assets/css/addition-styles.css') }}"> -->
 
+    @stack('styles')
+
 
 
     <style>

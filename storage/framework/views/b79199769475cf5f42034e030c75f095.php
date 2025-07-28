@@ -1,25 +1,23 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="section product-details add-listing">
     <div class="container">
 
-        @if ($errors->any())
+        <?php if($errors->any()): ?>
         <div class="alert alert-danger">
             <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
         </div>
-        @endif
-        <form action="{{ route('user.plates.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
+        <?php endif; ?>
+        <form action="<?php echo e(route('user.plates.store')); ?>" method="post" enctype="multipart/form-data">
+            <?php echo csrf_field(); ?>
             <div class="row" id="info">
                 <div class="col-lg-12 col-md-12">
                     <div class="heading-lising">
-                        <h4>{{ __('message.Basic_Info') }}</h4>
-                        <p class="text-muted">{{ __('message.Note') }}: {{ __('message.you_may_use') }} <strong>x, y</strong> {{ __('message.and') }} <strong>z</strong> {{ __('message.characters_to_hide_some_numbers') }}</p>
+                        <h4><?php echo e(__('message.Basic_Info')); ?></h4>
+                        <p class="text-muted"><?php echo e(__('message.Note')); ?>: <?php echo e(__('message.you_may_use')); ?> <strong>x, y</strong> <?php echo e(__('message.and')); ?> <strong>z</strong> <?php echo e(__('message.characters_to_hide_some_numbers')); ?></p>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12">
@@ -31,7 +29,8 @@
                                         <div class="scroll-indicator d-none">
                                             <small class="text-muted">
                                                 <i class="fas fa-hand-point-right"></i>
-                                                {{ __('message.Scroll_Right_To_See_More') }}
+                                                <?php echo e(__('message.Scroll_Right_To_See_More')); ?>
+
                                             </small>
                                         </div>
                                         <table class="table table-bordered plates-table" id="plates-table">
@@ -39,36 +38,38 @@
                                                 <tr>
                                                     <th class="plate-number-col">
                                                         <div class="th-content">
-                                                            {{ __('message.Plate_number') }} 
+                                                            <?php echo e(__('message.Plate_number')); ?> 
                                                             <span class="text-danger">*</span>
                                                         </div>
                                                     </th>
                                                     <th class="city-col">
                                                         <div class="th-content">
-                                                            {{ __('message.City') }} 
+                                                            <?php echo e(__('message.City')); ?> 
                                                             <span class="text-danger">*</span>
                                                         </div>
                                                     </th>
                                                     <th class="code-col">
                                                         <div class="th-content">
-                                                            {{ __('message.Code') }} 
+                                                            <?php echo e(__('message.Code')); ?> 
                                                             <span class="text-danger">*</span>
                                                         </div>
                                                     </th>
                                                     <th class="price-col">
                                                         <div class="th-content">
-                                                            {{ __('message.Price') }} 
-                                                            <small class="d-block text-muted">({{ __('message.Optional') }})</small>
+                                                            <?php echo e(__('message.Price')); ?> 
+                                                            <small class="d-block text-muted">(<?php echo e(__('message.Optional')); ?>)</small>
                                                         </div>
                                                     </th>
                                                     <!-- <th class="status-col">
                                                         <div class="th-content">
-                                                            {{ __('message.Print_sold?') }}
+                                                            <?php echo e(__('message.Print_sold?')); ?>
+
                                                         </div>
                                                     </th> -->
                                                     <th class="action-col">
                                                         <div class="th-content">
-                                                            {{ __('message.Action') }}
+                                                            <?php echo e(__('message.Action')); ?>
+
                                                         </div>
                                                     </th>
                                                 </tr>
@@ -77,37 +78,37 @@
                                                 <tr class="plate-row" data-row="0">
                                                     <td class="plate-number-cell">
                                                         <input type="text" name="plates[0][number]" class="form-control form-control-responsive" 
-                                                            placeholder="{{ __('message.Plate_Number') }}" value="{{ old('plates.0.number') }}" required>
+                                                            placeholder="<?php echo e(__('message.Plate_Number')); ?>" value="<?php echo e(old('plates.0.number')); ?>" required>
                                                     </td>
                                                     <td class="city-cell">
                                                         <select class="form-select form-select-responsive emirate-select" name="plates[0][emirate_id]" data-row="0" required>
-                                                            <option value="">{{ __('message.City') }}</option>
-                                                            @foreach(\App\Models\Emirate::all() as $emirate)
-                                                            <option value="{{ $emirate->id }}" {{ old('plates.0.emirate_id') == $emirate->id ? 'selected' : '' }}>{{ $emirate->name }}</option>
-                                                            @endforeach
+                                                            <option value=""><?php echo e(__('message.City')); ?></option>
+                                                            <?php $__currentLoopData = \App\Models\Emirate::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($emirate->id); ?>" <?php echo e(old('plates.0.emirate_id') == $emirate->id ? 'selected' : ''); ?>><?php echo e($emirate->name); ?></option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </td>
                                                     <td class="code-cell">
                                                         <div class="position-relative">
                                                             <select class="form-select form-select-responsive code-select" name="plates[0][code_id]" data-row="0" required>
-                                                                <option value="">{{ __('message.Code') }}</option>
+                                                                <option value=""><?php echo e(__('message.Code')); ?></option>
                                                             </select>
                                                             <div class="spinner-border spinner-border-sm text-primary position-absolute code-loading d-none" data-row="0" role="status">
-                                                                <span class="visually-hidden">{{ __('message.Loading') }}...</span>
+                                                                <span class="visually-hidden"><?php echo e(__('message.Loading')); ?>...</span>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="price-cell">
                                                         <input type="text" name="plates[0][price]" class="form-control form-control-responsive" 
-                                                            placeholder="{{ __('message.Price_Optional') }}" value="{{ old('plates.0.price') }}">
+                                                            placeholder="<?php echo e(__('message.Price_Optional')); ?>" value="<?php echo e(old('plates.0.price')); ?>">
                                                     </td>
                                                     <!-- <td class="status-cell text-center">
-                                                        <span class="badge bg-success badge-responsive">{{ __('message.Avail.') }}</span>
+                                                        <span class="badge bg-success badge-responsive"><?php echo e(__('message.Avail.')); ?></span>
                                                     </td> -->
                                                     <td class="action-cell text-center">
                                                         <button type="button" class="btn btn-sm btn-outline-danger remove-row d-none btn-responsive">
                                                             <i class="fas fa-trash"></i>
-                                                            <span class="d-none d-lg-inline ms-1">{{ __('message.Remove') }}</span>
+                                                            <span class="d-none d-lg-inline ms-1"><?php echo e(__('message.Remove')); ?></span>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -116,7 +117,8 @@
                                     </div>
                                     <div class="text-end mt-3">
                                         <button type="button" class="btn btn-outline-primary" id="add-row">
-                                            <i class="fas fa-plus me-2"></i>{{ __('message.Add_Another_Plate') }}
+                                            <i class="fas fa-plus me-2"></i><?php echo e(__('message.Add_Another_Plate')); ?>
+
                                         </button>
                                     </div>
                                 </div>
@@ -127,15 +129,15 @@
             </div>
 
             <div class="booking-info-btns d-flex justify-content-end">
-                <a href="{{ route('user.plates') }}" class="btn btn-secondary">{{ __('message.Cancel') }}</a>
-                <button class="btn btn-primary continue-book-btn" type="submit">{{ __('message.Save_All_Plates') }}</button>
+                <a href="<?php echo e(route('user.plates')); ?>" class="btn btn-secondary"><?php echo e(__('message.Cancel')); ?></a>
+                <button class="btn btn-primary continue-book-btn" type="submit"><?php echo e(__('message.Save_All_Plates')); ?></button>
             </div>
         </form>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <style>
 /* Enhanced Responsive Table Styles */
 .plates-table-container {
@@ -390,9 +392,9 @@
     }
 }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
     $(document).ready(function() {
         let rowCount = 1;
@@ -447,70 +449,43 @@
             const loadingSpinner = $(`.code-loading[data-row="${row}"]`);
 
             // Clear current options
-            codeSelect.empty().append('<option value="">{{ __("message.Loading_codes") }}...</option>');
+            codeSelect.empty().append('<option value=""><?php echo e(__("message.Loading_codes")); ?>...</option>');
 
             if (emirateId) {
                 // Show loading spinner
                 loadingSpinner.removeClass('d-none');
 
                 // Fetch codes for the selected emirate
-                const apiUrl = "{{ route('user.api.codes.by.emirate') }}";
-                console.log("Making AJAX request to:", apiUrl, "with emirate_id:", emirateId);
-                
                 $.ajax({
-                    url: apiUrl,
+                    url: "<?php echo e(route('user.api.codes.by.emirate')); ?>",
                     type: "GET",
                     data: {
                         emirate_id: emirateId
                     },
                     success: function(response) {
-                        console.log("Codes API Response:", response);
-                        
                         // Clear the loading option
                         codeSelect.empty();
 
                         // Add a default option
-                        codeSelect.append('<option value="">{{ __("message.Select_Code") }}</option>');
+                        codeSelect.append('<option value=""><?php echo e(__("message.Select_Code")); ?></option>');
 
-                        // Check if response has codes
-                        if (response.codes && response.codes.length > 0) {
-                            // Add options for each code
-                            $.each(response.codes, function(key, code) {
-                                codeSelect.append('<option value="' + code.id + '">' + code.name + '</option>');
-                            });
-                            console.log("Added " + response.codes.length + " codes to dropdown");
-                        } else {
-                            codeSelect.append('<option value="">{{ __("message.No_codes_available") }}</option>');
-                            console.warn("No codes found for emirate ID:", emirateId);
-                        }
+                        // Add options for each code
+                        $.each(response.codes, function(key, code) {
+                            codeSelect.append('<option value="' + code.id + '">' + code.name + '</option>');
+                        });
 
                         // Hide loading spinner
                         loadingSpinner.addClass('d-none');
                     },
                     error: function(xhr, status, error) {
                         console.error("Error loading codes:", error);
-                        console.error("Response status:", xhr.status);
-                        console.error("Response text:", xhr.responseText);
-                        
-                        let errorMessage = '{{ __("message.Error_loading_codes") }}';
-                        if (xhr.status === 422) {
-                            errorMessage = 'Invalid emirate selected';
-                        } else if (xhr.status === 404) {
-                            errorMessage = 'API endpoint not found';
-                        } else if (xhr.status === 500) {
-                            errorMessage = 'Server error';
-                        }
-                        
-                        codeSelect.empty().append('<option value="">' + errorMessage + '</option>');
+                        codeSelect.empty().append('<option value=""><?php echo e(__("message.Error_loading_codes")); ?></option>');
                         loadingSpinner.addClass('d-none');
-                        
-                        // Show user-friendly error
-                        alert('Error loading codes for selected city. Please refresh the page and try again.');
                     }
                 });
             } else {
                 // If no emirate is selected, show default message
-                codeSelect.empty().append('<option value="">{{ __("message.Select_Emirate_First") }}</option>');
+                codeSelect.empty().append('<option value=""><?php echo e(__("message.Select_Emirate_First")); ?></option>');
                 loadingSpinner.addClass('d-none');
             }
         });
@@ -520,37 +495,37 @@
                 <tr class="plate-row" data-row="${index}">
                     <td class="plate-number-cell">
                         <input type="text" name="plates[${index}][number]" class="form-control form-control-responsive" 
-                            placeholder="{{ __('message.Plate_Number') }}" required>
+                            placeholder="<?php echo e(__('message.Plate_Number')); ?>" required>
                     </td>
                     <td class="city-cell">
                         <select class="form-select form-select-responsive emirate-select" name="plates[${index}][emirate_id]" data-row="${index}" required>
-                            <option value="">{{ __('message.City') }}</option>
-                            @foreach(\App\Models\Emirate::all() as $emirate)
-                            <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
-                            @endforeach
+                            <option value=""><?php echo e(__('message.City')); ?></option>
+                            <?php $__currentLoopData = \App\Models\Emirate::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($emirate->id); ?>"><?php echo e($emirate->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </td>
                     <td class="code-cell">
                         <div class="position-relative">
                             <select class="form-select form-select-responsive code-select" name="plates[${index}][code_id]" data-row="${index}" required>
-                                <option value="">{{ __('message.Code') }}</option>
+                                <option value=""><?php echo e(__('message.Code')); ?></option>
                             </select>
                             <div class="spinner-border spinner-border-sm text-primary position-absolute code-loading d-none" data-row="${index}" role="status">
-                                <span class="visually-hidden">{{ __('message.Loading') }}...</span>
+                                <span class="visually-hidden"><?php echo e(__('message.Loading')); ?>...</span>
                             </div>
                         </div>
                     </td>
                     <td class="price-cell">
                         <input type="text" name="plates[${index}][price]" class="form-control form-control-responsive" 
-                            placeholder="{{ __('message.Price_Optional') }}">
+                            placeholder="<?php echo e(__('message.Price_Optional')); ?>">
                     </td>
                     <td class="status-cell text-center">
-                        <span class="badge bg-success badge-responsive">{{ __('message.Avail.') }}</span>
+                        <span class="badge bg-success badge-responsive"><?php echo e(__('message.Avail.')); ?></span>
                     </td>
                     <td class="action-cell text-center">
                         <button type="button" class="btn btn-sm btn-outline-danger remove-row btn-responsive">
                             <i class="fas fa-trash"></i>
-                            <span class="d-none d-lg-inline ms-1">{{ __('message.Remove') }}</span>
+                            <span class="d-none d-lg-inline ms-1"><?php echo e(__('message.Remove')); ?></span>
                         </button>
                     </td>
                 </tr>
@@ -569,4 +544,5 @@
         }
     });
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/user/plate/create.blade.php ENDPATH**/ ?>

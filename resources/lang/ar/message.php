@@ -360,6 +360,8 @@ return [
     'Price_Optional' => 'السعر (اختياري)',
     'Avail.' => 'متاح',
     'Add_Another_Plate' => 'إضافة لوحة أخرى',
+    'Remove' => 'حذف',
+    'Scroll_Right_To_See_More' => 'مرر يميناً لرؤية المزيد',
     'Save_All_Plates' => 'حفظ جميع اللوحات',
     'Action' => 'الإجراء',
     'Print_sold?' => 'طباعة مباع؟',
@@ -369,4 +371,5 @@ return [
     'Please_fill_all_required_fields' => 'يرجى ملء جميع الحقول المطلوبة',
     'Change_Phone_Number' => 'تغيير رقم الهاتف',
     'Change_Phone' => 'تغيير الهاتف',
+    'No_codes_available' => 'لا توجد رموز متاحة لهذه المدينة',
 ];

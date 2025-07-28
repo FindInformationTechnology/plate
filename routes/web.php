@@ -101,6 +101,7 @@ Route::get('auth/facebook/callback', [App\Http\Controllers\Auth\SocialAuthContro
 Route::get('auth/apple', [App\Http\Controllers\Auth\SocialAuthController::class, 'redirectToApple'])->name('auth.apple');
 Route::get('auth/apple/callback', [App\Http\Controllers\Auth\SocialAuthController::class, 'handleAppleCallback']);
 
+
 // Change Language
 Route::get('lang/{locale}', [LanguageController::class, 'changeLanguage'])->name('change.language');
 

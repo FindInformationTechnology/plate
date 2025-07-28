@@ -30,6 +30,8 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
 
+        $message = app()->isLocale('ar') ? 'تم تسجيلك بنجاح' : 'You have been logged in successfully';
+
         // Check if user is already authenticated
         if (Auth::check()) {
             // Regenerate the session to ensure fresh CSRF token
@@ -37,12 +39,14 @@ class AuthenticatedSessionController extends Controller
 
             $user = auth()->user();
 
+        
+
             if ($user->hasRole('admin')) {
                 return redirect()->intended(route('admin.dashboard'))
-                    ->with('success', 'Welcome to the admin dashboard');
+                    ->with('success', $message);
             } else {
                 return redirect()->intended(route('home'))
-                    ->with('success', 'Welcome back, ' . $user->name . '! You are logged in successfully.');
+                    ->with('success', $message);
             }
         }
 
@@ -54,14 +58,15 @@ class AuthenticatedSessionController extends Controller
 
         if ($user->hasRole('admin')) {
             return redirect()->intended(route('admin.dashboard'))
-                ->with('success', 'Welcome to the admin dashboard');
+                ->with('success', $message);
         } elseif ($user->hasRole('user')) {
+            
             return redirect()->intended(route('home'))
-                ->with('success', 'Welcome back, ' . $user->name . '! You are logged in successfully.');
+                ->with('success', $message);
         }
 
         return redirect()->intended(route('home'))
-            ->with('success', 'You have been logged in successfully.');
+            ->with('success', $message);
     }
 
     /**
@@ -75,6 +80,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/')->with('success', 'You have been logged out successfully.');
+        $message = app()->isLocale('ar') ? 'تم تسجيلك بنجاح' : 'You have been logged out successfully';
+
+        return redirect('/')->with('success', $message);
     }
 }

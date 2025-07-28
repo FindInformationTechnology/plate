@@ -40,13 +40,16 @@ class RegisteredUserController extends Controller
             'phone' => ['required', 'string', 'max:255'],
         ];
 
+        
         // Add reCAPTCHA validation only in production
         if (!config('app.debug')) {
             $validationRules['g-recaptcha-response'] = ['required'];
         }
-
+        
+       
         $request->validate($validationRules);
-
+        
+    
         // Verify reCAPTCHA (skip in development)
         if (!config('app.debug')) {
             $recaptchaResult = $this->verifyRecaptcha($request->input('g-recaptcha-response'));
@@ -66,12 +69,14 @@ class RegisteredUserController extends Controller
         // Process phone number to get last 9 digits
         $phoneNumber = $this->processPhoneNumber($request->phone);
 
+        
         app()->isLocale('ar') ? $message = 'هذا الرقم مسجل بالفعل' : $message = 'This phone number is already registered';
-
+        
         // Check if processed phone number already exists
         if (User::where('phone', $phoneNumber)->exists()) {
             return back()->withErrors(['phone' => $message])->withInput();
         }
+        
 
         $user = User::create([
             'name' => $request->name,
@@ -85,14 +90,16 @@ class RegisteredUserController extends Controller
         $user->assignRole('user');
 
         // Send welcome email
-        Mail::to($user->email)->send(new WelcomeEmail($user));
+        // Mail::to($user->email)->send(new WelcomeEmail($user));
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
         Auth::login($user);
 
+        $message = app()->isLocale('ar') ? 'تم تسجيلك بنجاح' : 'You have been registered successfully';
+
         return redirect(route('home', absolute: false))
-            ->with('success', 'Welcome to Plate! A confirmation email has been sent to your email address.');
+            ->with('success', $message);
 
         // return redirect(route('dashboard', absolute: false));
     }

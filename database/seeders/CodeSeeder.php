@@ -38,12 +38,16 @@ class CodeSeeder extends Seeder
                 Code::create([
                     'emirate_id' => $emirate->id,
                     'name' => $code,
+                    'status' => true,
                 ]);
             }
             
+            // Get emirate name (handle JSON translation field)
+            $emirateName = is_array($emirate->name) ? ($emirate->name['en'] ?? '') : $emirate->name;
+            
             // Add special codes for specific emirates if they exist
-            if (isset($specialCodes[$emirate->name])) {
-                foreach ($specialCodes[$emirate->name] as $code) {
+            if (isset($specialCodes[$emirateName])) {
+                foreach ($specialCodes[$emirateName] as $code) {
                     // Check if code already exists for this emirate
                     $exists = Code::where('emirate_id', $emirate->id)
                                   ->where('name', $code)
@@ -53,6 +57,7 @@ class CodeSeeder extends Seeder
                         Code::create([
                             'emirate_id' => $emirate->id,
                             'name' => $code,
+                            'status' => true,
                         ]);
                     }
                 }

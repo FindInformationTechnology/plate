@@ -253,12 +253,14 @@ class PlateController extends Controller
         ]);
 
         $codes = Code::where('emirate_id', $request->emirate_id)
+            ->where('status', true) // Only active codes
             ->orderBy('name')
             ->get(['id', 'name']);
 
         return response()->json([
             'success' => true,
-            'codes' => $codes
+            'codes' => $codes,
+            'count' => $codes->count()
         ]);
     }
 }

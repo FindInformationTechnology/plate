@@ -58,14 +58,14 @@
                         </div>
                     </div>
 
+                    <?php if(!config('app.debug')): ?>
                     <div class="input-block">
-                       
                         <div class="pass-group">
                             <!-- Add hidden reCAPTCHA input field -->
                             <input type="hidden" name="g-recaptcha-response" id="recaptchaResponse">
-
                         </div>
                     </div>
+                    <?php endif; ?>
 
 
 
@@ -104,6 +104,7 @@
     </div>
 </div>
 
+<?php if(!config('app.debug')): ?>
 <!-- Add reCAPTCHA v3 script at the end of the body -->
 <script src="https://www.google.com/recaptcha/api.js?render=<?php echo e(config('services.recaptcha.site_key')); ?>"></script>
 <script>
@@ -118,6 +119,7 @@
             });
     });
 </script>
+<?php endif; ?>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/auth/register.blade.php ENDPATH**/ ?>

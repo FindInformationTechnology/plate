@@ -138,6 +138,8 @@
 
     <!-- <link rel="stylesheet" href="<?php echo e(asset ('assets/css/addition-styles.css')); ?>"> -->
 
+    <?php echo $__env->yieldPushContent('styles'); ?>
+
 
 
     <style>
