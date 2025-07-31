@@ -156,9 +156,9 @@
             box-shadow: none;
         }
 
-        .header .header-navbar-rht .has-arrow .dropdown-toggle .user-text {
+        /* .header .header-navbar-rht .has-arrow .dropdown-toggle .user-text {
             color: #FFF;
-        }
+        } */
 
         .header .main-menu-wrapper .main-nav>li a i {
             float: left;

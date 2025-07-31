@@ -42,7 +42,8 @@
                                                     <img class="avatar-img" src="<?php echo e($plate->image_url); ?>" alt="Plate Image">
                                                 </a> -->
                                                 <div class="table-head-name flex-grow-1">
-                                                    <a href="#"><?php echo e($plate->code->name); ?> <?php echo e($plate->number); ?></a>
+                                                    <?php echo e($plate->code->name); ?> <?php echo e($plate->number); ?>
+
                                                     <p><?php echo e(__('message.Listed')); ?>: <?php echo e($plate->created_at->diffForHumans()); ?></p>
                                                 </div>
                                             </div>

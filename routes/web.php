@@ -76,6 +76,9 @@ Route::get('/sitemap.xml', function () {
     ]);
 });
 
+
+
+
 Route::get('/', [FrontController::class, 'index'])->name('home');
 
 Route::get('/plates', [FrontController::class, 'plates'])->name('plates');

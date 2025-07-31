@@ -56,6 +56,9 @@ class SocialAuthController extends Controller
 
             return redirect()->intended(route('user.dashboard'));
         } catch (Exception $e) {
+
+            $message = app()->isLocale('ar') ? 'فشل تسجيل الدخول بواسطة الإيميل' : 'Google authentication failed: ' . $e->getMessage();
+
             return redirect()->route('login')->with('error', 'Google authentication failed: ' . $e->getMessage());
         }
     }

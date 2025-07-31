@@ -108,10 +108,11 @@
                     </div>
                     <div class="col-md-4">
                         <div class="profile-form-group">
-                            <label>{{ __('message.Whatsapp') }} <span class="text-danger">*</span></label>
+                            <label>{{ __('message.Whatsapp') }} </label>
                             <input type="text" class="form-control" name="whatsapp" style="direction: ltr;"
                                 value="{{ auth()->user()->whatsapp_number ?? '' }}"
                                 placeholder="{{ __('message.Enter_WhatsApp_Number') }}">
+                            <small class="text-muted">{{ __('message.WhatsApp_Optional') }}</small>
                         </div>
                     </div>
                 </div>

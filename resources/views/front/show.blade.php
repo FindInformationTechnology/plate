@@ -74,11 +74,13 @@
                         target="_blank"><i class="bx bx-phone fs-5"></i>
                         <p>{{ $plate->user->phone_number }}</p>
                     </a>
+                    @isset($plate->user->whatsapp_number)
                     <a href="https://wa.me/{{ $plate->user->whatsapp_number ?? '' }}"
                         class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 w-100 flex-md-grow-1 rounded-2"
                         target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
                         <p>{{ $plate->user->whatsapp_number ?? '' }}</p>
                     </a>
+                    @endisset
                 </div>
             </div>
         </div>

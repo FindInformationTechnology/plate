@@ -12,7 +12,7 @@ return [
     | Supported: "vonage", "unifonic", "twilio", "log"
     |
     */
-    'default_provider' => env('SMS_PROVIDER', 'vonage'),
+    'default_provider' => env('SMS_PROVIDER', 'unifonic'),
 
     /*
     |--------------------------------------------------------------------------
@@ -43,7 +43,9 @@ return [
             'sid' => env('TWILIO_SID'),
             'token' => env('TWILIO_TOKEN'),
             'from' => env('TWILIO_FROM'),
+            'alpha_sender' => env('TWILIO_ALPHA_SENDER', 'PLATE35'),
         ],
+        
 
         'sms_to' => [
             'api_key' => env('SMS_TO_API_KEY'),

@@ -113,9 +113,9 @@
                                                 <!-- <img class="avatar-img" src="{{ $plate->image_url }}" alt="Plate Image"> -->
 
                                                 <div class="table-head-name flex-grow-1">
-                                                    <a href="">
-                                                        {{ $plate->emirate->name }} - {{ $plate->code->name }} {{
-                                                        $plate->number }}</a>
+                                                  
+                                                         {{
+                                                        $plate->number }}
                                                     <p>{{ __('message.Listed') }}: {{
                                                         $plate->created_at->diffForHumans() }}</p>
                                                 </div>

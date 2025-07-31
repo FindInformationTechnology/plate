@@ -112,10 +112,11 @@
                     </div>
                     <div class="col-md-4">
                         <div class="profile-form-group">
-                            <label><?php echo e(__('message.Whatsapp')); ?> <span class="text-danger">*</span></label>
+                            <label><?php echo e(__('message.Whatsapp')); ?> </label>
                             <input type="text" class="form-control" name="whatsapp" style="direction: ltr;"
                                 value="<?php echo e(auth()->user()->whatsapp_number ?? ''); ?>"
                                 placeholder="<?php echo e(__('message.Enter_WhatsApp_Number')); ?>">
+                            <small class="text-muted"><?php echo e(__('message.WhatsApp_Optional')); ?></small>
                         </div>
                     </div>
                 </div>

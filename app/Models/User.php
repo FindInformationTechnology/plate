@@ -71,11 +71,18 @@ class User extends Authenticatable
 
     public function getWhatsappNumberAttribute()
     {
-        return '+971' . $this-> processPhoneNumber( $this->whatsapp);
+        if (!$this->whatsapp) {
+            return null;
+        }
+        return '+971' . $this->processPhoneNumber($this->whatsapp);
     }
 
     private function processPhoneNumber($phone)
     {
+        if (!$phone) {
+            return null;
+        }
+        
         // Remove all non-numeric characters
         $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
         

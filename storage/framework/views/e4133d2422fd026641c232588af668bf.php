@@ -647,7 +647,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (resendForm) {
+        
         resendForm.addEventListener('submit', function(e) {
+            
             e.preventDefault();
 
             const resendBtn = document.getElementById('resendButton');

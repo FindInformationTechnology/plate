@@ -84,7 +84,7 @@ class ProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'phone' => ['required', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
-            'whatsapp' => ['nullable', 'string', 'max:20'],
+            'whatsapp' => ['nullable', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
             'profile_photo' => ['nullable', 'image', 'max:15360'], // 15MB max
         ]);
 
@@ -100,9 +100,11 @@ class ProfileController extends Controller
 
         $validated['phone'] = $phoneNumber; // Update with processed phone number
 
-        if ($request->whatsapp) {
-
+        if ($request->whatsapp && $request->whatsapp !== '000000000') {
             $validated['whatsapp'] = $this->processPhoneNumber($request->whatsapp);
+        } else {
+            // Set to null if empty or default value
+            $validated['whatsapp'] = null;
         }
 
         // Handle profile photo upload

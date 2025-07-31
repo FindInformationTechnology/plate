@@ -44,7 +44,7 @@
                                                     <img class="avatar-img" src="{{ $plate->image_url }}" alt="Plate Image">
                                                 </a> -->
                                                 <div class="table-head-name flex-grow-1">
-                                                    <a href="#">{{ $plate->code->name }} {{ $plate->number }}</a>
+                                                    {{ $plate->code->name }} {{ $plate->number }}
                                                     <p>{{ __('message.Listed') }}: {{ $plate->created_at->diffForHumans() }}</p>
                                                 </div>
                                             </div>

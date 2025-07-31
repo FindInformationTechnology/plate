@@ -77,11 +77,13 @@
                         target="_blank"><i class="bx bx-phone fs-5"></i>
                         <p><?php echo e($plate->user->phone_number); ?></p>
                     </a>
+                    <?php if(isset($plate->user->whatsapp_number)): ?>
                     <a href="https://wa.me/<?php echo e($plate->user->whatsapp_number ?? ''); ?>"
                         class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 w-100 flex-md-grow-1 rounded-2"
                         target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
                         <p><?php echo e($plate->user->whatsapp_number ?? ''); ?></p>
                     </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

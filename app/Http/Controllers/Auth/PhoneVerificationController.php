@@ -27,6 +27,8 @@ class PhoneVerificationController extends Controller
     {
         $user = $request->user();
 
+       
+
         // Check if user exists and has a phone number
         if (!$user) {
             return redirect()->route('login');
@@ -83,6 +85,8 @@ class PhoneVerificationController extends Controller
     public function send(Request $request)
     {
         $user = $request->user();
+
+        
 
         if (!$user) {
             abort(401);
