@@ -9,6 +9,7 @@ use Twilio\Rest\Client as TwilioClient;
 use Vonage\Client;
 use Vonage\Client\Credentials\Basic;
 use Vonage\SMS\Message\SMS;
+use Unifonic\Unifonic;
 
 class SmsService
 {
@@ -33,12 +34,11 @@ class SmsService
         Log::info('📱 SMS VERIFICATION CODE', [
             'phone' => $this->maskPhoneNumber($phoneNumber),
             'code' => $code,
-            'message' => $message,
             'timestamp' => now()->toDateTimeString()
         ]);
         
         // In development, use log provider if configured
-        if (config('app.debug') && ($provider === 'log' || $provider === 'unifonic')) {
+        if (config('app.debug') && $provider === 'log') {
             return $this->sendViaLog($phoneNumber, $message, $code);
         }
         
@@ -154,9 +154,6 @@ class SmsService
             'timestamp' => now()->toDateTimeString()
         ]);
         
-        // Also log in a simple format for easy reading
-        Log::info("🔐 VERIFICATION CODE FOR {$formattedNumber}: {$code}");
-        
         return true;
     }
 
@@ -172,8 +169,6 @@ class SmsService
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'has_key' => !empty($config['key']),
                 'has_secret' => !empty($config['secret']),
-                'from' => $config['from'] ?? 'PLATE35',
-                'message_length' => strlen($message),
                 'platform' => 'plate35.com'
             ]);
 
@@ -193,14 +188,12 @@ class SmsService
                 Log::info('Vonage SMS Sent Successfully', [
                     'phone' => $this->maskPhoneNumber($phoneNumber),
                     'message_id' => $smsMessage->getMessageId(),
-                    'status' => $smsMessage->getStatus(),
                     'platform' => 'plate35.com'
                 ]);
                 return true;
             } else {
                 Log::error('Vonage SMS Failed', [
                     'phone' => $this->maskPhoneNumber($phoneNumber),
-                    'status' => $smsMessage->getStatus(),
                     'error' => $smsMessage->getStatusText(),
                     'platform' => 'plate35.com'
                 ]);
@@ -222,42 +215,15 @@ class SmsService
      */
     private function sendViaUnifonic(string $phoneNumber, string $message): bool
     {
-        // In development mode, always log instead of sending real SMS
-        if (config('app.debug')) {
-            Log::info('📱 UNIFONIC SMS SIMULATION (Development Mode)', [
-                'phone' => $this->maskPhoneNumber($phoneNumber),
-                'message' => $message,
-                'note' => 'Real SMS not sent - development mode',
-                'timestamp' => now()->toDateTimeString()
-            ]);
-            
-            // Also log in simple format for easy reading
-            $formattedNumber = $this->formatPhoneNumber($phoneNumber);
-            Log::info("🔐 UNIFONIC VERIFICATION CODE FOR {$formattedNumber}: " . substr($message, -6));
-            
-            return true;
-        }
 
         try {
             $config = $this->config['unifonic'];
             
-            // Log the attempt with detailed info
+            // Log the attempt
             Log::info('Attempting Unifonic SMS', [
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'has_app_id' => !empty($config['app_id']),
                 'has_sender_id' => !empty($config['sender_id']),
-                'sender_id' => $config['sender_id'] ?? 'Not set',
-                'message_length' => strlen($message),
-                'platform' => 'plate35.com'
-            ]);
-
-            // Log the API request details
-            Log::info('Unifonic API Request', [
-                'url' => 'https://el.cloud.unifonic.com/api/wrapper/sendSMS',
-                'app_sid' => !empty($config['app_id']) ? 'Set' : 'Missing',
-                'sender_id' => $config['sender_id'] ?? 'Not set',
-                'recipient' => $this->formatPhoneNumber($phoneNumber),
-                'body_length' => strlen($message),
                 'platform' => 'plate35.com'
             ]);
 
@@ -273,12 +239,7 @@ class SmsService
 
             $result = $response->json();
             
-            // Log the API response
-            Log::info('Unifonic API Response', [
-                'status_code' => $response->status(),
-                'response_body' => $result,
-                'platform' => 'plate35.com'
-            ]);
+
             
             if ($response->successful() && isset($result['success']) && $result['success']) {
                 Log::info('Unifonic SMS Sent Successfully', [
@@ -291,7 +252,6 @@ class SmsService
                 Log::error('Unifonic SMS Failed', [
                     'phone' => $this->maskPhoneNumber($phoneNumber),
                     'error' => $result['message'] ?? 'Unknown error',
-                    'response' => $result,
                     'platform' => 'plate35.com'
                 ]);
                 return false;
@@ -301,8 +261,6 @@ class SmsService
             Log::error('Unifonic SMS Error', [
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'error' => $e->getMessage(),
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
                 'platform' => 'plate35.com'
             ]);
             return false;
@@ -321,8 +279,6 @@ class SmsService
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'has_sid' => !empty($config['sid']),
                 'has_token' => !empty($config['token']),
-                'from' => $config['from'] ?? 'Not set',
-                'message_length' => strlen($message),
                 'platform' => 'plate35.com'
             ]);
 
@@ -339,7 +295,6 @@ class SmsService
             Log::info('Twilio SMS Sent Successfully', [
                 'phone' => $this->maskPhoneNumber($phoneNumber),
                 'message_id' => $message->sid,
-                'status' => $message->status,
                 'platform' => 'plate35.com'
             ]);
             
@@ -385,48 +340,5 @@ class SmsService
         return $formatted;
     }
 
-    /**
-     * Test SMS configuration
-     */
-    public function testConfiguration(): array
-    {
-        $results = [];
-        $providers = ['vonage', 'unifonic', 'twilio'];
-        
-        foreach ($providers as $provider) {
-            $results[$provider] = [
-                'configured' => $this->isProviderConfigured($provider),
-                'config' => $this->getProviderTestInfo($provider)
-            ];
-        }
-        
-        return $results;
-    }
 
-    /**
-     * Get provider configuration info for testing
-     */
-    private function getProviderTestInfo(string $provider): array
-    {
-        $config = $this->config[$provider] ?? [];
-        
-        return match($provider) {
-            'vonage' => [
-                'has_key' => !empty($config['key']),
-                'has_secret' => !empty($config['secret']),
-                'from' => $config['from'] ?? 'Not set'
-            ],
-            'unifonic' => [
-                'has_app_id' => !empty($config['app_id']),
-                'has_sender_id' => !empty($config['sender_id']),
-                'sender_id' => $config['sender_id'] ?? 'Not set'
-            ],
-            'twilio' => [
-                'has_sid' => !empty($config['sid']),
-                'has_token' => !empty($config['token']),
-                'from' => $config['from'] ?? 'Not set'
-            ],
-            default => ['error' => 'Unknown provider']
-        };
-    }
 } 

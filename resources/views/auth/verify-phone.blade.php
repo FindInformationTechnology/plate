@@ -21,11 +21,11 @@
                             <i class="bx bx-check-circle me-2"></i>
                             {{ __('message.Verification_Code_Sent_Automatically') }}
                         </div>
-                        <p class="text-muted mb-0">
+                        <p class=" mb-0">
                             {{ __('message.Code_Sent_To') }} <strong>{{ $phoneNumber }}</strong>
                         </p>
                         @else
-                        <p class="text-muted mb-0">
+                        <p class=" mb-0">
                             {{ __('message.Enter_Code_Or_Request_New') }}
                             <strong>{{ $phoneNumber }}</strong>
                         </p>
@@ -91,7 +91,7 @@
 
                         <!-- Resend Section -->
                         <div class="resend-section text-center">
-                            <p class="text-muted mb-3">{{ __('message.Didnt_Receive_Code') }}</p>
+                            <p class=" mb-3">{{ __('message.Didnt_Receive_Code') }}</p>
 
                             @if($canResend)
                             <form method="POST" action="{{ route('phone.verify.send') }}" id="resendForm">
@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: new FormData(verificationForm),
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             })
             .then(response => response.json())
@@ -636,7 +636,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (resendForm) {
         
         resendForm.addEventListener('submit', function(e) {
-            
+            console.log("this is from resend form");
+
             e.preventDefault();
 
             const resendBtn = document.getElementById('resendButton');
@@ -652,7 +653,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: new FormData(resendForm),
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             })
             .then(response => {
@@ -663,7 +664,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 if (data.message) {
-                    showMessage(data.message, 'success');
+                    // showMessage(data.message, 'success');
+                    console.log(data.message);
                     
                     // Clear OTP inputs for new code
                     otpInputs.forEach(input => {
