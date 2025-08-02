@@ -374,4 +374,6 @@ return [
     'No_codes_available' => 'لا توجد رموز متاحة لهذه المدينة',
     'WhatsApp_Optional' => 'رقم الواتساب اختياري',
     'WhatsApp_Number_Set' => 'رقم الواتساب محدد',
+    'WhatsApp_Already_Registered' => 'رقم الواتساب مسجل بالفعل',
+    'Phone_Already_Registered' => 'هذا الرقم مسجل بالفعل',
 ];

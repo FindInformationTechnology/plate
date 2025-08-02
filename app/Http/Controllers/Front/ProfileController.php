@@ -91,10 +91,9 @@ class ProfileController extends Controller
         // Process phone number to get last 9 digits
         $phoneNumber = $this->processPhoneNumber($request->phone);
 
-        // Check if processed phone number already exists
-        if (User::where('phone', $phoneNumber)->exists()) {
-            app()->isLocale('ar') ? $message = 'هذا الرقم مسجل بالفعل' : $message = 'This phone number is already registered';
-            return back()->withErrors(['phone' => $message])->withInput();
+        // Check if processed phone number already exists (excluding current user)
+        if (User::where('phone', $phoneNumber)->where('id', '!=', $user->id)->exists()) {
+            return back()->withErrors(['phone' => __('message.Phone_Already_Registered')])->withInput();
         }
 
         
@@ -104,6 +103,12 @@ class ProfileController extends Controller
         // Handle WhatsApp number
         if ($request->whatsapp && trim($request->whatsapp) !== '') {
             $processedWhatsapp = $this->processPhoneNumber($request->whatsapp);
+            
+            // // Check if processed WhatsApp number already exists (excluding current user)
+            // if ($processedWhatsapp && User::where('whatsapp', $processedWhatsapp)->where('id', '!=', $user->id)->exists()) {
+            //     return back()->withErrors(['whatsapp' => __('message.WhatsApp_Already_Registered')])->withInput();
+            // }
+            
             $validated['whatsapp'] = $processedWhatsapp ?: null;
         } else {
             $validated['whatsapp'] = null;

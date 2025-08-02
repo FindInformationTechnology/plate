@@ -154,6 +154,8 @@ return [
     'No_codes_available' => 'No codes available for this city',
     'WhatsApp_Optional' => 'WhatsApp number is optional',
     'WhatsApp_Number_Set' => 'WhatsApp number is set',
+    'WhatsApp_Already_Registered' => 'This WhatsApp number is already registered',
+    'Phone_Already_Registered' => 'This phone number is already registered',
   'Select_Code' => 'Select Code',
   'Error_loading_codes' => 'Error loading codes',
   'Edit_Plate' => 'Edit Plate',
