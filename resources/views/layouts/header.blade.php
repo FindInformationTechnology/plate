@@ -31,6 +31,7 @@
                 <ul class="main-nav">
                     <li><a href="{{ route('home')}}" class="nav-link">{{ __('message.Home') }}</a></li>
                     <li><a href="{{ route('plates')}}" class="nav-link">{{ __('message.Plates') }}</a></li>
+                    <li><a href="{{ route('contact')}}" class="nav-link">{{ __('message.Contact_Us') }}</a></li>
                    
 
 
@@ -223,6 +224,9 @@
                         <a class="dropdown-item" href="{{ route('user.profile') }}">
                             <i class="feather-user-check"></i> {{ __('message.Profile') }}
                         </a>
+                        <!-- <a class="dropdown-item" href="{{ route('contact') }}">
+                            <i class="feather-message-circle"></i> {{ __('message.Contact_Us') }}
+                        </a> -->
                         <a class="dropdown-item" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit()">
                             <i class="feather-power"></i> {{ __('message.Logout') }}

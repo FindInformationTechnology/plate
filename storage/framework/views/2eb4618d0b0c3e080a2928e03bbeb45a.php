@@ -31,6 +31,7 @@
                 <ul class="main-nav">
                     <li><a href="<?php echo e(route('home')); ?>" class="nav-link"><?php echo e(__('message.Home')); ?></a></li>
                     <li><a href="<?php echo e(route('plates')); ?>" class="nav-link"><?php echo e(__('message.Plates')); ?></a></li>
+                    <li><a href="<?php echo e(route('contact')); ?>" class="nav-link"><?php echo e(__('message.Contact_Us')); ?></a></li>
                    
 
 
@@ -232,6 +233,10 @@
                             <i class="feather-user-check"></i> <?php echo e(__('message.Profile')); ?>
 
                         </a>
+                        <!-- <a class="dropdown-item" href="<?php echo e(route('contact')); ?>">
+                            <i class="feather-message-circle"></i> <?php echo e(__('message.Contact_Us')); ?>
+
+                        </a> -->
                         <a class="dropdown-item" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit()">
                             <i class="feather-power"></i> <?php echo e(__('message.Logout')); ?>

@@ -1,20 +1,19 @@
-@extends('layouts.app')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <!-- Banner Section -->
 <div class="breadcrumb-bar">
     <div class="container">
         <div class="row align-items-center text-center">
             <div class="col-md-12 col-12">
-                <h2 class="breadcrumb-title">{{ __('message.Contact_Us') }}</h2>
+                <h2 class="breadcrumb-title"><?php echo e(__('message.Contact_Us')); ?></h2>
                 <nav aria-label="breadcrumb" class="page-breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="{{ route('home') }}">{{ __('message.Home') }}</a>
+                            <a href="<?php echo e(route('home')); ?>"><?php echo e(__('message.Home')); ?></a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            {{ __('message.Contact_Us') }}
+                            <?php echo e(__('message.Contact_Us')); ?>
+
                         </li>
                     </ol>
                 </nav>
@@ -29,39 +28,40 @@
     <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         <!-- Form -->
         <div>
-            <h2 class="text-2xl font-semibold mb-6 text-gray-800">{{ __('message.Send_Us_Message') }}</h2>
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800"><?php echo e(__('message.Send_Us_Message')); ?></h2>
             <form method="POST" class="space-y-5">
-                @csrf
-                <input type="text" name="name" placeholder="{{ __('message.Your_Name') }}" class="form-control rounded-md" required>
-                <input type="email" name="email" placeholder="{{ __('message.Your_Email') }}" class="form-control rounded-md" required>
-                <textarea name="message" rows="5" placeholder="{{ __('message.Your_Message') }}" class="form-control rounded-md resize-none" required></textarea>
+                <?php echo csrf_field(); ?>
+                <input type="text" name="name" placeholder="<?php echo e(__('message.Your_Name')); ?>" class="form-control rounded-md" required>
+                <input type="email" name="email" placeholder="<?php echo e(__('message.Your_Email')); ?>" class="form-control rounded-md" required>
+                <textarea name="message" rows="5" placeholder="<?php echo e(__('message.Your_Message')); ?>" class="form-control rounded-md resize-none" required></textarea>
                 <button type="submit" class="bg-[#ac1e23] text-white px-6 py-2 rounded hover:bg-red-700">
-                    {{ __('message.Send_Message') }}
+                    <?php echo e(__('message.Send_Message')); ?>
+
                 </button>
             </form>
         </div>
 
         <!-- Info -->
         <div class="space-y-6 text-lg text-gray-700">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800">{{ __('message.Contact_Details') }}</h2>
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800"><?php echo e(__('message.Contact_Details')); ?></h2>
             <div class="flex items-start gap-3">
                 <i class='bx bx-map text-2xl text-[#ac1e23]'></i>
                 <div>
-                    <p class="font-semibold">{{ __('message.Address') }}</p>
-                    <p>{{ __('message.Location') }}</p>
+                    <p class="font-semibold"><?php echo e(__('message.Address')); ?></p>
+                    <p><?php echo e(__('message.Location')); ?></p>
                 </div>
             </div>
             <div class="flex items-start gap-3">
                 <i class='bx bx-phone text-2xl text-[#ac1e23]'></i>
                 <div>
-                    <p class="font-semibold">{{ __('message.Phone') }}</p>
+                    <p class="font-semibold"><?php echo e(__('message.Phone')); ?></p>
                     <p style="direction: ltr;">+971  50 551 5131</p>
                 </div>
             </div>
             <div class="flex items-start gap-3">
                 <i class='bx bx-envelope text-2xl text-[#ac1e23]'></i>
                 <div>
-                    <p class="font-semibold">{{ __('message.Email') }}</p>
+                    <p class="font-semibold"><?php echo e(__('message.Email')); ?></p>
                     <p>info@plate35.com</p>
                 </div>
             </div>
@@ -84,12 +84,15 @@
 <!-- Quick Contact CTA -->
 <section class="bg-[#ff696e41] text-white py-16 text-center">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-semibold mb-4">{{ __('message.Quick_Help') }}</h2>
-        <p class="text-lg mb-6">{{ __('message.Contact_Us_Subtitle') }}</p>
+        <h2 class="text-3xl font-semibold mb-4"><?php echo e(__('message.Quick_Help')); ?></h2>
+        <p class="text-lg mb-6"><?php echo e(__('message.Contact_Us_Subtitle')); ?></p>
         <a href="tel:+971 050 551 5131" class="bg-white text-[#ac1e23] px-6 py-3 rounded shadow hover:bg-gray-200 transition">
-            {{ __('message.Call_Us_Now') }}
+            <?php echo e(__('message.Call_Us_Now')); ?>
+
         </a>
     </div>
 </section>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/front/contact.blade.php ENDPATH**/ ?>
