@@ -373,4 +373,5 @@ return [
     'Change_Phone' => 'تغيير الهاتف',
     'No_codes_available' => 'لا توجد رموز متاحة لهذه المدينة',
     'WhatsApp_Optional' => 'رقم الواتساب اختياري',
+    'WhatsApp_Number_Set' => 'رقم الواتساب محدد',
 ];

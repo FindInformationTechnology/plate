@@ -66,7 +66,12 @@ class User extends Authenticatable
 
     public function getPhoneNumberAttribute()
     {
-        return '+971'. $this-> processPhoneNumber( $this->phone);
+        if (!$this->phone) {
+            return null;
+        }
+        
+        $processed = $this->processPhoneNumber($this->phone);
+        return $processed ? '+971' . $processed : null;
     }
 
     public function getWhatsappNumberAttribute()
@@ -74,17 +79,24 @@ class User extends Authenticatable
         if (!$this->whatsapp) {
             return null;
         }
-        return '+971' . $this->processPhoneNumber($this->whatsapp);
+        
+        $processed = $this->processPhoneNumber($this->whatsapp);
+        return $processed ? '+971' . $processed : null;
     }
 
     private function processPhoneNumber($phone)
     {
-        if (!$phone) {
+        if (!$phone || trim($phone) === '') {
             return null;
         }
         
         // Remove all non-numeric characters
         $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+        
+        // If empty after cleaning, return null
+        if (empty($cleanPhone)) {
+            return null;
+        }
         
         // Remove leading zeros
         $cleanPhone = ltrim($cleanPhone, '0');
@@ -96,6 +108,11 @@ class User extends Authenticatable
         
         // Remove leading zero again after country code removal
         $cleanPhone = ltrim($cleanPhone, '0');
+        
+        // Validate minimum length (at least 7 digits for UAE mobile)
+        if (strlen($cleanPhone) < 7) {
+            return null;
+        }
         
         // Get the last 9 digits
         if (strlen($cleanPhone) >= 9) {

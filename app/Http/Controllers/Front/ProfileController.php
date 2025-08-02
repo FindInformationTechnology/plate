@@ -101,10 +101,11 @@ class ProfileController extends Controller
 
         $validated['phone'] = $phoneNumber; // Update with processed phone number
 
-        if ($request->whatsapp && $request->whatsapp !== '000000000') {
-            $validated['whatsapp'] = $this->processPhoneNumber($request->whatsapp);
+        // Handle WhatsApp number
+        if ($request->whatsapp && trim($request->whatsapp) !== '') {
+            $processedWhatsapp = $this->processPhoneNumber($request->whatsapp);
+            $validated['whatsapp'] = $processedWhatsapp ?: null;
         } else {
-            // Set to null if empty or default value
             $validated['whatsapp'] = null;
         }
 

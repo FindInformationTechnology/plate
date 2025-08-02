@@ -153,6 +153,7 @@ return [
       'Loading_codes' => 'Loading codes',
     'No_codes_available' => 'No codes available for this city',
     'WhatsApp_Optional' => 'WhatsApp number is optional',
+    'WhatsApp_Number_Set' => 'WhatsApp number is set',
   'Select_Code' => 'Select Code',
   'Error_loading_codes' => 'Error loading codes',
   'Edit_Plate' => 'Edit Plate',

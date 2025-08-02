@@ -113,6 +113,11 @@
                                 value="{{ auth()->user()->whatsapp_number ?? '' }}"
                                 placeholder="{{ __('message.Enter_WhatsApp_Number') }}">
                             <small class="text-muted">{{ __('message.WhatsApp_Optional') }}</small>
+                            @if(auth()->user()->whatsapp_number)
+                                <small class="text-success d-block mt-1">
+                                    <i class="bx bx-check-circle"></i> {{ __('message.WhatsApp_Number_Set') }}
+                                </small>
+                            @endif
                         </div>
                     </div>
                 </div>
