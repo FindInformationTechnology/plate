@@ -92,9 +92,10 @@ class ProfileController extends Controller
         $phoneNumber = $this->processPhoneNumber($request->phone);
 
         // Check if processed phone number already exists
-        // if (User::where('phone', $phoneNumber)->exists()) {
-        //     return back()->withErrors(['phone' => 'This phone number is already registered.'])->withInput();
-        // }
+        if (User::where('phone', $phoneNumber)->exists()) {
+            app()->isLocale('ar') ? $message = 'هذا الرقم مسجل بالفعل' : $message = 'This phone number is already registered';
+            return back()->withErrors(['phone' => $message])->withInput();
+        }
 
         
 
