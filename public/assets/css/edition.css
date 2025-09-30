@@ -305,7 +305,8 @@ body {
     .big-plate .uaq-number {
         font-size: 150px !important;
     }
-}
+} 
+
 @media (max-width: 767px) {
     .big-plate .dubai-icon {
         font-size: 50px !important;
