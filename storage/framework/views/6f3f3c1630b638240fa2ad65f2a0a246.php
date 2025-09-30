@@ -4,11 +4,11 @@
 <style>
 /* Reduce text size for plate code and number on this page only */
 .plate h1 {
-    font-size: 0.9em !important;
+    /* font-size: 0.9em !important; */
 }
 
 .plate h2 {
-    font-size: 0.8em !important;
+    /* font-size: 0.8em !important; */
 }
 </style>
 <?php $__env->stopPush(); ?>
