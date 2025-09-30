@@ -257,6 +257,15 @@
         padding: 0.45rem 0.6rem;
     }
     
+    /* RTL responsive adjustments */
+    [dir="rtl"] .form-select-responsive {
+        background-position: left 0.4rem center !important;
+        padding-left: 1.5rem !important;
+        padding-right: 0.4rem !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+        transform: scaleX(-1) !important;
+    }
+    
     .badge-responsive {
         font-size: 0.75rem;
         padding: 0.3rem 0.6rem;
@@ -292,6 +301,15 @@
     .form-select-responsive {
         font-size: 0.8rem;
         padding: 0.4rem 0.5rem;
+    }
+    
+    /* RTL responsive adjustments for small screens */
+    [dir="rtl"] .form-select-responsive {
+        background-position: left 0.3rem center !important;
+        padding-left: 1.25rem !important;
+        padding-right: 0.3rem !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+        transform: scaleX(-1) !important;
     }
     
     /* Optimize column widths for very small screens */
@@ -330,6 +348,33 @@
 [dir="rtl"] .form-control-responsive,
 [dir="rtl"] .form-select-responsive {
     text-align: right;
+}
+
+/* Fix RTL direction for form-select background image */
+[dir="rtl"] .form-select {
+    background-position: left 0.75rem center !important;
+    padding-left: 2.25rem !important;
+    padding-right: 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
+}
+
+[dir="rtl"] .form-select-responsive {
+    background-position: left 0.5rem center !important;
+    padding-left: 1.75rem !important;
+    padding-right: 0.5rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
+}
+
+/* Ensure proper RTL styling for select elements */
+[dir="rtl"] .emirate-select,
+[dir="rtl"] .code-select {
+    background-position: left 0.75rem center !important;
+    padding-left: 2.25rem !important;
+    padding-right: 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
 }
 
 [dir="rtl"] .code-loading {
@@ -456,31 +501,58 @@
                 loadingSpinner.removeClass('d-none');
 
                 // Fetch codes for the selected emirate
+                const apiUrl = "<?php echo e(route('user.api.codes.by.emirate')); ?>";
+                console.log("Making AJAX request to:", apiUrl, "with emirate_id:", emirateId);
+                
                 $.ajax({
-                    url: "<?php echo e(route('user.api.codes.by.emirate')); ?>",
+                    url: apiUrl,
                     type: "GET",
                     data: {
                         emirate_id: emirateId
                     },
                     success: function(response) {
+                        console.log("Codes API Response:", response);
+                        
                         // Clear the loading option
                         codeSelect.empty();
 
                         // Add a default option
                         codeSelect.append('<option value=""><?php echo e(__("message.Select_Code")); ?></option>');
 
-                        // Add options for each code
-                        $.each(response.codes, function(key, code) {
-                            codeSelect.append('<option value="' + code.id + '">' + code.name + '</option>');
-                        });
+                        // Check if response has codes
+                        if (response.codes && response.codes.length > 0) {
+                            // Add options for each code
+                            $.each(response.codes, function(key, code) {
+                                codeSelect.append('<option value="' + code.id + '">' + code.name + '</option>');
+                            });
+                            console.log("Added " + response.codes.length + " codes to dropdown");
+                        } else {
+                            codeSelect.append('<option value=""><?php echo e(__("message.No_codes_available")); ?></option>');
+                            console.warn("No codes found for emirate ID:", emirateId);
+                        }
 
                         // Hide loading spinner
                         loadingSpinner.addClass('d-none');
                     },
                     error: function(xhr, status, error) {
                         console.error("Error loading codes:", error);
-                        codeSelect.empty().append('<option value=""><?php echo e(__("message.Error_loading_codes")); ?></option>');
+                        console.error("Response status:", xhr.status);
+                        console.error("Response text:", xhr.responseText);
+                        
+                        let errorMessage = '<?php echo e(__("message.Error_loading_codes")); ?>';
+                        if (xhr.status === 422) {
+                            errorMessage = 'Invalid emirate selected';
+                        } else if (xhr.status === 404) {
+                            errorMessage = 'API endpoint not found';
+                        } else if (xhr.status === 500) {
+                            errorMessage = 'Server error';
+                        }
+                        
+                        codeSelect.empty().append('<option value="">' + errorMessage + '</option>');
                         loadingSpinner.addClass('d-none');
+                        
+                        // Show user-friendly error
+                        alert('Error loading codes for selected city. Please refresh the page and try again.');
                     }
                 });
             } else {

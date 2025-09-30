@@ -255,6 +255,15 @@
         padding: 0.45rem 0.6rem;
     }
     
+    /* RTL responsive adjustments */
+    [dir="rtl"] .form-select-responsive {
+        background-position: left 0.4rem center !important;
+        padding-left: 1.5rem !important;
+        padding-right: 0.4rem !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+        transform: scaleX(-1) !important;
+    }
+    
     .badge-responsive {
         font-size: 0.75rem;
         padding: 0.3rem 0.6rem;
@@ -290,6 +299,15 @@
     .form-select-responsive {
         font-size: 0.8rem;
         padding: 0.4rem 0.5rem;
+    }
+    
+    /* RTL responsive adjustments for small screens */
+    [dir="rtl"] .form-select-responsive {
+        background-position: left 0.3rem center !important;
+        padding-left: 1.25rem !important;
+        padding-right: 0.3rem !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+        transform: scaleX(-1) !important;
     }
     
     /* Optimize column widths for very small screens */
@@ -328,6 +346,33 @@
 [dir="rtl"] .form-control-responsive,
 [dir="rtl"] .form-select-responsive {
     text-align: right;
+}
+
+/* Fix RTL direction for form-select background image */
+[dir="rtl"] .form-select {
+    background-position: left 0.75rem center !important;
+    padding-left: 2.25rem !important;
+    padding-right: 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
+}
+
+[dir="rtl"] .form-select-responsive {
+    background-position: left 0.5rem center !important;
+    padding-left: 1.75rem !important;
+    padding-right: 0.5rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
+}
+
+/* Ensure proper RTL styling for select elements */
+[dir="rtl"] .emirate-select,
+[dir="rtl"] .code-select {
+    background-position: left 0.75rem center !important;
+    padding-left: 2.25rem !important;
+    padding-right: 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
 }
 
 [dir="rtl"] .code-loading {
