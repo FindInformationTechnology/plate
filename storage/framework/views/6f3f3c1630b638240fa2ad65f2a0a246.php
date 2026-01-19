@@ -10,6 +10,13 @@
 .plate h2 {
     /* font-size: 0.8em !important; */
 }
+
+/* Custom width utility for md+ screens */
+@media (min-width: 768px) {
+    .w-md-50 {
+        width: 50% !important;
+    }
+}
 </style>
 <?php $__env->stopPush(); ?>
 
@@ -39,49 +46,54 @@
                 </div>
             </div>
             <div>
-                <div class="d-flex justify-content-between align-items-center pb-2">
-                    <div>
-                        <h1 class="price py-2 fs-1 fw-normal">
+                <!-- Price & Details Section -->
+                <div class="mb-4">
+                    <!-- Price Display -->
+                    <div class="my-3 d-flex justify-content-between align-items-center">
+                        <h1 class="price mb-0 fw-bold text-dark" style="font-size: 2rem; letter-spacing: -0.5px;">
                             <?php echo e($plate->price_digits); ?>
 
                         </h1>
-                        <p class="text-secondary fs-6 mb-2">
-                            <i class="fa fa-eye me-1" aria-hidden="true"></i> <?php echo e($plate->views_count); ?> <?php echo e(__('message.Views')); ?>
-
+                        <p class="mb-0 d-flex align-items-center gap-2" style="opacity: 0.6;">
+                            <i class="fa fa-eye " aria-hidden="true"></i>
+                            <span class="fw-medium"><?php echo e($plate->views_count); ?></span>
+                            <span><?php echo e(__('message.Views')); ?></span>
                         </p>
-                    
-                        <div class="alert alert-warning mt-2">
-                            <ul class="icons list-unstyled mb-0">
-                                <li class="mb-1">
-                                    <i class="fa fa-credit-card me-2" aria-hidden="true"></i>
-                                    <?php echo e(app()->getLocale() == 'ar' ? 'لا تقم بتحويل المال مباشرة' : 'Do not transfer money directly'); ?>
-
-                                </li>
-                                <li>
-                                    <i class="fa fa-handshake me-2" aria-hidden="true"></i>
-                                    <?php echo e(app()->getLocale() == 'ar' ? 'قابل البائع شخصيا' : 'Meet the seller in person'); ?>
-
-                                </li>
-                            </ul>
-                        </div>
                     </div>
 
-                  
-                    <!-- <div>
-                        <i class="bx bx-heart fs-2"></i>
-                    </div> -->
+                    <!-- Safety Tips Box -->
+                    <div class="bg-light border border-secondary border-opacity-25 rounded-3 p-3 mt-3">
+                        <div class="d-flex align-items-start gap-2 mb-2">
+                            <i class="fa fa-shield-alt text-primary mt-1"></i>
+                            <h6 class="mb-0 fw-semibold text-dark"><?php echo e(app()->getLocale() == 'ar' ? 'نصائح السلامة' : 'Safety Tips'); ?></h6>
+                        </div>
+                        <ul class="list-unstyled mb-0 ms-4">
+                            <li class="mb-2 text-secondary small d-flex align-items-start gap-2">
+                                <i class="fa fa-check-circle text-success mt-1" style="font-size: 0.875rem;"></i>
+                                <span><?php echo e(app()->getLocale() == 'ar' ? 'لا تقم بتحويل المال مباشرة' : 'Do not transfer money directly'); ?></span>
+                            </li>
+                            <li class="text-secondary small d-flex align-items-start gap-2">
+                                <i class="fa fa-check-circle text-success mt-1" style="font-size: 0.875rem;"></i>
+                                <span><?php echo e(app()->getLocale() == 'ar' ? 'قابل البائع شخصيا' : 'Meet the seller in person'); ?></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="d-flex flex-column flex-md-row align-items-center gap-3 mt-2 text-center contact-button">
+
+                <!-- Contact Buttons -->
+                <div class="d-flex flex-column flex-md-row gap-3">
                     <a href="tel:<?php echo e($plate->user->phone_number ?? ''); ?>"
-                        class="contact d-flex align-items-center justify-content-center gap-2 py-2 w-100 flex-md-grow-1 rounded-2"
-                        target="_blank"><i class="bx bx-phone fs-5"></i>
-                        <p><?php echo e($plate->user->phone_number); ?></p>
+                        class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 py-3 w-100 <?php if(!isset($plate->user->whatsapp_number)): ?> w-md-50 <?php endif; ?> rounded-3 fw-medium"
+                        style="border-width: 2px;">
+                        <i class="bx bx-phone fs-5"></i>
+                        <span class="dir-ltr"><?php echo e($plate->user->phone_number); ?></span>
                     </a>
                     <?php if(isset($plate->user->whatsapp_number)): ?>
                     <a href="https://wa.me/<?php echo e($plate->user->whatsapp_number ?? ''); ?>"
-                        class="whatsapp d-flex align-items-center justify-content-center gap-2 py-2 w-100 flex-md-grow-1 rounded-2"
-                        target="_blank"><i class="bx bxl-whatsapp fs-5"></i>
-                        <p><?php echo e($plate->user->whatsapp_number ?? ''); ?></p>
+                        class="btn btn-success d-flex align-items-center justify-content-center gap-2 py-3 w-100 rounded-3 fw-medium"
+                        target="_blank">
+                        <i class="bx bxl-whatsapp fs-5"></i>
+                        <span class="dir-ltr"><?php echo e($plate->user->whatsapp_number ?? ''); ?></span>
                     </a>
                     <?php endif; ?>
                 </div>

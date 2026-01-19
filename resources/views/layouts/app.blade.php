@@ -131,8 +131,6 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset ('assets/css/style.css')}}" as="style">
 
-    <link rel="stylesheet" href="{{ asset ('assets/css/edition.css') }}">
-
     <script src="https://cdn.tailwindcss.com"></script>
 
 
@@ -143,13 +141,9 @@
 
 
     <style>
-        .hero-sec-main .header-two {
-            background-color: #FFF;
-        }
+       
 
-        .hero-sec-main .header-two.header-fixed {
-            background-color: #FFF;
-        }
+        
 
         .dashboard-section {
             background: none;

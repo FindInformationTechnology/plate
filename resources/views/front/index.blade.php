@@ -59,23 +59,16 @@
 
 
 <!-- Banner -->
-<section class="banner-section banner-sec-two banner-slider">
-    <div class="banner-img-slider owl-carousel" style="direction: ltr;">
-
-        <div class="slider-img ">
-            <img class="slider-img-small" src="assets/img/owl-1.png" alt="Img" loading="lazy">
-            <img class="slider-img slider-img-large" src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
-        </div>
-
-    </div>
-    <div class="container">
-        <div class="home-banner">
+<section class="banner-section banner-sec-two " >
+    <div style="background-image: url({{ asset('assets/img/car-banner.webp') }}); width: 100%; height: 100%; background-size: cover; background-position: center;">
+        <div class="home-banner container container-custom" >
+            <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="hero-sec-contents">
                         <div class="banner-title">
                             <h1 class="text-[35px] md:text-[65px]">{{ __('message.Premium_UAE_Plates')}}
-                                <span>{{ __('message.At_Your_Fingertips') }}.</span>
+                                <!-- <span>{{ __('message.At_Your_Fingertips') }}.</span> -->
                             </h1>
                             <p class="text-[16px] md:!text-[25px]">
                                 {{ __('message.Find_Buy_Sell_Exclusive_Number_Plates') }}
@@ -86,15 +79,15 @@
 
                 </div>
 
-                <!-- Search Form -->
+               
 
                 @include('front.search-form')
-                <!-- End Search Form -->
+              
 
 
             </div>
         </div>
-
+        </div>
     </div>
 </section>
 <!-- /Banner -->
@@ -102,7 +95,9 @@
 
 <section class=" yacht-category-sec">
     <div class="sec-bg">
-        <img src="{{ asset ('assets/img/bg/sec-bg-wave.png') }}" class="wave-bottom" alt="Bg">
+       
+            <img src="{{ asset ('assets/img/bg/sec-bg-wave.png') }}" class="wave-bottom" alt="Bg">
+        
     </div>
     <!-- After the yacht-category-sec opening and before the regular plates display -->
     <div class="container">
@@ -352,8 +347,8 @@
         <p class="text-white mb-6">{{ __('message.Subscribe_notification') }}</p>
 
         <div class="flex justify-center">
-            <div class="relative w-full md:w-1/2">
-                <input type="email" placeholder="{{ __('message.Your_email_address') }}"
+            <div class="relative w-full md:w-1/2 newsletter">
+                <input type="email" name="email" id="email" placeholder="{{ __('message.Your_email_address') }}"
                     class="p-3 pr-12 rounded-md text-black w-full border outline-none">
                 <button type="submit"
                     class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition">
@@ -403,27 +398,7 @@ document.getElementById('emirate_id').addEventListener('change', function() {
     }
 });
 
-$('.featured-plates-slider').owlCarousel({
-    loop: true,
-    margin: 20,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    smartSpeed: 1000,
-    navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
-    responsive: {
-        0: {
-            items: 1
-        },
-        576: {
-            items: 2
-        },
-        992: {
-            items: 3
-        }
-    }
-});
+
 </script>
 
 @endpush

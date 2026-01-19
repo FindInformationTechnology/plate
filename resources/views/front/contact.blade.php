@@ -70,7 +70,7 @@
 </section>
 
 <!-- Map Section -->
-<section class="w-full h-[400px]">
+<!-- <section class="w-full h-[400px]">
     <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.729477826438!2d55.270782!3d25.204849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f434c3c36b715%3A0x4b3df2c9c1a1b76a!2sDubai%20Mall!5e0!3m2!1sen!2sae!4v1719777098254"
         width="100%"
@@ -79,17 +79,8 @@
         allowfullscreen=""
         loading="lazy">
     </iframe>
-</section>
+</section> -->
 
-<!-- Quick Contact CTA -->
-<section class="bg-[#ff696e41] text-white py-16 text-center">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-semibold mb-4">{{ __('message.Quick_Help') }}</h2>
-        <p class="text-lg mb-6">{{ __('message.Contact_Us_Subtitle') }}</p>
-        <a href="tel:+971 050 551 5131" class="bg-white text-[#ac1e23] px-6 py-3 rounded shadow hover:bg-gray-200 transition">
-            {{ __('message.Call_Us_Now') }}
-        </a>
-    </div>
-</section>
+
 
 @endsection

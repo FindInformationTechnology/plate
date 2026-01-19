@@ -1,5 +1,5 @@
 <!-- Header -->
-<header class="header header-two">
+<header class="header header-two bg-slate-50">
     @if(Route::currentRouteName() == 'home')
     
     @endif
