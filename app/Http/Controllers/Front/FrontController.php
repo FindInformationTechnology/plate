@@ -238,6 +238,8 @@ class FrontController extends Controller
             ->take(4)
             ->get();
 
+          
+
 
 
         return view("front.index", [

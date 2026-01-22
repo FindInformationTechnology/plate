@@ -70,7 +70,7 @@
                             <h1 class="text-[35px] md:text-[65px]">{{ __('message.Premium_UAE_Plates')}}
                                 <!-- <span>{{ __('message.At_Your_Fingertips') }}.</span> -->
                             </h1>
-                            <p class="text-[16px] md:!text-[25px]">
+                            <p class="text-[16px] md:!text-[25px] mt-2 mt-md-4">
                                 {{ __('message.Find_Buy_Sell_Exclusive_Number_Plates') }}
                             </p>
                         </div>
@@ -108,7 +108,8 @@
 
 
         <div class="row yacht-category-lists mb-5">
-            <div class="featured-plates-slider owl-carousel" style="direction: ltr;">
+            @if($featuredPlates->count() > 0)
+            <div class="featured-plates-slider owl-carousel" >
                 @foreach ($featuredPlates as $plate)
                 <div class="item">
                     <div class="listing-item plate-card position-relative">
@@ -151,6 +152,11 @@
                 </div>
                 @endforeach
             </div>
+            @else
+            <div class="alert alert-info text-center">
+                <p>Debug: No featured plates found in the database matching criteria (visible, approved, unsold, featured).</p>
+            </div>
+            @endif
         </div>
     </div>
 </section>
@@ -207,12 +213,9 @@
         </div>
         <div class="row yacht-category-lists">
             @forelse ($plates as $plate)
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-4">
                 <div class="listing-item plate-card position-relative">
-                    <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
-                    <div class="d-flex justify-content-end align-items-center">
-                        <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-                    </div>
+                  
                     <div class="position-relative plate ">
                         <div class="w-100 my-4">
                             <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100" loading="lazy">
@@ -399,6 +402,44 @@ document.getElementById('emirate_id').addEventListener('change', function() {
 });
 
 
+</script>
+<script>
+    $(document).ready(function() {
+        console.log('Document ready - checking for featured-plates-slider');
+        if ($('.featured-plates-slider').length > 0) {
+            console.log('Found .featured-plates-slider, initializing Owl Carousel');
+            var slider = $('.featured-plates-slider');
+            slider.owlCarousel({
+                loop: true,
+                margin: 24,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                smartSpeed: 2000,
+                navText: ["<i class='bx bx-chevron-left'></i>", "<i class='bx bx-chevron-right'></i>"],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    550: {
+                        items: 1
+                    },
+                    700: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 4
+                    }
+                }
+            });
+            console.log('Owl Carousel initialized');
+        } else {
+            console.log('Element .featured-plates-slider NOT found');
+        }
+    });
 </script>
 
 @endpush

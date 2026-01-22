@@ -16,10 +16,10 @@
 
 
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
-                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="145" class="img-fluid" alt="Logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="130" class="img-fluid" alt="Logo">
                 </a>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
-                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid" width="145" alt="Logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid mx-auto" width="105" alt="Logo">
                 </a>
 
             </div>

@@ -587,7 +587,7 @@ h6 {
 body {
   font-size: 16px;
   color: #676767;
-  background: #FCFBFB;
+  background: #FFF;
   overflow-x: hidden;
   --main-color: #AC1E23;
   --alt-color: #e4e2df;
@@ -1621,6 +1621,7 @@ strong {
     display: block;
     width: 100%;
     text-align: center;
+    padding: 10px 0 0 0;
   }
 }
 
@@ -2686,12 +2687,12 @@ strong {
 
 .hero-sec-main .header-two {
   /* background: transparent; */
-  box-shadow: none;
+  box-shadow: 0 1px 0 #cdcdcd;
   height: 100px;
 }
 
 .hero-sec-main .header-two.header-fixed {
-  background: #201F1D;
+  background: #F8FAFC;
   position: fixed;
   z-index: 999;
 }

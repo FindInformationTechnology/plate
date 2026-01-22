@@ -45,7 +45,7 @@
             <div class="pt-3 d-grid">
                 <div class="row">
                     <?php $__currentLoopData = $plates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
                         <div class="listing-item plate-card position-relative">
                             <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
                             <div class="d-flex justify-content-end align-items-center">

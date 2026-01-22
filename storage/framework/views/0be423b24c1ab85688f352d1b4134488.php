@@ -346,7 +346,7 @@
 												</td> -->
 												<td>
 													<a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6"><?php echo e($plate->emirate->name); ?> <?php echo e($plate->code->name); ?> <?php echo e($plate->number); ?></a>
-													<span class="text-gray-500 fw-semibold d-block fs-7"></span>
+													<span class="text-gray-500 fw-semibold d-block fs-7"><?php echo e($plate->user->name ?? 'N/A'); ?></span>
 												</td>
 												<td class="text-end">
 													<span class="text-gray-800 fw-bold d-block fs-6"><?php echo e($plate->views_count); ?></span>
