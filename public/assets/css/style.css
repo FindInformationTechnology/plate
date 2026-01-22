@@ -26188,7 +26188,7 @@ input.form-control.rounded-pill:focus {
 /* Abu Dhabi */
 .plate .abu-dhabi-icon {
     color: #111112;
-    top: 10%;
+    top: 8%;
     left: 8%;
     font-size: 23px;
     font-weight: normal !important;
@@ -26199,7 +26199,7 @@ input.form-control.rounded-pill:focus {
     top: 43%;
     transform: translateY(-50%);
     left: 50%;
-    font-size: 45px;
+    font-size: 40px;
     font-family: "abudhabi";
     letter-spacing: 2px;
     color: #111112;
