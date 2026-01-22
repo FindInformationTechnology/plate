@@ -26196,7 +26196,7 @@ input.form-control.rounded-pill:focus {
 }
 
 .plate .abu-dhabi-number {
-    top: 50%;
+    top: 43%;
     transform: translateY(-50%);
     left: 50%;
     font-size: 45px;
@@ -26479,7 +26479,7 @@ input.form-control.rounded-pill:focus {
     }
     
     .big-plate .abu-dhabi-number {
-      font-size: 175px !important;
+      font-size: 165px !important;
     }
 
      .big-plate .ajman-plate h1, .big-plate .ajman-plate h2   {
@@ -26534,7 +26534,7 @@ input.form-control.rounded-pill:focus {
       font-size: 50px !important;
     }
     .big-plate .abu-dhabi-number {
-      font-size: 125px !important;
+      font-size: 120px !important;
     }
 
      .big-plate .ajman-plate h1, .big-plate .ajman-plate h2   {
@@ -26683,15 +26683,15 @@ input.form-control.rounded-pill:focus {
 
     .big-plate .fujairah-icon,
     .big-plate .fujairah-number {
-        font-size: 55px !important;
+        font-size: 45px !important;
     }
 
     .big-plate .abu-dhabi-number {
-      font-size: 50px !important;
+      font-size: 35px !important;
     }
 
     .big-plate .abu-dhabi-icon {
-      font-size: 25px !important;
+      font-size: 20px !important;
     }
 }
 
@@ -26704,41 +26704,36 @@ input.form-control.rounded-pill:focus {
     .big-plate .dubai-icon {
         top: 45%;
         left: 10%;
-        font-size: 33px !important;
+        font-size: 30px !important;
     }
 
     .plate .dubai-number,
     .plate .dubai-classic,
     .big-plate .dubai-number {
         left: 50%;
-        font-size: 50px !important;
+        font-size: 45px !important;
     }
 
     .big-plate .sharjah-icon {
-        font-size: 40px !important;
+        font-size: 35px !important;
     }
 
     .big-plate .sharjah-number {
-        font-size: 65px !important;
-    }
-
-    .big-plate .rak-plate h1,
-    .big-plate .rak-plate h2 {
-        font-size: 150px !important;
+        font-size: 45px !important;
     }
 
     .plate .ajman-plate h1, .plate .ajman-plate h2   {
-    font-size: 35px !important;
+    font-size: 30px !important;
   }
 
   .big-plate .uaq-icon, .big-plate .uaq-number {
         /* left: 55% !important; */
-        font-size: 70px !important;
+        font-size: 45px !important;
   }
 
   .big-plate .rak-plate h1, .big-plate .rak-plate h2 {
     
-    font-size: 70px !important;
+    font-size: 45px !important;
 }
 
   

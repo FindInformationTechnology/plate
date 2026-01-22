@@ -50,7 +50,7 @@
                 <div class="mb-4">
                     <!-- Price Display -->
                     <div class="my-3 d-flex justify-content-between align-items-center">
-                        <h1 class="price mb-0 fw-bold text-dark" style="font-size: 2rem; letter-spacing: -0.5px;">
+                        <h1 class="price mb-0 fw-bold text-dark" style="font-size: 1.3rem; letter-spacing: -0.5px;">
                             <?php echo e($plate->price_digits); ?>
 
                         </h1>
