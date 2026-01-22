@@ -96,11 +96,9 @@
 
 
 <section class=" yacht-category-sec">
-    <div class="sec-bg">
-       
-            <img src="<?php echo e(asset ('assets/img/bg/sec-bg-wave.png')); ?>" class="wave-bottom" alt="Bg">
-        
-    </div>
+    <!-- <div class="sec-bg">
+        <img src="<?php echo e(asset ('assets/img/bg/sec-bg-wave.png')); ?>" class="wave-bottom" alt="Bg">
+    </div> -->
     <!-- After the yacht-category-sec opening and before the regular plates display -->
     <div class="container">
         <div class="section-header-two">
@@ -110,18 +108,17 @@
 
 
         <div class="row yacht-category-lists mb-5">
-            <?php if($featuredPlates->count() > 0): ?>
-            <div class="featured-plates-slider owl-carousel" >
+            <div class="featured-plates-slider owl-carousel" style="direction: ltr;">
                 <?php $__currentLoopData = $featuredPlates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="item">
                     <div class="listing-item plate-card position-relative">
-                        <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute"
+                        <!-- <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute"
                             style="top: 10px; left: 10px;">
                             <?php echo e(__('message.Featured')); ?>
 
-                        </div>
+                        </div> -->
                         <div class="d-flex justify-content-end align-items-center">
-                            <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+                            <div class="text-left py-1 px-3 featured-color text-white rounded-2"><?php echo e(__('message.Featured')); ?></div>
                         </div>
                         <div class="position-relative plate">
                             <div class="w-100 my-4">
@@ -155,11 +152,6 @@
                 </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
-            <?php else: ?>
-            <div class="alert alert-info text-center">
-                <p>Debug: No featured plates found in the database matching criteria (visible, approved, unsold, featured).</p>
-            </div>
-            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -435,10 +427,10 @@ document.getElementById('emirate_id').addEventListener('change', function() {
                         items: 2
                     },
                     1000: {
-                        items: 3
+                        items: 2
                     },
                     1200: {
-                        items: 4
+                        items: 3
                     }
                 }
             });

@@ -220,7 +220,7 @@ return [
     'Most_Popular_Plates' => 'أكثر مُعطاة لوحات',
     'Latest_Plates' => 'أحدث لوحات ',
     'Recently_Added_Plates' => 'لوحات المضافة مؤخراً',
-    'Related_By_Emirate' => 'مرتبط بالإمارة',
+    'Related_By_Emirate' => 'المزيد من اللوحات ذات الصلة',
     'Views' => 'مشاهدات',
 
     'tire_mark' => 'علامة إطار',

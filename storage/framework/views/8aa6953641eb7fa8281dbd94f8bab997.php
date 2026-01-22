@@ -47,10 +47,15 @@
                     <?php $__currentLoopData = $plates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-12 col-md-6 col-lg-6 col-xl-4">
                         <div class="listing-item plate-card position-relative">
-                            <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
-                            <div class="d-flex justify-content-end align-items-center">
-                                <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-                            </div>
+                            <?php if($plate->is_featured): ?>
+                             <div class="d-flex justify-content-end align-items-center">
+                            <div class="text-left py-1 px-3 featured-color text-white rounded-2"><?php echo e(__('message.Featured')); ?></div>
+                        </div>
+                        <?php else: ?>
+                        <div class="d-flex justify-content-end align-items-center">
+                            <!-- <div class="text-left py-1 px-3  text-white rounded-2"><?php echo e(__('message.New')); ?></div> -->
+                        </div>
+                            <?php endif; ?>
                             <div class="position-relative plate ">
                                 <div class="w-100 my-4">
                                     <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100"

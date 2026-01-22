@@ -126,6 +126,13 @@ ol {
   content: var(--bs-breadcrumb-divider, "\\") !important;
 }
 
+.fa-chevron-right:before {
+  content: "\f104" !important;
+  padding-left: .5rem;
+  padding-right: 0 !important;
+}
+
+
 /*  Important Considerations: */
 
 /*  1.  Specificity:  Use specific selectors to target elements that need RTL adjustments.  Avoid overly broad rules that might affect unintended elements. */

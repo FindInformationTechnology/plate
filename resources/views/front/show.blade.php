@@ -39,7 +39,7 @@
                     <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{ $plate->number }}</h2>
                     @else
                     <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around
-                        align-items-center">
+                        align-items-center ltr-content">
                         <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
                         <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                     </div>
@@ -82,15 +82,17 @@
 
                 <!-- Contact Buttons -->
                 <div class="d-flex flex-column flex-md-row gap-3">
+                    @isset($plate->user->phone_number)
                     <a href="tel:{{ $plate->user->phone_number ?? '' }}"
                         class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 py-3 w-100 @if(!isset($plate->user->whatsapp_number)) w-md-50 @endif rounded-3 fw-medium"
                         style="border-width: 2px;">
                         <i class="bx bx-phone fs-5"></i>
                         <span class="dir-ltr">{{ $plate->user->phone_number }}</span>
                     </a>
+                    @endisset
                     @isset($plate->user->whatsapp_number)
                     <a href="https://wa.me/{{ $plate->user->whatsapp_number ?? '' }}"
-                        class="btn btn-success d-flex align-items-center justify-content-center gap-2 py-3 w-100 rounded-3 fw-medium"
+                        class="btn btn-success d-flex align-items-center justify-content-center gap-2 py-3 w-100 rounded-3 @if(!isset($plate->user->phone_number)) w-md-50 @endif fw-medium"
                         target="_blank">
                         <i class="bx bxl-whatsapp fs-5"></i>
                         <span class="dir-ltr">{{ $plate->user->whatsapp_number ?? '' }}</span>
@@ -99,49 +101,56 @@
                 </div>
             </div>
         </div>
-        <div>
-            <h1 class="text-secondary fs-3">{{ __('message.Related_By_Emirate') }}</h1>
-            <div class="pt-3 d-grid">
-                <div class="row">
-                    @foreach($relatedByEmirate as $plate)
-                    <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                        <div class="listing-item plate-card position-relative">
-                            <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
-                            <div class="d-flex justify-content-end align-items-center">
-                                <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+  
+    </div>
+    
+</section>
+
+<section class="yacht-offer-sec relative bg-slate-50 py-16">
+    <div class="container mx-auto px-4 text-center">
+        <div class="section-header-two">
+            <h2 class="text-2xl font-bold mb-6">{{ __('message.Related_By_Emirate') }}</h2>
+        </div>
+        <div class="pt-3 d-grid">
+            <div class="row">
+                @foreach($relatedByEmirate as $plate)
+                <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+                    <div class="listing-item plate-card position-relative">
+                        <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
+                        <div class="d-flex justify-content-end align-items-center">
+                            <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+                        </div>
+                        <div class="position-relative plate">
+                            <div class="w-100 my-4">
+                                <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
+                                    loading="lazy">
                             </div>
-                            <div class="position-relative plate">
-                                <div class="w-100 my-4">
-                                    <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"
-                                        loading="lazy">
-                                </div>
-                                @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                                <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{
-                                    $plate->code->name }}</h1>
-                                <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{
-                                    $plate->number }}</h2>
-                                @else
-                                <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex
-                                    justify-content-around align-items-center">
-                                    <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
-                                    <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
-                                </div>
-                                @endif
+                            @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
+                            <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">{{
+                                $plate->code->name }}</h1>
+                            <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">{{
+                                $plate->number }}</h2>
+                            @else
+                            <div class=" {{ $plate->emirate->slug }}-plate position-absolute d-flex
+                                justify-content-around align-items-center">
+                                <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+                                <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                             </div>
-                            <div>
-                                <p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
-                            </div>
-                            <div class="border-top">
-                                <a href="{{ route('plate.show', $plate->id) }}"
-                                    class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
+                            @endif
+                        </div>
+                        <div>
+                            <p class="price fs-4 text-center fw-normal pb-4">{{ $plate->price_digits }}</p>
+                        </div>
+                        <div class="border-top">
+                            <a href="{{ route('plate.show', $plate->id) }}"
+                                class="d-flex justify-content-center align-items-center gap-2 py-2 text-black w-100 rounded-2 nav-link"><i
                                         class="bx bx-phone text-[20px]"></i>
-                                    <p>{{ __('message.Contact') }}</p>
-                                </a>
-                            </div>
+                                <p>{{ __('message.Contact') }}</p>
+                            </a>
                         </div>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

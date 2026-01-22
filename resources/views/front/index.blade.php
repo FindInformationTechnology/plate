@@ -94,11 +94,9 @@
 
 
 <section class=" yacht-category-sec">
-    <div class="sec-bg">
-       
-            <img src="{{ asset ('assets/img/bg/sec-bg-wave.png') }}" class="wave-bottom" alt="Bg">
-        
-    </div>
+    <!-- <div class="sec-bg">
+        <img src="{{ asset ('assets/img/bg/sec-bg-wave.png') }}" class="wave-bottom" alt="Bg">
+    </div> -->
     <!-- After the yacht-category-sec opening and before the regular plates display -->
     <div class="container">
         <div class="section-header-two">
@@ -108,17 +106,13 @@
 
 
         <div class="row yacht-category-lists mb-5">
-            @if($featuredPlates->count() > 0)
-            <div class="featured-plates-slider owl-carousel" >
+            <div class="featured-plates-slider owl-carousel" style="direction: ltr;">
                 @foreach ($featuredPlates as $plate)
                 <div class="item">
                     <div class="listing-item plate-card position-relative">
-                        <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute"
-                            style="top: 10px; left: 10px;">
-                            {{ __('message.Featured') }}
-                        </div>
+                       
                         <div class="d-flex justify-content-end align-items-center">
-                            <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+                            <div class="text-left py-1 px-3 featured-color text-white rounded-2">{{ __('message.Featured') }}</div>
                         </div>
                         <div class="position-relative plate">
                             <div class="w-100 my-4">
@@ -152,11 +146,6 @@
                 </div>
                 @endforeach
             </div>
-            @else
-            <div class="alert alert-info text-center">
-                <p>Debug: No featured plates found in the database matching criteria (visible, approved, unsold, featured).</p>
-            </div>
-            @endif
         </div>
     </div>
 </section>
@@ -428,10 +417,10 @@ document.getElementById('emirate_id').addEventListener('change', function() {
                         items: 2
                     },
                     1000: {
-                        items: 3
+                        items: 2
                     },
                     1200: {
-                        items: 4
+                        items: 3
                     }
                 }
             });

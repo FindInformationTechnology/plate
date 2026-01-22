@@ -47,10 +47,15 @@
                     @foreach($plates as $plate)
                     <div class="col-12 col-md-6 col-lg-6 col-xl-4">
                         <div class="listing-item plate-card position-relative">
-                            <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
-                            <div class="d-flex justify-content-end align-items-center">
-                                <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-                            </div>
+                            @if($plate->is_featured)
+                             <div class="d-flex justify-content-end align-items-center">
+                            <div class="text-left py-1 px-3 featured-color text-white rounded-2">{{ __('message.Featured') }}</div>
+                        </div>
+                        @else
+                        <div class="d-flex justify-content-end align-items-center">
+                            <!-- <div class="text-left py-1 px-3  text-white rounded-2">{{ __('message.New') }}</div> -->
+                        </div>
+                            @endif
                             <div class="position-relative plate ">
                                 <div class="w-100 my-4">
                                     <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100"

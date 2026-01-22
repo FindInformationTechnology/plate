@@ -226,7 +226,7 @@ return [
   'Latest_Plates' => 'Latest Plates',
   'Recently_Added_Plates' => 'Recently added to our collection',
   'Featured' => 'Featured',
-  'Related_By_Emirate' => 'Related by Emirate',
+  'Related_By_Emirate' => 'More Related Plates',
   'Views' => 'Views',
 
   'tire_mark' => 'tire mark',
