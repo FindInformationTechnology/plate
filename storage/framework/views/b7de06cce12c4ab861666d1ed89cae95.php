@@ -112,11 +112,7 @@
                 <?php $__currentLoopData = $featuredPlates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="item">
                     <div class="listing-item plate-card position-relative">
-                        <!-- <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute"
-                            style="top: 10px; left: 10px;">
-                            <?php echo e(__('message.Featured')); ?>
-
-                        </div> -->
+                       
                         <div class="d-flex justify-content-end align-items-center">
                             <div class="text-left py-1 px-3 featured-color text-white rounded-2"><?php echo e(__('message.Featured')); ?></div>
                         </div>
