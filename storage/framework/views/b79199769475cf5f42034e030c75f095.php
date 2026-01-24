@@ -17,7 +17,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="heading-lising">
                         <h4><?php echo e(__('message.Basic_Info')); ?></h4>
-                        <p class="text-muted"><?php echo e(__('message.Note')); ?>: <?php echo e(__('message.you_may_use')); ?> <strong>x, y</strong> <?php echo e(__('message.and')); ?> <strong>z</strong> <?php echo e(__('message.characters_to_hide_some_numbers')); ?></p>
+                        <p class=""><?php echo e(__('message.Note')); ?>: <?php echo e(__('message.you_may_use')); ?> <strong>x, y</strong> <?php echo e(__('message.and')); ?> <strong>z</strong> <?php echo e(__('message.characters_to_hide_some_numbers')); ?></p>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12">
@@ -26,11 +26,16 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="table-responsive plates-table-container" id="table-container">
-                                        <div class="scroll-indicator d-none">
-                                            <small class="text-muted">
+                                        <div class="scroll-indicator d-none" style="top: -5px;">
+                                            <small class="">
                                                 <i class="fas fa-hand-point-right"></i>
+                                                <?php if(app()->getLocale() == 'ar'): ?>
                                                 <?php echo e(__('message.Scroll_Right_To_See_More')); ?>
 
+                                                <?php else: ?>
+                                                <?php echo e(__('message.Scroll_Left_To_See_More')); ?>
+
+                                                <?php endif; ?>
                                             </small>
                                         </div>
                                         <table class="table table-bordered plates-table" id="plates-table">
@@ -129,8 +134,8 @@
             </div>
 
             <div class="booking-info-btns d-flex justify-content-end">
-                <a href="<?php echo e(route('user.plates')); ?>" class="btn btn-secondary"><?php echo e(__('message.Cancel')); ?></a>
-                <button class="btn btn-primary continue-book-btn" type="submit"><?php echo e(__('message.Save_All_Plates')); ?></button>
+                <button class="btn btn-primary continue-book-btn btn-responsive" type="submit"><?php echo e(__('message.Save_All_Plates')); ?></button>
+                <a href="<?php echo e(route('user.plates')); ?>" class="btn btn-secondary btn-responsive"><?php echo e(__('message.Cancel')); ?></a>
             </div>
         </form>
     </div>

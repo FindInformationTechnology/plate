@@ -57,10 +57,6 @@ select {
   /* Align placeholder text correctly */
 }
 
-/*  Buttons (If needed) */
-button {
-  /*  Consider mirroring icons or adjusting padding */
-}
 
 /*  Lists */
 ul,
@@ -132,6 +128,26 @@ ol {
   padding-right: 0 !important;
 }
 
+.header .header-navbar-rht .has-arrow .dropdown-toggle:after {
+  margin-left: 0 !important;
+  margin-right: 10px !important;
+}
+
+
+.header .header-navbar-rht .has-arrow .dropdown-toggle .user-img {
+  margin-right: 0 !important;
+  margin-left: 5px !important;
+}
+
+.fa-hand-point-right:before {
+  content: "\f0a5" !important;
+  margin-right: .5rem !important;
+}
+
+.form-control-responsive, .form-select-responsive {
+  padding-left: 0 !important;
+  padding-right: 1.7rem !important;
+}
 
 /*  Important Considerations: */
 

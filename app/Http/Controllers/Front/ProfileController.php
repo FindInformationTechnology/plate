@@ -12,9 +12,13 @@ use App\Models\Plate;
 use App\Models\Emirate;
 use App\Models\PlateView;
 use App\Models\User;
+use App\Traits\ImageUploadTrait;
 
 class ProfileController extends Controller
 {
+
+    use ImageUploadTrait;
+    
     public function dashboard()
     {
         $user = Auth::user();
@@ -85,7 +89,7 @@ class ProfileController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'phone' => ['required', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
             'whatsapp' => ['nullable', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
-            'profile_photo' => ['nullable', 'image', 'max:15360'], // 15MB max
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'], // 2MB max
         ]);
 
         // Process phone number to get last 9 digits
@@ -115,17 +119,12 @@ class ProfileController extends Controller
         }
 
         // Handle profile photo upload
-        if ($request->hasFile('profile_photo')) {
-            // Delete old photo if exists
-            if ($user->profile_photo) {
-                Storage::disk('public')->delete($user->profile_photo);
-            }
+        if ($request->hasFile('photo')) {
 
-            // Store new photo
-            $path = $request->file('profile_photo')->store('profile-photos', 'public');
-            $validated['profile_photo'] = $path;
+            $path = $this->uploadImage($request->file('photo'), 'photos');
+            $validated['photo'] = $path;
         }
-
+        
         $user->update($validated);
 
         return back()->with('profile_success', 'Profile updated successfully!');

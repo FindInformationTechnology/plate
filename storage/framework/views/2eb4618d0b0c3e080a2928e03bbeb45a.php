@@ -16,7 +16,7 @@
 
 
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo">
-                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="130" class="img-fluid" alt="Logo">
+                    <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" width="130" class="img-fluid" style="margin-top: 5px;" alt="Logo">
                 </a>
                 <a href="<?php echo e(route('home')); ?>" class="navbar-brand logo-small">
                     <img src="<?php echo e(asset ('assets/img/logo-b.png')); ?>" class="img-fluid mx-auto" width="105" alt="Logo">
@@ -50,15 +50,15 @@
                     <?php if(auth()->guard()->check()): ?>
                     <?php if(auth()->user()->hasRole('user')): ?>
                     <li class="nav-item">
-                        <a class="nav-link header-reg" href="<?php echo e(route('user.plates')); ?>">
-                            </span><?php echo e(__('message.My_Plates')); ?></a>
+                        <a class="nav-link header-reg" href="<?php echo e(route('user.dashboard')); ?>">
+                            <?php echo e(__('message.My_Dashboard')); ?></a>
                     </li>
+                    
 
                     <?php endif; ?>
                     <?php if(auth()->user()->hasRole('admin')): ?>
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="<?php echo e(route('admin.dashboard')); ?>">
-                            <!-- <span><i class="bx bx-plus-circle"></i></span> -->
                             <?php echo e(__('message.Dashboard_Admin')); ?></a>
                     </li>
 
@@ -67,7 +67,6 @@
                     <li class="nav-item">
                         <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
                         document.getElementById('logout-form-admin').submit()">
-                            <!-- <i class="feather-power"></i>  -->
                             <?php echo e(__('message.Logout')); ?>
 
 
@@ -85,9 +84,9 @@
                     <?php if(auth()->guard()->check()): ?>
                     <?php if(auth()->user()->hasRole('user')): ?>
                     <li class="nav-item d-md-none">
-                        <a class="nav-link header-reg" href="<?php echo e(route('user.dashboard')); ?>">
+                        <a class="nav-link header-reg" href="<?php echo e(route('user.plates')); ?>">
                             <span><i class="bx bx-plus-circle"></i></span>
-                            <?php echo e(__('message.My_Dashboard')); ?> </a>
+                            <?php echo e(__('message.My_Plates')); ?> </a>
                     </li>
 
                     <li class="nav-item d-md-none">
@@ -149,7 +148,7 @@
                     <a class="nav-link" href="javascript:void(0);" id="language-dropdown" data-bs-toggle="dropdown">
                         <i class="fa fa-globe"></i>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end">
+                    <div class="dropdown-menu dropdown-menu-end lang">
                         <a class="dropdown-item" href="<?php echo e(route('change.language', 'en')); ?>">
                             <?php echo e(__('message.English')); ?>
 
@@ -198,10 +197,10 @@
                                                 <img class="avatar-img rounded-circle" alt="User Image"
                                                     src="<?php echo e(asset('assets/img/profiles/avatar-01.jpg')); ?>">
                                             </span>
-                                            <div class="media-body flex-grow-1">
+                                            <!-- <div class="media-body flex-grow-1">
                                                 <p class="noti-details"><span class="noti-title">Jonathan Doe </span> <?php echo e(__('message.has_booked')); ?> <span class="noti-title"><?php echo e(__('message.your_service')); ?></span></p>
                                                 <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </a>
                                 </li>
@@ -219,14 +218,14 @@
                 <li class="nav-item dropdown has-arrow logged-item">
                     <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                         <span class="user-img">
-                            <img class="rounded-circle" src="<?php echo e(asset ('assets/img/profiles/avatar-14.jpg')); ?>" alt="Profile">
+                            <img class="rounded-circle" src="<?php echo e(auth()->user()->profile_photo_url ?? asset('assets/img/profiles/avatar.webp')); ?>" alt="Profile">
                         </span>
                         <span class="user-text" style="color: black;"><?php echo e(auth()->user()->name); ?></span>
                         
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="<?php echo e(route('user.dashboard')); ?>">
-                            <i class="feather-settings"></i> <?php echo e(__('message.Dashboard')); ?>
+                            <i class="feather-settings"></i> <?php echo e(__('message.My_Plates')); ?>
 
                         </a>
                         <a class="dropdown-item" href="<?php echo e(route('user.profile')); ?>">

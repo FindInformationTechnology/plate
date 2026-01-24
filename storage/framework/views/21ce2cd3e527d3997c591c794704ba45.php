@@ -41,18 +41,17 @@
             <div class="profile-inner">
                 <div class="profile-info-pic">
                     <div class="profile-info-img">
-                        <img src="<?php echo e(auth()->user()->profile_photo ? asset('storage/' . auth()->user()->profile_photo) : asset('assets/img/profiles/avatar-15.jpg')); ?>"
-                            alt="Profile">
+                        <img src="<?php echo e(auth()->user()->profile_photo_url); ?>" alt="Profile">
                         <div class="profile-edit-info">
-                            <label for="profile_photo" style="cursor: pointer;">
+                            <label for="photo" style="cursor: pointer;">
                                 <i class="feather-edit"></i>
                             </label>
-                            <input type="file" id="profile_photo" name="profile_photo" style="display: none;">
+                            <input type="file" id="photo" name="photo" style="display: none;">
                         </div>
                     </div>
                     <div class="profile-info-content">
                         <h6><?php echo e(__('message.Profile_picture')); ?></h6>
-                        <p><?php echo e(__('message.PNG_JPEG_under_15_MB')); ?></p>
+                        <!-- <p><?php echo e(__('message.PNG_JPEG_under_15_MB')); ?></p> -->
                     </div>
                 </div>
                 <div class="row">
@@ -79,7 +78,7 @@
                                     value="<?php echo e(auth()->user()->phone_number ?? ''); ?>" required>
                                 
                                 <!-- Phone Verification Status -->
-                                <div class="phone-verification-status mt-2">
+                                <!-- <div class="phone-verification-status mt-2">
                                     <?php if(auth()->user()->hasVerifiedPhone()): ?>
                                         <div class="d-flex align-items-center text-success">
                                             <i class="bx bx-check-circle me-2"></i>
@@ -106,7 +105,7 @@
                                             </small>
                                         </div>
                                     <?php endif; ?>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

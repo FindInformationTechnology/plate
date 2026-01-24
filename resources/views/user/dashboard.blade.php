@@ -4,23 +4,29 @@
 
 <!-- Phone Verification Alert -->
 @auth
-    @if(auth()->user()->needsPhoneVerification())
+    @if(empty(auth()->user()->phone) || empty(auth()->user()->whatsapp))
+    <div class="container mt-3">
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <div class="container">
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-phone me-3" style="font-size: 1.5rem;"></i>
-                    <div class="flex-grow-1">
-                        <h6 class="alert-heading mb-1">{{ __('message.Phone_Verification_Required') }}</h6>
-                        <p class="mb-0">{{ __('message.Phone_Not_Verified_Warning') }}</p>
+            <div class="row align-items-center">
+                <div class="col-md-8 col-12">
+                    <div class="d-flex align-items-center pb-2 pb-md-0">
+                        <i class="bx bx-phone-call fs-1 me-3"></i>
+                        <div>
+                            <h6 class="alert-heading mb-1">{{ __('message.Complete_Your_Profile') }}</h6>
+                            <p class="mb-0">{{ __('message.Please_add_contact_details') }}</p>
+                        </div>
                     </div>
-                    <a href="{{ route('phone.verify.show') }}" class="btn btn-warning btn-sm ms-3">
-                        <i class="bx bx-check-shield me-1"></i>
-                        {{ __('message.Verify_Now') }}
+                </div>
+                <div class="col-md-4 col-12 text-md-end">
+                    <a href="{{ route('user.profile') }}" class="btn btn-warning btn-sm text-nowrap w-100 w-md-auto">
+                        <i class="bx bx-edit me-1"></i>
+                        {{ __('message.Update_Profile') }}
                     </a>
                 </div>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+    </div>
     @endif
 @endauth
 
@@ -84,20 +90,23 @@
             <div class="col-lg-8 d-flex">
                 <div class="card user-card flex-fill">
                     <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-sm-5">
-                                <h5>{{ __('message.My_Recent_Plates') }}</h5>
-                            </div>
-                            <div class="col-sm-7 text-sm-end">
-                                <div class="booking-select">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                            <h5 class="mb-0">{{ __('message.My_Recent_Plates') }}</h5>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="booking-select d-none d-md-block">
                                     <select class="form-control select">
                                         <option>{{ __('message.All_Plates') }}</option>
                                         <option>{{ __('message.Available') }}</option>
                                         <option>{{ __('message.Sold') }}</option>
                                     </select>
-                                    <a href="{{ route('user.plates') }}"
-                                        class="view-link">{{ __('message.View_all_Plates') }}</a>
                                 </div>
+                                <a href="{{ route('user.plates.create') }}" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                                    <i class="bx bx-plus"></i>
+                                    {{ __('message.Add_New_Plate') }}
+                                </a>
+                                <a href="{{ route('user.plates') }}" class="view-link d-none d-sm-inline-block ms-1">
+                                    {{ __('message.View_all_Plates') }}
+                                </a>
                             </div>
                         </div>
                     </div>

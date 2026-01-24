@@ -11,18 +11,13 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+
     use HasFactory, Notifiable, HasApiTokens, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-
-     protected $appends = ['phone_number','whatsapp_number'];
+     protected $appends = ['phone_number','whatsapp_number','profile_photo_url'];
     protected $fillable = [
         'name','email','phone', 'whatsapp','password','nationality','status',
+        'photo',
         'google_id',
         'facebook_id',
         'twitter_id',
@@ -208,5 +203,10 @@ class User extends Authenticatable
     public function isBlockedFromVerification(): bool
     {
         return $this->phone_verification_attempts >= 5;
+    }
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        return $this->photo ? asset($this->photo) : asset('assets/img/profiles/avatar.webp');
     }
 }
