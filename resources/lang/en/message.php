@@ -385,4 +385,5 @@ return [
     'Change_Phone' => 'Change Phone',
     'Complete_Your_Profile' => 'Complete Your Profile',
     'Please_add_contact_details' => 'Please add your phone number or WhatsApp to allow buyers to contact you.',
+    'List_for_Free' => 'List and Sell your plates for FREE',
 ];

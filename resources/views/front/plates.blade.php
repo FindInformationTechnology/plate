@@ -89,7 +89,7 @@
                     @endforeach
                 </div>
             </div>
-            {{ $plates->links() }}
+            <!-- {{ $plates->links() }} -->
             {{ $plates->links('pagination::bootstrap-4') }}
         </div>
     </div>

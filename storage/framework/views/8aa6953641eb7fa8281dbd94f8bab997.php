@@ -87,8 +87,7 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
-            <?php echo e($plates->links()); ?>
-
+            <!-- <?php echo e($plates->links()); ?> -->
             <?php echo e($plates->links('pagination::bootstrap-4')); ?>
 
         </div>

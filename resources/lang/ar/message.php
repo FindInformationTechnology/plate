@@ -386,4 +386,5 @@ return [
     'Phone_Already_Registered' => 'هذا الرقم مسجل بالفعل',
     'Complete_Your_Profile' => 'أكمل ملفك الشخصي',
     'Please_add_contact_details' => 'يرجى إضافة رقم هاتفك أو واتساب للسماح للمشترين بالتواصل معك.',
+    'List_for_Free' => 'أعلن وبع لوحاتك مجاناً',
 ];

@@ -9,53 +9,7 @@
 
 <?php $__env->startSection('content'); ?>
 
-<style>
-.featured-plates-slider .owl-nav {
-    position: absolute;
-    top: -50px;
-    right: 0;
-}
 
-.featured-plates-slider .owl-nav button {
-    width: 30px;
-    height: 30px;
-    background-color: #f5f5f5 !important;
-    border-radius: 50%;
-    margin-left: 5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.featured-plates-slider .owl-nav button:hover {
-    background-color: #28a745 !important;
-    color: white;
-}
-
-.featured-plates-slider .item {
-    padding: 10px;
-}
-
-/* By default, hide the small image and show the large one */
-.slider-img-large {
-    display: block;
-}
-
-.slider-img-small {
-    display: none;
-}
-
-/* When the screen is 678px or less, show the small image and hide the large one */
-@media (max-width: 678px) {
-    .slider-img-large {
-        display: none;
-    }
-
-    .slider-img-small {
-        display: block;
-    }
-}
-</style>
 
 
 <!-- Banner -->
@@ -67,9 +21,11 @@
                 <div class="col-md-12">
                     <div class="hero-sec-contents">
                         <div class="banner-title">
-                            <h1 class="text-[35px] md:text-[65px]"><?php echo e(__('message.Premium_UAE_Plates')); ?>
+                            <h1 class="text-[35px] md:text-[65px]" ><?php echo e(__('message.Premium_UAE_Plates')); ?>
 
-                                <!-- <span><?php echo e(__('message.At_Your_Fingertips')); ?>.</span> -->
+                                <span class="explosion-badge align-middle ms-2 mt-2 mt-md-0">
+                                    <span class="explosion-badge-inner"><?php echo e(__('message.List_for_Free')); ?></span>
+                                </span>
                             </h1>
                             <p class="text-[16px] md:!text-[25px] mt-2 mt-md-4">
                                 <?php echo e(__('message.Find_Buy_Sell_Exclusive_Number_Plates')); ?>
@@ -361,6 +317,22 @@
 
 
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const badge = document.querySelector('.explosion-badge');
+    if (badge) {
+        // Trigger a 're-explosion' effect every 10 seconds
+        setInterval(() => {
+            badge.style.animation = 'none';
+            badge.offsetHeight; // trigger reflow
+            badge.style.animation = 'pulse-glow 2s infinite ease-in-out';
+        }, 10000);
+    }
+});
+</script>
+<?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('scripts'); ?>
 <script>
