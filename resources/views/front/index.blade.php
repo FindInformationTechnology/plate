@@ -76,14 +76,14 @@
                                     class="w-100" loading="lazy">
                             </div>
                             @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                            <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">
-                                {{ $plate->code->name }}</h1>
+                            <span class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">
+                                {{ $plate->code->name }}</span>
                             <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">
                                 {{ $plate->number }}</h2>
                             @else
                             <div
                                 class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center">
-                                <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+                                <span class="fw-medium main-shadow">{{ $plate->code->name }}</span>
                                 <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                             </div>
                             @endif
@@ -166,15 +166,15 @@
                             <img src="{{ $plate->emirate->image_url }}" alt="car-plate" class="w-100" loading="lazy">
                         </div>
                         @if ($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak')
-                        <h1 class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">
-                            {{ $plate->code->name }}</h1>
+                        <span class="position-absolute {{ $plate->emirate->slug }}-icon fw-semibold main-shadow">
+                            {{ $plate->code->name }}</span>
                         <h2 class="position-absolute {{ $plate->emirate->slug }}-number fw-normal main-shadow">
                             {{ $plate->number }}</h2>
                         @else
                         <div
                             class=" {{  $plate->emirate->slug }}-plate position-absolute d-flex justify-content-around align-items-center
                         {{-- $plate->emirate->slug == 'rak' ? 'justify-content-around' : 'justify-content-between' --}}">
-                            <h1 class="fw-medium main-shadow">{{ $plate->code->name }}</h1>
+                            <span class="fw-medium main-shadow">{{ $plate->code->name }}</span>
                             <h2 class="fw-medium main-shadow">{{ $plate->number }}</h2>
                         </div>
                         @endif
@@ -219,7 +219,7 @@
 
     <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold mb-4">{{ __('message.🔍 How It Works') }}</h1>
+            <h2 class="text-4xl font-bold mb-4">{{ __('message.🔍 How It Works') }}</h2>
             <span class="text-gray-600 max-w-2xl block mx-auto">
 
                 {{ __('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:') }}

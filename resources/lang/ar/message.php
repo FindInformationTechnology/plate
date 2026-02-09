@@ -8,6 +8,9 @@ return [
     'about' => 'من نحن',
     'contact' => 'اتصل بنا',
     'Popular Plates Categorie' => 'تصنيفات الوجبات الشعبية',
+    'Buy' => 'شراء',
+    'for' => 'بـ',
+    'plate' => 'لوحة',
 
 
     'About_Plate' => 'عن بليد 35',
@@ -61,6 +64,7 @@ return [
     'Profile' => 'الملف الشخصي',
 
     'No_plates_found' => 'لم يتم العثور على لوحات',
+    'Search_Results' => 'نتائج البحث',
     'WhatsApp' => 'واتساب',
     'Similar' => 'مشابه',
     'Sold_Plates' => 'اللوحات المباعة',
@@ -296,7 +300,7 @@ return [
     'Popular_Categories' => 'الفئات الشائعة',
     'Back_to_Previous_Page' => 'العودة للصفحة السابقة',
     'Browse_Plates' => 'تصفح اللوحات',
-    
+
     // SEO Meta Descriptions
     'Home_Meta_Description' => 'ابحث واشترِ لوحات السيارات المميزة في دولة الإمارات العربية المتحدة. تصفح آلاف اللوحات الفريدة من دبي وأبوظبي وجميع الإمارات.',
     'Plates_Meta_Description' => 'تصفح مجموعتنا الواسعة من لوحات السيارات الإماراتية. اعثر على اللوحة المثالية من جميع الإمارات مع فلاتر البحث المتقدمة.',
@@ -331,7 +335,7 @@ return [
     'Failed_To_Send_SMS' => 'فشل في إرسال الرسالة. يرجى المحاولة لاحقاً.',
     'Please_Add_Phone_Number_First' => 'يرجى إضافة رقم هاتفك في الملف الشخصي أولاً.',
     'Verification_Failed' => 'فشل في التحقق. يرجى المحاولة مرة أخرى.',
-    
+
     // Dashboard & User Messages
     'Phone_Not_Verified_Warning' => 'رقم هاتفك غير مؤكد. يرجى تأكيده لتحميل الإعلانات.',
     'Verify_Now' => 'أكد الآن',
@@ -339,7 +343,7 @@ return [
     'Verified' => 'مؤكد',
     'Not_Verified' => 'غير مؤكد',
     'Verification_Pending' => 'التأكيد معلق',
-    
+
     // Plate Upload Messages
     'Cannot_Upload_Without_Phone_Verification' => 'يجب تأكيد رقم هاتفك قبل تحميل الإعلانات.',
     'Complete_Phone_Verification_First' => 'يرجى إكمال تأكيد الهاتف أولاً.',

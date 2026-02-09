@@ -78,14 +78,14 @@
                                     class="w-100" loading="lazy">
                             </div>
                             <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                            <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
-                                <?php echo e($plate->code->name); ?></h1>
+                            <span class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
+                                <?php echo e($plate->code->name); ?></span>
                             <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow">
                                 <?php echo e($plate->number); ?></h2>
                             <?php else: ?>
                             <div
                                 class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center">
-                                <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
+                                <span class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></span>
                                 <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
                             </div>
                             <?php endif; ?>
@@ -168,15 +168,15 @@
                             <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100" loading="lazy">
                         </div>
                         <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                        <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
-                            <?php echo e($plate->code->name); ?></h1>
+                        <span class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
+                            <?php echo e($plate->code->name); ?></span>
                         <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow">
                             <?php echo e($plate->number); ?></h2>
                         <?php else: ?>
                         <div
                             class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center
                         ">
-                            <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
+                            <span class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></span>
                             <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
                         </div>
                         <?php endif; ?>
@@ -221,7 +221,7 @@
 
     <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold mb-4"><?php echo e(__('message.🔍 How It Works')); ?></h1>
+            <h2 class="text-4xl font-bold mb-4"><?php echo e(__('message.🔍 How It Works')); ?></h2>
             <span class="text-gray-600 max-w-2xl block mx-auto">
 
                 <?php echo e(__('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:')); ?>
