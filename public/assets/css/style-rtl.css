@@ -149,6 +149,10 @@ ol {
   padding-right: 1.7rem !important;
 }
 
+.banner-sec-two .home-banner .banner-title h1 span {
+  font-size: .9em;
+}
+
 /*  Important Considerations: */
 
 /*  1.  Specificity:  Use specific selectors to target elements that need RTL adjustments.  Avoid overly broad rules that might affect unintended elements. */
