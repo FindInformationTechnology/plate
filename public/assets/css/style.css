@@ -26357,7 +26357,7 @@ input.form-control.rounded-pill:focus {
     left: 3%;
 }
 
-.plate .ajman-plate h1,
+.plate .ajman-plate span,
 .plate .ajman-plate h2 {
     font-weight: normal !important;
     font-size: 50px;
@@ -26366,7 +26366,7 @@ input.form-control.rounded-pill:focus {
     text-transform: capitalize;
 }
 
-.big-plate .ajman-plate h1,
+.big-plate .ajman-plate span,
 .big-plate .ajman-plate h2 {
     font-size: 180px !important;
 }
@@ -26379,7 +26379,7 @@ input.form-control.rounded-pill:focus {
     left: 33%;
 }
 
-.plate .rak-plate h1,
+.plate .rak-plate span,
 .plate .rak-plate h2 {
     font-family: "dubai";
     font-weight: lighter !important;
@@ -26388,7 +26388,7 @@ input.form-control.rounded-pill:focus {
     text-transform: capitalize;
 }
 
-.big-plate .rak-plate h1,
+.big-plate .rak-plate span,
 .big-plate .rak-plate h2 {
     font-size: 250px;
 }
@@ -26534,11 +26534,11 @@ input.form-control.rounded-pill:focus {
       font-size: 165px !important;
     }
 
-     .big-plate .ajman-plate h1, .big-plate .ajman-plate h2   {
+     .big-plate .ajman-plate span, .big-plate .ajman-plate h2   {
     font-size: 100px !important;
   }
 
-  .big-plate .rak-plate h1, .big-plate .rak-plate h2 {
+  .big-plate .rak-plate span, .big-plate .rak-plate h2 {
     font-size: 140px !important;
   }
 }
@@ -26567,12 +26567,12 @@ input.form-control.rounded-pill:focus {
         font-size: 100px !important;
     }
 
-    .big-plate .ajman-plate h1,
+    .big-plate .ajman-plate span,
     .big-plate .ajman-plate h2 {
         font-size: 120px !important;
     }
 
-    .big-plate .rak-plate h1,
+    .big-plate .rak-plate span,
     .big-plate .rak-plate h2 {
         font-size: 150px !important;
     }
@@ -26589,7 +26589,7 @@ input.form-control.rounded-pill:focus {
       font-size: 120px !important;
     }
 
-     .big-plate .ajman-plate h1, .big-plate .ajman-plate h2   {
+     .big-plate .ajman-plate span, .big-plate .ajman-plate h2   {
     font-size: 80px !important;
     }
 }
@@ -26679,7 +26679,7 @@ input.form-control.rounded-pill:focus {
         left: 5%;
     }
 
-    .plate .ajman-plate h1,
+    .plate .ajman-plate span,
     .plate .ajman-plate h2 {
         font-size: 40px !important;
     }
@@ -26689,12 +26689,12 @@ input.form-control.rounded-pill:focus {
         width: 55%;
     }
 
-    .big-plate .rak-plate h1,
+    .big-plate .rak-plate span,
     .big-plate .rak-plate h2 {
         font-size: 100px;
     }
 
-    .plate .rak-plate h1,
+    .plate .rak-plate span,
     .plate .rak-plate h2 {
         font-size: 85px !important;
     }
@@ -26774,7 +26774,7 @@ input.form-control.rounded-pill:focus {
         font-size: 45px !important;
     }
 
-    .plate .ajman-plate h1, .plate .ajman-plate h2   {
+    .plate .ajman-plate span, .plate .ajman-plate h2   {
     font-size: 30px !important;
   }
 
@@ -26783,7 +26783,7 @@ input.form-control.rounded-pill:focus {
         font-size: 45px !important;
   }
 
-  .big-plate .rak-plate h1, .big-plate .rak-plate h2 {
+  .big-plate .rak-plate span, .big-plate .rak-plate h2 {
     
     font-size: 45px !important;
 }
