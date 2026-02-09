@@ -26747,16 +26747,14 @@ input.form-control.rounded-pill:focus {
     }
 }
 
-
-
 /* Extra Small Mobile (< 575px) */
 @media (max-width: 575px) {
 
     .plate .dubai-icon,
     .big-plate .dubai-icon {
-        top: 45%;
+        top: 40%;
         left: 10%;
-        font-size: 30px !important;
+        font-size: 27px !important;
     }
 
     .plate .dubai-number,
