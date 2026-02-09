@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Front\ContactController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Front\PlateController;
 use App\Http\Controllers\Front\UserSettingController;
@@ -18,29 +19,33 @@ Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create();
 
     // Add main static pages with priorities
-    $sitemap->add(Url::create('/')
-        ->setPriority(1.0)
-        ->setChangeFrequency('daily')
-        ->setLastModificationDate(now())
+    $sitemap->add(
+        Url::create('/')
+            ->setPriority(1.0)
+            ->setChangeFrequency('daily')
+            ->setLastModificationDate(now())
     );
-    
-    $sitemap->add(Url::create('/plates')
-        ->setPriority(0.9)
-        ->setChangeFrequency('daily')
-        ->setLastModificationDate(now())
+
+    $sitemap->add(
+        Url::create('/plates')
+            ->setPriority(0.9)
+            ->setChangeFrequency('daily')
+            ->setLastModificationDate(now())
     );
-    
-    $sitemap->add(Url::create('/contact')
-        ->setPriority(0.7)
-        ->setChangeFrequency('monthly')
-        ->setLastModificationDate(now())
+
+    $sitemap->add(
+        Url::create('/contact')
+            ->setPriority(0.7)
+            ->setChangeFrequency('monthly')
+            ->setLastModificationDate(now())
     );
 
     // Add search page
-    $sitemap->add(Url::create('/plates/search')
-        ->setPriority(0.8)
-        ->setChangeFrequency('weekly')
-        ->setLastModificationDate(now())
+    $sitemap->add(
+        Url::create('/plates/search')
+            ->setPriority(0.8)
+            ->setChangeFrequency('weekly')
+            ->setLastModificationDate(now())
     );
 
     // Add emirate-specific pages
@@ -86,7 +91,7 @@ Route::get('/plates', [FrontController::class, 'plates'])->name('plates');
 Route::get('/plate/details/{id}', [FrontController::class, 'show'])->name('plate.show');
 
 Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
-// Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.send');
 
 
 // Search Route
