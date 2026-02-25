@@ -1482,6 +1482,20 @@ strong {
   padding-bottom: 16px;
 }
 
+.custom-btn {
+  color: #FFF !important;
+}
+
+.custom-btn:hover {
+  color: #AC1E23 !important;
+  box-shadow: inset 0 50px 0 0 #FFF !important;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  -moz-transition: 0.5s;
+}
+
 /*-----------------
     6. Header
 -----------------------*/
@@ -1537,7 +1551,7 @@ strong {
 
 .header .header-nav .main-nav>li>a {
   color: #2F2F2F;
-  line-height: 85px;
+  line-height: 30px;
   font-weight: 500;
 }
 
@@ -2587,6 +2601,10 @@ strong {
   margin: 0;
 }
 
+.navbar .fa-globe:before {
+  color: #AC1E23;
+}
+
 .menu-opened .main-menu-wrapper {
   transform: translateX(0);
 }
@@ -2675,7 +2693,7 @@ strong {
 }
 
 .header-dropdown .dropdown-menu a {
-  padding: 5px 10px;
+  padding: 5px 20px;
   border-radius: 10px;
   color: #111;
 }
@@ -2715,9 +2733,26 @@ strong {
   border-bottom: 1px solid #676767;
 }
 
+.dashboard-section {
+  background: none;
+  box-shadow: none;
+}
+
+
+
+.header .main-menu-wrapper .main-nav>li a i {
+  float: left;
+  margin-right: 10px;
+}
+
+
 @media (max-width: 991.98px) {
   .hero-sec-main .header-two .header-two-top {
     display: none;
+  }
+
+  .navbar .fa-globe:before {
+    color: #FFF;
   }
 }
 
@@ -5923,7 +5958,7 @@ table .badge {
 
 .home-two .btn-primary {
   border-radius: 5px;
-  padding: 7px 20px;
+  padding: 5px 10px;
   font-weight: 500;
 }
 

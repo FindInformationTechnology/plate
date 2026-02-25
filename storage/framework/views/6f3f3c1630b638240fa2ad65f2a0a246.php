@@ -90,7 +90,7 @@
                         <?php if(isset($plate->user->phone_number)): ?>
                             <a href="tel:<?php echo e($plate->user->phone_number ?? ''); ?>"
                                 class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 py-3 w-100 <?php if(!isset($plate->user->whatsapp_number)): ?> w-md-50 <?php endif; ?> rounded-3 fw-medium"
-                                style="border-width: 2px;">
+                                style="border-width: 2px; direction: ltr;">
                                 <i class="bx bx-phone fs-5"></i>
                                 <span class="dir-ltr"><?php echo e($plate->user->phone_number); ?></span>
                             </a>
@@ -98,7 +98,7 @@
                         <?php if(isset($plate->user->whatsapp_number)): ?>
                             <a href="https://wa.me/<?php echo e($plate->user->whatsapp_number ?? ''); ?>"
                                 class="btn btn-success d-flex align-items-center justify-content-center gap-2 py-3 w-100 rounded-3 <?php if(!isset($plate->user->phone_number)): ?> w-md-50 <?php endif; ?> fw-medium"
-                                target="_blank">
+                                style="border-width: 2px; direction: ltr;" target="_blank">
                                 <i class="bx bxl-whatsapp fs-5"></i>
                                 <span class="dir-ltr"><?php echo e($plate->user->whatsapp_number ?? ''); ?></span>
                             </a>

@@ -18,7 +18,7 @@ class ProfileController extends Controller
 {
 
     use ImageUploadTrait;
-    
+
     public function dashboard()
     {
         $user = Auth::user();
@@ -95,24 +95,26 @@ class ProfileController extends Controller
         // Process phone number to get last 9 digits
         $phoneNumber = $this->processPhoneNumber($request->phone);
 
+        $message = app()->locale == 'ar' ? 'رقم الهاتف مسجل بالفعل' : 'Phone number already registered';
+
         // Check if processed phone number already exists (excluding current user)
         if (User::where('phone', $phoneNumber)->where('id', '!=', $user->id)->exists()) {
-            return back()->withErrors(['phone' => __('message.Phone_Already_Registered')])->withInput();
+            return back()->withErrors(['phone' => $message])->withInput();
         }
 
-        
+
 
         $validated['phone'] = $phoneNumber; // Update with processed phone number
 
         // Handle WhatsApp number
         if ($request->whatsapp && trim($request->whatsapp) !== '') {
             $processedWhatsapp = $this->processPhoneNumber($request->whatsapp);
-            
+
             // // Check if processed WhatsApp number already exists (excluding current user)
             // if ($processedWhatsapp && User::where('whatsapp', $processedWhatsapp)->where('id', '!=', $user->id)->exists()) {
             //     return back()->withErrors(['whatsapp' => __('message.WhatsApp_Already_Registered')])->withInput();
             // }
-            
+
             $validated['whatsapp'] = $processedWhatsapp ?: null;
         } else {
             $validated['whatsapp'] = null;
@@ -124,10 +126,12 @@ class ProfileController extends Controller
             $path = $this->uploadImage($request->file('photo'), 'photos');
             $validated['photo'] = $path;
         }
-        
+
         $user->update($validated);
 
-        return back()->with('profile_success', 'Profile updated successfully!');
+        $message = (app()->getLocale() == 'ar') ? 'تم تحديث الملف الشخصي بنجاح!' : 'Profile updated successfully!';
+
+        return back()->with('profile_success', $message);
     }
 
     /**
@@ -154,10 +158,14 @@ class ProfileController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('password_success', 'Password updated successfully!');
+        $message = (app()->getLocale() == 'ar') ? 'تم تحديث كلمة المرور بنجاح!' : 'Password updated successfully!';
+
+        return back()->with('password_success', $message);
     }
 
-    public function edit() {}
+    public function edit()
+    {
+    }
 
     private function processPhoneNumber($phone)
     {

@@ -211,7 +211,7 @@ return [
     'Sign_In' => 'تسجيل الدخول',
     'Premium_UAE_Plates' => 'لوحات السيارات المميزة في الإمارات',
     'At_Your_Fingertips' => 'في متناول يدك',
-    'Find_Buy_Sell_Exclusive_Number_Plates' => 'ابحث واشتري وبع لوحات الأرقام الحصرية في جميع الإمارات',
+    'Find_Buy_Sell_Exclusive_Number_Plates' => ' علي بليت35',
     'Back_To_Home' => 'العودة إلى الرئيسية',
     'Forgot_Password' => 'نسيت كلمة المرور',
     'Enter_your_email_and_we_will_send_you_a_link_to_reset_your_password' => 'أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة مرورك.',
@@ -391,4 +391,5 @@ return [
     'Complete_Your_Profile' => 'أكمل ملفك الشخصي',
     'Please_add_contact_details' => 'يرجى إضافة رقم هاتفك أو واتساب للسماح للمشترين بالتواصل معك.',
     'List_for_Free' => 'أعلن وبع لوحاتك مجاناً',
+    'advertise_here' => 'أعلن الآن',
 ];

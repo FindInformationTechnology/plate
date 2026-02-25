@@ -90,7 +90,7 @@
                         @isset($plate->user->phone_number)
                             <a href="tel:{{ $plate->user->phone_number ?? '' }}"
                                 class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 py-3 w-100 @if(!isset($plate->user->whatsapp_number)) w-md-50 @endif rounded-3 fw-medium"
-                                style="border-width: 2px;">
+                                style="border-width: 2px; direction: ltr;">
                                 <i class="bx bx-phone fs-5"></i>
                                 <span class="dir-ltr">{{ $plate->user->phone_number }}</span>
                             </a>
@@ -98,7 +98,7 @@
                         @isset($plate->user->whatsapp_number)
                             <a href="https://wa.me/{{ $plate->user->whatsapp_number ?? '' }}"
                                 class="btn btn-success d-flex align-items-center justify-content-center gap-2 py-3 w-100 rounded-3 @if(!isset($plate->user->phone_number)) w-md-50 @endif fw-medium"
-                                target="_blank">
+                                style="border-width: 2px; direction: ltr;" target="_blank">
                                 <i class="bx bxl-whatsapp fs-5"></i>
                                 <span class="dir-ltr">{{ $plate->user->whatsapp_number ?? '' }}</span>
                             </a>

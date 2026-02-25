@@ -28,6 +28,10 @@
                             </h1>
                             <p class="text-[16px] md:!text-[25px] mt-2 mt-md-4">
                                 {{ __('message.Find_Buy_Sell_Exclusive_Number_Plates') }}
+                                 <a class=" "style="text-decoration: underline; font-weight:bolder"
+                                    href="{{ route('user.plates.create') }}">
+                                    {{ __('message.advertise_here') }}
+                                </a>
                             </p>
                         </div>
 

@@ -216,7 +216,7 @@ return [
   'Sign_In' => 'Sign In',
   'Premium_UAE_Plates' => 'Premium UAE Plates',
   'At_Your_Fingertips' => 'At Your Fingertips',
-  'Find_Buy_Sell_Exclusive_Number_Plates' => 'Find, buy and sell exclusive number plates across all Emirates',
+  'Find_Buy_Sell_Exclusive_Number_Plates' => ' Plate 35',
   'Email_or_Phone' => 'Email or Phone',
   'Digits' => 'Digits',
 
@@ -386,4 +386,6 @@ return [
   'Complete_Your_Profile' => 'Complete Your Profile',
   'Please_add_contact_details' => 'Please add your phone number or WhatsApp to allow buyers to contact you.',
   'List_for_Free' => 'List and Sell your plates for FREE',
+
+  'advertise_here' => 'Advertise Now',
 ];

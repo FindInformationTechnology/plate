@@ -1,7 +1,7 @@
 <!-- Header -->
 <header class="header header-two bg-slate-50">
     @if(Route::currentRouteName() == 'home')
-    
+
     @endif
     <div class="container">
         <nav class="navbar navbar-expand-lg header-nav">
@@ -16,97 +16,108 @@
 
 
                 <a href="{{ route('home')}}" class="navbar-brand logo">
-                    <img src="{{  asset ('assets/img/logo-b.png')}}" width="130" class="img-fluid" style="margin-top: 5px;" alt="Logo">
+                    <img src="{{  asset('assets/img/logo-b.png')}}" width="130" class="img-fluid"
+                        style="margin-top: 5px;" alt="Logo">
                 </a>
                 <a href="{{ route('home')}}" class="navbar-brand logo-small">
-                    <img src="{{  asset ('assets/img/logo-b.png')}}" class="img-fluid mx-auto" width="105" alt="Logo">
+                    <img src="{{  asset('assets/img/logo-b.png')}}" class="img-fluid mx-auto" width="105" alt="Logo">
                 </a>
 
             </div>
             <div class="main-menu-wrapper">
                 <div class="menu-header">
-                   
+
                     <a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
                 </div>
                 <ul class="main-nav">
                     <li><a href="{{ route('home')}}" class="nav-link">{{ __('message.Home') }}</a></li>
                     <li><a href="{{ route('plates')}}" class="nav-link">{{ __('message.Plates') }}</a></li>
                     <li><a href="{{ route('contact')}}" class="nav-link">{{ __('message.Contact_Us') }}</a></li>
-                   
+
 
 
 
                     @guest
-                    <li class="login-link">
-                        <a href="{{ route('register') }}">{{ __('message.Sign_Up') }} / </a>
-                    </li>
-                    
-                    <li class="login-link">
-                        <a href="{{ route('login') }}">{{ __('message.Sign_In') }}</a>
-                    </li>
+                        <li class="login-link">
+                            <a href="{{ route('register') }}">{{ __('message.Sign_Up') }} / </a>
+                        </li>
+
+                        <li class="login-link">
+                            <a href="{{ route('login') }}">{{ __('message.Sign_In') }}</a>
+                        </li>
 
                     @endguest
 
                     @auth
-                    @if(auth()->user()->hasRole('user'))
-                    <li class="nav-item">
-                        <a class="nav-link header-reg" href="{{ route('user.dashboard') }}">
-                            {{ __('message.My_Dashboard') }}</a>
-                    </li>
-                    
-
-                    @endif
-                    @if(auth()->user()->hasRole('admin'))
-                    <li class="nav-item">
-                        <a class="nav-link header-reg" href="{{ route('admin.dashboard') }}">
-                            {{ __('message.Dashboard_Admin') }}</a>
-                    </li>
+                        @if(auth()->user()->hasRole('user'))
+                            <li class="nav-item">
+                                <a class="nav-link header-reg" href="{{ route('user.plates') }}">
+                                    {{ __('message.My_Plates') }}</a>
+                            </li>
 
 
 
-                    <li class="nav-item">
-                        <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
-                        document.getElementById('logout-form-admin').submit()">
-                            {{ __('message.Logout') }}
 
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
-                            @csrf
-                        </form>
-                    </li>
-                    @endif
+                        @endif
+                        @if(auth()->user()->hasRole('admin'))
+                            <li class="nav-item">
+                                <a class="nav-link header-reg" href="{{ route('admin.dashboard') }}">
+                                    {{ __('message.Dashboard_Admin') }}</a>
+                            </li>
+
+
+
+                            <li class="nav-item">
+                                <a class="nav-link header-reg" href="#"
+                                    onclick="event.preventDefault();
+                                                                                                                document.getElementById('logout-form-admin').submit()">
+                                    {{ __('message.Logout') }}
+
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
+                                    @csrf
+                                </form>
+                            </li>
+                        @endif
                     @endauth
+
+                    <li class="nav-item">
+                        <a class="nav-link header-reg btn btn-primary d-none d-md-block custom-btn"
+                            href="{{ route('user.plates.create') }}">
+                            {{ __('message.advertise_here') }}</a>
+                    </li>
 
 
 
                     <!-- user menu -->
                     @auth
-                    @if(auth()->user()->hasRole('user'))
-                    <li class="nav-item d-md-none">
-                        <a class="nav-link header-reg" href="{{ route('user.plates') }}">
-                            <span><i class="bx bx-plus-circle"></i></span>
-                            {{ __('message.My_Plates') }} </a>
-                    </li>
+                        @if(auth()->user()->hasRole('user'))
+                            <!-- <li class="nav-item d-md-none">
+                                                        <a class="nav-link header-reg" href="{{ route('user.plates') }}">
+                                                            <span><i class="bx bx-plus-circle"></i></span>
+                                                            {{ __('message.My_Plates') }} </a>
+                                                    </li> -->
 
-                    <li class="nav-item d-md-none">
-                        <a class="nav-link header-reg" href="{{ route('user.profile') }}">
-                            <span><i class="bx bx-user"></i></span>{{ __('message.Profile') }}
-                        </a>
-                    </li>
+                            <li class="nav-item d-md-none">
+                                <a class="nav-link header-reg" href="{{ route('user.profile') }}">
+                                    <span><i class="bx bx-user"></i></span>{{ __('message.Profile') }}
+                                </a>
+                            </li>
 
 
-                    <li class="nav-item d-md-none">
-                        <a class="nav-link header-reg" href="#" onclick="event.preventDefault();
-                        document.getElementById('logout-form-admin').submit()">
-                            <i class="bx bx-power-off"></i>
-                            {{ __('message.Logout') }}
+                            <li class="nav-item d-md-none">
+                                <a class="nav-link header-reg" href="#"
+                                    onclick="event.preventDefault();
+                                                                                                                document.getElementById('logout-form-admin').submit()">
+                                    <i class="bx bx-power-off"></i>
+                                    {{ __('message.Logout') }}
 
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
-                            @csrf
-                        </form>
-                    </li>
-                    @endif
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form-admin">
+                                    @csrf
+                                </form>
+                            </li>
+                        @endif
                     @endauth
 
                     <!-- Language Switcher -->
@@ -115,14 +126,12 @@
                             <i class="fa fa-globe "></i> {{ __('message.Language') }}</a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item b-color"
-                                    href="{{ route('change.language', 'en') }}">
+                                <a class="dropdown-item b-color" href="{{ route('change.language', 'en') }}">
                                     {{ __('message.English') }}
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item b-color"
-                                    href="{{ route('change.language', 'ar') }}">
+                                <a class="dropdown-item b-color" href="{{ route('change.language', 'ar') }}">
                                     {{ __('message.Arabic') }}
                                 </a>
                             </li>
@@ -154,90 +163,95 @@
                 </li>
 
                 @guest
-                <li class="nav-item">
-                    <a class="nav-link login-link" href="{{ route('login') }}"><span><i class="bx bx-user me-2"></i></span>{{ __('message.Sign_In') }} / </a>
-                    <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link login-link" href="{{ route('login') }}"><span><i
+                                    class="bx bx-user me-2"></i></span>{{ __('message.Sign_In') }} / </a>
+                        <a class="nav-link login-link ms-1" href="{{ route('register') }}">{{ __('message.Register') }} </a>
 
 
-                </li>
+
+                    </li>
 
 
                 @endguest
 
 
                 @auth
-                @if(auth()->user()->hasRole('user'))
+                    @if(auth()->user()->hasRole('user'))
 
 
-                <!-- Notifications -->
-                <li class="nav-item dropdown logged-item noti-nav noti-wrapper">
-                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <span class="bell-icon"><img src="{{ asset ('assets/img/icons/bell-icon.svg') }}" alt="Bell"></span>
-                        <span class="badge badge-pill"></span>
-                    </a>
-                    <div class="dropdown-menu notifications">
-                        <div class="topnav-dropdown-header">
-                            <span class="notification-title">{{ __('message.Notifications') }}</span>
-                            <a href="javascript:void(0)" class="clear-noti"> {{ __('message.Clear_All') }} </a>
-                        </div>
-                        <div class="noti-content">
-                            <ul class="notification-list">
-                                <li class="notification-message">
-                                    <a href="#">
-                                        <div class="media d-flex">
-                                            <span class="avatar avatar-lg flex-shrink-0">
-                                                <img class="avatar-img rounded-circle" alt="User Image"
-                                                    src="{{ asset('assets/img/profiles/avatar-01.jpg')}}">
-                                            </span>
-                                            <!-- <div class="media-body flex-grow-1">
-                                                <p class="noti-details"><span class="noti-title">Jonathan Doe </span> {{ __('message.has_booked') }} <span class="noti-title">{{ __('message.your_service') }}</span></p>
-                                                <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                            </div> -->
-                                        </div>
-                                    </a>
-                                </li>
+                        <!-- Notifications -->
+                        <li class="nav-item dropdown logged-item noti-nav noti-wrapper">
+                            <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                                <span class="bell-icon"><img src="{{ asset('assets/img/icons/bell-icon.svg') }}"
+                                        alt="Bell"></span>
+                                <span class="badge badge-pill"></span>
+                            </a>
+                            <div class="dropdown-menu notifications">
+                                <div class="topnav-dropdown-header">
+                                    <span class="notification-title">{{ __('message.Notifications') }}</span>
+                                    <a href="javascript:void(0)" class="clear-noti"> {{ __('message.Clear_All') }} </a>
+                                </div>
+                                <div class="noti-content">
+                                    <ul class="notification-list">
+                                        <li class="notification-message">
+                                            <a href="#">
+                                                <div class="media d-flex">
+                                                    <span class="avatar avatar-lg flex-shrink-0">
+                                                        <img class="avatar-img rounded-circle" alt="User Image"
+                                                            src="{{ asset('assets/img/profiles/avatar-01.jpg')}}">
+                                                    </span>
+                                                    <!-- <div class="media-body flex-grow-1">
+                                                                                                                                        <p class="noti-details"><span class="noti-title">Jonathan Doe </span> {{ __('message.has_booked') }} <span class="noti-title">{{ __('message.your_service') }}</span></p>
+                                                                                                                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                                                                                                                    </div> -->
+                                                </div>
+                                            </a>
+                                        </li>
 
-                            </ul>
-                        </div>
-                        <div class="topnav-dropdown-footer">
-                            <a href="#">{{ __('message.View_all_Notifications') }}</a>
-                        </div>
-                    </div>
-                </li>
-                <!-- /Notifications -->
+                                    </ul>
+                                </div>
+                                <div class="topnav-dropdown-footer">
+                                    <a href="#">{{ __('message.View_all_Notifications') }}</a>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- /Notifications -->
 
-                <!-- User Menu -->
-                <li class="nav-item dropdown has-arrow logged-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                        <span class="user-img">
-                            <img class="rounded-circle" src="{{ auth()->user()->profile_photo_url ?? asset('assets/img/profiles/avatar.webp')}}" alt="Profile">
-                        </span>
-                        <span class="user-text" style="color: black;">{{ auth()->user()->name }}</span>
-                        
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="{{ route('user.dashboard') }}">
-                            <i class="feather-settings"></i> {{ __('message.My_Plates') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('user.profile') }}">
-                            <i class="feather-user-check"></i> {{ __('message.Profile') }}
-                        </a>
-                        <!-- <a class="dropdown-item" href="{{ route('contact') }}">
-                            <i class="feather-message-circle"></i> {{ __('message.Contact_Us') }}
-                        </a> -->
-                        <a class="dropdown-item" href="#" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit()">
-                            <i class="feather-power"></i> {{ __('message.Logout') }}
+                        <!-- User Menu -->
+                        <li class="nav-item dropdown has-arrow logged-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                                <span class="user-img">
+                                    <img class="rounded-circle"
+                                        src="{{ auth()->user()->profile_photo_url ?? asset('assets/img/profiles/avatar.webp')}}"
+                                        alt="Profile">
+                                </span>
+                                <span class="user-text" style="color: black;">{{ auth()->user()->name }}</span>
 
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                <!-- /User Menu -->
-                @endif
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                                                                                                                    <i class="feather-settings"></i> {{ __('message.My_Plates') }}
+                                                                                                                </a> -->
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                    <i class="feather-user-check"></i> {{ __('message.Profile') }}
+                                </a>
+                                <!-- <a class="dropdown-item" href="{{ route('contact') }}">
+                                                                                                                    <i class="feather-message-circle"></i> {{ __('message.Contact_Us') }}
+                                                                                                                </a> -->
+                                <a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault();
+                                                                                                                document.getElementById('logout-form').submit()">
+                                    <i class="feather-power"></i> {{ __('message.Logout') }}
+
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}" class="d-none" id="logout-form">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        <!-- /User Menu -->
+                    @endif
 
                 @endauth
 

@@ -30,6 +30,11 @@
                             <p class="text-[16px] md:!text-[25px] mt-2 mt-md-4">
                                 <?php echo e(__('message.Find_Buy_Sell_Exclusive_Number_Plates')); ?>
 
+                                 <a class=" "style="text-decoration: underline; font-weight:bolder"
+                                    href="<?php echo e(route('user.plates.create')); ?>">
+                                    <?php echo e(__('message.advertise_here')); ?>
+
+                                </a>
                             </p>
                         </div>
 
