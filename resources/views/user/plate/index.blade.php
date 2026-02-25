@@ -69,7 +69,7 @@
                                                         <span class="status-label">{{ $plate->is_sold ? __('message.Sold') : __('message.Not_Sold') }}</span>
                                                     </label>
                                                 </div> -->
-                                                <div class="form-check form-switch">
+                                                <div class="form-check form-switch d-flex">
                                                     <input class="form-check-input toggle-visibility" type="checkbox" role="switch"
                                                         id="visibilityToggle{{ $plate->id }}" data-id="{{ $plate->id }}"
                                                         {{ $plate->is_visible ? 'checked' : '' }}>
