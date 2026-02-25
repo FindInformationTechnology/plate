@@ -37,10 +37,10 @@ class PlateController extends Controller
                 'plates.*.code_id' => 'required|string|exists:codes,id',
                 'plates.*.price' => 'nullable|numeric|min:0',
             ]);
-            
+
             $createdPlates = [];
             $errors = [];
-            
+
             // Process each plate
             foreach ($validated['plates'] as $index => $plateData) {
                 try {
@@ -50,27 +50,31 @@ class PlateController extends Controller
                     $errors[] = "Plate " . ($index + 1) . ": " . $e->getMessage();
                 }
             }
-            
+
             // Check if any plates were created successfully
             if (!empty($createdPlates)) {
                 $successCount = count($createdPlates);
                 $totalCount = count($validated['plates']);
-                
+
                 if (empty($errors)) {
                     // All plates created successfully
-                    return redirect()->route("user.plates")->with("success", 
-                        "All {$successCount} plates have been added successfully");
+                    return redirect()->route("user.plates")->with(
+                        "success",
+                        "All {$successCount} plates have been added successfully"
+                    );
                 } else {
                     // Some plates created, some failed
-                    return redirect()->route("user.plates")->with("warning", 
-                        "{$successCount} of {$totalCount} plates were added successfully. " . 
-                        implode(', ', $errors));
+                    return redirect()->route("user.plates")->with(
+                        "warning",
+                        "{$successCount} of {$totalCount} plates were added successfully. " .
+                        implode(', ', $errors)
+                    );
                 }
             } else {
                 // No plates were created
                 return redirect()->back()->withErrors($errors)->withInput();
             }
-            
+
         } catch (\Exception $e) {
             log()->error($e->getMessage());
             return redirect()->back()->with("error", $e->getMessage())->withInput();
@@ -118,7 +122,7 @@ class PlateController extends Controller
                 'remove_image' => 'nullable|boolean',
             ]);
 
-            
+
 
             // Set boolean fields
             $validated['is_sold'] = $request->has('is_sold');

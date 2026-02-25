@@ -10,7 +10,10 @@
     <!-- Plate Details -->
 
     <section class="plate-details">
-        <div class="container my-4 border border-dark-subtle rounded-3">
+          <div class="container">
+            @include('front.search-form')
+        </div>
+        <div class="container my-4">
 
             <div class="p-3">
                 <h1 class="text-secondary fs-3 mb-4 text-center">{{ __('message.Search_Results') }}</h1>
@@ -64,6 +67,8 @@
 
                     </div>
                 </div>
+
+                 {{ $plates->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </section>
