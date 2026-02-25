@@ -70,7 +70,7 @@
                             <li class="nav-item">
                                 <a class="nav-link header-reg" href="#"
                                     onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form-admin').submit()">
+                                                                                                                                document.getElementById('logout-form-admin').submit()">
                                     {{ __('message.Logout') }}
 
                                 </a>
@@ -93,10 +93,10 @@
                     @auth
                         @if(auth()->user()->hasRole('user'))
                             <!-- <li class="nav-item d-md-none">
-                                                        <a class="nav-link header-reg" href="{{ route('user.plates') }}">
-                                                            <span><i class="bx bx-plus-circle"></i></span>
-                                                            {{ __('message.My_Plates') }} </a>
-                                                    </li> -->
+                                                                        <a class="nav-link header-reg" href="{{ route('user.plates') }}">
+                                                                            <span><i class="bx bx-plus-circle"></i></span>
+                                                                            {{ __('message.My_Plates') }} </a>
+                                                                    </li> -->
 
                             <li class="nav-item d-md-none">
                                 <a class="nav-link header-reg" href="{{ route('user.profile') }}">
@@ -108,7 +108,7 @@
                             <li class="nav-item d-md-none">
                                 <a class="nav-link header-reg" href="#"
                                     onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form-admin').submit()">
+                                                                                                                                document.getElementById('logout-form-admin').submit()">
                                     <i class="bx bx-power-off"></i>
                                     {{ __('message.Logout') }}
 
@@ -126,13 +126,15 @@
                             <i class="fa fa-globe "></i> {{ __('message.Language') }}</a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item b-color" href="{{ route('change.language', 'en') }}">
-                                    {{ __('message.English') }}
+                                <a class="dropdown-item b-color {{ app()->getLocale() == 'en' ? 'active' : '' }}"
+                                    href="{{ route('change.language', 'en') }}">
+                                    English
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item b-color" href="{{ route('change.language', 'ar') }}">
-                                    {{ __('message.Arabic') }}
+                                <a class="dropdown-item b-color {{ app()->getLocale() == 'ar' ? 'active' : '' }}"
+                                    href="{{ route('change.language', 'ar') }}">
+                                    العربية
                                 </a>
                             </li>
                         </ul>
@@ -153,11 +155,13 @@
                         <i class="fa fa-globe"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end lang">
-                        <a class="dropdown-item" href="{{ route('change.language', 'en') }}">
-                            {{ __('message.English') }}
+                        <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}"
+                            href="{{ route('change.language', 'en') }}">
+                            English
                         </a>
-                        <a class="dropdown-item" href="{{ route('change.language', 'ar') }}">
-                            {{ __('message.Arabic') }}
+                        <a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}"
+                            href="{{ route('change.language', 'ar') }}">
+                            العربية
                         </a>
                     </div>
                 </li>
@@ -202,9 +206,9 @@
                                                             src="{{ asset('assets/img/profiles/avatar-01.jpg')}}">
                                                     </span>
                                                     <!-- <div class="media-body flex-grow-1">
-                                                                                                                                        <p class="noti-details"><span class="noti-title">Jonathan Doe </span> {{ __('message.has_booked') }} <span class="noti-title">{{ __('message.your_service') }}</span></p>
-                                                                                                                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                                                                                                                    </div> -->
+                                                                                                                                                        <p class="noti-details"><span class="noti-title">Jonathan Doe </span> {{ __('message.has_booked') }} <span class="noti-title">{{ __('message.your_service') }}</span></p>
+                                                                                                                                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                                                                                                                                    </div> -->
                                                 </div>
                                             </a>
                                         </li>
@@ -231,17 +235,17 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- <a class="dropdown-item" href="{{ route('user.dashboard') }}">
-                                                                                                                    <i class="feather-settings"></i> {{ __('message.My_Plates') }}
-                                                                                                                </a> -->
+                                                                                                                                    <i class="feather-settings"></i> {{ __('message.My_Plates') }}
+                                                                                                                                </a> -->
                                 <a class="dropdown-item" href="{{ route('user.profile') }}">
                                     <i class="feather-user-check"></i> {{ __('message.Profile') }}
                                 </a>
                                 <!-- <a class="dropdown-item" href="{{ route('contact') }}">
-                                                                                                                    <i class="feather-message-circle"></i> {{ __('message.Contact_Us') }}
-                                                                                                                </a> -->
+                                                                                                                                    <i class="feather-message-circle"></i> {{ __('message.Contact_Us') }}
+                                                                                                                                </a> -->
                                 <a class="dropdown-item" href="#"
                                     onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form').submit()">
+                                                                                                                                document.getElementById('logout-form').submit()">
                                     <i class="feather-power"></i> {{ __('message.Logout') }}
 
                                 </a>

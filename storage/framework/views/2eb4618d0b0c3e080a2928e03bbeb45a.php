@@ -70,7 +70,7 @@
                             <li class="nav-item">
                                 <a class="nav-link header-reg" href="#"
                                     onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form-admin').submit()">
+                                                                                                                                document.getElementById('logout-form-admin').submit()">
                                     <?php echo e(__('message.Logout')); ?>
 
 
@@ -94,10 +94,10 @@
                     <?php if(auth()->guard()->check()): ?>
                         <?php if(auth()->user()->hasRole('user')): ?>
                             <!-- <li class="nav-item d-md-none">
-                                                        <a class="nav-link header-reg" href="<?php echo e(route('user.plates')); ?>">
-                                                            <span><i class="bx bx-plus-circle"></i></span>
-                                                            <?php echo e(__('message.My_Plates')); ?> </a>
-                                                    </li> -->
+                                                                        <a class="nav-link header-reg" href="<?php echo e(route('user.plates')); ?>">
+                                                                            <span><i class="bx bx-plus-circle"></i></span>
+                                                                            <?php echo e(__('message.My_Plates')); ?> </a>
+                                                                    </li> -->
 
                             <li class="nav-item d-md-none">
                                 <a class="nav-link header-reg" href="<?php echo e(route('user.profile')); ?>">
@@ -110,7 +110,7 @@
                             <li class="nav-item d-md-none">
                                 <a class="nav-link header-reg" href="#"
                                     onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form-admin').submit()">
+                                                                                                                                document.getElementById('logout-form-admin').submit()">
                                     <i class="bx bx-power-off"></i>
                                     <?php echo e(__('message.Logout')); ?>
 
@@ -129,15 +129,15 @@
                             <i class="fa fa-globe "></i> <?php echo e(__('message.Language')); ?></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item b-color" href="<?php echo e(route('change.language', 'en')); ?>">
-                                    <?php echo e(__('message.English')); ?>
-
+                                <a class="dropdown-item b-color <?php echo e(app()->getLocale() == 'en' ? 'active' : ''); ?>"
+                                    href="<?php echo e(route('change.language', 'en')); ?>">
+                                    English
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item b-color" href="<?php echo e(route('change.language', 'ar')); ?>">
-                                    <?php echo e(__('message.Arabic')); ?>
-
+                                <a class="dropdown-item b-color <?php echo e(app()->getLocale() == 'ar' ? 'active' : ''); ?>"
+                                    href="<?php echo e(route('change.language', 'ar')); ?>">
+                                    العربية
                                 </a>
                             </li>
                         </ul>
@@ -158,13 +158,13 @@
                         <i class="fa fa-globe"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end lang">
-                        <a class="dropdown-item" href="<?php echo e(route('change.language', 'en')); ?>">
-                            <?php echo e(__('message.English')); ?>
-
+                        <a class="dropdown-item <?php echo e(app()->getLocale() == 'en' ? 'active' : ''); ?>"
+                            href="<?php echo e(route('change.language', 'en')); ?>">
+                            English
                         </a>
-                        <a class="dropdown-item" href="<?php echo e(route('change.language', 'ar')); ?>">
-                            <?php echo e(__('message.Arabic')); ?>
-
+                        <a class="dropdown-item <?php echo e(app()->getLocale() == 'ar' ? 'active' : ''); ?>"
+                            href="<?php echo e(route('change.language', 'ar')); ?>">
+                            العربية
                         </a>
                     </div>
                 </li>
@@ -209,9 +209,9 @@
                                                             src="<?php echo e(asset('assets/img/profiles/avatar-01.jpg')); ?>">
                                                     </span>
                                                     <!-- <div class="media-body flex-grow-1">
-                                                                                                                                        <p class="noti-details"><span class="noti-title">Jonathan Doe </span> <?php echo e(__('message.has_booked')); ?> <span class="noti-title"><?php echo e(__('message.your_service')); ?></span></p>
-                                                                                                                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
-                                                                                                                                    </div> -->
+                                                                                                                                                        <p class="noti-details"><span class="noti-title">Jonathan Doe </span> <?php echo e(__('message.has_booked')); ?> <span class="noti-title"><?php echo e(__('message.your_service')); ?></span></p>
+                                                                                                                                                        <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                                                                                                                                    </div> -->
                                                 </div>
                                             </a>
                                         </li>
@@ -238,20 +238,20 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- <a class="dropdown-item" href="<?php echo e(route('user.dashboard')); ?>">
-                                                                                                                    <i class="feather-settings"></i> <?php echo e(__('message.My_Plates')); ?>
+                                                                                                                                    <i class="feather-settings"></i> <?php echo e(__('message.My_Plates')); ?>
 
-                                                                                                                </a> -->
+                                                                                                                                </a> -->
                                 <a class="dropdown-item" href="<?php echo e(route('user.profile')); ?>">
                                     <i class="feather-user-check"></i> <?php echo e(__('message.Profile')); ?>
 
                                 </a>
                                 <!-- <a class="dropdown-item" href="<?php echo e(route('contact')); ?>">
-                                                                                                                    <i class="feather-message-circle"></i> <?php echo e(__('message.Contact_Us')); ?>
+                                                                                                                                    <i class="feather-message-circle"></i> <?php echo e(__('message.Contact_Us')); ?>
 
-                                                                                                                </a> -->
+                                                                                                                                </a> -->
                                 <a class="dropdown-item" href="#"
                                     onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form').submit()">
+                                                                                                                                document.getElementById('logout-form').submit()">
                                     <i class="feather-power"></i> <?php echo e(__('message.Logout')); ?>
 
 
