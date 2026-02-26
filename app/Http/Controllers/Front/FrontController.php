@@ -43,7 +43,7 @@ class FrontController extends Controller
         }
 
         // Get results with pagination
-        $plates = $query->orderBy('created_at', 'desc')->get();
+        $plates = $query->orderBy('created_at', 'desc')->paginate(12)->withQueryString();
 
         // Pass search results and current filters to view
         return view('front.search', compact('plates'));
