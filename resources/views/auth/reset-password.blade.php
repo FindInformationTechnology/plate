@@ -9,10 +9,10 @@
         <div class="login-auth">
             <div class="login-auth-wrap">
                 <div class="sign-group">
-                    <a href="{{ route('home') }}" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> Back To Home</a>
+                    <a href="{{ route('home') }}" class="btn sign-up"><span><i class="fe feather-corner-down-left" aria-hidden="true"></i></span> {{ __('message.Back_To_Home') }}</a>
                 </div>
-                <h1>Reset Password</h1>
-                <p class="account-subtitle">Your new password must be different from previous used passwords.</p>
+                <h1>{{ __('message.Reset_Password') }}</h1>
+                <p class="account-subtitle">{{ __('message.Your_new_password_must_be_different_from_previous_used_passwords') }}</p>
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -29,7 +29,7 @@
 
                     <!-- Email Address -->
                     <div class="input-block">
-                        <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                        <label class="form-label">{{ __('message.Email_Address') }} <span class="text-danger">*</span></label>
                         <input type="email" name="email" class="form-control" value="{{ old('email', $request->email) }}" required autofocus>
                         @error('email')
                         <span class="text-danger">{{ $message }}</span>
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="input-block">
-                        <label class="form-label">New Password <span class="text-danger">*</span></label>
+                        <label class="form-label">{{ __('message.New_Password') }} <span class="text-danger">*</span></label>
                         <div class="pass-group">
                             <input type="password" name="password" class="form-control pass-input" placeholder="">
                             <span class="fas fa-eye-slash toggle-password"></span>
@@ -47,13 +47,13 @@
                         </div>
                     </div>
                     <div class="input-block">
-                        <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                        <label class="form-label">{{ __('message.Confirm_Password') }} <span class="text-danger">*</span></label>
                         <div class="pass-group">
                             <input type="password" name="password_confirmation" class="form-control pass-input-two" placeholder="">
                             <span class="fas fa-eye-slash toggle-password-two"></span>
                         </div>
                     </div>
-                    <button class="btn btn-outline-light w-100 btn-size">Save Changes</button>
+                    <button class="btn btn-outline-light w-100 btn-size">{{ __('message.Save_Changes') }}</button>
                 </form>
             </div>
         </div>

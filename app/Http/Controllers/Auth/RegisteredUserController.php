@@ -33,44 +33,50 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validationRules = [
             'name' => ['required', 'string', 'max:255'],
-
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => ['required', 'string', 'max:255'],
-            'g-recaptcha-response' => ['required'],
-        ]);
+        ];
 
-        // Verify reCAPTCHA
-        $recaptchaResult = $this->verifyRecaptcha($request->input('g-recaptcha-response'));
-
-        if (!$recaptchaResult['success']) {
-            app()->isLocale('ar') ? $message = 'فشل التحقق من reCAPTCHA' : $message = 'reCAPTCHA verification failed';
-            return back()->withErrors(['g-recaptcha-response' => $message])->withInput();
+        
+        // Add reCAPTCHA validation only in production
+        if (!config('app.debug')) {
+            $validationRules['g-recaptcha-response'] = ['required'];
         }
+        
+       
+        $request->validate($validationRules);
+        
+    
+        // Verify reCAPTCHA (skip in development)
+        if (!config('app.debug')) {
+            $recaptchaResult = $this->verifyRecaptcha($request->input('g-recaptcha-response'));
 
+            if (!$recaptchaResult['success']) {
+                app()->isLocale('ar') ? $message = 'فشل التحقق من reCAPTCHA' : $message = 'reCAPTCHA verification failed';
+                return back()->withErrors(['g-recaptcha-response' => $message])->withInput();
+            }
 
-        if (!$recaptchaResult['success']) {
-            app()->isLocale('ar') ? $message = 'فشل التحقق من reCAPTCHA' : $message = 'reCAPTCHA verification failed';
-            return back()->withErrors(['g-recaptcha-response' => $message])->withInput();
-        }
-
-        // If score is too low (potential bot)
-        if ($recaptchaResult['score'] < 0.5) {
-            app()->isLocale('ar') ? $message = 'تم رفض التسجيل بسبب نشاط مشبوه' : $message = 'Registration rejected due to suspicious activity';
-            return back()->withErrors(['g-recaptcha-response' => $message])->withInput();
+            // If score is too low (potential bot)
+            if ($recaptchaResult['score'] < 0.5) {
+                app()->isLocale('ar') ? $message = 'تم رفض التسجيل بسبب نشاط مشبوه' : $message = 'Registration rejected due to suspicious activity';
+                return back()->withErrors(['g-recaptcha-response' => $message])->withInput();
+            }
         }
 
         // Process phone number to get last 9 digits
         $phoneNumber = $this->processPhoneNumber($request->phone);
 
+        
         app()->isLocale('ar') ? $message = 'هذا الرقم مسجل بالفعل' : $message = 'This phone number is already registered';
-
+        
         // Check if processed phone number already exists
         if (User::where('phone', $phoneNumber)->exists()) {
             return back()->withErrors(['phone' => $message])->withInput();
         }
+        
 
         $user = User::create([
             'name' => $request->name,
@@ -90,8 +96,10 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
+        $message = app()->isLocale('ar') ? 'تم تسجيلك بنجاح' : 'You have been registered successfully';
+
         return redirect(route('home', absolute: false))
-            ->with('success', 'Welcome to Plate! A confirmation email has been sent to your email address.');
+            ->with('success', $message);
 
         // return redirect(route('dashboard', absolute: false));
     }

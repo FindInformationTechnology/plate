@@ -19,7 +19,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="heading-lising">
                         <h4>{{ __('message.Basic_Info') }}</h4>
-                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p> -->
+                        <p class="">{{ __('message.Note') }}: {{ __('message.you_may_use') }} <strong>x, y</strong> {{ __('message.and') }} <strong>z</strong> {{ __('message.characters_to_hide_some_numbers') }}</p>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12">
@@ -27,70 +27,103 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{ __('message.Plate_number') }} <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" name="number" class="form-control"
-                                            placeholder="{{ __('message.Ex_58565') }}" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{ __('message.City') }} <span
-                                                class="text-danger">*</span></label>
-                                        <select class="select" name="emirate_id" id="emirate_id" required>
-                                            <option value="">{{ __('message.Select_Emirate') }}</option>
-                                            @foreach(\App\Models\Emirate::all() as $emirate)
-                                            <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{ __('message.Code') }} <span
-                                                class="text-danger">*</span></label>
-                                        <select class="select" name="code_id" id="code_id" required>
-                                            <option value="">{{ __('message.Select_Emirate_First') }}</option>
-                                        </select>
-                                        <div class="spinner-border text-primary d-none" id="code-loading" role="status">
-                                            <span class="visually-hidden">{{ __('message.Loading') }}...</span>
+                                    <div class="table-responsive plates-table-container" id="table-container">
+                                        <div class="scroll-indicator d-none" style="top: -5px;">
+                                            <small class="">
+                                                <i class="fas fa-hand-point-right"></i>
+                                                @if(app()->getLocale() == 'ar')
+                                                {{ __('message.Scroll_Right_To_See_More') }}
+                                                @else
+                                                {{ __('message.Scroll_Left_To_See_More') }}
+                                                @endif
+                                            </small>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="mb-3">
-                                        <label class="form-label">{{ __('message.Price') }} <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" name="price" class="form-control"
-                                            placeholder="{{ __('message.Ex_1200') }}" required>
-                                    </div>
-                                </div>
-
-
-                                <!-- <div class="col-lg-12 col-md-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="upload-div">
-                                                        <input type="file" name="image">
-                                                        <div class="upload-photo-drag">
-                                                            <span><i class="fa fa-upload me-2"></i>{{ __('message.Plate_Photo') }}</span>
-                                                            <h6>{{ __('message.or_Drag_Photo') }}</h6>
+                                        <table class="table table-bordered plates-table" id="plates-table">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th class="plate-number-col">
+                                                        <div class="th-content">
+                                                            {{ __('message.Plate_number') }} 
+                                                            <span class="text-danger">*</span>
                                                         </div>
-                                                    </div>
-                                                    <div class="upload-list">
-                                                        <ul>
-                                                            <li>{{ __('message.The_maximum_photo_size') }}</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                    </th>
+                                                    <th class="city-col">
+                                                        <div class="th-content">
+                                                            {{ __('message.City') }} 
+                                                            <span class="text-danger">*</span>
+                                                        </div>
+                                                    </th>
+                                                    <th class="code-col">
+                                                        <div class="th-content">
+                                                            {{ __('message.Code') }} 
+                                                            <span class="text-danger">*</span>
+                                                        </div>
+                                                    </th>
+                                                    <th class="price-col">
+                                                        <div class="th-content">
+                                                            {{ __('message.Price') }} 
+                                                            <small class="d-block text-muted">({{ __('message.Optional') }})</small>
+                                                        </div>
+                                                    </th>
+                                                    <!-- <th class="status-col">
+                                                        <div class="th-content">
+                                                            {{ __('message.Print_sold?') }}
+                                                        </div>
+                                                    </th> -->
+                                                    <th class="action-col">
+                                                        <div class="th-content">
+                                                            {{ __('message.Action') }}
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="plates-tbody">
+                                                <tr class="plate-row" data-row="0">
+                                                    <td class="plate-number-cell">
+                                                        <input type="text" name="plates[0][number]" class="form-control form-control-responsive" 
+                                                            placeholder="{{ __('message.Plate_Number') }}" value="{{ old('plates.0.number') }}" required>
+                                                    </td>
+                                                    <td class="city-cell">
+                                                        <select class="form-select form-select-responsive emirate-select" name="plates[0][emirate_id]" data-row="0" required>
+                                                            <option value="">{{ __('message.City') }}</option>
+                                                            @foreach(\App\Models\Emirate::all() as $emirate)
+                                                            <option value="{{ $emirate->id }}" {{ old('plates.0.emirate_id') == $emirate->id ? 'selected' : '' }}>{{ $emirate->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td class="code-cell">
+                                                        <div class="position-relative">
+                                                            <select class="form-select form-select-responsive code-select" name="plates[0][code_id]" data-row="0" required>
+                                                                <option value="">{{ __('message.Code') }}</option>
+                                                            </select>
+                                                            <div class="spinner-border spinner-border-sm text-primary position-absolute code-loading d-none" data-row="0" role="status">
+                                                                <span class="visually-hidden">{{ __('message.Loading') }}...</span>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="price-cell">
+                                                        <input type="text" name="plates[0][price]" class="form-control form-control-responsive" 
+                                                            placeholder="{{ __('message.Price_Optional') }}" value="{{ old('plates.0.price') }}">
+                                                    </td>
+                                                    <!-- <td class="status-cell text-center">
+                                                        <span class="badge bg-success badge-responsive">{{ __('message.Avail.') }}</span>
+                                                    </td> -->
+                                                    <td class="action-cell text-center">
+                                                        <button type="button" class="btn btn-sm btn-outline-danger remove-row d-none btn-responsive">
+                                                            <i class="fas fa-trash"></i>
+                                                            <span class="d-none d-lg-inline ms-1">{{ __('message.Remove') }}</span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div> -->
+                                    <div class="text-end mt-3">
+                                        <button type="button" class="btn btn-outline-primary" id="add-row">
+                                            <i class="fas fa-plus me-2"></i>{{ __('message.Add_Another_Plate') }}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,23 +131,369 @@
             </div>
 
             <div class="booking-info-btns d-flex justify-content-end">
-                <a href="{{ route('user.plates') }}" class="btn btn-secondary">{{ __('message.Cancel') }}</a>
-                <button class="btn btn-primary continue-book-btn"
-                    type="submit">{{ __('message.Save') }}</button>
+                <button class="btn btn-primary continue-book-btn btn-responsive" type="submit">{{ __('message.Save_All_Plates') }}</button>
+                <a href="{{ route('user.plates') }}" class="btn btn-secondary btn-responsive">{{ __('message.Cancel') }}</a>
             </div>
         </form>
     </div>
 </section>
 @endsection
 
+@push('styles')
+<style>
+/* Enhanced Responsive Table Styles */
+.plates-table-container {
+    min-height: 400px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.plates-table {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    min-width: 900px; /* Ensures horizontal scroll on very small screens */
+}
+
+/* Column width optimization */
+.plates-table .plate-number-col { width: 18%; min-width: 140px; }
+.plates-table .city-col { width: 20%; min-width: 160px; }
+.plates-table .code-col { width: 18%; min-width: 140px; }
+.plates-table .price-col { width: 16%; min-width: 120px; }
+.plates-table .status-col { width: 12%; min-width: 100px; }
+.plates-table .action-col { width: 16%; min-width: 120px; }
+
+/* Header styling */
+.th-content {
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    padding: 0.5rem 0;
+}
+
+.th-content small {
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+/* Cell styling */
+.city-cell {
+    min-width: 100px !important;
+    /* max-width: 100px !important; */
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.plates-table td {
+    padding: 0.75rem 0.5rem;
+    vertical-align: middle;
+    border-color: #e9ecef;
+}
+
+/* Responsive form controls */
+.form-control-responsive,
+.form-select-responsive {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    transition: all 0.2s ease;
+}
+
+.form-control-responsive:focus,
+.form-select-responsive:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #80bdff;
+}
+
+/* Badge responsive */
+.badge-responsive {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+}
+
+/* Button responsive */
+.btn-responsive {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* Loading spinner positioning */
+.code-loading {
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+    .plates-table-container {
+        padding: 0.75rem;
+        margin: 0 -0.5rem 1rem -0.5rem;
+    }
+    
+    .plates-table {
+        font-size: 0.85rem;
+        min-width: 800px;
+    }
+    
+    .th-content {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+    }
+    
+    .plates-table td {
+        padding: 0.6rem 0.4rem;
+    }
+    
+    .form-control-responsive,
+    .form-select-responsive {
+        font-size: 0.85rem;
+        padding: 0.45rem 0.6rem;
+    }
+    
+    /* RTL responsive adjustments */
+    [dir="rtl"] .form-select-responsive {
+        background-position: left 0.4rem center !important;
+        padding-left: 1.5rem !important;
+        padding-right: 0.4rem !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+        transform: scaleX(-1) !important;
+    }
+    
+    .badge-responsive {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .btn-responsive {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .plates-table-container {
+        margin: 0 -1rem 1rem -1rem;
+        border-radius: 0;
+        padding: 0.5rem;
+    }
+    
+    .plates-table {
+        font-size: 0.8rem;
+        min-width: 750px;
+    }
+    
+    .th-content {
+        font-size: 0.75rem;
+    }
+    
+    .plates-table td {
+        padding: 0.5rem 0.3rem;
+    }
+    
+    .form-control-responsive,
+    .form-select-responsive {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.5rem;
+    }
+    
+    /* RTL responsive adjustments for small screens */
+    [dir="rtl"] .form-select-responsive {
+        background-position: left 0.3rem center !important;
+        padding-left: 1.25rem !important;
+        padding-right: 0.3rem !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+        transform: scaleX(-1) !important;
+    }
+    
+    /* Optimize column widths for very small screens */
+    .plates-table .plate-number-col { min-width: 120px; }
+    .plates-table .city-col { min-width: 140px; }
+    .plates-table .code-col { min-width: 120px; }
+    .plates-table .price-col { min-width: 100px; }
+    .plates-table .status-col { min-width: 80px; }
+    .plates-table .action-col { min-width: 100px; }
+}
+
+/* Enhanced horizontal scroll indicators */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* RTL Support */
+[dir="rtl"] .plates-table {
+    text-align: right;
+}
+
+[dir="rtl"] .form-control-responsive,
+[dir="rtl"] .form-select-responsive {
+    text-align: right;
+}
+
+/* Fix RTL direction for form-select background image */
+[dir="rtl"] .form-select {
+    background-position: left 0.75rem center !important;
+    padding-left: 2.25rem !important;
+    padding-right: 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
+}
+
+[dir="rtl"] .form-select-responsive {
+    background-position: left 0.5rem center !important;
+    padding-left: 1.75rem !important;
+    padding-right: 0.5rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
+}
+
+/* Ensure proper RTL styling for select elements */
+[dir="rtl"] .emirate-select,
+[dir="rtl"] .code-select {
+    background-position: left 0.75rem center !important;
+    padding-left: 2.25rem !important;
+    padding-right: 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e") !important;
+    transform: scaleX(-1) !important;
+}
+
+[dir="rtl"] .code-loading {
+    right: auto;
+    left: 10px;
+}
+
+/* Improved focus states for accessibility */
+.plates-table tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.plates-table .plate-row:focus-within {
+    background-color: rgba(0, 123, 255, 0.08);
+    box-shadow: inset 2px 0 0 #007bff;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+    border: 1px solid #e9ecef;
+}
+
+.scroll-indicator i {
+    animation: pointRight 1s ease-in-out infinite;
+}
+
+@keyframes pointRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+[dir="rtl"] .scroll-indicator {
+    right: auto;
+    left: 10px;
+}
+
+[dir="rtl"] .scroll-indicator i {
+    transform: scaleX(-1);
+}
+
+/* Print styles */
+@media print {
+    .plates-table-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .action-col,
+    .action-cell,
+    .scroll-indicator {
+        display: none;
+    }
+}
+</style>
+@endpush
+
 @push('scripts')
 <script>
     $(document).ready(function() {
-        // When emirate selection changes
-        $('#emirate_id').on('change', function() {
+        let rowCount = 1;
+
+        // Check if table needs horizontal scroll and show indicator
+        function checkScrollIndicator() {
+            const container = $('#table-container')[0];
+            const indicator = $('.scroll-indicator');
+            
+            if (container && container.scrollWidth > container.clientWidth) {
+                indicator.removeClass('d-none');
+                
+                // Hide indicator after user scrolls
+                container.addEventListener('scroll', function() {
+                    if (container.scrollLeft > 20) {
+                        indicator.addClass('d-none');
+                    }
+                }, { once: true });
+            } else {
+                indicator.addClass('d-none');
+            }
+        }
+
+        // Initial check
+        setTimeout(checkScrollIndicator, 100);
+
+        // Recheck on window resize
+        $(window).on('resize', checkScrollIndicator);
+
+        // Add new row functionality
+        $('#add-row').on('click', function() {
+            const newRow = createNewRow(rowCount);
+            $('#plates-tbody').append(newRow);
+            updateRemoveButtons();
+            rowCount++;
+            
+            // Recheck scroll indicator after adding row
+            setTimeout(checkScrollIndicator, 50);
+        });
+
+        // Remove row functionality
+        $(document).on('click', '.remove-row', function() {
+            $(this).closest('.plate-row').remove();
+            updateRemoveButtons();
+        });
+
+        // Emirate change functionality
+        $(document).on('change', '.emirate-select', function() {
             const emirateId = $(this).val();
-            const codeSelect = $('#code_id');
-            const loadingSpinner = $('#code-loading');
+            const row = $(this).data('row');
+            const codeSelect = $(`.code-select[data-row="${row}"]`);
+            const loadingSpinner = $(`.code-loading[data-row="${row}"]`);
 
             // Clear current options
             codeSelect.empty().append('<option value="">{{ __("message.Loading_codes") }}...</option>');
@@ -124,38 +503,119 @@
                 loadingSpinner.removeClass('d-none');
 
                 // Fetch codes for the selected emirate
+                const apiUrl = "{{ route('user.api.codes.by.emirate') }}";
+                console.log("Making AJAX request to:", apiUrl, "with emirate_id:", emirateId);
+                
                 $.ajax({
-                    url: "{{ route('user.api.codes.by.emirate') }}",
+                    url: apiUrl,
                     type: "GET",
                     data: {
                         emirate_id: emirateId
                     },
                     success: function(response) {
+                        console.log("Codes API Response:", response);
+                        
                         // Clear the loading option
                         codeSelect.empty();
 
                         // Add a default option
                         codeSelect.append('<option value="">{{ __("message.Select_Code") }}</option>');
 
-                        // Add options for each code
-                        $.each(response.codes, function(key, code) {
-                            codeSelect.append('<option value="' + code.id + '">' + code.name + '</option>');
-                        });
+                        // Check if response has codes
+                        if (response.codes && response.codes.length > 0) {
+                            // Add options for each code
+                            $.each(response.codes, function(key, code) {
+                                codeSelect.append('<option value="' + code.id + '">' + code.name + '</option>');
+                            });
+                            console.log("Added " + response.codes.length + " codes to dropdown");
+                        } else {
+                            codeSelect.append('<option value="">{{ __("message.No_codes_available") }}</option>');
+                            console.warn("No codes found for emirate ID:", emirateId);
+                        }
 
                         // Hide loading spinner
                         loadingSpinner.addClass('d-none');
                     },
                     error: function(xhr, status, error) {
                         console.error("Error loading codes:", error);
-                        codeSelect.empty().append('<option value="">{{ __("message.Error_loading_codes") }}</option>');
+                        console.error("Response status:", xhr.status);
+                        console.error("Response text:", xhr.responseText);
+                        
+                        let errorMessage = '{{ __("message.Error_loading_codes") }}';
+                        if (xhr.status === 422) {
+                            errorMessage = 'Invalid emirate selected';
+                        } else if (xhr.status === 404) {
+                            errorMessage = 'API endpoint not found';
+                        } else if (xhr.status === 500) {
+                            errorMessage = 'Server error';
+                        }
+                        
+                        codeSelect.empty().append('<option value="">' + errorMessage + '</option>');
                         loadingSpinner.addClass('d-none');
+                        
+                        // Show user-friendly error
+                        alert('Error loading codes for selected city. Please refresh the page and try again.');
                     }
                 });
             } else {
                 // If no emirate is selected, show default message
                 codeSelect.empty().append('<option value="">{{ __("message.Select_Emirate_First") }}</option>');
+                loadingSpinner.addClass('d-none');
             }
         });
+
+        function createNewRow(index) {
+            return `
+                <tr class="plate-row" data-row="${index}">
+                    <td class="plate-number-cell">
+                        <input type="text" name="plates[${index}][number]" class="form-control form-control-responsive" 
+                            placeholder="{{ __('message.Plate_Number') }}" required>
+                    </td>
+                    <td class="city-cell">
+                        <select class="form-select form-select-responsive emirate-select" name="plates[${index}][emirate_id]" data-row="${index}" required>
+                            <option value="">{{ __('message.City') }}</option>
+                            @foreach(\App\Models\Emirate::all() as $emirate)
+                            <option value="{{ $emirate->id }}">{{ $emirate->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td class="code-cell">
+                        <div class="position-relative">
+                            <select class="form-select form-select-responsive code-select" name="plates[${index}][code_id]" data-row="${index}" required>
+                                <option value="">{{ __('message.Code') }}</option>
+                            </select>
+                            <div class="spinner-border spinner-border-sm text-primary position-absolute code-loading d-none" data-row="${index}" role="status">
+                                <span class="visually-hidden">{{ __('message.Loading') }}...</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="price-cell">
+                        <input type="text" name="plates[${index}][price]" class="form-control form-control-responsive" 
+                            placeholder="{{ __('message.Price_Optional') }}">
+                    </td>
+                    <td class="status-cell text-center">
+                        <span class="badge bg-success badge-responsive">{{ __('message.Avail.') }}</span>
+                    </td>
+                    <td class="action-cell text-center">
+                        <button type="button" class="btn btn-sm btn-outline-danger remove-row btn-responsive">
+                            <i class="fas fa-trash"></i>
+                            <span class="d-none d-lg-inline ms-1">{{ __('message.Remove') }}</span>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function updateRemoveButtons() {
+            const rows = $('.plate-row');
+            if (rows.length === 1) {
+                // Hide remove button for the last remaining row
+                rows.find('.remove-row').addClass('d-none');
+            } else {
+                // Show remove buttons for all rows when there are multiple
+                rows.find('.remove-row').removeClass('d-none');
+            }
+        }
     });
 </script>
 @endpush

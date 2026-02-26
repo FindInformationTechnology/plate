@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Welcome to Plate</title>
+    <title>{{ config('app.name') }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -46,14 +46,14 @@
 </head>
 <body>
     <div class="header">
-        <img src="{{ asset('assets/img/logo.png') }}" alt="Plate Logo" class="logo">
-        <h1>Welcome to Plate!</h1>
+        <img src="{{ asset('assets/img/logo-b.png') }}" alt="Plate Logo" class="logo">
+        <h1>Welcome to {{ config('app.name') }}!</h1>
     </div>
     
     <div class="content">
         <p>Hello {{ $user->name }},</p>
         
-        <p>Thank you for registering with Plate! We're excited to have you join our community.</p>
+        <p>Thank you for registering with Plate35! We're excited to have you join our community.</p>
         
         <p>With your new account, you can:</p>
         <ul>

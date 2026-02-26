@@ -11,18 +11,13 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+
     use HasFactory, Notifiable, HasApiTokens, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-
-     protected $appends = ['phone_number','whatsapp_number'];
+     protected $appends = ['phone_number','whatsapp_number','profile_photo_url'];
     protected $fillable = [
         'name','email','phone', 'whatsapp','password','nationality','status',
+        'photo',
         'google_id',
         'facebook_id',
         'twitter_id',
@@ -66,18 +61,37 @@ class User extends Authenticatable
 
     public function getPhoneNumberAttribute()
     {
-        return '+971'. $this-> processPhoneNumber( $this->phone);
+        if (!$this->phone) {
+            return null;
+        }
+        
+        $processed = $this->processPhoneNumber($this->phone);
+        return $processed ? '+971' . $processed : null;
     }
 
     public function getWhatsappNumberAttribute()
     {
-        return '+971' . $this-> processPhoneNumber( $this->whatsapp);
+        if (!$this->whatsapp) {
+            return null;
+        }
+        
+        $processed = $this->processPhoneNumber($this->whatsapp);
+        return $processed ? '+971' . $processed : null;
     }
 
     private function processPhoneNumber($phone)
     {
+        if (!$phone || trim($phone) === '') {
+            return null;
+        }
+        
         // Remove all non-numeric characters
         $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
+        
+        // If empty after cleaning, return null
+        if (empty($cleanPhone)) {
+            return null;
+        }
         
         // Remove leading zeros
         $cleanPhone = ltrim($cleanPhone, '0');
@@ -89,6 +103,11 @@ class User extends Authenticatable
         
         // Remove leading zero again after country code removal
         $cleanPhone = ltrim($cleanPhone, '0');
+        
+        // Validate minimum length (at least 7 digits for UAE mobile)
+        if (strlen($cleanPhone) < 7) {
+            return null;
+        }
         
         // Get the last 9 digits
         if (strlen($cleanPhone) >= 9) {
@@ -184,5 +203,10 @@ class User extends Authenticatable
     public function isBlockedFromVerification(): bool
     {
         return $this->phone_verification_attempts >= 5;
+    }
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        return $this->photo ? asset($this->photo) : asset('assets/img/profiles/avatar.webp');
     }
 }

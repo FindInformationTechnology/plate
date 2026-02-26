@@ -25,9 +25,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th><?php echo e(__('message.Plate_Details')); ?></th>
-                                        <th><?php echo e(__('message.Emirate')); ?></th>
+                                        <th><?php echo e(__('message.Plate_Number')); ?></th>
                                         <th><?php echo e(__('message.Code')); ?></th>
+                                        <th><?php echo e(__('message.Emirate')); ?></th>
                                         <th><?php echo e(__('message.Price')); ?></th>
                                         <th><?php echo e(__('message.Status')); ?></th>
                                         <th><?php echo e(__('message.Actions')); ?></th>
@@ -37,42 +37,44 @@
                                     <?php $__empty_1 = true; $__currentLoopData = $plates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <tr>
                                         <td>
-                                            <div class="table-avatar">
+                                            <div class="">
                                                 <!-- <a href="#" class="avatar avatar-lg flex-shrink-0">
                                                     <img class="avatar-img" src="<?php echo e($plate->image_url); ?>" alt="Plate Image">
                                                 </a> -->
-                                                <div class="table-head-name flex-grow-1">
-                                                    <a href="#"><?php echo e($plate->code->name); ?> <?php echo e($plate->number); ?></a>
-                                                    <p><?php echo e(__('message.Listed')); ?>: <?php echo e($plate->created_at->diffForHumans()); ?></p>
+                                                <div class="table-head-name ">
+                                                    <!-- <?php echo e($plate->code->name); ?> -->
+                                                     <?php echo e($plate->number); ?>
+
+                                                    <p class="d-none d-md-block" ><?php echo e(__('message.Listed')); ?>: <?php echo e($plate->created_at->diffForHumans()); ?></p>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <h6><?php echo e($plate->emirate->name); ?></h6>
                                         </td>
                                         <td>
                                             <h6><?php echo e($plate->code->name); ?></h6>
                                         </td>
                                         <td>
+                                            <h6><?php echo e($plate->emirate->name); ?></h6>
+                                        </td>
+                                        <td>
                                             <h5 class="text-success"><?php echo e($plate->price_digits); ?></h5>
                                         </td>
                                         <td>
-                                            <div class="d-flex flex-column">
-                                                <div class="form-check form-switch mb-2">
+                                            <div class="">
+                                                <!-- <div class="form-check form-switch mb-2">
                                                     <input class="form-check-input toggle-sold" type="checkbox" role="switch"
                                                         id="soldToggle<?php echo e($plate->id); ?>" data-id="<?php echo e($plate->id); ?>"
                                                         <?php echo e($plate->is_sold ? 'checked' : ''); ?>>
                                                     <label class="form-check-label" for="soldToggle<?php echo e($plate->id); ?>">
                                                         <span class="status-label"><?php echo e($plate->is_sold ? __('message.Sold') : __('message.Not_Sold')); ?></span>
                                                     </label>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-check form-switch">
                                                     <input class="form-check-input toggle-visibility" type="checkbox" role="switch"
                                                         id="visibilityToggle<?php echo e($plate->id); ?>" data-id="<?php echo e($plate->id); ?>"
                                                         <?php echo e($plate->is_visible ? 'checked' : ''); ?>>
-                                                    <label class="form-check-label" for="visibilityToggle<?php echo e($plate->id); ?>">
+                                                    <!-- <label class="form-check-label" for="visibilityToggle<?php echo e($plate->id); ?>">
                                                         <span class="visibility-label"><?php echo e($plate->is_visible ? __('message.Visible') : __('message.Hidden')); ?></span>
-                                                    </label>
+                                                    </label> -->
                                                 </div>
                                             </div>
                                         </td>

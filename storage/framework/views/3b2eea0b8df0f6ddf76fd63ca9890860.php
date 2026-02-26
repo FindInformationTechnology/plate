@@ -2,24 +2,30 @@
 
 <!-- Phone Verification Alert -->
 <?php if(auth()->guard()->check()): ?>
-    <?php if(auth()->user()->needsPhoneVerification()): ?>
+    <?php if(empty(auth()->user()->phone) || empty(auth()->user()->whatsapp)): ?>
+    <div class="container mt-3">
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <div class="container">
-                <div class="d-flex align-items-center">
-                    <i class="bx bx-phone me-3" style="font-size: 1.5rem;"></i>
-                    <div class="flex-grow-1">
-                        <h6 class="alert-heading mb-1"><?php echo e(__('message.Phone_Verification_Required')); ?></h6>
-                        <p class="mb-0"><?php echo e(__('message.Phone_Not_Verified_Warning')); ?></p>
+            <div class="row align-items-center">
+                <div class="col-md-8 col-12">
+                    <div class="d-flex align-items-center pb-2 pb-md-0">
+                        <i class="bx bx-phone-call fs-1 me-3"></i>
+                        <div>
+                            <h6 class="alert-heading mb-1"><?php echo e(__('message.Complete_Your_Profile')); ?></h6>
+                            <p class="mb-0"><?php echo e(__('message.Please_add_contact_details')); ?></p>
+                        </div>
                     </div>
-                    <a href="<?php echo e(route('phone.verify.show')); ?>" class="btn btn-warning btn-sm ms-3">
-                        <i class="bx bx-check-shield me-1"></i>
-                        <?php echo e(__('message.Verify_Now')); ?>
+                </div>
+                <div class="col-md-4 col-12 text-md-end">
+                    <a href="<?php echo e(route('user.profile')); ?>" class="btn btn-warning btn-sm text-nowrap w-100 w-md-auto">
+                        <i class="bx bx-edit me-1"></i>
+                        <?php echo e(__('message.Update_Profile')); ?>
 
                     </a>
                 </div>
             </div>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
+    </div>
     <?php endif; ?>
 <?php endif; ?>
 
@@ -83,20 +89,25 @@
             <div class="col-lg-8 d-flex">
                 <div class="card user-card flex-fill">
                     <div class="card-header">
-                        <div class="row align-items-center">
-                            <div class="col-sm-5">
-                                <h5><?php echo e(__('message.My_Recent_Plates')); ?></h5>
-                            </div>
-                            <div class="col-sm-7 text-sm-end">
-                                <div class="booking-select">
+                        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                            <h5 class="mb-0"><?php echo e(__('message.My_Recent_Plates')); ?></h5>
+                            <div class="d-flex align-items-center gap-2">
+                                <div class="booking-select d-none d-md-block">
                                     <select class="form-control select">
                                         <option><?php echo e(__('message.All_Plates')); ?></option>
                                         <option><?php echo e(__('message.Available')); ?></option>
                                         <option><?php echo e(__('message.Sold')); ?></option>
                                     </select>
-                                    <a href="<?php echo e(route('user.plates')); ?>"
-                                        class="view-link"><?php echo e(__('message.View_all_Plates')); ?></a>
                                 </div>
+                                <a href="<?php echo e(route('user.plates.create')); ?>" class="btn btn-primary btn-sm d-flex align-items-center gap-1">
+                                    <i class="bx bx-plus"></i>
+                                    <?php echo e(__('message.Add_New_Plate')); ?>
+
+                                </a>
+                                <a href="<?php echo e(route('user.plates')); ?>" class="view-link d-none d-sm-inline-block ms-1">
+                                    <?php echo e(__('message.View_all_Plates')); ?>
+
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -112,8 +123,9 @@
                                                 <!-- <img class="avatar-img" src="<?php echo e($plate->image_url); ?>" alt="Plate Image"> -->
 
                                                 <div class="table-head-name flex-grow-1">
-                                                    <a href="">
-                                                        <?php echo e($plate->emirate->name); ?> - <?php echo e($plate->code->name); ?> <?php echo e($plate->number); ?></a>
+                                                  
+                                                         <?php echo e($plate->number); ?>
+
                                                     <p><?php echo e(__('message.Listed')); ?>: <?php echo e($plate->created_at->diffForHumans()); ?></p>
                                                 </div>
                                             </div>

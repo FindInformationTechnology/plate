@@ -39,18 +39,17 @@
             <div class="profile-inner">
                 <div class="profile-info-pic">
                     <div class="profile-info-img">
-                        <img src="{{ auth()->user()->profile_photo ? asset('storage/' . auth()->user()->profile_photo) : asset('assets/img/profiles/avatar-15.jpg') }}"
-                            alt="Profile">
+                        <img src="{{ auth()->user()->profile_photo_url }}" alt="Profile">
                         <div class="profile-edit-info">
-                            <label for="profile_photo" style="cursor: pointer;">
+                            <label for="photo" style="cursor: pointer;">
                                 <i class="feather-edit"></i>
                             </label>
-                            <input type="file" id="profile_photo" name="profile_photo" style="display: none;">
+                            <input type="file" id="photo" name="photo" style="display: none;">
                         </div>
                     </div>
                     <div class="profile-info-content">
                         <h6>{{ __('message.Profile_picture') }}</h6>
-                        <p>{{ __('message.PNG_JPEG_under_15_MB') }}</p>
+                        <!-- <p>{{ __('message.PNG_JPEG_under_15_MB') }}</p> -->
                     </div>
                 </div>
                 <div class="row">
@@ -77,7 +76,7 @@
                                     value="{{ auth()->user()->phone_number ?? '' }}" required>
                                 
                                 <!-- Phone Verification Status -->
-                                <div class="phone-verification-status mt-2">
+                                <!-- <div class="phone-verification-status mt-2">
                                     @if(auth()->user()->hasVerifiedPhone())
                                         <div class="d-flex align-items-center text-success">
                                             <i class="bx bx-check-circle me-2"></i>
@@ -102,16 +101,22 @@
                                             </small>
                                         </div>
                                     @endif
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="profile-form-group">
-                            <label>{{ __('message.Whatsapp') }} <span class="text-danger">*</span></label>
+                            <label>{{ __('message.Whatsapp') }} </label>
                             <input type="text" class="form-control" name="whatsapp" style="direction: ltr;"
                                 value="{{ auth()->user()->whatsapp_number ?? '' }}"
                                 placeholder="{{ __('message.Enter_WhatsApp_Number') }}">
+                            <small class="text-muted">{{ __('message.WhatsApp_Optional') }}</small>
+                            @if(auth()->user()->whatsapp_number)
+                                <small class="text-success d-block mt-1">
+                                    <i class="bx bx-check-circle"></i> {{ __('message.WhatsApp_Number_Set') }}
+                                </small>
+                            @endif
                         </div>
                     </div>
                 </div>

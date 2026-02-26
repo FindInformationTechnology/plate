@@ -27,9 +27,9 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>{{ __('message.Plate_Details') }}</th>
-                                        <th>{{ __('message.Emirate') }}</th>
+                                        <th>{{ __('message.Plate_Number') }}</th>
                                         <th>{{ __('message.Code') }}</th>
+                                        <th>{{ __('message.Emirate') }}</th>
                                         <th>{{ __('message.Price') }}</th>
                                         <th>{{ __('message.Status') }}</th>
                                         <th>{{ __('message.Actions') }}</th>
@@ -39,42 +39,43 @@
                                     @forelse($plates as $plate)
                                     <tr>
                                         <td>
-                                            <div class="table-avatar">
+                                            <div class="">
                                                 <!-- <a href="#" class="avatar avatar-lg flex-shrink-0">
                                                     <img class="avatar-img" src="{{ $plate->image_url }}" alt="Plate Image">
                                                 </a> -->
-                                                <div class="table-head-name flex-grow-1">
-                                                    <a href="#">{{ $plate->code->name }} {{ $plate->number }}</a>
-                                                    <p>{{ __('message.Listed') }}: {{ $plate->created_at->diffForHumans() }}</p>
+                                                <div class="table-head-name ">
+                                                    <!-- {{ $plate->code->name }} -->
+                                                     {{ $plate->number }}
+                                                    <p class="d-none d-md-block" >{{ __('message.Listed') }}: {{ $plate->created_at->diffForHumans() }}</p>
                                                 </div>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <h6>{{ $plate->emirate->name }}</h6>
                                         </td>
                                         <td>
                                             <h6>{{ $plate->code->name }}</h6>
                                         </td>
                                         <td>
+                                            <h6>{{ $plate->emirate->name }}</h6>
+                                        </td>
+                                        <td>
                                             <h5 class="text-success">{{ $plate->price_digits }}</h5>
                                         </td>
                                         <td>
-                                            <div class="d-flex flex-column">
-                                                <div class="form-check form-switch mb-2">
+                                            <div class="">
+                                                <!-- <div class="form-check form-switch mb-2">
                                                     <input class="form-check-input toggle-sold" type="checkbox" role="switch"
                                                         id="soldToggle{{ $plate->id }}" data-id="{{ $plate->id }}"
                                                         {{ $plate->is_sold ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="soldToggle{{ $plate->id }}">
                                                         <span class="status-label">{{ $plate->is_sold ? __('message.Sold') : __('message.Not_Sold') }}</span>
                                                     </label>
-                                                </div>
-                                                <div class="form-check form-switch">
+                                                </div> -->
+                                                <div class="form-check form-switch d-flex">
                                                     <input class="form-check-input toggle-visibility" type="checkbox" role="switch"
                                                         id="visibilityToggle{{ $plate->id }}" data-id="{{ $plate->id }}"
                                                         {{ $plate->is_visible ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="visibilityToggle{{ $plate->id }}">
+                                                    <!-- <label class="form-check-label" for="visibilityToggle{{ $plate->id }}">
                                                         <span class="visibility-label">{{ $plate->is_visible ? __('message.Visible') : __('message.Hidden') }}</span>
-                                                    </label>
+                                                    </label> -->
                                                 </div>
                                             </div>
                                         </td>

@@ -23,8 +23,8 @@ class IsAdmin
 
         // Check if authenticated user has admin role
         if (!auth()->user()->hasRole('admin')) {
-            // Redirect non-admin users to home page with error message
-            return redirect()->route('home')->with('error', 'You do not have permission to access the admin area.');
+            // Redirect non-admin users to 403 Forbidden page
+            abort(403);
         }
 
         return $next($request);

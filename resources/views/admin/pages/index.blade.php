@@ -348,7 +348,7 @@
 												</td> -->
 												<td>
 													<a href="#" class="text-gray-800 fw-bold text-hover-primary mb-1 fs-6">{{ $plate->emirate->name }} {{ $plate->code->name }} {{ $plate->number }}</a>
-													<span class="text-gray-500 fw-semibold d-block fs-7">{{ $plate->user->name }}</span>
+													<span class="text-gray-500 fw-semibold d-block fs-7">{{ $plate->user->name ?? 'N/A' }}</span>
 												</td>
 												<td class="text-end">
 													<span class="text-gray-800 fw-bold d-block fs-6">{{ $plate->views_count }}</span>

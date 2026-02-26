@@ -28,31 +28,56 @@ class PlateController extends Controller
 
     public function store(StorePlateRequest $request, PlateService $plate)
     {
-
         try {
-            // Validate the request data
-
+            // Validate the request data for multiple plates
             $validated = $request->validate([
-                'emirate_id' => 'required|integer',
-                'number' => 'required|string',
-                'code_id' => 'required|string',
-                'price' => 'nullable',
-                // 'image' => 'nullable|image|max:8192',
-
+                'plates' => 'required|array|min:1',
+                'plates.*.emirate_id' => 'required|integer|exists:emirates,id',
+                'plates.*.number' => 'required|string|max:255',
+                'plates.*.code_id' => 'required|string|exists:codes,id',
+                'plates.*.price' => 'nullable|numeric|min:0',
             ]);
-            
-            // if ($request->has('image')) {
-            //     $path = $request->file('image')->store('plates', 'public');
-            //     $validated['image'] = $path;
-            // }
-            
-            $plate = $plate->createPlate($validated, $request);
 
-            return redirect()->route("user.plates")->with("success", "The record has been added");
+            $createdPlates = [];
+            $errors = [];
+
+            // Process each plate
+            foreach ($validated['plates'] as $index => $plateData) {
+                try {
+                    $createdPlate = $plate->createPlate($plateData, $request);
+                    $createdPlates[] = $createdPlate;
+                } catch (\Exception $e) {
+                    $errors[] = "Plate " . ($index + 1) . ": " . $e->getMessage();
+                }
+            }
+
+            // Check if any plates were created successfully
+            if (!empty($createdPlates)) {
+                $successCount = count($createdPlates);
+                $totalCount = count($validated['plates']);
+
+                if (empty($errors)) {
+                    // All plates created successfully
+                    return redirect()->route("user.plates")->with(
+                        "success",
+                        "All {$successCount} plates have been added successfully"
+                    );
+                } else {
+                    // Some plates created, some failed
+                    return redirect()->route("user.plates")->with(
+                        "warning",
+                        "{$successCount} of {$totalCount} plates were added successfully. " .
+                        implode(', ', $errors)
+                    );
+                }
+            } else {
+                // No plates were created
+                return redirect()->back()->withErrors($errors)->withInput();
+            }
+
         } catch (\Exception $e) {
             log()->error($e->getMessage());
-            return redirect()->back()->with("error", $e->getMessage());
-            // return redirect()->route("user.plates")->with("error","Something went wrong");
+            return redirect()->back()->with("error", $e->getMessage())->withInput();
         }
     }
 
@@ -97,7 +122,7 @@ class PlateController extends Controller
                 'remove_image' => 'nullable|boolean',
             ]);
 
-            
+
 
             // Set boolean fields
             $validated['is_sold'] = $request->has('is_sold');
@@ -232,12 +257,14 @@ class PlateController extends Controller
         ]);
 
         $codes = Code::where('emirate_id', $request->emirate_id)
+            ->where('status', true) // Only active codes
             ->orderBy('name')
             ->get(['id', 'name']);
 
         return response()->json([
             'success' => true,
-            'codes' => $codes
+            'codes' => $codes,
+            'count' => $codes->count()
         ]);
     }
 }

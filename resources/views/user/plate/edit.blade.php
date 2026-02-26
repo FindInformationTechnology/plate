@@ -73,7 +73,7 @@
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="price" class="form-control"
                                             placeholder="{{ __('message.Ex_1200') }}" value="{{ $plate->price }}"
-                                            required>
+                                            >
                                     </div>
                                 </div>
 

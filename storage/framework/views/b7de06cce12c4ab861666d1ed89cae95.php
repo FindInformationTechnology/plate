@@ -9,78 +9,32 @@
 
 <?php $__env->startSection('content'); ?>
 
-<style>
-.featured-plates-slider .owl-nav {
-    position: absolute;
-    top: -50px;
-    right: 0;
-}
 
-.featured-plates-slider .owl-nav button {
-    width: 30px;
-    height: 30px;
-    background-color: #f5f5f5 !important;
-    border-radius: 50%;
-    margin-left: 5px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.featured-plates-slider .owl-nav button:hover {
-    background-color: #28a745 !important;
-    color: white;
-}
-
-.featured-plates-slider .item {
-    padding: 10px;
-}
-
-/* By default, hide the small image and show the large one */
-.slider-img-large {
-    display: block;
-}
-
-.slider-img-small {
-    display: none;
-}
-
-/* When the screen is 678px or less, show the small image and hide the large one */
-@media (max-width: 678px) {
-    .slider-img-large {
-        display: none;
-    }
-
-    .slider-img-small {
-        display: block;
-    }
-}
-</style>
 
 
 <!-- Banner -->
-<section class="banner-section banner-sec-two banner-slider">
-    <div class="banner-img-slider owl-carousel" style="direction: ltr;">
-
-        <div class="slider-img ">
-            <img class="slider-img-small" src="assets/img/owl-1.png" alt="Img" loading="lazy">
-            <img class="slider-img slider-img-large" src="assets/img/owl-1.jpg" alt="Img" loading="lazy">
-        </div>
-
-    </div>
-    <div class="container">
-        <div class="home-banner">
+<section class="banner-section banner-sec-two " >
+    <div style="background-image: url(<?php echo e(asset('assets/img/car-banner.webp')); ?>); width: 100%; height: 100%; background-size: cover; background-position: center;">
+        <div class="home-banner container container-custom" >
+            <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="hero-sec-contents">
                         <div class="banner-title">
-                            <h1 class="text-[35px] md:text-[65px]"><?php echo e(__('message.Premium_UAE_Plates')); ?>
+                            <h1 class="text-[35px] md:text-[65px]" ><?php echo e(__('message.Premium_UAE_Plates')); ?>
 
-                                <span><?php echo e(__('message.At_Your_Fingertips')); ?>.</span>
+                                <span class="explosion-badge align-middle ms-2 mt-2 mt-md-0">
+                                    <span class="explosion-badge-inner"><?php echo e(__('message.List_for_Free')); ?></span>
+                                </span>
                             </h1>
-                            <p class="text-[16px] md:!text-[25px]">
+                            <p class="text-[16px] md:!text-[25px] mt-2 mt-md-4">
                                 <?php echo e(__('message.Find_Buy_Sell_Exclusive_Number_Plates')); ?>
 
+                                 <a class=" "style="text-decoration: underline; font-weight:bolder"
+                                    href="<?php echo e(route('user.plates.create')); ?>">
+                                    <?php echo e(__('message.advertise_here')); ?>
+
+                                </a>
                             </p>
                         </div>
 
@@ -88,24 +42,24 @@
 
                 </div>
 
-                <!-- Search Form -->
+               
 
                 <?php echo $__env->make('front.search-form', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-                <!-- End Search Form -->
+              
 
 
             </div>
         </div>
-
+        </div>
     </div>
 </section>
 <!-- /Banner -->
 
 
 <section class=" yacht-category-sec">
-    <div class="sec-bg">
+    <!-- <div class="sec-bg">
         <img src="<?php echo e(asset ('assets/img/bg/sec-bg-wave.png')); ?>" class="wave-bottom" alt="Bg">
-    </div>
+    </div> -->
     <!-- After the yacht-category-sec opening and before the regular plates display -->
     <div class="container">
         <div class="section-header-two">
@@ -119,13 +73,9 @@
                 <?php $__currentLoopData = $featuredPlates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="item">
                     <div class="listing-item plate-card position-relative">
-                        <div class="py-1 px-3 bg-success text-white rounded-2 position-absolute"
-                            style="top: 10px; left: 10px;">
-                            <?php echo e(__('message.Featured')); ?>
-
-                        </div>
+                       
                         <div class="d-flex justify-content-end align-items-center">
-                            <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+                            <div class="text-left py-1 px-3 featured-color text-white rounded-2"><?php echo e(__('message.Featured')); ?></div>
                         </div>
                         <div class="position-relative plate">
                             <div class="w-100 my-4">
@@ -133,14 +83,14 @@
                                     class="w-100" loading="lazy">
                             </div>
                             <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                            <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
-                                <?php echo e($plate->code->name); ?></h1>
+                            <span class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
+                                <?php echo e($plate->code->name); ?></span>
                             <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow">
                                 <?php echo e($plate->number); ?></h2>
                             <?php else: ?>
                             <div
                                 class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center">
-                                <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
+                                <span class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></span>
                                 <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
                             </div>
                             <?php endif; ?>
@@ -215,26 +165,23 @@
         </div>
         <div class="row yacht-category-lists">
             <?php $__empty_1 = true; $__currentLoopData = $plates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $plate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-            <div class="col-lg-4 col-md-6 col-12">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-4">
                 <div class="listing-item plate-card position-relative">
-                    <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
-                    <div class="d-flex justify-content-end align-items-center">
-                        <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
-                    </div>
+                  
                     <div class="position-relative plate ">
                         <div class="w-100 my-4">
                             <img src="<?php echo e($plate->emirate->image_url); ?>" alt="car-plate" class="w-100" loading="lazy">
                         </div>
                         <?php if($plate->emirate->slug != 'ajman' && $plate->emirate->slug != 'rak'): ?>
-                        <h1 class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
-                            <?php echo e($plate->code->name); ?></h1>
+                        <span class="position-absolute <?php echo e($plate->emirate->slug); ?>-icon fw-semibold main-shadow">
+                            <?php echo e($plate->code->name); ?></span>
                         <h2 class="position-absolute <?php echo e($plate->emirate->slug); ?>-number fw-normal main-shadow">
                             <?php echo e($plate->number); ?></h2>
                         <?php else: ?>
                         <div
                             class=" <?php echo e($plate->emirate->slug); ?>-plate position-absolute d-flex justify-content-around align-items-center
                         ">
-                            <h1 class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></h1>
+                            <span class="fw-medium main-shadow"><?php echo e($plate->code->name); ?></span>
                             <h2 class="fw-medium main-shadow"><?php echo e($plate->number); ?></h2>
                         </div>
                         <?php endif; ?>
@@ -279,7 +226,7 @@
 
     <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold mb-4"><?php echo e(__('message.🔍 How It Works')); ?></h1>
+            <h2 class="text-4xl font-bold mb-4"><?php echo e(__('message.🔍 How It Works')); ?></h2>
             <span class="text-gray-600 max-w-2xl block mx-auto">
 
                 <?php echo e(__('message.From Browsing to Ownership — A Seamless Experience Discover how simple it is to find and purchase your ideal plate through our streamlined process:')); ?>
@@ -359,8 +306,8 @@
         <p class="text-white mb-6"><?php echo e(__('message.Subscribe_notification')); ?></p>
 
         <div class="flex justify-center">
-            <div class="relative w-full md:w-1/2">
-                <input type="email" placeholder="<?php echo e(__('message.Your_email_address')); ?>"
+            <div class="relative w-full md:w-1/2 newsletter">
+                <input type="email" name="email" id="email" placeholder="<?php echo e(__('message.Your_email_address')); ?>"
                     class="p-3 pr-12 rounded-md text-black w-full border outline-none">
                 <button type="submit"
                     class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#ac1e23] text-white py-2 px-4 rounded-md hover:bg-red-700 transition">
@@ -375,6 +322,22 @@
 
 
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const badge = document.querySelector('.explosion-badge');
+    if (badge) {
+        // Trigger a 're-explosion' effect every 10 seconds
+        setInterval(() => {
+            badge.style.animation = 'none';
+            badge.offsetHeight; // trigger reflow
+            badge.style.animation = 'pulse-glow 2s infinite ease-in-out';
+        }, 10000);
+    }
+});
+</script>
+<?php $__env->stopPush(); ?>
 
 <?php $__env->startPush('scripts'); ?>
 <script>
@@ -410,27 +373,45 @@ document.getElementById('emirate_id').addEventListener('change', function() {
     }
 });
 
-$('.featured-plates-slider').owlCarousel({
-    loop: true,
-    margin: 20,
-    nav: true,
-    dots: false,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    smartSpeed: 1000,
-    navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
-    responsive: {
-        0: {
-            items: 1
-        },
-        576: {
-            items: 2
-        },
-        992: {
-            items: 3
+
+</script>
+<script>
+    $(document).ready(function() {
+        console.log('Document ready - checking for featured-plates-slider');
+        if ($('.featured-plates-slider').length > 0) {
+            console.log('Found .featured-plates-slider, initializing Owl Carousel');
+            var slider = $('.featured-plates-slider');
+            slider.owlCarousel({
+                loop: true,
+                margin: 24,
+                nav: true,
+                dots: false,
+                autoplay: true,
+                smartSpeed: 2000,
+                navText: ["<i class='bx bx-chevron-left'></i>", "<i class='bx bx-chevron-right'></i>"],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    550: {
+                        items: 1
+                    },
+                    700: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 2
+                    },
+                    1200: {
+                        items: 3
+                    }
+                }
+            });
+            console.log('Owl Carousel initialized');
+        } else {
+            console.log('Element .featured-plates-slider NOT found');
         }
-    }
-});
+    });
 </script>
 
 <?php $__env->stopPush(); ?>

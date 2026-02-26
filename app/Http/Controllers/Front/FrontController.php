@@ -240,6 +240,8 @@ class FrontController extends Controller
 
 
 
+
+
         return view("front.index", [
             "plates" => $plates,
             "featuredPlates" => $featuredPlates
@@ -254,7 +256,7 @@ class FrontController extends Controller
             ->where('is_approved', true)
             ->where('is_sold', false)
             ->latest()  // Order by created_at DESC
-            ->paginate(20);
+            ->paginate(21);
         return view("front.plates", compact('plates'));
     }
 
@@ -358,9 +360,9 @@ class FrontController extends Controller
      * Handle missing contact method
      */
     public function contact()
-{
-    return view('front.contact');
-}
+    {
+        return view('front.contact');
+    }
 
     /**
      * Get codes by emirate (AJAX endpoint)

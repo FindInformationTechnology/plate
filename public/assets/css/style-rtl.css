@@ -2,8 +2,10 @@
 
 /* General Direction and Alignment */
 body {
-  direction: rtl; /* Sets the text direction to right-to-left */
-  text-align: right; /* Aligns text to the right */
+  direction: rtl;
+  /* Sets the text direction to right-to-left */
+  text-align: right;
+  /* Aligns text to the right */
 }
 
 /*  Consider adding this to the html tag as well for better browser support */
@@ -19,13 +21,14 @@ html[lang="ar"] body {
 }
 
 /* Breadcrumb RTL adjustments */
-[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before,
-html[lang="ar"] .breadcrumb-item + .breadcrumb-item::before {
+[dir="rtl"] .breadcrumb-item+.breadcrumb-item::before,
+html[lang="ar"] .breadcrumb-item+.breadcrumb-item::before {
   float: right;
-  padding-right: 0;
-  padding-left: var(--bs-breadcrumb-item-padding-x);
+  padding-right: .5rem;
+  /* padding-left: var(--bs-breadcrumb-item-padding-x); */
   /* Change the separator direction for RTL */
-  transform: scaleX(-1); /* Mirror the separator horizontally */
+  transform: scaleX(-1);
+  /* Mirror the separator horizontally */
 }
 
 
@@ -33,11 +36,13 @@ html[lang="ar"] .breadcrumb-item + .breadcrumb-item::before {
 
 /*  Navigation Menus (Horizontal) */
 nav ul {
-  text-align: right; /* Align menu items to the right */
+  text-align: right;
+  /* Align menu items to the right */
 }
 
 nav ul li {
-  float: right; /* Float menu items to the right */
+  float: right;
+  /* Float menu items to the right */
 }
 
 /*  Forms */
@@ -46,20 +51,20 @@ input[type="email"],
 input[type="password"],
 textarea,
 select {
-  direction: rtl; /* Ensure text input is RTL */
-  text-align: right; /* Align placeholder text correctly */
+  direction: rtl;
+  /* Ensure text input is RTL */
+  text-align: right;
+  /* Align placeholder text correctly */
 }
 
-/*  Buttons (If needed) */
-button {
-  /*  Consider mirroring icons or adjusting padding */
-}
 
 /*  Lists */
 ul,
 ol {
-  padding-right: 20px; /* Adjust padding for bullet points/numbers */
-  padding-left: 0; /* Remove default left padding */
+  padding-right: 20px;
+  /* Adjust padding for bullet points/numbers */
+  padding-left: 0;
+  /* Remove default left padding */
 }
 
 /*  Specific Layout Adjustments (Examples - Adapt to your specific layout) */
@@ -71,25 +76,35 @@ ol {
 
 /*  Example:  Reversing the order of elements in a grid container */
 .grid-container {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust as needed */
-  direction: ltr; /* Override body's RTL direction for grid layout */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Adjust as needed */
+  direction: ltr;
+  /* Override body's RTL direction for grid layout */
 }
 
-.grid-container > * {
-  direction: rtl; /* Restore RTL direction for grid items */
+.grid-container>* {
+  direction: rtl;
+  /* Restore RTL direction for grid items */
 }
 
 /*  Example:  Mirroring icons (using CSS transforms) */
 .icon-left {
-  transform: scaleX(-1); /* Mirror the icon horizontally */
+  transform: scaleX(-1);
+  /* Mirror the icon horizontally */
 }
 
 /*  Example:  Adjusting margins and padding */
 .element {
   margin-left: 0;
-  margin-right: 10px; /* Swap left and right margins */
+  margin-right: 10px;
+  /* Swap left and right margins */
   padding-left: 0;
-  padding-right: 10px; /* Swap left and right padding */
+  padding-right: 10px;
+  /* Swap left and right padding */
+}
+
+.newsletter .pr-12 {
+  padding-right: 5rem !important;
 }
 
 /*  Example:  Adjusting float properties */
@@ -99,6 +114,43 @@ ol {
 
 .float-right {
   float: left;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  float: left;
+  padding-left: .5rem;
+  content: var(--bs-breadcrumb-divider, "\\") !important;
+}
+
+.fa-chevron-right:before {
+  content: "\f104" !important;
+  padding-left: .5rem;
+  padding-right: 0 !important;
+}
+
+.header .header-navbar-rht .has-arrow .dropdown-toggle:after {
+  margin-left: 0 !important;
+  margin-right: 10px !important;
+}
+
+
+.header .header-navbar-rht .has-arrow .dropdown-toggle .user-img {
+  margin-right: 0 !important;
+  margin-left: 5px !important;
+}
+
+.fa-hand-point-right:before {
+  content: "\f0a5" !important;
+  margin-right: .5rem !important;
+}
+
+.form-control-responsive, .form-select-responsive {
+  padding-left: 0 !important;
+  padding-right: 1.7rem !important;
+}
+
+.banner-sec-two .home-banner .banner-title h1 span {
+  font-size: .9em;
 }
 
 /*  Important Considerations: */

@@ -9,10 +9,10 @@ return [
     | This option controls the default SMS provider that will be used
     | to send verification codes and other SMS messages.
     |
-    | Supported: "log", "twilio", "sms_to", "local_uae"
+    | Supported: "vonage", "unifonic", "twilio", "log"
     |
     */
-    'default_provider' => env('SMS_PROVIDER', 'log'),
+    'default_provider' => env('SMS_PROVIDER', 'unifonic'),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,12 +27,25 @@ return [
             // Log provider doesn't need configuration
             // It will log SMS messages to Laravel logs for development
         ],
+        
+        'vonage' => [
+            'key' => env('VONAGE_KEY'),
+            'secret' => env('VONAGE_SECRET'),
+            'from' => env('VONAGE_SMS_FROM', 'PLATE35'),
+        ],
+
+        'unifonic' => [
+            'app_id' => env('UNIFONIC_APP_ID'),
+            'sender_id' => env('UNIFONIC_SENDER_ID', 'PLATE35'),
+        ],
 
         'twilio' => [
             'sid' => env('TWILIO_SID'),
             'token' => env('TWILIO_TOKEN'),
             'from' => env('TWILIO_FROM'),
+            'alpha_sender' => env('TWILIO_ALPHA_SENDER', 'PLATE35'),
         ],
+        
 
         'sms_to' => [
             'api_key' => env('SMS_TO_API_KEY'),

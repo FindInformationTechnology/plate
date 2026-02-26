@@ -12,9 +12,13 @@ use App\Models\Plate;
 use App\Models\Emirate;
 use App\Models\PlateView;
 use App\Models\User;
+use App\Traits\ImageUploadTrait;
 
 class ProfileController extends Controller
 {
+
+    use ImageUploadTrait;
+
     public function dashboard()
     {
         $user = Auth::user();
@@ -84,42 +88,50 @@ class ProfileController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'phone' => ['required', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
-            'whatsapp' => ['nullable', 'string', 'max:20'],
-            'profile_photo' => ['nullable', 'image', 'max:15360'], // 15MB max
+            'whatsapp' => ['nullable', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'], // 2MB max
         ]);
 
         // Process phone number to get last 9 digits
         $phoneNumber = $this->processPhoneNumber($request->phone);
 
-        // Check if processed phone number already exists
-        // if (User::where('phone', $phoneNumber)->exists()) {
-        //     return back()->withErrors(['phone' => 'This phone number is already registered.'])->withInput();
-        // }
+        $message = app()->locale == 'ar' ? 'رقم الهاتف مسجل بالفعل' : 'Phone number already registered';
 
-        
+        // Check if processed phone number already exists (excluding current user)
+        if (User::where('phone', $phoneNumber)->where('id', '!=', $user->id)->exists()) {
+            return back()->withErrors(['phone' => $message])->withInput();
+        }
+
+
 
         $validated['phone'] = $phoneNumber; // Update with processed phone number
 
-        if ($request->whatsapp) {
+        // Handle WhatsApp number
+        if ($request->whatsapp && trim($request->whatsapp) !== '') {
+            $processedWhatsapp = $this->processPhoneNumber($request->whatsapp);
 
-            $validated['whatsapp'] = $this->processPhoneNumber($request->whatsapp);
+            // // Check if processed WhatsApp number already exists (excluding current user)
+            // if ($processedWhatsapp && User::where('whatsapp', $processedWhatsapp)->where('id', '!=', $user->id)->exists()) {
+            //     return back()->withErrors(['whatsapp' => __('message.WhatsApp_Already_Registered')])->withInput();
+            // }
+
+            $validated['whatsapp'] = $processedWhatsapp ?: null;
+        } else {
+            $validated['whatsapp'] = null;
         }
 
         // Handle profile photo upload
-        if ($request->hasFile('profile_photo')) {
-            // Delete old photo if exists
-            if ($user->profile_photo) {
-                Storage::disk('public')->delete($user->profile_photo);
-            }
+        if ($request->hasFile('photo')) {
 
-            // Store new photo
-            $path = $request->file('profile_photo')->store('profile-photos', 'public');
-            $validated['profile_photo'] = $path;
+            $path = $this->uploadImage($request->file('photo'), 'photos');
+            $validated['photo'] = $path;
         }
 
         $user->update($validated);
 
-        return back()->with('profile_success', 'Profile updated successfully!');
+        $message = (app()->getLocale() == 'ar') ? 'تم تحديث الملف الشخصي بنجاح!' : 'Profile updated successfully!';
+
+        return back()->with('profile_success', $message);
     }
 
     /**
@@ -146,10 +158,14 @@ class ProfileController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('password_success', 'Password updated successfully!');
+        $message = (app()->getLocale() == 'ar') ? 'تم تحديث كلمة المرور بنجاح!' : 'Password updated successfully!';
+
+        return back()->with('password_success', $message);
     }
 
-    public function edit() {}
+    public function edit()
+    {
+    }
 
     private function processPhoneNumber($phone)
     {
