@@ -25,7 +25,9 @@
                                 <div class="listing-item plate-card position-relative">
                                     <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
                                     <div class="d-flex justify-content-end align-items-center">
-                                        <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+                                        <div class="text-left">
+                                            <!-- <i class="bx bx-heart fs-4"></i> -->
+                                        </div>
                                     </div>
                                     <div class="position-relative plate ">
                                         <div class="w-100 my-4">
