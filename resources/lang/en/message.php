@@ -16,7 +16,7 @@ return [
   'plate' => 'plate',
   // ...other translations...
   'About_Plate' => 'About Plate',
-  'Plate_is_a_premier_platform' => 'Plate is a leading platform for buying and selling vehicle license plates in the UAE. We connect plate owners with potential buyers, making the process simple and secure.',
+  'Plate_is_a_premier_platform' => 'Plate35 is a platform for buying and selling vehicle license plates in the UAE. It is owned and operated by Red Corner for Online Selling, a UAE-licensed company, connecting plate owners with buyers in a simple and secure way.',
   'Dubai_United_Arab_Emirates' => 'Dubai, United Arab Emirates',
   'Quick_Links' => 'Quick Links',
 
