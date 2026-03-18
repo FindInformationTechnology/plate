@@ -25,7 +25,9 @@
                                 <div class="listing-item plate-card position-relative">
                                     <!-- <div class="py-1 px-3 bg-alt rounded-2 position-absolute status">Status</div> -->
                                     <div class="d-flex justify-content-end align-items-center">
-                                        <div class="text-left"><i class="bx bx-heart fs-4"></i></div>
+                                        <div class="text-left">
+                                            <!-- <i class="bx bx-heart fs-4"></i> -->
+                                        </div>
                                     </div>
                                     <div class="position-relative plate ">
                                         <div class="w-100 my-4">
@@ -77,4 +79,43 @@
 
 
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('scripts'); ?>
+<script>
+document.querySelector(".toggle-options").addEventListener("click", function() {
+    const extraOptions = document.querySelectorAll(".extra");
+    const isHidden = extraOptions[0].classList.contains("d-none");
+
+    extraOptions.forEach(opt => {
+        opt.classList.toggle("d-none");
+    });
+
+    this.textContent = isHidden ? "- <?php echo e(__('message.less_options')); ?>" : "+ <?php echo e(__('message.more_options')); ?>";
+});
+document.getElementById('emirate_id').addEventListener('change', function() {
+    var emirateId = this.value;
+    var codeSelect = document.getElementById('code_id');
+
+    // Clear existing options
+    codeSelect.innerHTML = '<option value=""><?php echo e(__("message.Select_Code")); ?></option>';
+
+    if (emirateId) {
+        // Make AJAX request to fetch codes
+        fetch('/getCodes/' + emirateId) // Define this route in your web.php
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(code => {
+                    var option = document.createElement('option');
+                    option.value = code.id;
+                    option.textContent = code.name;
+                    codeSelect.appendChild(option);
+                });
+            });
+    }
+});
+
+
+</script>
+
+<?php $__env->stopPush(); ?>
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\SOLO REAL ESTATE6\Desktop\Plate\resources\views/front/search.blade.php ENDPATH**/ ?>
