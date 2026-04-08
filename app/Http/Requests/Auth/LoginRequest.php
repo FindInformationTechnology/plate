@@ -3,104 +3,124 @@
 namespace App\Http\Requests\Auth;
 
 use App\Models\User;
+use App\Services\Auth\IdentifierResolver;
+use App\Services\Auth\OtpService;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'login' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'identifier' => ['required', 'string', 'max:255'],
+            'otp'        => ['nullable', 'string', 'digits:6'],
         ];
     }
 
     /**
-     * Attempt to authenticate the request's credentials.
+     * Main entry point: handles both OTP send and OTP verify flows.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function authenticate(): void
     {
+        
         $this->ensureIsNotRateLimited();
 
-        $login = $this->input('login');
-        $loginType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+        $resolver   = app(IdentifierResolver::class);
+        
+        $otpService = app(OtpService::class);
 
-        // If login is a phone number, process it to match the format in the database
-        if ($loginType === 'phone') {
-            $login = $this->processPhoneNumber($login);
+        ['channel' => $channel, 'identifier' => $identifier] = $resolver->resolve(
+            $this->string('identifier')
+        );
+
+        // ── No OTP submitted → send OTP ──────────────────────────────────────────
+        if (! $this->filled('otp')) {
+            $this->sendOtp($identifier, $channel, $otpService);
         }
 
-        // Self-healing: fix any malformed Bcrypt hash (e.g. $12$ instead of $2y$12$)
-        $this->fixMalformedPasswordHash($loginType, $login);
-
-        $credentials = [
-            $loginType => $login,
-            'password' => $this->input('password')
-        ];
-
-        if (!Auth::attempt($credentials, $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'login' => trans('auth.failed'),
-            ]);
-        }
+        // ── OTP submitted → verify and login ─────────────────────────────────────
+        $this->verifyAndLogin($identifier, $channel, $otpService);
 
         RateLimiter::clear($this->throttleKey());
     }
 
-    /**
-     * Auto-fix malformed Bcrypt hashes stored without the $2y$ prefix.
-     * Some external tools / direct DB inserts produce $12$... instead of $2y$12$...
-     */
-    private function fixMalformedPasswordHash(string $loginType, string $login): void
+    // ─── Private ─────────────────────────────────────────────────────────────────
+
+    private function sendOtp(string $identifier, string $channel, OtpService $otpService): never
     {
-        $user = User::where($loginType, $login)->first();
-
-        if (!$user) {
-            return;
+        // Cooldown: prevent spam (60s between requests)
+        if ($otpService->hasCooldown($identifier)) {
+            throw ValidationException::withMessages([
+                'identifier' => [__('auth.otp_cooldown')],
+            ])->status(429);
         }
 
-        $raw = $user->getAttributes()['password'] ?? '';
+        $otpService->send($identifier, $channel);
 
-        // Detect $12$ or $10$ etc. — valid Bcrypt cost but missing $2y$ wrapper
-        if (preg_match('/^\$(\d+)\$/', $raw) && !str_starts_with($raw, '$2y$') && !str_starts_with($raw, '$2b$') && !str_starts_with($raw, '$argon')) {
-            $fixed = '$2y$' . ltrim($raw, '$');
-            if (password_get_info($fixed)['algo'] === PASSWORD_BCRYPT) {
-                DB::table('users')->where('id', $user->id)->update(['password' => $fixed]);
-            }
-        }
+        // Tell the frontend to show the OTP field
+        throw ValidationException::withMessages([
+            'otp_sent' => [__('auth.otp_sent')],
+        ])->status(422); // 422 keeps us in the login form, intercepted by JS/Livewire
     }
 
-    /**
-     * Ensure the login request is not rate limited.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
+    private function verifyAndLogin(string $identifier, string $channel, OtpService $otpService): void
+    {
+        // Throws ValidationException on failure
+        $otpService->verify($identifier, $this->string('otp'), 'login');
+
+        // Find or auto-register the user
+        $user = $this->findOrCreateUser($identifier, $channel);
+
+        if (! $user->is_active) {
+            throw ValidationException::withMessages([
+                'identifier' => [__('auth.account_disabled')],
+            ]);
+        }
+
+        Auth::login($user, remember: true);
+    }
+
+    private function findOrCreateUser(string $identifier, string $channel): User
+    {
+        $field = $channel === 'phone' ? 'phone' : 'email';
+
+        return User::firstOrCreate(
+            [$field => $identifier],
+            [
+                'name'     => $this->deriveDefaultName($identifier, $channel),
+                'role'     => 'user',
+                'password' => null, // OTP users don't need a password
+            ]
+        );
+    }
+
+    private function deriveDefaultName(string $identifier, string $channel): string
+    {
+        if ($channel === 'email') {
+            return Str::title(explode('@', $identifier)[0]);
+        }
+
+        // Phone: will be updated by user later
+        return 'User';
+    }
+
+    // ─── Rate Limiting ───────────────────────────────────────────────────────────
+
     public function ensureIsNotRateLimited(): void
     {
-        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -109,44 +129,17 @@ class LoginRequest extends FormRequest
         $seconds = RateLimiter::availableIn($this->throttleKey());
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
+            'identifier' => trans('auth.throttle', [
                 'seconds' => $seconds,
                 'minutes' => ceil($seconds / 60),
             ]),
-        ]);
+        ])->status(429);
     }
 
-    /**
-     * Get the rate limiting throttle key for the request.
-     */
-    public function throttleKey(): string
+    private function throttleKey(): string
     {
-        // return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
-        return Str::transliterate(Str::lower($this->string('login')) . '|' . $this->ip());
-    }
-
-    private function processPhoneNumber($phone)
-    {
-        // Remove all non-numeric characters
-        $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
-
-        // Remove leading zeros
-        $cleanPhone = ltrim($cleanPhone, '0');
-
-        // Remove common UAE country code if present
-        if (substr($cleanPhone, 0, 3) === '971') {
-            $cleanPhone = substr($cleanPhone, 3);
-        }
-
-        // Remove leading zero again after country code removal
-        $cleanPhone = ltrim($cleanPhone, '0');
-
-        // Get the last 9 digits
-        if (strlen($cleanPhone) >= 9) {
-            return substr($cleanPhone, -9);
-        }
-
-        // If less than 9 digits, pad with leading zeros to make it 9 digits
-        return str_pad($cleanPhone, 9, '0', STR_PAD_LEFT);
+        return Str::transliterate(
+            Str::lower($this->string('identifier')) . '|' . $this->ip()
+        );
     }
 }

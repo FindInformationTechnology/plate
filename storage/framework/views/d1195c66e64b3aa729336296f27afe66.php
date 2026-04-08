@@ -15,10 +15,11 @@
                     <p class="account-subtitle"><?php echo e(__('message.We_will_send_a_confirmation_code_to_your_email')); ?>.</p>
                     <form action="<?php echo e(route('login')); ?>" method="post">
                         <?php echo csrf_field(); ?>
+
                         <div class="input-block">
                             <label class="form-label"><?php echo e(__('message.Email_or_Phone')); ?> <span
                                     class="text-danger">*</span></label>
-                            <input type="text" name="login" class="form-control" placeholder="">
+                            <input type="text" name="identifier" class="form-control" placeholder="">
                             <?php $__errorArgs = ['login'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -30,7 +31,8 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
-                        <div class="input-block">
+
+                        <!-- <div class="input-block">
                             <label class="form-label"><?php echo e(__('message.Password')); ?> <span
                                     class="text-danger">*</span></label>
                             <div class="pass-group">
@@ -47,36 +49,41 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                             </div>
-                        </div>
-                        <div class="input-block">
+                        </div> -->
+
+                        <!-- <div class="input-block">
                             <a class="forgot-link" href="<?php echo e(route('password.request')); ?>"><?php echo e(__('message.Forgot_Password')); ?> ?</a>
-                        </div>
-                        <div class="input-block m-0">
+                        </div> -->
+
+                        <!-- <div class="input-block m-0">
                             <label class="custom_check d-inline-flex"><span><?php echo e(__('message.Remember_me')); ?></span>
                                 <input type="checkbox" name="remeber">
                                 <span class="checkmark"></span>
                             </label>
-                        </div>
+                        </div> -->
 
                         <button type="submit" class="btn btn-outline-light w-100 btn-size mt-1"><?php echo e(__('message.Sign_In')); ?></button>
-                        <div class="login-or">
+
+                        <!-- <div class="login-or">
                             <span class="or-line"></span>
                             <span class="span-or-log"><?php echo e(__('message.Or_log_in_with_your_email')); ?></span>
-                        </div>
+                        </div> -->
+
                         <!-- Social Login -->
-                        <div class="social-login">
+                        <!-- <div class="social-login">
                             <a href="<?php echo e(route('auth.google')); ?>"
                                 class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img
                                         src="assets/img/icons/google.svg" class="img-fluid" alt="Google"></span><?php echo e(__('message.Log_in_with_Google')); ?></a>
-                        </div>
+                        </div> -->
+
                         <!-- <div class="social-login">
                             <a href="#"
                                 class="d-flex align-items-center justify-content-center input-block btn google-login w-100"><span><img
                                         src="assets/img/icons/facebook.svg" class="img-fluid" alt="Facebook"></span><?php echo e(__('message.Log_in_with_Facebook')); ?></a>
                         </div> -->
                         <!-- /Social Login -->
-                        <div class="text-center dont-have"><?php echo e(__('message.Dont_have_an_account_yet')); ?>? <a
-                                href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Register')); ?></a></div>
+                        <!-- <div class="text-center dont-have"><?php echo e(__('message.Dont_have_an_account_yet')); ?>? <a
+                                href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Register')); ?></a></div> -->
                     </form>
                 </div>
             </div>
