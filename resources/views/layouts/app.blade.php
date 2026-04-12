@@ -202,6 +202,9 @@
                 <!-- /Dashboard Menu -->
             @endauth
 
+          
+            
+
             @yield('content')
 
             @include('layouts.footer')
