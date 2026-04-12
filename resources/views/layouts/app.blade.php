@@ -165,17 +165,17 @@
 
 
 
-<div id="page-transition-overlay" class="hidden">
-    <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" />
-</div>
-
 <body class="home-two">
-
+    
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ8WB8CV" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
+    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ8WB8CV" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe></noscript> -->
+        <!-- End Google Tag Manager (noscript) -->
+        
+        
+        <!-- <div id="page-transition-overlay" class="hidden">
+            <img src="{{ asset('assets/img/logo-b.png') }}" alt="Logo" />
+        </div> -->
 
 
     <div class="main-wrapper">
@@ -188,20 +188,7 @@
 
             @include('layouts.header')
 
-            @auth
-                @if(auth()->user()->hasRole('user'))
-                    @if(empty(auth()->user()->phone) || empty(auth()->user()->whatsapp))
-                        @include('partials._alert_compliation')
-                    @endif
-                @endif
-
-                <!-- Dashboard Menu -->
-                @if(!Route::currentRouteName() == 'home')
-                    @include('partials._dashboard_menu')
-                @endif
-                <!-- /Dashboard Menu -->
-            @endauth
-
+          
           
             
 
