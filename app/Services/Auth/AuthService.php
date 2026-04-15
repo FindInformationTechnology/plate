@@ -43,7 +43,7 @@ class AuthService
 
         $identifier = $data['identifier'];
         $channel    = $data['channel'];
-
+ 
         // verify OTP
         $this->otpService->verify($identifier, $otp, 'login');
 

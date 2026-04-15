@@ -9,11 +9,16 @@ $__split = function ($name, $params = []) {
 };
 [$__name, $__params] = $__split('auth.login');
 
-$__html = app('livewire')->mount($__name, $__params, 'lw-4254767340-0', $__slots ?? [], get_defined_vars());
+$__key = null;
+
+$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-4254767340-0', $__key);
+
+$__html = app('livewire')->mount($__name, $__params, $__key);
 
 echo $__html;
 
 unset($__html);
+unset($__key);
 unset($__name);
 unset($__params);
 unset($__split);

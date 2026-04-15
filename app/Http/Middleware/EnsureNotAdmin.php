@@ -11,6 +11,7 @@ class EnsureNotAdmin
 {
     public function handle(Request $request, Closure $next): Response
     {
+        
         if (Auth::check() && Auth::user()->isAdmin()) {
             return redirect()->route('admin.dashboard');
         }

@@ -165,17 +165,17 @@
 
 
 
+<div id="page-transition-overlay" class="hidden">
+    <img src="<?php echo e(asset('assets/img/logo-b.png')); ?>" alt="Logo" />
+</div>
+
 <body class="home-two">
-    
+
     <!-- Google Tag Manager (noscript) -->
-    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ8WB8CV" height="0" width="0"
-        style="display:none;visibility:hidden"></iframe></noscript> -->
-        <!-- End Google Tag Manager (noscript) -->
-        
-        
-        <!-- <div id="page-transition-overlay" class="hidden">
-            <img src="<?php echo e(asset('assets/img/logo-b.png')); ?>" alt="Logo" />
-        </div> -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZ8WB8CV" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
 
 
     <div class="main-wrapper">
@@ -188,9 +188,19 @@
 
             <?php echo $__env->make('layouts.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-          
-          
-            
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->check()): ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->hasRole('user')): ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(empty(auth()->user()->phone) || empty(auth()->user()->whatsapp)): ?>
+                        <?php echo $__env->make('partials._alert_compliation', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+                <!-- Dashboard Menu -->
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!Route::currentRouteName() == 'home'): ?>
+                    <?php echo $__env->make('partials._dashboard_menu', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <!-- /Dashboard Menu -->
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
             <?php echo $__env->yieldContent('content'); ?>
 

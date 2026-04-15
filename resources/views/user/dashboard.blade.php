@@ -147,7 +147,7 @@
                 <!-- /My Recent Plates -->
 
                 <!-- Market Insights -->
-                <div class="col-lg-4 d-flex">
+                <!-- <div class="col-lg-4 d-flex">
                     <div class="card flex-fill">
                         <div class="card-header">
                             <h5>{{ __('message.Market_Insights') }}</h5>
@@ -181,7 +181,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /Market Insights -->
             </div>
             <!-- /Dashboard -->

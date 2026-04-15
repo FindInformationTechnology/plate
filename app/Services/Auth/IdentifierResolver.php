@@ -60,20 +60,20 @@ class IdentifierResolver
 
         // UAE local format: 05XXXXXXXX → +97105XXXXXXXX
         if (preg_match('/^05\d{8}$/', $phone)) {
-            return '+971' . substr($phone, 1);
+            return '971' . substr($phone, 1);
         }
 
         // Already has country code without +
         if (preg_match('/^971\d{9}$/', $phone)) {
-            return '+' . $phone;
+            return   $phone;
         }
 
         // Already E.164
-        if (str_starts_with($phone, '+')) {
+        if (str_starts_with($phone, '971')) {
             return $phone;
         }
 
         // Fallback: assume UAE
-        return '+971' . ltrim($phone, '0');
+        return '971' . ltrim($phone, '0');
     }
 }

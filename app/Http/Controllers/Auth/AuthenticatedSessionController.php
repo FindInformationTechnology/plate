@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminLoginRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,24 +12,28 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    public function create(): View
+    public function create()
     {
+
+        if (auth()->check() && auth()->user()->hasRole('admin')) {
+            return redirect()->route('admin.dashboard');
+        }
         
-        return view('auth.login');
+        return view('admin.auth.login');
     }
 
     /**
      * All business logic lives in LoginRequest::authenticate().
      * This controller only handles HTTP redirects.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(AdminLoginRequest $request): RedirectResponse
     {
-        
+       
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('user.dashboard'));
+        return redirect()->intended(route('admin.dashboard'));
     }
 
     public function destroy(Request $request): RedirectResponse
