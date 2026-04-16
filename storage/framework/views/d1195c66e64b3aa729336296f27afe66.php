@@ -9,6 +9,7 @@ $__split = function ($name, $params = []) {
 };
 [$__name, $__params] = $__split('auth.login');
 
+
 $__key = null;
 
 $__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-4254767340-0', $__key);

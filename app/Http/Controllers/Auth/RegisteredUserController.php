@@ -66,8 +66,10 @@ class RegisteredUserController extends Controller
             }
         }
 
+        
         // Process phone number to get last 9 digits
         $phoneNumber = $this->processPhoneNumber($request->phone);
+        
 
         
         app()->isLocale('ar') ? $message = 'هذا الرقم مسجل بالفعل' : $message = 'This phone number is already registered';
@@ -105,29 +107,22 @@ class RegisteredUserController extends Controller
     }
 
     public function processPhoneNumber($phone)
-    {
-        // Remove all non-numeric characters
-        $cleanPhone = preg_replace('/[^0-9]/', '', $phone); // 
+{
+    $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
 
-        // Remove leading zeros
-        $cleanPhone = ltrim($cleanPhone, '0');
-
-        // Remove common UAE country code if present
-        if (substr($cleanPhone, 0, 3) === '971') {
-            $cleanPhone = substr($cleanPhone, 3);
-        }
-
-        // Remove leading zero again after country code removal
-        $cleanPhone = ltrim($cleanPhone, '0');
-
-        // Get the last 9 digits
-        if (strlen($cleanPhone) >= 9) {
-            return substr($cleanPhone, -9);
-        }
-
-        // If less than 9 digits, pad with leading zeros to make it 9 digits
-        return str_pad($cleanPhone, 9, '0', STR_PAD_LEFT);
+    // Remove country code if exists
+    if (substr($cleanPhone, 0, 3) === '971') {
+        $cleanPhone = substr($cleanPhone, 3);
     }
+
+    // Remove leading zero
+    $cleanPhone = ltrim($cleanPhone, '0');
+
+    // Ensure exactly 9 digits
+    $cleanPhone = str_pad(substr($cleanPhone, -9), 9, '0', STR_PAD_LEFT);
+
+    return '971' . $cleanPhone;
+}
 
     private function verifyRecaptcha($token)
     {
