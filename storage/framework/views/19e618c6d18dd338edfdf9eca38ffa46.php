@@ -123,12 +123,12 @@
             </div>
             <div class="profile-inner">
                 <div class="row">
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="profile-form-group">
                             <label><?php echo e(__('message.Current_Password')); ?> <span class="text-danger">*</span></label>
                             <input type="password" name="current_password" class="form-control" required>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-6">
                         <div class="profile-form-group">
                             <label><?php echo e(__('message.New_Password')); ?> <span class="text-danger">*</span></label>
