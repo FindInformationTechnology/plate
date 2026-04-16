@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminLoginRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,75 +12,37 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
-    public function create(): View
+    public function create()
     {
-        // Check if the request is for the admin login page
-        if (request()->is('admin/login') || request()->is('admin/*')) {
-            return view('admin.pages.auth.login');
-        }
 
-        return view('auth.login');
+        if (auth()->check() && auth()->user()->hasRole('admin')) {
+            return redirect()->route('admin.dashboard');
+        }
+        
+        return view('admin.auth.login');
     }
 
     /**
-     * Handle an incoming authentication request.
+     * All business logic lives in LoginRequest::authenticate().
+     * This controller only handles HTTP redirects.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(AdminLoginRequest $request): RedirectResponse
     {
-
-        $message = app()->isLocale('ar') ? 'تم تسجيلك بنجاح' : 'You have been logged in successfully';
-
-        // Check if user is already authenticated
-        if (Auth::check()) {
-            // Regenerate the session to ensure fresh CSRF token
-            $request->session()->regenerate();
-
-            $user = auth()->user();
-
-            if ($user->hasRole('admin')) {
-                return redirect()->intended(route('admin.dashboard'))
-                    ->with('success', $message);
-            } else {
-                return redirect()->intended(route('home'))
-                    ->with('success', $message);
-            }
-        }
-
+       
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        $user = auth()->user();
-
-        if ($user->hasRole('admin')) {
-            return redirect()->intended(route('admin.dashboard'))
-                ->with('success', $message);
-        } elseif ($user->hasRole('user')) {
-
-            return redirect()->intended(route('home'))
-                ->with('success', $message);
-        }
-
-        return redirect()->intended(route('home'))
-            ->with('success', $message);
+        return redirect()->intended(route('admin.dashboard'));
     }
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        $message = app()->isLocale('ar') ? 'تم تسجيلك بنجاح' : 'You have been logged out successfully';
-
-        return redirect('/')->with('success', $message);
+        return redirect('/');
     }
 }

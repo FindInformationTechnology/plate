@@ -3,16 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Plate;
 use App\Models\PlateView;
 use App\Models\Emirate;
+use App\Models\Plate;
+use App\Models\User;
 use App\Models\Code;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware(['auth', 'role:admin']);
+    }
     public function index()
     {
         // User statistics
@@ -30,7 +33,7 @@ class DashboardController extends Controller
         $pendingApproval = Plate::where('is_approved', false)->count();
         $featuredPlates = Plate::where('is_featured', true)->count();
         $premiumPlates = Plate::where('is_premium', true)->count();
-        $urgentPlates = Plate::where('is_urgent', true)->count();
+        // $urgentPlates = Plate::where('is_urgent', true)->count();
         
         // View statistics
         $totalViews = PlateView::count();
@@ -73,7 +76,7 @@ class DashboardController extends Controller
         return view('admin.pages.index', compact(
             'totalUsers', 'newUsersToday', 'newUsersThisWeek',
             'totalPlates', 'activePlates', 'soldPlates', 'pendingApproval',
-            'featuredPlates', 'premiumPlates', 'urgentPlates',
+            'featuredPlates', 'premiumPlates', 
             'totalViews', 'viewsToday',
             'totalEmirates', 'totalCodes',
             'mostViewedPlates', 'recentPlates',

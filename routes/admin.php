@@ -5,11 +5,19 @@ use App\Http\Controllers\Admin\PlateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EmirateController;
 use App\Http\Controllers\Admin\CodeController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+Route::middleware('guest')->prefix('admin')->name('admin.')->group(function () {
+Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
 
-
-Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::post('login', [AuthenticatedSessionController::class, 'store']);
+});
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('admin.logout');
     
 
     // Emirates and code management
@@ -52,4 +60,3 @@ Route::get('/lang', function () {
 
 
 
-require __DIR__ . '/auth_admin.php';
