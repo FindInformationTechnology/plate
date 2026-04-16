@@ -27,9 +27,9 @@
                             <div class="input-group" style="max-width: 400px;">
                                 <select class="form-select" name="emirate_id">
                                     <option value=""><?php echo e(__('message.Select_Emirate')); ?></option>
-                                    <?php $__currentLoopData = \App\Models\Emirate::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = \App\Models\Emirate::all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($emirate->id); ?>"><?php echo e($emirate->name); ?></option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                                 </select>
                                 <button class="btn btn-primary" type="submit">
                                     <i class="bx bx-search"></i> <?php echo e(__('message.Search')); ?>
@@ -59,7 +59,7 @@
                     <div class="popular-categories">
                         <h5 class="mb-3"><?php echo e(__('message.Popular_Categories')); ?></h5>
                         <div class="row">
-                            <?php $__currentLoopData = \App\Models\Emirate::take(4)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = \App\Models\Emirate::take(4)->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $emirate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-6 col-md-3 mb-2">
                                 <a href="<?php echo e(route('plates.search', ['emirate_id' => $emirate->id])); ?>" 
                                    class="btn btn-outline-light btn-sm w-100">
@@ -67,7 +67,7 @@
 
                                 </a>
                             </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                         </div>
                     </div>
                 </div>

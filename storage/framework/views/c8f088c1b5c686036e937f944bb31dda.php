@@ -58,14 +58,14 @@
 								<div class="widget-title">
 									<h4><?php echo e(__('message.User_Account')); ?></h4>
 									<ul class="footer-links">
-										<?php if(auth()->guard()->guest()): ?>
+										<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->guest()): ?>
 											<li><a href="<?php echo e(route('login')); ?>"><i
 														class="fas fa-chevron-right"></i><?php echo e(__('message.Login')); ?></a></li>
 											<li><a href="<?php echo e(route('register')); ?>"><i
 														class="fas fa-chevron-right"></i><?php echo e(__('message.Register')); ?></a>
 											</li>
-										<?php endif; ?>
-										<?php if(auth()->guard()->check()): ?>
+										<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+										<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->check()): ?>
 											<li><a href="<?php echo e(route('user.dashboard')); ?>"><i
 														class="fas fa-chevron-right"></i><?php echo e(__('message.My_Dashboard')); ?></a>
 											</li>
@@ -75,7 +75,7 @@
 											<li><a href="<?php echo e(route('user.profile')); ?>"><i
 														class="fas fa-chevron-right"></i><?php echo e(__('message.My_Profile')); ?></a>
 											</li>
-										<?php endif; ?>
+										<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 									</ul>
 								</div>
 							</div>

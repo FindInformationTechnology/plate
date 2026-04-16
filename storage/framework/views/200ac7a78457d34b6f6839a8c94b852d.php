@@ -1,8 +1,8 @@
 <!-- Header -->
 <header class="header header-two bg-slate-50">
-    <?php if(Route::currentRouteName() == 'home'): ?>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(Route::currentRouteName() == 'home'): ?>
 
-    <?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
     <div class="container">
         <nav class="navbar navbar-expand-lg header-nav">
             <div class="navbar-header">
@@ -37,7 +37,7 @@
 
 
 
-                    <?php if(auth()->guard()->guest()): ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->guest()): ?>
                         <li class="login-link">
                             <a href="<?php echo e(route('register')); ?>"><?php echo e(__('message.Sign_Up')); ?> / </a>
                         </li>
@@ -46,10 +46,10 @@
                             <a href="<?php echo e(route('login')); ?>"><?php echo e(__('message.Sign_In')); ?></a>
                         </li>
 
-                    <?php endif; ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-                    <?php if(auth()->guard()->check()): ?>
-                        <?php if(auth()->user()->hasRole('user')): ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->check()): ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->hasRole('user')): ?>
                             <li class="nav-item">
                                 <a class="nav-link header-reg" href="<?php echo e(route('user.plates')); ?>">
                                     <?php echo e(__('message.My_Plates')); ?></a>
@@ -58,8 +58,8 @@
 
 
 
-                        <?php endif; ?>
-                        <?php if(auth()->user()->hasRole('admin')): ?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->hasRole('admin')): ?>
                             <li class="nav-item">
                                 <a class="nav-link header-reg" href="<?php echo e(route('admin.dashboard')); ?>">
                                     <?php echo e(__('message.Dashboard_Admin')); ?></a>
@@ -79,8 +79,8 @@
                                     <?php echo csrf_field(); ?>
                                 </form>
                             </li>
-                        <?php endif; ?>
-                    <?php endif; ?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                     <li class="nav-item">
                         <a class="nav-link header-reg btn btn-primary d-none d-md-block custom-btn"
@@ -91,8 +91,8 @@
 
 
                     <!-- user menu -->
-                    <?php if(auth()->guard()->check()): ?>
-                        <?php if(auth()->user()->hasRole('user')): ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->check()): ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->hasRole('user')): ?>
                             <!-- <li class="nav-item d-md-none">
                                                                         <a class="nav-link header-reg" href="<?php echo e(route('user.plates')); ?>">
                                                                             <span><i class="bx bx-plus-circle"></i></span>
@@ -120,8 +120,8 @@
                                     <?php echo csrf_field(); ?>
                                 </form>
                             </li>
-                        <?php endif; ?>
-                    <?php endif; ?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                     <!-- Language Switcher -->
                     <li class="nav-item dropdown d-md-none">
@@ -169,7 +169,7 @@
                     </div>
                 </li>
 
-                <?php if(auth()->guard()->guest()): ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->guest()): ?>
                     <li class="nav-item">
                         <a class="nav-link login-link" href="<?php echo e(route('login')); ?>"><span><i
                                     class="bx bx-user me-2"></i></span><?php echo e(__('message.Sign_In')); ?> / </a>
@@ -180,11 +180,11 @@
                     </li>
 
 
-                <?php endif; ?>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
 
-                <?php if(auth()->guard()->check()): ?>
-                    <?php if(auth()->user()->hasRole('user')): ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->check()): ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->hasRole('user')): ?>
 
 
                         <!-- Notifications -->
@@ -262,9 +262,9 @@
                             </div>
                         </li>
                         <!-- /User Menu -->
-                    <?php endif; ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-                <?php endif; ?>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
             </ul>
         </nav>
