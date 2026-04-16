@@ -35,17 +35,17 @@ class OtpSenderService
     private function sendSms(string $phone, string $code): void
     {
         // Unifonic integration (swap driver in config/otp.php)
-        // $driver = config('otp.driver', 'smart_sms');
+        $driver = config('otp.driver', 'smart_sms');
 
-        Log::info("[OTP SMS] {$phone} → {$code}");
+        // Log::info("[OTP SMS] {$phone} → {$code}");
         // $this->sendViaSmartSmsGateway($phone, $code);
         // dev only
-        // match ($driver) {
-        //     'smart_sms' =>  $this->sendViaSmartSmsGateway($phone, $code),
-        //     'unifonic' => $this->sendViauUnifonic($phone, $code),
-        //     'twilio'   => $this->sendViaTwilio($phone, $code),
-        //     'log'      => Log::info("[OTP SMS] {$phone} → {$code}"), // dev only
-        // };
+        match ($driver) {
+            'smart_sms' =>  $this->sendViaSmartSmsGateway($phone, $code),
+            'unifonic' => $this->sendViauUnifonic($phone, $code),
+            'twilio'   => $this->sendViaTwilio($phone, $code),
+            'log'      => Log::info("[OTP SMS] {$phone} → {$code}"), // dev only
+        };
     }
 
     private function sendEmail(string $email, string $code): void
