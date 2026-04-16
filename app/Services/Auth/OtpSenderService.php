@@ -97,6 +97,6 @@ class OtpSenderService
             'type'     => 'text', // use 'unicode' for Arabic
         ]);
 
-        \Log::info($response->body());
+        Log::info($response->body());
     }
 }
