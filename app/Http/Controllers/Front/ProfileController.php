@@ -1,18 +1,16 @@
 <?php
-
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
-use App\Models\Plate;
 use App\Models\Emirate;
+use App\Models\Plate;
 use App\Models\PlateView;
 use App\Models\User;
 use App\Traits\ImageUploadTrait;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
@@ -29,7 +27,7 @@ class ProfileController extends Controller
         })->count();
 
         // Get user's plates statistics
-        $myPlatesCount = Plate::where('user_id', $user->id)->count();
+        $myPlatesCount   = Plate::where('user_id', $user->id)->count();
         $soldPlatesCount = Plate::where('user_id', $user->id)->where('is_sold', true)->count();
 
         // This would require a view count implementation - using a placeholder for now
@@ -57,7 +55,7 @@ class ProfileController extends Controller
 
         $averagePrice = $priceStats->average_price ? number_format($priceStats->average_price, 0) . ' AED' : 'N/A';
         $highestPrice = $priceStats->highest_price ? number_format($priceStats->highest_price, 0) . ' AED' : 'N/A';
-        $lowestPrice = $priceStats->lowest_price ? number_format($priceStats->lowest_price, 0) . ' AED' : 'N/A';
+        $lowestPrice  = $priceStats->lowest_price ? number_format($priceStats->lowest_price, 0) . ' AED' : 'N/A';
 
         return view('user.dashboard', compact(
             'myPlatesCount',
@@ -82,56 +80,46 @@ class ProfileController extends Controller
      */
     public function updateProfile(Request $request)
     {
-        $user = Auth::user();
+        $user = $request->user();
 
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'phone' => ['required', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
-            'whatsapp' => ['nullable', 'string', 'max:20', Rule::unique('users')->ignore($user->id)],
-            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'], // 2MB max
+        
+        // Normalize inputs BEFORE validation
+        $request->merge([
+            'phone' => $this->processPhoneNumber($request->phone),
+            'whatsapp' => $request->whatsapp
+                ? $this->processPhoneNumber($request->whatsapp)
+                : null,
+            ]);
+            
+            // Validate
+            $validated = $request->validate([
+                'phone' => [
+                'required',
+                'digits:12', // 971XXXXXXXXX
+                Rule::unique('users', 'phone')->ignore($user->id),
+            ],
+            'whatsapp' => [
+                'nullable',
+                'digits:12',
+                Rule::unique('users', 'whatsapp')->ignore($user->id),
+            ],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
         ]);
-
-        // Process phone number to get last 9 digits
-        $phoneNumber = $this->processPhoneNumber($request->phone);
-
-        $message = app()->locale == 'ar' ? 'رقم الهاتف مسجل بالفعل' : 'Phone number already registered';
-
-        // Check if processed phone number already exists (excluding current user)
-        if (User::where('phone', $phoneNumber)->where('id', '!=', $user->id)->exists()) {
-            return back()->withErrors(['phone' => $message])->withInput();
-        }
-
-
-
-        $validated['phone'] = $phoneNumber; // Update with processed phone number
-
-        // Handle WhatsApp number
-        if ($request->whatsapp && trim($request->whatsapp) !== '') {
-            $processedWhatsapp = $this->processPhoneNumber($request->whatsapp);
-
-            // // Check if processed WhatsApp number already exists (excluding current user)
-            // if ($processedWhatsapp && User::where('whatsapp', $processedWhatsapp)->where('id', '!=', $user->id)->exists()) {
-            //     return back()->withErrors(['whatsapp' => __('message.WhatsApp_Already_Registered')])->withInput();
-            // }
-
-            $validated['whatsapp'] = $processedWhatsapp ?: null;
-        } else {
-            $validated['whatsapp'] = null;
-        }
-
-        // Handle profile photo upload
+        
+    
+        // Handle photo upload
         if ($request->hasFile('photo')) {
-
-            $path = $this->uploadImage($request->file('photo'), 'photos');
-            $validated['photo'] = $path;
+            $validated['photo'] = $this->uploadImage($request->file('photo'), 'photos');
         }
-
+    
         $user->update($validated);
-
-        $message = (app()->getLocale() == 'ar') ? 'تم تحديث الملف الشخصي بنجاح!' : 'Profile updated successfully!';
-
-        return back()->with('profile_success', $message);
+    
+        return back()->with(
+            'profile_success',
+            app()->isLocale('ar')
+                ? 'تم تحديث الملف الشخصي بنجاح!'
+                : 'Profile updated successfully!'
+        );
     }
 
     /**
@@ -142,17 +130,18 @@ class ProfileController extends Controller
      */
     public function updatePassword(Request $request)
     {
+        $user = $request->user();
+
         $validated = $request->validate([
-            'current_password' => ['required', 'string'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'current_password' => ['required', 'string'],
+            'password'         => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $user = Auth::user();
 
         // Check if current password matches
-        if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
-        }
+        // if (! Hash::check($request->current_password, $user->password)) {
+        //     return back()->withErrors(['current_password' => 'The provided password does not match your current password.']);
+        // }
 
         $user->update([
             'password' => Hash::make($validated['password']),
@@ -169,26 +158,19 @@ class ProfileController extends Controller
 
     private function processPhoneNumber($phone)
     {
-        // Remove all non-numeric characters
         $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
 
-        // Remove leading zeros
-        $cleanPhone = ltrim($cleanPhone, '0');
-
-        // Remove common UAE country code if present
+        // Remove country code if exists
         if (substr($cleanPhone, 0, 3) === '971') {
             $cleanPhone = substr($cleanPhone, 3);
         }
 
-        // Remove leading zero again after country code removal
+        // Remove leading zero
         $cleanPhone = ltrim($cleanPhone, '0');
 
-        // Get the last 9 digits
-        if (strlen($cleanPhone) >= 9) {
-            return substr($cleanPhone, -9);
-        }
+        // Ensure exactly 9 digits
+        $cleanPhone = str_pad(substr($cleanPhone, -9), 9, '0', STR_PAD_LEFT);
 
-        // If less than 9 digits, pad with leading zeros to make it 9 digits
-        return str_pad($cleanPhone, 9, '0', STR_PAD_LEFT);
+        return '971' . $cleanPhone;
     }
 }

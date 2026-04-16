@@ -1,31 +1,26 @@
 <?php
-
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
 
     use HasFactory, Notifiable, HasApiTokens, HasRoles;
 
-     protected $appends = ['phone_number','whatsapp_number','profile_photo_url'];
+    protected $appends  = ['phone_number', 'whatsapp_number', 'profile_photo_url'];
     protected $fillable = [
-        'name','email','phone', 'whatsapp','password','nationality','status',
+        'name', 'email', 'phone', 'whatsapp', 'password', 'nationality', 'status',
         'photo',
         'google_id',
         'facebook_id',
         'twitter_id',
-        'phone_verified_at',
-        'phone_verification_required',
-        'phone_verification_sent_at',
-        'phone_verification_code',
-        'phone_verification_attempts',
+
     ];
 
     /**
@@ -36,7 +31,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'phone_verification_code',
+
     ];
 
     public function plates()
@@ -53,156 +48,60 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'phone_verified_at' => 'datetime',
-            'phone_verification_sent_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
+    }
+
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone'] = $this->normalizePhone($value);
+    }
+
+    public function setWhatsappAttribute($value)
+    {
+        $this->attributes['whatsapp'] = $this->normalizePhone($value);
     }
 
     public function getPhoneNumberAttribute()
     {
-        if (!$this->phone) {
-            return null;
-        }
-        
-        $processed = $this->processPhoneNumber($this->phone);
-        return $processed ? '+971' . $processed : null;
+        return $this->phone ? '+' . $this->phone : null;
     }
 
     public function getWhatsappNumberAttribute()
     {
-        if (!$this->whatsapp) {
-            return null;
-        }
-        
-        $processed = $this->processPhoneNumber($this->whatsapp);
-        return $processed ? '+971' . $processed : null;
+        return $this->whatsapp ? '+' . $this->whatsapp : null;
     }
 
-    private function processPhoneNumber($phone)
+    private function normalizePhone($phone)
     {
-        if (!$phone || trim($phone) === '') {
+        if (! $phone) {
             return null;
         }
-        
-        // Remove all non-numeric characters
-        $cleanPhone = preg_replace('/[^0-9]/', '', $phone);
-        
-        // If empty after cleaning, return null
-        if (empty($cleanPhone)) {
+
+        // Remove non-numeric
+        $clean = preg_replace('/[^0-9]/', '', $phone);
+
+        if (! $clean) {
             return null;
         }
-        
+
         // Remove leading zeros
-        $cleanPhone = ltrim($cleanPhone, '0');
-        
-        // Remove common UAE country code if present
-        if (substr($cleanPhone, 0, 3) === '971') {
-            $cleanPhone = substr($cleanPhone, 3);
-        }
-        
-        // Remove leading zero again after country code removal
-        $cleanPhone = ltrim($cleanPhone, '0');
-        
-        // Validate minimum length (at least 7 digits for UAE mobile)
-        if (strlen($cleanPhone) < 7) {
-            return null;
-        }
-        
-        // Get the last 9 digits
-        if (strlen($cleanPhone) >= 9) {
-            return substr($cleanPhone, -9);
-        }
-        
-        // If less than 9 digits, pad with leading zeros to make it 9 digits
-        return str_pad($cleanPhone, 9, '0', STR_PAD_LEFT);
-    }
+        $clean = ltrim($clean, '0');
 
-    /**
-     * Check if user's phone is verified
-     */
-    public function hasVerifiedPhone(): bool
-    {
-        return !is_null($this->phone_verified_at);
-    }
-
-    /**
-     * Check if user needs phone verification
-     */
-    public function needsPhoneVerification(): bool
-    {
-        return $this->phone_verification_required && !$this->hasVerifiedPhone();
-    }
-
-    /**
-     * Mark phone as verified
-     */
-    public function markPhoneAsVerified(): void
-    {
-        $this->forceFill([
-            'phone_verified_at' => now(),
-            'phone_verification_code' => null,
-            'phone_verification_attempts' => 0,
-        ])->save();
-    }
-
-    /**
-     * Generate and store phone verification code
-     */
-    public function generatePhoneVerificationCode(): string
-    {
-        $code = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-        
-        $this->forceFill([
-            'phone_verification_code' => $code,
-            'phone_verification_sent_at' => now(),
-        ])->save();
-
-        return $code;
-    }
-
-    /**
-     * Check if verification code is valid
-     */
-    public function isValidPhoneVerificationCode(string $code): bool
-    {
-        if (!$this->phone_verification_code) {
-            return false;
+        // Remove country code if exists
+        if (str_starts_with($clean, '971')) {
+            $clean = substr($clean, 3);
         }
 
-        // Check if code matches
-        if ($this->phone_verification_code !== $code) {
-            $this->increment('phone_verification_attempts');
-            return false;
+        // Remove leading zero again
+        $clean = ltrim($clean, '0');
+
+        // Must be exactly 9 digits (UAE mobile)
+        if (strlen($clean) !== 9) {
+            return null; // or throw exception if you prefer strict
         }
 
-        // Check if code is not expired (5 minutes)
-        if ($this->phone_verification_sent_at->addMinutes(5)->isPast()) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Check if user can request new verification code
-     */
-    public function canRequestNewVerificationCode(): bool
-    {
-        if (!$this->phone_verification_sent_at) {
-            return true;
-        }
-
-        // Allow new code after 1 minute
-        return $this->phone_verification_sent_at->addMinute()->isPast();
-    }
-
-    /**
-     * Check if user is blocked from verification (too many attempts)
-     */
-    public function isBlockedFromVerification(): bool
-    {
-        return $this->phone_verification_attempts >= 5;
+        return '971' . $clean;
     }
 
     public function getProfilePhotoUrlAttribute()
