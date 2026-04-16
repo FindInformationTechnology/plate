@@ -3,29 +3,29 @@
         <h4><?php echo e(__('message.Profile')); ?></h4>
     </div>
 
-    <?php if(session('profile_success')): ?>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(session('profile_success')): ?>
     <div class="alert alert-success">
         <?php echo e(session('profile_success')); ?>
 
     </div>
-    <?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-    <?php if(session('password_success')): ?>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(session('password_success')): ?>
     <div class="alert alert-success">
         <?php echo e(session('password_success')); ?>
 
     </div>
-    <?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
-    <?php if($errors->any()): ?>
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($errors->any()): ?>
     <div class="alert alert-danger">
         <ul>
-            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <li><?php echo e($error); ?></li>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
         </ul>
     </div>
-    <?php endif; ?>
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
     <!-- Profile Information Form -->
     <form action="<?php echo e(route('user.profile.update')); ?>" method="POST" enctype="multipart/form-data">
@@ -41,18 +41,17 @@
             <div class="profile-inner">
                 <div class="profile-info-pic">
                     <div class="profile-info-img">
-                        <img src="<?php echo e(auth()->user()->profile_photo ? asset('storage/' . auth()->user()->profile_photo) : asset('assets/img/profiles/avatar-15.jpg')); ?>"
-                            alt="Profile">
+                        <img src="<?php echo e(auth()->user()->profile_photo_url); ?>" alt="Profile">
                         <div class="profile-edit-info">
-                            <label for="profile_photo" style="cursor: pointer;">
+                            <label for="photo" style="cursor: pointer;">
                                 <i class="feather-edit"></i>
                             </label>
-                            <input type="file" id="profile_photo" name="profile_photo" style="display: none;">
+                            <input type="file" id="photo" name="photo" style="display: none;">
                         </div>
                     </div>
                     <div class="profile-info-content">
                         <h6><?php echo e(__('message.Profile_picture')); ?></h6>
-                        <p><?php echo e(__('message.PNG_JPEG_under_15_MB')); ?></p>
+                        <!-- <p><?php echo e(__('message.PNG_JPEG_under_15_MB')); ?></p> -->
                     </div>
                 </div>
                 <div class="row">
@@ -74,16 +73,27 @@
                     <div class="col-md-6">
                         <div class="profile-form-group">
                             <label><?php echo e(__('message.Phone_Number')); ?> <span class="text-danger">*</span></label>
-                            <input type="text" name="phone" class="form-control"
-                                value="<?php echo e(auth()->user()->phone ?? ''); ?>" required>
+                            <div class="phone-input-wrapper">
+                                <input type="text" name="phone" class="form-control" style="direction: ltr;"
+                                    value="<?php echo e(auth()->user()->phone_number ?? ''); ?>" required>
+                                
+                               
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="profile-form-group">
-                            <label><?php echo e(__('message.Whatsapp')); ?> <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="whatsapp"
-                                value="<?php echo e(auth()->user()->whatsapp ?? ''); ?>"
+                            <label><?php echo e(__('message.Whatsapp')); ?> </label>
+                            <input type="text" class="form-control" name="whatsapp" style="direction: ltr;"
+                                value="<?php echo e(auth()->user()->whatsapp_number ?? ''); ?>"
                                 placeholder="<?php echo e(__('message.Enter_WhatsApp_Number')); ?>">
+                            <small class="text-muted"><?php echo e(__('message.WhatsApp_Optional')); ?></small>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()->whatsapp_number): ?>
+                                <small class="text-success d-block mt-1">
+                                    <i class="bx bx-check-circle"></i> <?php echo e(__('message.WhatsApp_Number_Set')); ?>
+
+                                </small>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                         </div>
                     </div>
                 </div>

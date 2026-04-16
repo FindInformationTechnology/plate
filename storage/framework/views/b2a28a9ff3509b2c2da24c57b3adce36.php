@@ -3,7 +3,6 @@
 <?php $__env->startSection('content'); ?>
 
 
-<<<<<<< HEAD
     <div class="login-wrapper">
         <div class="loginbox">
             <div class="login-auth">
@@ -13,13 +12,13 @@
                                     aria-hidden="true"></i></span> <?php echo e(__('message.Back_To_Home')); ?></a>
                     </div>
                     <h1><?php echo e(__('message.Sign_In')); ?></h1>
-                    <p class="account-subtitle"><?php echo e(__('message.We_will_send_a_confirmation_code_to_your_email')); ?>.</p>
-                    <form action="<?php echo e(route('login')); ?>" method="post">
+                    <!-- <p class="account-subtitle"><?php echo e(__('message.We_will_send_a_confirmation_code_to_your_email')); ?>.</p> -->
+                    <form action="<?php echo e(route('admin.login')); ?>" method="post">
                         <?php echo csrf_field(); ?>
                         <div class="input-block">
-                            <label class="form-label"><?php echo e(__('message.Email_or_Phone')); ?> <span
+                            <label class="form-label"><?php echo e(__('message.Email')); ?> <span
                                     class="text-danger">*</span></label>
-                            <input type="text" name="login" class="form-control" placeholder="">
+                            <input type="text" name="email" class="form-control" placeholder="">
                             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__errorArgs = ['login'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -49,39 +48,21 @@ endif;
 unset($__errorArgs, $__bag); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                             </div>
                         </div>
-                        <div class="input-block">
+                        <!-- <div class="input-block">
                             <a class="forgot-link" href="<?php echo e(route('password.request')); ?>"><?php echo e(__('message.Forgot_Password')); ?> ?</a>
-                        </div>
-                        <div class="input-block m-0">
-                            <label class="custom_check d-inline-flex"><span><?php echo e(__('message.Remember_me')); ?></span>
-                                <input type="checkbox" name="remeber">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-=======
-    <?php
-$__split = function ($name, $params = []) {
-    return [$name, $params];
-};
-[$__name, $__params] = $__split('auth.login');
->>>>>>> e166e1b947eed4e07eb35fbf31a21e07480c2ac0
+                        </div> -->
+                       
 
-$__key = null;
-
-$__key ??= \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::generateKey('lw-4254767340-0', $__key);
-
-$__html = app('livewire')->mount($__name, $__params, $__key);
-
-echo $__html;
-
-unset($__html);
-unset($__key);
-unset($__name);
-unset($__params);
-unset($__split);
-if (isset($__slots)) unset($__slots);
-?>
+                        <button type="submit" class="btn btn-outline-light w-100 btn-size mt-1"><?php echo e(__('message.Sign_In')); ?></button>
+                       
+                       
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\dell\Desktop\plate\resources\views/auth/login.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.auth', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\dell\Desktop\plate\resources\views/admin/auth/login.blade.php ENDPATH**/ ?>
